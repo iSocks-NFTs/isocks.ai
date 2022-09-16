@@ -14,6 +14,9 @@ export const P = styled.p`
   margin: 0 auto;
   margin-bottom: 2rem;
   color: var(--subtle-text);
+  @media screen and (max-width:480px) {
+    width:100%;
+  }
 `;
 
 export const Container = styled.div`
@@ -32,7 +35,7 @@ export const Point = styled.div`
   column-gap: 1rem;
   justify-content: center;
   align-items: center;
-  margin:3rem 0;
+  margin:3.5rem 0;
   @media screen and (max-width:480px) {
     flex-direction:${(props) => props.flexDirectionMobile ? props.flexDirectionMobile : 'column'};
     row-gap:1.5rem;

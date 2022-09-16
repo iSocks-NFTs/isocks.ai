@@ -61,7 +61,6 @@ const Roadmap = () => {
         <Point flexDirectionMobile="column-reverse">
           <PointImage alt="iSocks Sweater" src="/img/roadmap/socks.png" />
           <Box>
-            
             <PointHeaderText>Socks</PointHeaderText>
             <PointHeaderBody>
               NFT full lunch on Binance. Physical isocks redeeming/Distribution
