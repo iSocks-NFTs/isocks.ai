@@ -87,9 +87,6 @@ export const NavBtnLink = styled.a`
 `;
 
 export const MobileNav = styled.div`
-  position: absolute;
-  top:0;
-  left:0;
   background-color: #fff;
   padding:1rem;
   display: flex;
@@ -97,8 +94,7 @@ export const MobileNav = styled.div`
   align-items: flex-start;
   row-gap:2rem;
   height: 100%;
-  z-index: 999;
-  width:70%;
+  width:60%;
   a{
     font-weight:400;
   }
@@ -109,3 +105,22 @@ export const MobileNav = styled.div`
   }
 `
 
+export const BackDrop = styled.div`
+  position: absolute;
+  top:0;
+  background: rgba(0, 0, 0, 0.5);
+  left:0;
+  width:100%;
+  height:100%;
+  z-index: 999;
+`
+
+export const Close = styled.img`
+  position: absolute;
+  top:1%;
+  z-index: 999;
+  right:30%;
+  :hover{
+    cursor: pointer;
+  }
+`

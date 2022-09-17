@@ -8,6 +8,8 @@ import {
   NavBtnLink,
   NavImg,
   MobileNav,
+  Close,
+  BackDrop,
 } from "./navbarStyles";
 import Link from "next/link";
 
@@ -38,15 +40,20 @@ const Navbar = () => {
         </NavBtn>
       </Nav>
       {mobileNav ? (
-        <>
+        <BackDrop>
           <MobileNav>
-            <NavImg src="/img/logo/logo.png" alt="logo"/>
+            <NavImg src="/img/logo/logo.png" alt="logo" />
             <Link href="/">Buy iSocks</Link>
             <Link href="/">Redeem iSocks</Link>
             <Link href="/">Verify iSocks</Link>
-            <Link href="/">Pre-order</Link>
+            <Link href="/">Whitelist</Link>
           </MobileNav>
-        </>
+          <Close
+            src="/img/icons/close.svg"
+            alt="close button"
+            onClick={() => setMobileNav(!mobileNav)}
+          />
+        </BackDrop>
       ) : (
         <></>
       )}
