@@ -18,25 +18,25 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <NavLink to="/">
+        <NavLink href="/">
           <NavImg src="/img/logo/logo.png" alt="logo" />
         </NavLink>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink to="/about" activeStyle>
+          <NavLink href="/about" activeStyle>
             Buy iSocks
           </NavLink>
-          <NavLink to="/services" activeStyle>
+          <NavLink href="/services" activeStyle>
             Redeem iSocks
           </NavLink>
-          <NavLink to="/contact-us" activeStyle>
+          <NavLink href="/contact-us" activeStyle>
             Verify iSocks
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to="/join-waitlist">Join the whitelist</NavBtnLink>
+          <NavBtnLink href="/join-whitelist">Join the whitelist</NavBtnLink>
         </NavBtn>
       </Nav>
       {mobileNav ? (
