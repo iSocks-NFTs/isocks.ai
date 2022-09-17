@@ -39,6 +39,9 @@ export const P = styled.p`
     margin:0 auto;
     margin-bottom:2rem;
     color:var(--subtle-text);
+    @media screen and (max-width:480px){
+        width: 100%;
+    }
 `
 
 export const CardStack = styled.div`
