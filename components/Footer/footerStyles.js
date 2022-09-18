@@ -47,7 +47,12 @@ export const Heading = styled.span`
 export const SocialContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
   column-gap: 1rem;
+  :hover{
+    cursor:pointer;
+  }
 `;
 
 export const Brand = styled.div`
@@ -62,6 +67,7 @@ export const Socials = styled.div`
   display: flex;
   flex-direction: column;
   column-gap: 1rem;
+
 `;
 
 export const Information = styled.div`
