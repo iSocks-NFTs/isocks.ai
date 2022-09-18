@@ -16,7 +16,7 @@ export const NavImg = styled.img`
     height:25px;
 `
 
-export const NavLink = styled.a`
+export const NavLink = styled.span`
   color:var(--subtle-text) ;
   display: flex;
   align-items: center;
@@ -95,8 +95,9 @@ export const MobileNav = styled.div`
   row-gap:2rem;
   height: 100%;
   width:60%;
-  a{
+  a,span{
     font-weight:400;
+    cursor:pointer;
   }
   ::before{
     background-color: black;
