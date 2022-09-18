@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
@@ -8,10 +8,12 @@ import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
 
 import ComingSoon from "../components/ComingSoon";
-
+import Modal from "../components/Modal";
+import { GlobalContext } from "../context/globalContext";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
+  const { comingSoonModal } = useContext(GlobalContext);
 
   return (
     <>
@@ -28,6 +30,13 @@ export default function Home() {
         </>
       ) : (
         <>
+          {comingSoonModal ? (
+            <>
+              <Modal />
+            </>
+          ) : (
+            <></>
+          )}
           <Navbar />
           <ComingSoon />
           <Subscribe />
