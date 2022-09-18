@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Nav,
   NavLink,
@@ -12,9 +12,17 @@ import {
   BackDrop,
 } from "./navbarStyles";
 import Link from "next/link";
+import { GlobalContext } from "../../context/globalContext";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = React.useState(false);
+  const { setComingSoonModal, comingSoonModal } = useContext(GlobalContext);
+
+  function closeFunction() {
+    setMobileNav(false);
+    setComingSoonModal(true);
+  }
+
   return (
     <>
       <Nav>
@@ -23,13 +31,13 @@ const Navbar = () => {
         </NavLink>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink href="/about" activeStyle>
+          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
             Buy iSocks
           </NavLink>
-          <NavLink href="/services" activeStyle>
+          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
             Redeem iSocks
           </NavLink>
-          <NavLink href="/contact-us" activeStyle>
+          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
             Verify iSocks
           </NavLink>
           {/* Second Nav */}
@@ -43,10 +51,10 @@ const Navbar = () => {
         <BackDrop>
           <MobileNav>
             <NavImg src="/img/logo/logo.png" alt="logo" />
-            <Link href="/">Buy iSocks</Link>
-            <Link href="/">Redeem iSocks</Link>
-            <Link href="/">Verify iSocks</Link>
-            <Link href="/">Whitelist</Link>
+            <span onClick={() => closeFunction()}>Buy iSocks</span>
+            <span onClick={() => closeFunction()}>Redeem iSocks</span>
+            <span onClick={() => closeFunction()}>Verify iSocks</span>
+            <Link href="/join-whitelist">Whitelist</Link>
           </MobileNav>
           <Close
             src="/img/icons/close.svg"
