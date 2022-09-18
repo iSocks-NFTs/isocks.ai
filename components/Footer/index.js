@@ -1,7 +1,10 @@
+import React from "react";
+import {GlobalContext} from '../../context/globalContext'
 import { Container, Image,Grid, ImgCaption,Heading,ContactUs,SocialContainer,Socials,Information,Brand } from "./footerStyles";
 import Link from 'next/link';
 
 const Footer = () =>{
+    const {setComingSoonModal} = React.useContext(GlobalContext);
     return(
         <Container>
             <Grid>
@@ -13,26 +16,26 @@ const Footer = () =>{
                     <Socials>
                         <Heading>Socials</Heading>
                         <SocialContainer>
-                            <Link href="">
+                            <span onClick={() => setComingSoonModal(true)}>
                                 <Image src="/img/logo/tiktok.svg" alt="icon"/>
-                            </Link>
-                            <Link href="">
+                            </span>
+                            <span onClick={() => setComingSoonModal(true)}>
                                 <Image src="/img/logo/telegram.svg" alt="icon"/>
-                            </Link>
-                            <Link href="">
+                            </span>
+                            <Link href="https://mobile.twitter.com/isocksNft">
                                 <Image src="/img/logo/twitter.svg" alt="icon"/>
                             </Link>
-                            <Link href="">
+                            <span onClick={() => setComingSoonModal(true)}>
                                 <Image src="/img/logo/ig.svg" alt="icon"/>
-                            </Link>
-                            <Link href="">
+                            </span>
+                            <Link href="https://discord.gg/nbrsZY9z59">
                                 <Image src="/img/logo/discord.svg" alt="icon"/>
                             </Link>
                         </SocialContainer>
                     </Socials>
                     <ContactUs>
                         <span>Contact Us</span>
-                        <a className="email" href="mailto:sample@gmail.com">Sample@gmail.com</a>
+                        <Link className="email" href="mailto:infinityactionnft@gmail.com">infinityactionnft@gmail.com</Link>
                     </ContactUs>
                 </Information>
             </Grid>
