@@ -30,13 +30,6 @@ export default function Home() {
         </>
       ) : (
         <>
-          {comingSoonModal ? (
-            <>
-              <Modal />
-            </>
-          ) : (
-            <></>
-          )}
           <Navbar />
           <ComingSoon />
           <Subscribe />
