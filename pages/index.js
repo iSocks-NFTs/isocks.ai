@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>iSock | Homepage</title>
+        <title>iSocks | Homepage</title>
       </Head>
       {ready ? (
         <>
