@@ -1,6 +1,5 @@
 import React from "react";
 import { ComingSoonGrid, Text, Container, Heading, Stage } from "./comingSoon";
-import { Row, Col } from "react-bootstrap";
 
 const ComingSoon = () => {
   return (
