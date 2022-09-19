@@ -10,6 +10,7 @@ import {
   MobileNav,
   Close,
   BackDrop,
+  NavLinkOG,
 } from "./navbarStyles";
 import Link from "next/link";
 import { GlobalContext } from "../../context/globalContext";
@@ -26,9 +27,9 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <NavLink href="/">
+        <NavLinkOG href="/">
           <NavImg src="/img/logo/logo.png" alt="logo" />
-        </NavLink>
+        </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
           <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
@@ -50,11 +51,13 @@ const Navbar = () => {
       {mobileNav ? (
         <BackDrop>
           <MobileNav>
-            <NavImg src="/img/logo/logo.png" alt="logo" />
+            <NavLinkOG href="/">
+              <NavImg src="/img/logo/logo.png" alt="logo" />
+            </NavLinkOG>
             <span onClick={() => closeFunction()}>Buy iSocks</span>
             <span onClick={() => closeFunction()}>Redeem iSocks</span>
             <span onClick={() => closeFunction()}>Verify iSocks</span>
-            <Link href="/join-whitelist">Whitelist</Link>
+            <Link href="/join-whitelist">Join Whitelist</Link>
           </MobileNav>
           <Close
             src="/img/icons/close.svg"

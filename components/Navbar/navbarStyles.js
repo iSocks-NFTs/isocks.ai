@@ -1,5 +1,5 @@
-import { FaBars } from 'react-icons/fa';
-import styled from 'styled-components';
+import { FaBars } from "react-icons/fa";
+import styled from "styled-components";
 
 export const Nav = styled.nav`
   background: #fff;
@@ -8,16 +8,29 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1300px) / 2);
   z-index: 10;
-  border:1px solid #fff;
+  border: 1px solid #fff;
 `;
 
 export const NavImg = styled.img`
-    width:auto;
-    height:25px;
-`
+  width: auto;
+  height: 25px;
+`;
 
 export const NavLink = styled.span`
-  color:var(--subtle-text) ;
+  color: var(--subtle-text);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    color: #15cdfc;
+  }
+`;
+
+export const NavLinkOG = styled.a`
+  color: var(--subtle-text);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -31,7 +44,7 @@ export const NavLink = styled.span`
 
 export const Bars = styled(FaBars)`
   display: none;
-  color:var(--primary-color);
+  color: var(--primary-color);
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
@@ -82,46 +95,47 @@ export const NavBtnLink = styled.a`
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
-    border:1px solid var(--primary-brand);
+    border: 1px solid var(--primary-brand);
   }
 `;
 
 export const MobileNav = styled.div`
   background-color: #fff;
-  padding:1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap:2rem;
+  row-gap: 2rem;
   height: 100%;
-  width:60%;
-  a,span{
-    font-weight:400;
-    cursor:pointer;
+  width: 60%;
+  a,
+  span {
+    font-weight: 400;
+    cursor: pointer;
   }
-  ::before{
+  ::before {
     background-color: black;
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 export const BackDrop = styled.div`
   position: absolute;
-  top:0;
+  top: 0;
   background: rgba(0, 0, 0, 0.5);
-  left:0;
-  width:100%;
-  height:100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 999;
-`
+`;
 
 export const Close = styled.img`
   position: absolute;
-  top:1%;
+  top: 1%;
   z-index: 999;
-  right:30%;
-  :hover{
+  right: 30%;
+  :hover {
     cursor: pointer;
   }
-`
+`;

@@ -8,8 +8,8 @@ import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
 
 import ComingSoon from "../components/ComingSoon";
-import Modal from "../components/Modal";
 import { GlobalContext } from "../context/globalContext";
+import Modal from "../components/Modal";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
@@ -30,7 +30,14 @@ export default function Home() {
         </>
       ) : (
         <>
-          <Navbar />
+          <Navbar />{" "}
+          {comingSoonModal ? (
+            <>
+              <Modal />
+            </>
+          ) : (
+            <></>
+          )}
           <ComingSoon />
           <Subscribe />
           <Footer />

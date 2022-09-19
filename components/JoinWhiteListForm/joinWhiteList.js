@@ -48,3 +48,12 @@ export const Label = styled.label`
     font-weight:400;
     color:var(--subtle-text);
 `
+
+export const JoinDiscord = styled.div`
+    display:flex;
+    column-gap:0.3rem;
+`
+
+export const JoinDiscordText = styled.span`
+
+`

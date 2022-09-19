@@ -9,7 +9,7 @@ const Footer = () =>{
         <Container>
             <Grid>
                 <Brand>
-                    <Image src="/img/logo/logo_bg.png" alt="iSocks Logo" />
+                    <Link href="/"><Image src="/img/logo/logo_bg.png" alt="iSocks Logo" /></Link>
                     <ImgCaption>A product of infinity Auctions</ImgCaption>
                 </Brand>
                 <Information>
