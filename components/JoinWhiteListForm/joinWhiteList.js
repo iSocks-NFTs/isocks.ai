@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    max-width: 100%;
-`
+  max-width: 100%;
+`;
 
 export const Heading = styled.h3`
   font-family: "Nunito Sans";
@@ -19,41 +19,128 @@ export const P = styled.p`
   margin: 0 auto;
   margin-bottom: 2rem;
   color: var(--subtle-text);
-  @media screen and (max-width:480px) {
-    width:100%;
+  @media screen and (max-width: 480px) {
+    width: 100%;
   }
 `;
 
-export const FormContainer = styled.div``
+export const FormContainer = styled.div``;
 
-export const Form = styled.form``
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+`;
 
-export const Input = styled.input``
+export const Input = styled.input`
+  height: ${(props) => (props.height ? props.height : "60px")};
+  width: clamp(250px, 380px, 450px);
+  background-color: #fff;
+  color: var(--primary-brand);
+  border: 0.933743px solid #e3e6e8;
+  font-size: 22px;
+  border-radius: 3px;
+  :focus {
+    outline: var(--primary-brand);
+  }
+`;
+
+export const TextArea = styled.textarea`
+  height: ${(props) => (props.height ? props.height : "120px")};
+  width: clamp(250px, 380px, 450px);
+  background-color: #fff;
+  color: var(--primary-brand);
+  border: 0.933743px solid #e3e6e8;
+  font-size: 22px;
+  border-radius: 3px;
+  :focus {
+    outline: var(--primary-brand);
+  }
+  ::placeholder {
+    opacity: 0.9;
+  }
+  resize: none;
+`;
+export const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+`;
 
 export const Button = styled.button`
-    background-color: var(--primary-brand);
-    padding:15px 30px;
-    font-size:30px;
-    color:#fff;
-    border-radius:30px;
-    transition:0.7s;
-    border:1px solid var(--primary-brand);
-    :hover{
-        color:var(--primary-brand);
-        border:1px solid var(--primary-brand);
-    }
-`
+  background-color: var(--primary-brand);
+  padding: 15px 50px;
+  font-size: 15px;
+  width: clamp(250px, 380px, 450px);
+  color: #fff;
+  border-radius: 30px;
+  transition: 0.7s;
+  border: 1px solid var(--primary-brand);
+  :hover {
+    color: var(--primary-brand);
+    border: 1px solid var(--primary-brand);
+  }
+`;
 
 export const Label = styled.label`
-    font-weight:400;
-    color:var(--subtle-text);
-`
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--subtle-text);
+  width: clamp(250px, 390px, 450px);
+`;
+
+export const UploadLabel = styled.label`
+  border: 1px solid #e3e6e8;
+  color: var(--primary-brand);
+  width: clamp(250px, 380px, 450px);
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  justify-content: flex-start;
+`;
+
+export const Uploaded = styled.div`
+  border: 1px solid #e3e6e8;
+  color: var(--primary-brand);
+  width: clamp(250px, 380px, 450px);
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  justify-content: flex-start;
+`;
 
 export const JoinDiscord = styled.div`
-    display:flex;
-    column-gap:0.3rem;
-`
+  display: flex;
+  column-gap: 0.3rem;
+  justify-content: center;
+  margin:1.5rem auto;
+  width: clamp(250px, 380px, 450px);
+`;
 
-export const JoinDiscordText = styled.span`
+export const JoinDiscordText = styled.a``;
 
-`
+export const FileInput = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`;
+
+export const Icon = styled.img``;
+
+export const Terms = styled.span`
+  display: flex;
+  align-items: flex-start;
+  width: clamp(250px, 380px, 450px);
+  column-gap: 1rem;
+  margin:1rem auto;
+  font-size:14px;
+  justify-content: center;
+`;
