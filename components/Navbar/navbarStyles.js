@@ -6,6 +6,7 @@ export const Nav = styled.nav`
   height: 80px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem calc((100vw - 1300px) / 2);
   z-index: 10;
   border: 1px solid #fff;
@@ -31,11 +32,7 @@ export const NavLink = styled.span`
 
 export const NavLinkOG = styled.a`
   color: var(--subtle-text);
-  display: flex;
-  align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
   cursor: pointer;
   &.active {
     color: #15cdfc;
@@ -122,8 +119,8 @@ export const MobileNav = styled.div`
 
 export const BackDrop = styled.div`
   position: absolute;
-  top: 0;
   background: rgba(0, 0, 0, 0.5);
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
