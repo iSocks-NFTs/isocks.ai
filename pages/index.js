@@ -10,6 +10,7 @@ import Subscribe from "../components/Subscribe";
 import ComingSoon from "../components/ComingSoon";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
@@ -30,15 +31,15 @@ export default function Home() {
         </>
       ) : (
         <>
-          <Navbar />{" "}
-          {comingSoonModal ? (
-            <>
-              <Modal />
-            </>
-          ) : (
-            <></>
-          )}
+          <Navbar />
           <ComingSoon />
+          <AnimatePresence
+            initial={false}
+            mode="wait"
+            onExitComplete={() => null}
+          >
+            {comingSoonModal && <Modal />}
+          </AnimatePresence>
           <Subscribe />
           <Footer />
         </>
