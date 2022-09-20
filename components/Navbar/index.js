@@ -14,6 +14,7 @@ import {
 } from "./navbarStyles";
 import Link from "next/link";
 import { GlobalContext } from "../../context/globalContext";
+import { AnimatePresence,motion } from "framer-motion";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = React.useState(false);
@@ -48,8 +49,24 @@ const Navbar = () => {
           <NavBtnLink href="/join-whitelist">Join the whitelist</NavBtnLink>
         </NavBtn>
       </Nav>
-      {mobileNav ? (
-        <BackDrop>
+     <AnimatePresence
+     initial={false}
+     node="wait"
+     onExitComplete={() => null}
+     >
+     {mobileNav && (
+        <BackDrop 
+        as={motion.div}
+        initial={{
+          x:-500,
+        }}
+        animate={{
+          x:0
+        }}
+        exit={{
+          x:-500
+        }}
+        >
           <MobileNav>
             <NavLinkOG href="/">
               <NavImg src="/img/logo/logo.png" alt="logo" />
@@ -65,9 +82,8 @@ const Navbar = () => {
             onClick={() => setMobileNav(!mobileNav)}
           />
         </BackDrop>
-      ) : (
-        <></>
       )}
+     </AnimatePresence>
     </>
   );
 };
