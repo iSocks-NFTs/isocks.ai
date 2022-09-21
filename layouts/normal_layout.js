@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/globalContext";
+import { GlobalContext } from "../context/globalContext"
 import NavBar from "../components/Navbar/";
 import Footer from "../components/Footer";
 
