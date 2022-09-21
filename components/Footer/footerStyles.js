@@ -48,7 +48,7 @@ export const SocialContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
   column-gap: 1rem;
   :hover{
     cursor:pointer;
