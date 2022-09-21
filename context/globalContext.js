@@ -1,20 +1,28 @@
-import React from 'react';
+import React from "react";
 
 export const GlobalContext = React.createContext({
-    comingSoonModal:false,
-    setComingSoonModal:() => {}
-})
+  comingSoonModal: false,
+  setComingSoonModal: () => {},
+  addressVerified: false,
+  setAddressVerified: () => {},
+});
 
-const GlobalContextProvider = ({children}) =>{
-    const [comingSoonModal,setComingSoonModal] = React.useState(false);
+const GlobalContextProvider = ({ children }) => {
+  const [comingSoonModal, setComingSoonModal] = React.useState(false);
+  const [addressVerified, setAddressVerified] = React.useState(false);
 
-    return(
-        <GlobalContext.Provider 
-            value={{comingSoonModal,setComingSoonModal}}
-        >
-            {children}
-        </GlobalContext.Provider>
-    )
-}
+  return (
+    <GlobalContext.Provider
+      value={{
+        comingSoonModal,
+        setComingSoonModal,
+        addressVerified,
+        setAddressVerified,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};
 
 export default GlobalContextProvider;

@@ -1,20 +1,23 @@
 import React from "react";
-import Head from 'next/head';
+import Head from "next/head";
 import Layout from "../../layouts/normal_layout";
 import JoinWhiteList from "../../components/JoinWhiteListForm";
+import WalletVerification from '../../components/WalletVerification';
 import Modal from "../../components/Modal";
 import { GlobalContext } from "../../context/globalContext";
+import { AnimatePresence } from "framer-motion";
 
 const JoinWaitList = () => {
-
-    const {comingSoonModal} = React.useContext(GlobalContext);
+  const { comingSoonModal, addressVerified} = React.useContext(GlobalContext);
 
   return (
     <Layout>
       <Head>
         <title>iSocks | Join Waiting List</title>
       </Head>
-      <JoinWhiteList />
+      {
+        addressVerified ? (<JoinWhiteList />) : (<WalletVerification />)
+      }
       {comingSoonModal ? (
         <>
           <Modal />
