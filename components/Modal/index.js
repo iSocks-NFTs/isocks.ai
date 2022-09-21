@@ -6,12 +6,6 @@ import { motion } from "framer-motion";
 const Modal = () => {
   const { comingSoonModal, setComingSoonModal } = useContext(GlobalContext);
 
-  const dropIn = {
-    hidden: {},
-    visible: {},
-    exit: {},
-  };
-
   return (
     <BackGround
       as={motion.div}
