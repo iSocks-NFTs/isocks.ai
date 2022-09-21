@@ -35,11 +35,12 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   height: ${(props) => (props.height ? props.height : "60px")};
-  width: clamp(250px, 380px, 450px);
+  width: clamp(250px, 320px, 450px);
   background-color: #fff;
   color: var(--primary-brand);
+  padding: 0 3px;
   border: 0.933743px solid #e3e6e8;
-  font-size: 22px;
+  font-size: 20px;
   border-radius: 3px;
   :focus {
     outline: var(--primary-brand);
@@ -48,11 +49,12 @@ export const Input = styled.input`
 
 export const TextArea = styled.textarea`
   height: ${(props) => (props.height ? props.height : "120px")};
-  width: clamp(250px, 380px, 450px);
+  width: clamp(250px, 320px, 450px);
   background-color: #fff;
   color: var(--primary-brand);
   border: 0.933743px solid #e3e6e8;
-  font-size: 22px;
+  padding: 0 3px;
+  font-size: 20px;
   border-radius: 3px;
   :focus {
     outline: var(--primary-brand);
@@ -62,6 +64,7 @@ export const TextArea = styled.textarea`
   }
   resize: none;
 `;
+
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,13 +75,16 @@ export const Button = styled.button`
   background-color: var(--primary-brand);
   padding: 15px 50px;
   font-size: 15px;
-  width: clamp(250px, 380px, 450px);
+  width: clamp(250px, 320px, 450px);
   color: #fff;
   border-radius: 30px;
   transition: 0.7s;
+  margin: 0 auto;
   border: 1px solid var(--primary-brand);
   :hover {
+    cursor: pointer;
     color: var(--primary-brand);
+    background-color: #fff;
     border: 1px solid var(--primary-brand);
   }
 `;
@@ -87,13 +93,13 @@ export const Label = styled.label`
   font-weight: 400;
   font-size: 14px;
   color: var(--subtle-text);
-  width: clamp(250px, 390px, 450px);
+  width: clamp(250px, 320px, 450px);
 `;
 
 export const UploadLabel = styled.label`
   border: 1px solid #e3e6e8;
   color: var(--primary-brand);
-  width: clamp(250px, 380px, 450px);
+  width: clamp(250px, 320px, 450px);
   padding: 5px;
   cursor: pointer;
   display: flex;
@@ -105,7 +111,7 @@ export const UploadLabel = styled.label`
 export const Uploaded = styled.div`
   border: 1px solid #e3e6e8;
   color: var(--primary-brand);
-  width: clamp(250px, 380px, 450px);
+  width: clamp(250px, 320px, 450px);
   padding: 5px;
   cursor: pointer;
   display: flex;
@@ -118,8 +124,8 @@ export const JoinDiscord = styled.div`
   display: flex;
   column-gap: 0.3rem;
   justify-content: center;
-  margin:1.5rem auto;
-  width: clamp(250px, 380px, 450px);
+  margin: 1.5rem auto;
+  width: clamp(250px, 320px, 450px);
 `;
 
 export const JoinDiscordText = styled.a``;
@@ -138,9 +144,9 @@ export const Icon = styled.img``;
 export const Terms = styled.span`
   display: flex;
   align-items: flex-start;
-  width: clamp(250px, 380px, 450px);
-  column-gap: 1rem;
-  margin:1rem auto;
-  font-size:14px;
+  width: clamp(250px, 320px, 450px);
+  column-gap: 0.5rem;
+  margin: 1rem auto;
+  font-size: 14px;
   justify-content: center;
 `;
