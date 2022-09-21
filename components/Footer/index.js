@@ -36,7 +36,7 @@ const Footer = () =>{
                     </Socials>
                     <ContactUs>
                         <span>Contact Us</span>
-                        <Link className="email" href="mailto:infinityactionnft@gmail.com">infinityactionnft@gmail.com</Link>
+                        <Link className="email" href="mailto:infinityauctionnft@gmail.com">infinityauctionnft@gmail.com</Link>
                     </ContactUs>
                 </Information>
             </Grid>
