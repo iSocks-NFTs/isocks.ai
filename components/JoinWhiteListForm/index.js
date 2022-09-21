@@ -22,6 +22,7 @@ import {
 
 import { FaDiscord } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import {motion} from 'framer-motion';
 
 const JoinWhiteList = () => {
   const [formValues, setFormValues] = React.useState({
@@ -39,6 +40,8 @@ const JoinWhiteList = () => {
     instagram: false,
   });
 
+  const inputRef = React.useRef();
+
   const { register } = useForm();
   const { onChange, name, ref } = register("twitter_proof");
 
@@ -47,8 +50,17 @@ const JoinWhiteList = () => {
     console.log(formValues);
   }
 
+  React.useEffect(() =>{
+    inputRef.current.focus();
+  },[])
+
   return (
-    <Container>
+    <Container
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Row>
         <Col>
           <Heading>Whitelist</Heading>
@@ -69,6 +81,7 @@ const JoinWhiteList = () => {
               onChange={(e) =>
                 setFormValues({ ...formValues, emailAddress: e.target.value })
               }
+              ref={inputRef}
               required
             />
           </FormGroup>
