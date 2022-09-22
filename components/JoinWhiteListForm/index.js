@@ -80,6 +80,7 @@ const JoinWhiteList = () => {
                 setFormValues({ ...formValues, emailAddress: e.target.value })
               }
               ref={inputRef}
+              name="emailAddress"
               required
             />
           </FormGroup>
@@ -88,6 +89,7 @@ const JoinWhiteList = () => {
             <Input
               type="text"
               id="fullName"
+              name="fullName"
               value={formValues.fullName}
               onChange={(e) =>
                 setFormValues({ ...formValues, fullName: e.target.value })
@@ -101,6 +103,7 @@ const JoinWhiteList = () => {
               type="text"
               id="phoneNumber"
               value={formValues.phoneNumber}
+              name="phoneNumber"
               onChange={(e) =>
                 setFormValues({ ...formValues, phoneNumber: e.target.value })
               }
@@ -113,6 +116,7 @@ const JoinWhiteList = () => {
               type="number"
               id="footSize"
               value={formValues.footSize}
+              name="footSize"
               onChange={(e) =>
                 setFormValues({ ...formValues, footSize: e.target.value })
               }
@@ -120,10 +124,11 @@ const JoinWhiteList = () => {
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="walletAddress">Etherium wallet address </Label>
+            <Label htmlFor="walletAddress">Ethereum ERC20 Address </Label>
             <Input
               type="text"
               id="walletAddress"
+              name="walletAddress"
               value={formValues.EthereumWalletAddress}
               onChange={(e) =>
                 setFormValues({
@@ -140,6 +145,7 @@ const JoinWhiteList = () => {
             </Label>
             <TextArea
               id="acceptance"
+              name="acceptance"
               value={formValues.whiteListAcceptance}
               onChange={(e) =>
                 setFormValues({
@@ -172,7 +178,7 @@ const JoinWhiteList = () => {
                 </UploadLabel>
               </>
             )}
-            <FileInput type="file" id="twitter_proof" />
+            <FileInput type="file" id="twitter_proof" name="twitterProof"/>
           </FormGroup>
           <FormGroup>
             <Label>
@@ -186,7 +192,7 @@ const JoinWhiteList = () => {
               />{" "}
               Upload Image Here
             </UploadLabel>
-            <FileInput type="file" id="binance_proof" />
+            <FileInput type="file" id="binance_proof" name="binanceProof" />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="instagram_proof">
@@ -201,11 +207,10 @@ const JoinWhiteList = () => {
               />{" "}
               Upload Image Here
             </UploadLabel>
-            <FileInput type="file" id="instagram_proof" />
+            <FileInput name="IGProof" type="file" id="instagram_proof" />
           </FormGroup>
-          <Button>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
-
         <Terms>
           <Icon src="/img/icons/info_circle.svg" alt="info circle" /> Only
           whitelisted persons can request for customization on the physical
