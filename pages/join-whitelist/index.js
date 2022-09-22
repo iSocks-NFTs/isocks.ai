@@ -5,7 +5,6 @@ import JoinWhiteList from "../../components/JoinWhiteListForm";
 import WalletVerification from '../../components/WalletVerification';
 import Modal from "../../components/Modal";
 import { GlobalContext } from "../../context/globalContext";
-import { AnimatePresence } from "framer-motion";
 
 const JoinWaitList = () => {
   const { comingSoonModal, addressVerified} = React.useContext(GlobalContext);
