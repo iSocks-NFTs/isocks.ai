@@ -40,15 +40,13 @@ const JoinWhiteList = () => {
     instagram: false,
   });
 
-  const inputRef = React.useRef();
-
-  const { register } = useForm();
-  const { onChange, name, ref } = register("twitter_proof");
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formValues);
   }
+  
+  const inputRef = React.useRef();
 
   React.useEffect(() =>{
     inputRef.current.focus();
