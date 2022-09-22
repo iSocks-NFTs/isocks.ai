@@ -111,13 +111,21 @@ export const UploadLabel = styled.label`
 export const Uploaded = styled.div`
   border: 1px solid #e3e6e8;
   color: var(--primary-brand);
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: clamp(250px, 320px, 450px);
   padding: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   column-gap: 0.3rem;
-  justify-content: flex-start;
+  .uploaded_icon{
+    display: flex;
+    align-items: center;
+    column-gap:0.5rem;
+  }
 `;
 
 export const JoinDiscord = styled.div`

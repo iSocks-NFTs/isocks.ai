@@ -22,7 +22,7 @@ import {
 
 import { FaDiscord } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 const JoinWhiteList = () => {
   const [formValues, setFormValues] = React.useState({
@@ -35,22 +35,39 @@ const JoinWhiteList = () => {
   });
 
   const [uploaded, setUploaded] = React.useState({
+    twtimgName: "test.png",
     twitter: false,
+    bnbimgName: "test.png",
     binance: false,
+    IGimgName: "test.png",
     instagram: false,
   });
 
+  function handleTwitterUpload(e) {
+    let files = e.target.files;
+    setUploaded({ ...uploaded, twitter: true, twtimgName: files[0].name });
+  }
+
+  function binanceUpload(e) {
+    let files = e.target.files;
+    setUploaded({ ...uploaded, binance: true, bnbimgName: files[0].name });
+  }
+
+  function IGupload(e) {
+    let files = e.target.files;
+    setUploaded({ ...uploaded, instagram: true, IGimgName: files[0].name });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formValues);
   }
-  
+
   const inputRef = React.useRef();
 
-  React.useEffect(() =>{
+  React.useEffect(() => {
     inputRef.current.focus();
-  },[])
+  }, []);
 
   return (
     <Container
@@ -165,7 +182,15 @@ const JoinWhiteList = () => {
               <br /> Screenshot and submit here.
             </Label>
             {uploaded.twitter ? (
-              <></>
+              <Uploaded>
+                <div className="uploaded_icon">
+                  <Icon src="/img/icons/image.svg" alt="Upload Image Icon" />{" "}
+                  {uploaded.twtimgName}
+                </div>
+                <div>
+                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,twitter:false,twtimgName:''})} />
+                </div>
+              </Uploaded>
             ) : (
               <>
                 <UploadLabel htmlFor="twitter_proof">
@@ -178,36 +203,82 @@ const JoinWhiteList = () => {
                 </UploadLabel>
               </>
             )}
-            <FileInput type="file" id="twitter_proof" name="twitterProof"/>
+            <FileInput
+              type="file"
+              id="twitter_proof"
+              name="twitterProof"
+              onChange={(e) => handleTwitterUpload(e)}
+              required
+            />
           </FormGroup>
           <FormGroup>
             <Label>
               Follow Infinity Auction on Binance. Screenshot and submit here.
             </Label>
-            <UploadLabel htmlFor="binance_proof">
-              {" "}
-              <Icon
-                src="/img/icons/document-upload.svg"
-                alt="Upload Image Icon"
-              />{" "}
-              Upload Image Here
-            </UploadLabel>
-            <FileInput type="file" id="binance_proof" name="binanceProof" />
+            {uploaded.binance ? (
+              <Uploaded>
+                <div className="uploaded_icon">
+                  <Icon src="/img/icons/image.svg" alt="Upload Image Icon" />{" "}
+                  {uploaded.bnbimgName}
+                </div>
+                <div>
+                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,binance:false,bnbimgName:''})} />
+                </div>
+              </Uploaded>
+            ) : (
+              <>
+                <UploadLabel htmlFor="binance_proof">
+                  {" "}
+                  <Icon
+                    src="/img/icons/document-upload.svg"
+                    alt="Upload Image Icon"
+                  />{" "}
+                  Upload Image Here
+                </UploadLabel>
+              </>
+            )}
+            <FileInput
+              type="file"
+              id="binance_proof"
+              name="binanceProof"
+              onChange={(e) => binanceUpload(e)}
+              required
+            />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="instagram_proof">
+            <Label>
               Follow ISOCKSNFT on Instagram. and comment “iSocks on my feet”
               Screenshot and submit here.
             </Label>
-            <UploadLabel>
-              {" "}
-              <Icon
-                src="/img/icons/document-upload.svg"
-                alt="Upload Image Icon"
-              />{" "}
-              Upload Image Here
-            </UploadLabel>
-            <FileInput name="IGProof" type="file" id="instagram_proof" />
+            {uploaded.instagram ? (
+              <Uploaded>
+                <div className="uploaded_icon">
+                  <Icon src="/img/icons/image.svg" alt="Upload Image Icon" />{" "}
+                  {uploaded.IGimgName}
+                </div>
+                <div>
+                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,instagram:false,IGimgName:''})} />
+                </div>
+              </Uploaded>
+            ) : (
+              <>
+                <UploadLabel htmlFor="instagram_proof">
+                  {" "}
+                  <Icon
+                    src="/img/icons/document-upload.svg"
+                    alt="Upload Image Icon"
+                  />{" "}
+                  Upload Image Here
+                </UploadLabel>
+              </>
+            )}
+            <FileInput
+              name="igproof"
+              type="file"
+              id="instagram_proof"
+              onChange={(e) => IGupload(e)}
+              required
+            />
           </FormGroup>
           <Button type="submit">Submit</Button>
         </Form>
