@@ -13,6 +13,7 @@ const JoinWaitList = () => {
     <Layout>
       <Head>
         <title>iSocks | Join Waiting List</title>
+        <link rel="icon" href="/img/icons/logo.svg" />
       </Head>
       {
         addressVerified ? (<JoinWhiteList />) : (<WalletVerification />)

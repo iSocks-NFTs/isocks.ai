@@ -20,6 +20,7 @@ export default function Home() {
     <>
       <Head>
         <title>iSocks | Homepage</title>
+        <link rel="icon" href="/img/icons/logo.svg" />
       </Head>
       {ready ? (
         <>

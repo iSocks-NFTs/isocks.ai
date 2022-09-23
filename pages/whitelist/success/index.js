@@ -6,6 +6,7 @@ const Success = () => {
     <Layout>
       <Head>
         <title>iSocks | Successfully Filled WhiteList</title>
+        <link rel="icon" href="/img/icons/logo.svg" />
       </Head>
       <Container>
         Successfully Filled the WhiteList Form <br />
