@@ -416,7 +416,7 @@ const JoinWhiteList = () => {
         </Terms>
         <JoinDiscord>
           <FaDiscord size={25} />
-          <JoinDiscordText>
+          <JoinDiscordText href="https://discord.gg/nbrsZY9z59" target="_blank">
             Click here to join our Discord where the magic happens.
           </JoinDiscordText>
         </JoinDiscord>
