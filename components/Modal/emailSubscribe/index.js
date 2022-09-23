@@ -22,7 +22,7 @@ const SubscribeModal = () => {
         exit={{ opacity: 0 }}
       >
         <ISockLogo src="/img/logo/logo.png" alt="iSock Logo" />
-        Subscribed to iSocks Newsletters.
+        Successfully subscribed to iSocks Newsletters.
       </ModalContainer>
     </BackGround>
   );

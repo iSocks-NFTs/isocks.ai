@@ -14,7 +14,7 @@ export const BackGround = styled.div`
 `
 
 export const ModalContainer = styled.div`
-    width:480px;
+    width:580px;
     height:480px;
     color:var(--primary-brand);
     display:flex;
@@ -23,7 +23,7 @@ export const ModalContainer = styled.div`
     align-items: center;
     background-color: #fff;
     position: fixed;
-    font-size:30px;
+    font-size:25px;
     top:15%;
     border-radius: 5px;
 `
