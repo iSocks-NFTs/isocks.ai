@@ -117,17 +117,6 @@ const JoinWhiteList = () => {
 
   function handleSubmit(e) {
     setLoading(true);
-    const {
-      twitterFile,
-      binanceFile,
-      instagramFile,
-      twtimgName,
-      bnbimgName,
-      IGimgName,
-      twitterFileData,
-      binanceFileData,
-      instagramFileData,
-    } = uploaded;
     e.preventDefault();
     // Validate Form
     const doc = {
@@ -143,107 +132,11 @@ const JoinWhiteList = () => {
       .create(doc)
       .then((res) => {
         console.log(res);
-        user.assets
-          .upload("image", twitterFileData, {
-            contentType: twitterFile.type,
-            filename: twtimgName,
-          })
-          .then((document) => {
-            if (document?.id) {
-              const doc = {
-                _type: "photo",
-                image: {
-                  _type: "image",
-                  asset: {
-                    _type: "reference",
-                    _ref: document?._id,
-                  },
-                },
-              };
-              user
-                .create(doc)
-                .then((res) => {
-                  console.log("twitter screenshot saved to database");
-                })
-                .catch((err) => {
-                  console.log(err);
-                  setLoading(false);
-                  clearInput();
-                });
-            }
-          })
-          .catch((error) => {
-            console.log("Upload failed:", error.message);
-            setLoading(false);
-            clearInput();
-          });
-        user.assets
-          .upload("image", binanceFileData, {
-            contentType: binanceFile.type,
-            filename: bnbimgName,
-          })
-          .then((document) => {
-            if (document?.id) {
-              const doc = {
-                _type: "photo",
-                image: {
-                  _type: "image",
-                  asset: {
-                    _type: "reference",
-                    _ref: document?._id,
-                  },
-                },
-              };
-              user
-                .create(doc)
-                .then((res) => {
-                  console.log("Binance screenshot saved to database");
-                })
-                .catch((err) => {console.log(err)
-                  clearInput();
-                  setLoading(false);
-                });
-            }
-          })
-          .catch((error) => {
-            console.log("Upload failed:", error.message);
-            setLoading(false);clearInput();
-          });
-        user.assets
-          .upload("image", instagramFileData, {
-            contentType: instagramFile.type,
-            filename: IGimgName,
-          })
-          .then((document) => {
-            if (document?.id) {
-              const doc = {
-                _type: "photo",
-                image: {
-                  _type: "image",
-                  asset: {
-                    _type: "reference",
-                    _ref: document?._id,
-                  },
-                },
-              };
-              user
-                .create(doc)
-                .then((res) => {
-                  console.log("Binance screenshot saved to database");
-                  Router.push("/whitelist/success");
-                })
-                .catch(() => {
-                  (err) => console.log(err);
-                  setLoading(false);
-                });
-            }
-          })
-          .catch((error) => {
-            console.log("Upload failed:", error.message);
-            setLoading(false);
-          });
+        Router.push('/whitelist/success');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        clearInput();
+      })
   }
 
   const inputRef = React.useRef();
