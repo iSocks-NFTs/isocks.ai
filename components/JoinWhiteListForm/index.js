@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import {
   Container,
@@ -21,8 +21,10 @@ import {
 } from "./joinWhiteList";
 
 import { FaDiscord } from "react-icons/fa";
-import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
+import { user } from "./user";
+import { TailSpin } from "react-loader-spinner";
+import Router from "next/router";
 
 const JoinWhiteList = () => {
   const [formValues, setFormValues] = React.useState({
@@ -34,33 +36,214 @@ const JoinWhiteList = () => {
     whiteListAcceptance: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const [uploaded, setUploaded] = React.useState({
-    twtimgName: "test.png",
     twitter: false,
-    bnbimgName: "test.png",
+    twtimgName: "test.png",
+    twitterFile: null,
+    twitterFileData: null,
     binance: false,
+    bnbimgName: "test.png",
+    binanceFile: null,
+    binanceFileData: null,
     IGimgName: "test.png",
     instagram: false,
+    instagramFile: null,
+    instagramFileData: null,
   });
 
   function handleTwitterUpload(e) {
     let files = e.target.files;
-    setUploaded({ ...uploaded, twitter: true, twtimgName: files[0].name });
+    let reader = new FileReader();
+    reader.readAsBinaryString(files[0]);
+    reader.onload = (e) => {
+      setUploaded({
+        ...uploaded,
+        twitterFileData: e.target.result,
+        twitter: true,
+        twtimgName: files[0].name,
+        twitterFile: files[0],
+      });
+    };
+    console.log(files[0]);
   }
 
   function binanceUpload(e) {
     let files = e.target.files;
-    setUploaded({ ...uploaded, binance: true, bnbimgName: files[0].name });
+    let reader = new FileReader();
+    reader.readAsBinaryString(files[0]);
+    reader.onload = (e) => {
+      setUploaded({
+        ...uploaded,
+        binanceFileData: e.target.result,
+        binance: true,
+        bnbimgName: files[0].name,
+        binanceFile: files[0],
+      });
+    };
+    console.log(files[0]);
   }
 
   function IGupload(e) {
     let files = e.target.files;
-    setUploaded({ ...uploaded, instagram: true, IGimgName: files[0].name });
+    let reader = new FileReader();
+    reader.readAsBinaryString(files[0]);
+    reader.onload = (e) => {
+      setUploaded({
+        ...uploaded,
+        instagramFileData: e.target.result,
+        instagram: true,
+        IGimgName: files[0].name,
+        instagramFile: files[0],
+      });
+    };
+    console.log(files[0]);
+  }
+
+  function clearInput() {
+    setFormValues({
+      ...formValues,
+      emailAddress: "",
+      fullName: "",
+      phoneNumber: "",
+      footSize: 10,
+      EthereumWalletAddress: "",
+      whiteListAcceptance: "",
+    });
+    setLoading(false)
+    inputRef.current.focus();
   }
 
   function handleSubmit(e) {
+    setLoading(true);
+    const {
+      twitterFile,
+      binanceFile,
+      instagramFile,
+      twtimgName,
+      bnbimgName,
+      IGimgName,
+      twitterFileData,
+      binanceFileData,
+      instagramFileData,
+    } = uploaded;
     e.preventDefault();
-    console.log(formValues);
+    // Validate Form
+    const doc = {
+      _type: "user",
+      emailAddress: formValues.emailAddress,
+      fullName: formValues.fullName,
+      phoneNumber: formValues.phoneNumber,
+      footSize: formValues.footSize,
+      EthereumWalletAddress: formValues.EthereumWalletAddress,
+      whiteListAcceptance: formValues.whiteListAcceptance,
+    };
+    user
+      .create(doc)
+      .then((res) => {
+        console.log(res);
+        user.assets
+          .upload("image", twitterFileData, {
+            contentType: twitterFile.type,
+            filename: twtimgName,
+          })
+          .then((document) => {
+            if (document?.id) {
+              const doc = {
+                _type: "photo",
+                image: {
+                  _type: "image",
+                  asset: {
+                    _type: "reference",
+                    _ref: document?._id,
+                  },
+                },
+              };
+              user
+                .create(doc)
+                .then((res) => {
+                  console.log("twitter screenshot saved to database");
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setLoading(false);
+                  clearInput();
+                });
+            }
+          })
+          .catch((error) => {
+            console.log("Upload failed:", error.message);
+            setLoading(false);
+            clearInput();
+          });
+        user.assets
+          .upload("image", binanceFileData, {
+            contentType: binanceFile.type,
+            filename: bnbimgName,
+          })
+          .then((document) => {
+            if (document?.id) {
+              const doc = {
+                _type: "photo",
+                image: {
+                  _type: "image",
+                  asset: {
+                    _type: "reference",
+                    _ref: document?._id,
+                  },
+                },
+              };
+              user
+                .create(doc)
+                .then((res) => {
+                  console.log("Binance screenshot saved to database");
+                })
+                .catch((err) => {console.log(err)
+                  clearInput();
+                  setLoading(false);
+                });
+            }
+          })
+          .catch((error) => {
+            console.log("Upload failed:", error.message);
+            setLoading(false);clearInput();
+          });
+        user.assets
+          .upload("image", instagramFileData, {
+            contentType: instagramFile.type,
+            filename: IGimgName,
+          })
+          .then((document) => {
+            if (document?.id) {
+              const doc = {
+                _type: "photo",
+                image: {
+                  _type: "image",
+                  asset: {
+                    _type: "reference",
+                    _ref: document?._id,
+                  },
+                },
+              };
+              user
+                .create(doc)
+                .then((res) => {
+                  console.log("Binance screenshot saved to database");
+                  Router.push("/whitelist/success");
+                })
+                .catch(() => {
+                  (err) => console.log(err);
+                  setLoading(false);
+                });
+            }
+          })
+          .catch((error) => {
+            console.log("Upload failed:", error.message);
+            setLoading(false);
+          });
+      })
+      .catch((err) => console.log(err));
   }
 
   const inputRef = React.useRef();
@@ -117,7 +300,7 @@ const JoinWhiteList = () => {
           <FormGroup>
             <Label htmlFor="phoneNumber">Phone Number</Label>
             <Input
-              type="text"
+              type="tel"
               id="phoneNumber"
               value={formValues.phoneNumber}
               name="phoneNumber"
@@ -177,8 +360,9 @@ const JoinWhiteList = () => {
           </FormGroup>
           <FormGroup>
             <Label>
-              Follow us on Twitter, click the notification bell, retweet & like
-              our pinned tweet.
+              Follow us on{" "}
+              <a href="https://mobile.twitter.com/isocksNft">Twitter</a>, click
+              the notification bell, retweet & like our pinned tweet.
               <br /> Screenshot and submit here.
             </Label>
             {uploaded.twitter ? (
@@ -188,7 +372,17 @@ const JoinWhiteList = () => {
                   {uploaded.twtimgName}
                 </div>
                 <div>
-                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,twitter:false,twtimgName:''})} />
+                  <Icon
+                    src="/img/icons/trash.svg"
+                    alt="Delete Image"
+                    onClick={() =>
+                      setUploaded({
+                        ...uploaded,
+                        twitter: false,
+                        twtimgName: "",
+                      })
+                    }
+                  />
                 </div>
               </Uploaded>
             ) : (
@@ -213,7 +407,11 @@ const JoinWhiteList = () => {
           </FormGroup>
           <FormGroup>
             <Label>
-              Follow Infinity Auction on Binance. Screenshot and submit here.
+              Follow Infinity Auction on{" "}
+              <a href="https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58">
+                Binance
+              </a>
+              . Screenshot and submit here.
             </Label>
             {uploaded.binance ? (
               <Uploaded>
@@ -222,7 +420,17 @@ const JoinWhiteList = () => {
                   {uploaded.bnbimgName}
                 </div>
                 <div>
-                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,binance:false,bnbimgName:''})} />
+                  <Icon
+                    src="/img/icons/trash.svg"
+                    alt="Delete Image"
+                    onClick={() =>
+                      setUploaded({
+                        ...uploaded,
+                        binance: false,
+                        bnbimgName: "",
+                      })
+                    }
+                  />
                 </div>
               </Uploaded>
             ) : (
@@ -247,8 +455,9 @@ const JoinWhiteList = () => {
           </FormGroup>
           <FormGroup>
             <Label>
-              Follow ISOCKSNFT on Instagram. and comment “iSocks on my feet”
-              Screenshot and submit here.
+              Follow ISOCKSNFT on{" "}
+              <a href="https://www.instagram.com/isocksnft/">Instagram</a>. and
+              comment “iSocks on my feet” Screenshot and submit here.
             </Label>
             {uploaded.instagram ? (
               <Uploaded>
@@ -257,7 +466,17 @@ const JoinWhiteList = () => {
                   {uploaded.IGimgName}
                 </div>
                 <div>
-                  <Icon src="/img/icons/trash.svg" alt="Delete Image" onClick={() => setUploaded({...uploaded,instagram:false,IGimgName:''})} />
+                  <Icon
+                    src="/img/icons/trash.svg"
+                    alt="Delete Image"
+                    onClick={() =>
+                      setUploaded({
+                        ...uploaded,
+                        instagram: false,
+                        IGimgName: "",
+                      })
+                    }
+                  />
                 </div>
               </Uploaded>
             ) : (
@@ -280,7 +499,22 @@ const JoinWhiteList = () => {
               required
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">
+            {loading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#0D0D0D"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Submit"
+            )}
+          </Button>
         </Form>
         <Terms>
           <Icon src="/img/icons/info_circle.svg" alt="info circle" /> Only

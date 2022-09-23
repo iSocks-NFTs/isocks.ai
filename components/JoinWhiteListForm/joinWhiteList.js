@@ -80,6 +80,8 @@ export const Button = styled.button`
   border-radius: 30px;
   transition: 0.7s;
   margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
   border: 1px solid var(--primary-brand);
   :hover {
     cursor: pointer;
@@ -94,6 +96,9 @@ export const Label = styled.label`
   font-size: 14px;
   color: var(--subtle-text);
   width: clamp(250px, 320px, 450px);
+  a{
+    text-decoration: underline;
+  }
 `;
 
 export const UploadLabel = styled.label`
