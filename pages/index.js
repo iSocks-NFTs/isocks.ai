@@ -10,12 +10,13 @@ import Subscribe from "../components/Subscribe";
 import ComingSoon from "../components/ComingSoon";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
-import SubscribeModal from '../components/Modal/emailSubscribe/index'
+import SubscribeModal from '../components/Modal/emailSubscribe/index';
+import VideoModal from "../components/VideoModal";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
-  const { comingSoonModal,subscribeForm } = useContext(GlobalContext);
+  const { comingSoonModal,subscribeForm,comingSoonVideo } = useContext(GlobalContext);
 
   return (
     <>
@@ -40,6 +41,7 @@ export default function Home() {
             mode="wait"
             onExitComplete={() => null}
           >
+            {comingSoonVideo && <VideoModal />}
             {comingSoonModal && <Modal />}
             {subscribeForm && <SubscribeModal /> }
           </AnimatePresence>
