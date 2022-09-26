@@ -37,6 +37,7 @@ const JoinWhiteList = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [userDoc, setUser] = useState({});
 
   const [uploaded, setUploaded] = React.useState({
     twitter: false,
@@ -111,13 +112,14 @@ const JoinWhiteList = () => {
       EthereumWalletAddress: "",
       whiteListAcceptance: "",
     });
-    setLoading(false)
+    setLoading(false);
     inputRef.current.focus();
   }
 
   function handleSubmit(e) {
     setLoading(true);
     e.preventDefault();
+    const { binanceFile, twitterFile, instagramFile } = uploaded;
     // Validate Form
     const doc = {
       _type: "user",
@@ -130,13 +132,31 @@ const JoinWhiteList = () => {
     };
     user
       .create(doc)
-      .then((res) => {
+      .then((doc) => {
+        setUser(doc);
+        user.assets
+          .upload("image", twitterFile, {
+            contentType: twitterFile,
+            filename: twitterFile.name,
+          })
+          .then((image) => {
+            const doc = {
+              _type: "user",
+              image: {
+                _type: "image",
+                asset: {
+                  _type: "reference",
+                  _ref: image?._id,
+                },
+              },
+            };
+          });
         console.log(res);
-        Router.push('/whitelist/success');
+        Router.push("/whitelist/success");
       })
       .catch((err) => {
         clearInput();
-      })
+      });
   }
 
   const inputRef = React.useRef();

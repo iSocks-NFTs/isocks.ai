@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import Head from "next/head";
-import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Tutorial from "../components/ui/Tutorials";
 import Footer from "../components/Footer";
 import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
+import Header from "../components/Header";
 
 import ComingSoon from "../components/ComingSoon";
 import { GlobalContext } from "../context/globalContext";
@@ -14,7 +14,7 @@ import SubscribeModal from '../components/Modal/emailSubscribe/index'
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(true);
   const { comingSoonModal,subscribeForm } = useContext(GlobalContext);
 
   return (
@@ -26,6 +26,7 @@ export default function Home() {
       {ready ? (
         <>
           <Navbar />
+          <Header />
           <Tutorial />
           <Roadmap />
           <Subscribe />
