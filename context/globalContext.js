@@ -6,13 +6,16 @@ export const GlobalContext = React.createContext({
   addressVerified: false,
   setAddressVerified: () => {},
   subscribeForm:false,
-  setSubscribeForm:() => {}
+  setSubscribeForm:() => {},
+  comingSoonVideo:true,
+  setComingSoonVideo:() => {} 
 });
 
 const GlobalContextProvider = ({ children }) => {
   const [comingSoonModal, setComingSoonModal] = React.useState(false);
   const [addressVerified, setAddressVerified] = React.useState(false);
-  const [subscribeForm,setSubscribeForm] = React.useState(false)
+  const [subscribeForm,setSubscribeForm] = React.useState(false);
+  const [comingSoonVideo,setComingSoonVideo] = React.useState(true);
 
   return (
     <GlobalContext.Provider
@@ -22,7 +25,9 @@ const GlobalContextProvider = ({ children }) => {
         addressVerified,
         setAddressVerified,
         subscribeForm,
-        setSubscribeForm
+        setSubscribeForm,
+        comingSoonVideo,
+        setComingSoonVideo
       }}
     >
       {children}
