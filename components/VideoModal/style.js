@@ -28,6 +28,9 @@ export const ModalContainer = styled.div`
     @media screen and (max-width:520px) {
         width:360px;
     }
+    :hover{
+        cursor: pointer;
+    }
 `
 
 export const ComingSoonVideo = styled.video`
