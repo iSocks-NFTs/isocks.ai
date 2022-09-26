@@ -1,6 +1,6 @@
-import { Container,Button } from "./style";
+import { Container, Button } from "../../../styles/success/style";
 import Head from "next/head";
-import Layout from '../../../layouts/normal_layout'
+import Layout from "../../../layouts/normal_layout";
 const Success = () => {
   return (
     <Layout>
@@ -11,7 +11,7 @@ const Success = () => {
       <Container>
         Successfully Filled the WhiteList Form <br />
         Make sure to join our Discord Community!
-        <Button  href="https://discord.gg/nbrsZY9z59" target="_blank">
+        <Button href="https://discord.gg/nbrsZY9z59" target="_blank">
           Join Discord
         </Button>
       </Container>
