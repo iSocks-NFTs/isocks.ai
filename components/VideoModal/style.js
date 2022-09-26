@@ -37,5 +37,4 @@ export const ComingSoonVideo = styled.video`
 `
 
 export const Source = styled.source`
-
 `

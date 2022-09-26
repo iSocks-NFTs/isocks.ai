@@ -1,4 +1,4 @@
-import { Container,Button } from "./style";
+import { Container,Button } from "../../../styles/success/style";
 import Head from "next/head";
 import Layout from '../../../layouts/normal_layout'
 const Success = () => {
