@@ -10,6 +10,8 @@ export const ButtonContainer = styled.div`
     column-gap:0.8rem;
 `
 
+export const ProductSlide = styled.div``
+
 export const OutLineButton = styled.button`
 
 `
