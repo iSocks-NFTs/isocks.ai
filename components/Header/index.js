@@ -1,5 +1,6 @@
 import { ARButton, ButtonContainer, Container, Heading, Icon } from "./style";
 import { Row, Col } from "react-bootstrap";
+import ProductSlide from "../Products";
 
 const Header = () => {
   return (
@@ -17,6 +18,9 @@ const Header = () => {
               AR.
             </ARButton>
           </ButtonContainer>
+        </Col>
+        <Col>
+          <ProductSlide />
         </Col>
       </Row>
     </Container>

@@ -52,7 +52,7 @@ const Navbar = () => {
           <NavBtnLink02 href="https://discord.gg/nbrsZY9z59" target="_blank">
             <FaDiscord size={15} />
             Join Discord</NavBtnLink02>
-          <NavBtnLink href="/join-whitelist">Join the whitelist</NavBtnLink>
+          <NavBtnLink href="/join-whitelist">Pre Order</NavBtnLink>
         </NavBtn>
       </Nav>
       <AnimatePresence initial={false} node="wait" onExitComplete={() => null}>

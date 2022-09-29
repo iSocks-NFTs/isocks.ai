@@ -1,12 +1,21 @@
 import React from "react";
-import { ProductSlide } from "./style";
+import { Row, Col } from "react-bootstrap";
+import { FilledButton, OutLineButton,ButtonContainer,Container } from "./style";
 
-const ProductSlide = ({productList}) => {
+const ProductSlide = ({ productList }) => {
   const [active, setActive] = React.useState([]);
-  return(
-    <>
-        
-    </>
+  return (
+    <Container>
+      <ButtonContainer>
+        <FilledButton>
+          Buy Sock
+        </FilledButton>
+      </ButtonContainer>
+      <ButtonContainer>
+        <OutLineButton>Redeem</OutLineButton>
+        <OutLineButton>Verify</OutLineButton>
+      </ButtonContainer>
+    </Container>
   );
 };
 
