@@ -1,19 +1,31 @@
+import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
+import { Canvas } from "@react-three/fiber";
 import Head from "next/head";
 import styled from "styled-components";
-import { useLoader } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 
 const Container = styled.div`
   background-color: var(--primary-brand);
   min-width: 100%;
-  max-width: 100%;
-  border: 1px solid red;
+  height: 100vh;
 `;
 
-// function Scene(){
-//     const obj = useLoader(OBJLoader,'localhost:3000/3d/sock.obj');
-//     return <primitive object={obj} />
-// }
+function XRSetup() {
+  return (
+    <>
+      <VRButton />
+      <Canvas>
+        <XR>
+          <Controllers />
+          <Hands />
+          <mesh>
+            <boxGeometry />
+            <meshBasicMaterial color="blue" />
+          </mesh>
+        </XR>
+      </Canvas>
+    </>
+  );
+}
 
 const AR = () => {
   return (
@@ -22,7 +34,7 @@ const AR = () => {
         <title>iSocks | VR</title>
       </Head>
       <Container>
-        {/* <Scene /> */}
+        <XRSetup />
       </Container>
     </>
   );
