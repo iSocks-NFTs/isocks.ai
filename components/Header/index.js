@@ -1,6 +1,7 @@
 import { ARButton, ButtonContainer, Container, Heading, Icon } from "./style";
 import { Row, Col } from "react-bootstrap";
 import ProductSlide from "../Products";
+import Router from "next/router";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
             iSocks is a physical product with blockchain records of the owner.
           </Heading>
           <ButtonContainer>
-            <ARButton>
+            <ARButton onClick={() => Router.push('/ar')}>
               {" "}
               <Icon src="/img/icons/ar.svg" alt="AR Icon" /> See how it fits on
               AR.

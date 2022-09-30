@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@moralisweb3/evm-utils": "^2.5.3",
+    "@react-three/fiber": "^8.8.7",
     "@react-three/xr": "^5.0.1",
     "@sanity/cli": "^2.33.3",
     "@sanity/client": "^3.4.1",

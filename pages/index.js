@@ -10,19 +10,18 @@ import Header from "../components/Header";
 import ComingSoon from "../components/ComingSoon";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
-import SubscribeModal from '../components/Modal/emailSubscribe/index'
+import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [ready, setReady] = useState(true);
-  const { comingSoonModal,subscribeForm } = useContext(GlobalContext);
+  const { comingSoonModal, subscribeForm } = useContext(GlobalContext);
 
   return (
     <>
       <Head>
         <title>iSocks | Homepage</title>
         <link rel="icon" href="/img/icons/logo.svg" />
-        
       </Head>
       {ready ? (
         <>
@@ -43,7 +42,7 @@ export default function Home() {
             onExitComplete={() => null}
           >
             {comingSoonModal && <Modal />}
-            {subscribeForm && <SubscribeModal /> }
+            {subscribeForm && <SubscribeModal />}
           </AnimatePresence>
           <Subscribe />
           <Footer />
