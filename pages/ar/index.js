@@ -12,13 +12,13 @@ const Container = styled.div`
 function XRSetup() {
   return (
     <>
-      <VRButton mode="AR" />
+      <ARButton mode="AR" />
       <Canvas>
         <XR>
           <Hands />
           <mesh>
             <boxGeometry />
-            <meshBasicMaterial color="blue" />
+            <meshBasicMaterial color="red" />
           </mesh>
         </XR>
       </Canvas>
