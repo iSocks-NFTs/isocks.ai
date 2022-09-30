@@ -10,10 +10,10 @@ const Container = styled.div`
   border: 1px solid red;
 `;
 
-function Scene(){
-    const obj = useLoader(OBJLoader,'localhost:3000/3d/sock.obj');
-    return <primitive object={obj} />
-}
+// function Scene(){
+//     const obj = useLoader(OBJLoader,'localhost:3000/3d/sock.obj');
+//     return <primitive object={obj} />
+// }
 
 const AR = () => {
   return (
@@ -22,7 +22,7 @@ const AR = () => {
         <title>iSocks | VR</title>
       </Head>
       <Container>
-        <Scene />
+        {/* <Scene /> */}
       </Container>
     </>
   );
