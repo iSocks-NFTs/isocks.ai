@@ -17,6 +17,8 @@ function XRSetup() {
         <XR>
           <Hands />
           <mesh>
+            <ambientLight />
+            <pointLight position={[10, 10, 10]} />
             <boxGeometry />
             <meshBasicMaterial color="red" />
           </mesh>
