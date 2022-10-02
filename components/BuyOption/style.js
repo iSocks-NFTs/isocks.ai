@@ -9,7 +9,8 @@ export const CardContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    column-gap: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 `
 
 export const BuyOptionLink = styled.a`
