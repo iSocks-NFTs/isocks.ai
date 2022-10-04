@@ -17,7 +17,7 @@ export const NavImg = styled.img`
   height: 25px;
 `;
 
-export const NavLink = styled.span`
+export const NavLink = styled.a`
   color: var(--subtle-text);
   display: flex;
   align-items: center;
