@@ -36,13 +36,13 @@ const Navbar = () => {
         </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="/" activeStyle>
             Buy iSocks
           </NavLink>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="/redeem" activeStyle>
             Redeem iSocks
           </NavLink>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="" activeStyle>
             Verify iSocks
           </NavLink>
           {/* Second Nav */}
