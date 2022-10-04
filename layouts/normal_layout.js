@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/globalContext"
 import NavBar from "../components/Navbar/";
+import Subscribe from '../components/Subscribe'
 import Footer from "../components/Footer";
 
 export default function Layout({ children }) {
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
     <>
       <NavBar />
       {children}
+      <Subscribe />
       <Footer />
     </>
   );
