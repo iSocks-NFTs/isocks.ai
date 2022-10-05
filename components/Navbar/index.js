@@ -73,9 +73,9 @@ const Navbar = () => {
               <NavLinkOG href="/">
                 <NavImg src="/img/logo/logo.png" alt="logo" />
               </NavLinkOG>
-              <span onClick={() => closeFunction()}>Buy iSocks</span>
-              <span onClick={() => closeFunction()}>Redeem iSocks</span>
-              <span onClick={() => closeFunction()}>Verify iSocks</span>
+              <Link href="/buy">Buy iSocks</Link>
+              <Link href="/redeem">Redeem iSocks</Link>
+              <Link href="/verify">Verify iSocks</Link>
               <Link href="/join-whitelist">Join Whitelist</Link>
               <Link href="https://discord.gg/nbrsZY9z59" target="_blank">Join Discord</Link>
             </MobileNav>
