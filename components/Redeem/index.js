@@ -49,7 +49,7 @@ const RedeemedComponent = () => {
         <Col>
           <Heading>Redeem</Heading>
           <P>
-            You'll need to complete the form below in order to redeem your
+            You&apos;ll need to complete the form below in order to redeem your
             socks.
           </P>
         </Col>

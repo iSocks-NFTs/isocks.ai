@@ -24,7 +24,7 @@ const VerifyComponent = () => {
         <Col>
           <Heading>Verify iSocks</Heading>
           <P>
-            You'll need to complete the form below in order to redeem your
+            You&apos;ll need to complete the form below in order to redeem your
             socks.
           </P>
         </Col>
@@ -54,7 +54,7 @@ const VerifyComponent = () => {
           <Form>
             <CheckBoxContainer>
               <CheckBox type="checkbox" id="check" />
-              <Label htmlfor="check">I'm a vendor</Label>
+              <Label htmlfor="check">I&apos;m a vendor</Label>
             </CheckBoxContainer>
             <FormGroup>
               <Label htmlFor="vendorCode" fontWeight="400" color="var(--subtle-text)">
@@ -64,7 +64,7 @@ const VerifyComponent = () => {
             </FormGroup>
             <CheckBoxContainer>
               <CheckBox type="checkbox" id="check" />
-              <Label htmlfor="check">I'm not a vendor (I bought the NFT by myself)</Label>
+              <Label htmlfor="check">I&apos;m not a vendor (I bought the NFT by myself)</Label>
             </CheckBoxContainer>
             <Button>Continue</Button>
           </Form>
