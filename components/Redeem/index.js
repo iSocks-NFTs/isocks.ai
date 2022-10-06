@@ -9,13 +9,14 @@ import {
   Form,
   Input,
   Button,
-  DropDownContainer,
+  CheckBoxContainer,
+  CheckBox,
 } from "./style";
-import { AiOutlineDown } from "react-icons/ai";
 import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
-import { countries } from "country-data-list";
+import { useCountries } from "use-react-countries";
+import Dropdown from "../DropDown";
 
 const RedeemedComponent = () => {
   const [formValues, setFormValues] = React.useState({
@@ -23,12 +24,13 @@ const RedeemedComponent = () => {
     country: null,
     currentState: "",
     walletAddress: "",
+    nftContractId: "",
+    vendorCode: "",
   });
-  
-
-
-
   const [loading, setLoading] = React.useState(false);
+  const [countryListData, setCountryListData] = React.useState([]);
+
+  const { countries } = useCountries();
 
   const emailRef = React.useRef();
 
@@ -38,7 +40,7 @@ const RedeemedComponent = () => {
 
   React.useEffect(() => {
     emailRef.current.focus();
-    console.log(countries.all);
+    console.log(countries)
   }, []);
 
   return (
@@ -68,9 +70,7 @@ const RedeemedComponent = () => {
             />
           </FormGroup>
           <FormGroup>
-            <DropDownContainer>
-              <AiOutlineDown />
-            </DropDownContainer>
+            <Dropdown />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="currentState">Current State</Label>
@@ -98,6 +98,37 @@ const RedeemedComponent = () => {
               required
             />
           </FormGroup>
+          <FormGroup>
+            <Label htmlFor="nftContractId">NFT Contract ID</Label>
+            <Input
+              type="text"
+              id="nftContractId"
+              value={formValues.nftContractId}
+              onChange={(e) =>
+                setFormValues({ ...formValues, nftContractId: e.target.value })
+              }
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="vendorCode">Vendor Code</Label>
+            <Input
+              type="text"
+              placeholder="Enter vendor code if you're a vendor"
+              id="vendorCode"
+              value={formValues.vendorCode}
+              onChange={(e) =>
+                setFormValues({ ...formValues, vendorCode: e.target.value })
+              }
+              required
+            />
+          </FormGroup>
+          <CheckBoxContainer>
+            <CheckBox type="checkbox" name="isAVendor" id="vendorCheck" />
+            <Label htmlFor="vendorCheck">
+              I’m not a vendor (I bought the NFT by myself)
+            </Label>
+          </CheckBoxContainer>
           <Button type="submit">
             {loading ? (
               <TailSpin

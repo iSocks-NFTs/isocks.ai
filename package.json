@@ -30,7 +30,8 @@
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.3.4",
     "styled-components": "^5.3.5",
-    "three": "^0.144.0"
+    "three": "^0.144.0",
+    "use-react-countries": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "8.23.0",

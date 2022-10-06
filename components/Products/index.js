@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import Router from 'next/router';
 import { FilledButton, OutLineButton,ButtonContainer,Container } from "./style";
 
 const ProductSlide = ({ productList }) => {
@@ -7,13 +7,13 @@ const ProductSlide = ({ productList }) => {
   return (
     <Container>
       <ButtonContainer>
-        <FilledButton>
+        <FilledButton onClick={() => Router.push("/buy")}>
           Buy Sock
         </FilledButton>
       </ButtonContainer>
       <ButtonContainer>
-        <OutLineButton>Redeem</OutLineButton>
-        <OutLineButton>Verify</OutLineButton>
+        <OutLineButton onClick={() => Router.push("/redeem")}>Redeem</OutLineButton>
+        <OutLineButton onClick={() => Router.push('/verify')}>Verify</OutLineButton>
       </ButtonContainer>
     </Container>
   );

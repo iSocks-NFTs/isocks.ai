@@ -38,9 +38,12 @@ export const Input = styled.input`
   width: clamp(250px, 325px, 450px);
   background-color: #fff;
   color: var(--primary-brand);
-  padding: 0 3px;
+  padding:5px;
   border: 0.933743px solid #e3e6e8;
   font-size: 20px;
+  ::placeholder{
+    font-size:16px;
+  }
   border-radius: 3px;
   :focus {
     outline: var(--primary-brand);
@@ -98,6 +101,9 @@ export const Label = styled.label`
   width: clamp(250px, 320px, 450px);
   a {
     text-decoration: underline;
+  }
+  :hover{
+    cursor: pointer;
   }
 `;
 
@@ -167,6 +173,10 @@ export const Terms = styled.span`
 export const DropDownContainer = styled.div`
   width: clamp(250px, 320px, 450px);
   border: 1px solid #e3e6e8;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:10px;
   height: ${(props) => (props.height ? props.height : "60px")};
   background-color: #fff;
   :hover {
@@ -175,3 +185,36 @@ export const DropDownContainer = styled.div`
 `;
 
 export const OptionIcon = styled.img``;
+
+export const CheckBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-left:1.3rem;
+  width: clamp(250px, 420px, 450px);
+  column-gap: 5px;
+`;
+
+export const CheckBox = styled.input`
+  appearance: none;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  outline: 1px solid var(--subtle-text);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  :hover {
+    cursor: pointer;
+  }
+  :checked::after {
+    outline: none;
+    font-family: "Font Awesome 6 Free";
+    content: "\f00c";
+    font-weight: 900;
+    background-color: var(--primary-brand);
+  }
+`;
