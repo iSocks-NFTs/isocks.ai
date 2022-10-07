@@ -9,6 +9,7 @@ import {
   Label,
   TextArea,
   OTPContainer,
+  WalletAddress,
   OTPBox,
 } from "../Form";
 import { Heading, P, Container, TextBox, Text, Icon } from "./style";
@@ -18,10 +19,9 @@ const PreOrderComponent = () => {
     email: "",
     fullName: "",
   });
-
   const [otp, setOtp] = React.useState(new Array(6).fill(""));
-
   const [active, setActive] = React.useState(false);
+  const [emailConfirmed, setEmailConfirmed] = React.useState(false);
 
   function handleChange(element, index) {
     if (isNaN(element.value)) return false;
@@ -75,49 +75,64 @@ const PreOrderComponent = () => {
             />
           </FormGroup>
 
-          <OTPContainer>
-            {otp.map((data, index) => {
-              return (
-                <OTPBox
-                  type="text"
-                  maxLength="1"
-                  name="otp"
-                  key={index}
-                  value={data}
-                  onChange={(e) => handleChange(e.target, index)}
-                  onFocus={(e) => e.target.select()}
-                />
-              );
-            })}
-          </OTPContainer>
-          {/* <p>OTP Entered - {otp.join("")}</p> */}
-          <Button
-            backgroundColor="#fff"
-            borderColor="#E3E5E8"
-            onClick={(e) => setOtp([...otp.map((v) => "")])}
-            color="var(--primary-brand)"
-          >
-            Send Code
-          </Button>
-          <Button
-            type="submit"
-            color={active ? "#fff" : "#fff"}
-            borderColor={active ? "var(--primary-brand)" : "#E3E5E8"}
-            backgroundColor={active ? "var(--primary-brand)" : "#E3E5E8"}
-            hoverColor={active ? "var(--primary-brand)" : "#fff"}
-            hoverBorderColor={active ? "var(--primary-brand)" : "#fff"}
-            hoverBackgroundColor={active ? "#fff" : "#E3E5E8"}
-            cursor={active ? "pointer" : "auto"}
-          >
-            Continue
-          </Button>
-          <TextBox>
-            <Icon src="/img/icons/info-circle.svg" alt="info circle" />
-            <Text>
-              You didn&apos;t receive the code please,{" "}
-              <span className="resend">resend code</span>
-            </Text>
-          </TextBox>
+          {emailConfirmed ? (
+            <>
+              <OTPContainer>
+                {otp.map((data, index) => {
+                  return (
+                    <OTPBox
+                      type="text"
+                      maxLength="1"
+                      name="otp"
+                      key={index}
+                      value={data}
+                      onChange={(e) => handleChange(e.target, index)}
+                      onFocus={(e) => e.target.select()}
+                    />
+                  );
+                })}
+              </OTPContainer>
+              {/* <p>OTP Entered - {otp.join("")}</p> */}
+              <Button
+                backgroundColor="#fff"
+                borderColor="#E3E5E8"
+                onClick={(e) => setOtp([...otp.map((v) => "")])}
+                color="var(--primary-brand)"
+              >
+                Send Code
+              </Button>
+              <Button
+                type="submit"
+                color={active ? "#fff" : "#fff"}
+                borderColor={active ? "var(--primary-brand)" : "#E3E5E8"}
+                backgroundColor={active ? "var(--primary-brand)" : "#E3E5E8"}
+                hoverColor={active ? "var(--primary-brand)" : "#fff"}
+                hoverBorderColor={active ? "var(--primary-brand)" : "#fff"}
+                hoverBackgroundColor={active ? "#fff" : "#E3E5E8"}
+                cursor={active ? "pointer" : "auto"}
+              >
+                Continue
+              </Button>
+              <TextBox>
+                <Icon src="/img/icons/info-circle.svg" alt="info circle" />
+                <Text>
+                  You didn&apos;t receive the code please,{" "}
+                  <span className="resend">resend code</span>
+                </Text>
+              </TextBox>
+            </>
+          ) : (
+            <>
+              <FormGroup>
+                <Label>Wallet Address</Label>
+                <WalletAddress type="text" />
+                <Label>Deposit Address</Label>
+                <WalletAddress type="text" backgroundColor="#F6F6F6" />
+                <WalletAddress type="text" backgroundColor="#F6F6F6" />
+                <WalletAddress type="text" backgroundColor="#F6F6F6" />
+              </FormGroup>
+            </>
+          )}
         </Form>
       </FormContainer>
     </Container>
