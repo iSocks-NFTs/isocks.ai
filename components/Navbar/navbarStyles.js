@@ -64,6 +64,11 @@ export const NavMenu = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+  .active{
+    text-decoration: underline;
+    font-weight: 600;
+    color:var(--primary-brand);
+  }
 `;
 
 export const NavBtn = styled.nav`
