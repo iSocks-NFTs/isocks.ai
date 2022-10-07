@@ -90,7 +90,7 @@ const PreOrderComponent = () => {
               );
             })}
           </OTPContainer>
-          <p>OTP Entered - {otp.join("")}</p>
+          {/* <p>OTP Entered - {otp.join("")}</p> */}
           <Button
             backgroundColor="#fff"
             borderColor="#E3E5E8"
@@ -101,13 +101,13 @@ const PreOrderComponent = () => {
           </Button>
           <Button
             type="submit"
-            color={active ? "" : "#fff"}
-            borderColor={active ? "" : "#E3E5E8"}
-            backgroundColor={active ? "" : "#E3E5E8"}
-            hoverColor={active ? "" : "#fff"}
-            hoverBorderColor={active ? "" : "#fff"}
-            hoverBackgroundColor={active ? "" : "#E3E5E8"}
-            cursor={active ? "" : "auto"}
+            color={active ? "#fff" : "#fff"}
+            borderColor={active ? "var(--primary-brand)" : "#E3E5E8"}
+            backgroundColor={active ? "var(--primary-brand)" : "#E3E5E8"}
+            hoverColor={active ? "var(--primary-brand)" : "#fff"}
+            hoverBorderColor={active ? "var(--primary-brand)" : "#fff"}
+            hoverBackgroundColor={active ? "#fff" : "#E3E5E8"}
+            cursor={active ? "pointer" : "auto"}
           >
             Continue
           </Button>
