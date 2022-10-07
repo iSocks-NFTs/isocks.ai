@@ -23,6 +23,25 @@ export const Input = styled.input`
   }
 `;
 
+export const Type = styled.span``
+
+export const WalletAddress = styled.input`
+  height: ${(props) => (props.height ? props.height : "60px")};
+  width: clamp(250px, 320px, 450px);
+  background-color: ${(props) => props.backgroundColor ? props.backgroundColor : "#fff"};
+  color: var(--primary-brand);
+  padding: 0 3px;
+  border: 0.933743px solid #e3e6e8;
+  font-size: 20px;
+  border-radius: 3px;
+  :focus {
+    outline: var(--primary-brand);
+  }
+  ::after{
+    content:'ERC20'
+  }
+`
+
 export const TextArea = styled.textarea`
   height: ${(props) => (props.height ? props.height : "120px")};
   width: clamp(250px, 320px, 450px);
