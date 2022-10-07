@@ -18,8 +18,10 @@ import Link from "next/link";
 import { GlobalContext } from "../../context/globalContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaDiscord } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [mobileNav, setMobileNav] = React.useState(false);
   const { setComingSoonModal, comingSoonModal } = useContext(GlobalContext);
 
@@ -36,13 +38,13 @@ const Navbar = () => {
         </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink href="/buy" activeStyle>
+          <NavLink href="/buy" className={router.pathname == '/buy' ? "active": ""}>
             Buy iSocks
           </NavLink>
-          <NavLink href="/redeem" activeStyle>
+          <NavLink href="/redeem" className={router.pathname == '/redeem' ? "active" : ""} >
             Redeem iSocks
           </NavLink>
-          <NavLink href="/verify" activeStyle>
+          <NavLink href="/verify" className={router.pathname == '/verify' ? "active" : ""}>
             Verify iSocks
           </NavLink>
           {/* Second Nav */}
