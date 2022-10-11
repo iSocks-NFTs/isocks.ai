@@ -35,7 +35,7 @@ const BuyOptionsComponent = () => {
             Customers who purchase from Binance are presumably more
             knowledgeable about blockchain.
           </OptionDescription>
-          <BuyOptionLink href="">
+          <BuyOptionLink href="https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58">
             Buy iSock{" "}
             <ArrowRight
               src="/img/logo/arrow-right.svg"
