@@ -1,65 +1,75 @@
-import {
-  Container,
-  Heading,
-  P,
-  Card,
-  CardContainer,
-  Image,
-  OptionDescription,
-  Option,
-  BuyOptionLink,
-  ArrowRight,
-  Circle,
-} from "./style";
-import { Row, Col } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container } from "./style";
+import Step1 from "./page1";
+import Step2 from "../Vendor";
+import Step3 from "./page3";
+import Step4 from './page4';
+import Step5 from "./page5";
+import { GlobalContext } from "../../context/globalContext";
+import SuccessModal from "../Modal/success";
+import { AnimatePresence } from "framer-motion";
 
 const BuyOptionsComponent = () => {
+  const [page, setPage] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    vendorOption:[],
+    emailAddress:'',
+    phoneNumber:'',
+    walletAddress:'',
+    KudaBankAccountNumber:243435335646,
+    uploadedProof:{
+      uploaded:false,
+      imgfileName:'test.png',
+      paymentConfirmed:false
+    }
+  });
+
+  const { successModal, setSuccessModal } = useContext(GlobalContext);
+
+  const componentList = [
+    <Step1
+      key={1}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <Step2
+      key={2}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <Step3
+      key={3}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <Step4
+      key={4}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <Step5
+      key={5}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+  ];
+
   return (
     <Container>
-      <Row>
-        <Col>
-          <Heading>Choose Buying Option</Heading>
-          <P>
-            All our buying options are easy & fast. We can&#39;t wait to see you
-            at the otherside.
-          </P>
-        </Col>
-      </Row>
-      <CardContainer>
-        <Card>
-          <Circle>
-            <Image src="/img/logo/binance_buy.svg" alt="Binance" />
-          </Circle>
-          <Option>Binance</Option>
-          <OptionDescription>
-            Customers who purchase from Binance are presumably more
-            knowledgeable about blockchain.
-          </OptionDescription>
-          <BuyOptionLink href="https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58">
-            Buy iSock{" "}
-            <ArrowRight
-              src="/img/logo/arrow-right.svg"
-              alt="Arrow Right Icon"
-            />
-          </BuyOptionLink>
-        </Card>
-        <Card border="none" bgColor="#fafafa">
-          <Circle>
-            <Image src="/img/logo/vendor_buy.svg" alt="Binance" />
-          </Circle>
-          <Option>Vendor</Option>
-          <OptionDescription>
-          Customers who purchase from Vendor are presumed they don’t have knowledge about blockchain.
-          </OptionDescription>
-          <BuyOptionLink href="">
-            Buy iSock{" "}
-            <ArrowRight
-              src="/img/logo/arrow-right.svg"
-              alt="Arrow Right Icon"
-            />
-          </BuyOptionLink>
-        </Card>
-      </CardContainer>
+      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+        {successModal && <SuccessModal />}
+        {componentList[page]}
+      </AnimatePresence>
     </Container>
   );
 };
