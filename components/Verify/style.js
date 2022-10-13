@@ -41,7 +41,7 @@ export const StageItems = styled.div`
 `;
 
 export const Stage = styled.span`
-  font-weight: 700;
+  font-weight: ${(props) => props.fontWeight ? props.fontWeight : "700"};
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
   @media screen and (max-width: 520px) {
     font-size: 13px;
@@ -52,6 +52,7 @@ export const ArrowRight = styled.img``;
 
 export const FormContainer = styled.div`
   margin: 0 auto;
+  margin-top:${(props) => props.marginTop ? props.marginTop : ""};
 `;
 
 export const Form = styled.form`
@@ -106,6 +107,7 @@ export const Button = styled.button`
   display: inline-flex;
   justify-content: center;
   border: 1px solid var(--primary-brand);
+  margin-top: ${(props) => props.marginTop ? props.marginTop : ''};
   :hover {
     cursor: pointer;
     color: var(--primary-brand);
@@ -141,8 +143,115 @@ export const Label = styled.label`
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   font-size: 14px;
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
-  width: clamp(250px, 420px, 450px);
+  width: ${(props) => props.width ? props.width : "clamp(250px, 420px, 450px)"};
   a {
     text-decoration: underline;
   }
+  :hover{
+    cursor: pointer;
+  }
 `;
+
+// Step 4 Upload Cards
+export const CardContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+`
+
+export const BuyOptionLink = styled.span`
+    text-decoration: underline;
+    color:var(--primary-brand);
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    transition: 0.7s;
+    :hover{
+        cursor:pointer;
+    }
+`
+
+export const Circle = styled.div`
+    padding:1rem;
+    background-color: #F4F4F4;
+    border-radius:50%;
+`
+
+export const Image = styled.img`
+    width:50px;
+    height:50px;
+
+`
+
+export const Option = styled.span`
+    font-weight: 600;
+    font-size:22px;
+`
+
+export const OptionDescription = styled.span`
+    padding:15px;
+    text-align: center;
+    color:var(--subtle-text);
+`
+
+export const Card = styled.div`
+  border: ${(props) => props.border ? props.border : "1px solid var(--grey-border-color)"};
+  width: 300px;
+  height: 300px;
+  display: flex;
+  row-gap:0.1rem;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  justify-content: center;
+  background-color: ${(props) => props.bgColor ? props.bgColor : ""};
+`;
+
+
+export const UploadLabel = styled.label`
+  border: 1px solid #e3e6e8;
+  color: var(--primary-brand);
+  width: clamp(250px, 320px, 450px);
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  justify-content: flex-start;
+`;
+export const Uploaded = styled.div`
+  border: 1px solid #e3e6e8;
+  color: var(--primary-brand);
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: clamp(250px, 300px, 450px);
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  .uploaded_icon{
+    display: flex;
+    align-items: center;
+    column-gap:0.5rem;
+  }
+`;
+export const FileInput = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`;
+
+export const Icon = styled.img``;
+
+export const LabelContainer = styled.div`
+  display: flex;
+  column-gap:1rem;
+`
