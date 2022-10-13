@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^3.6.0",
     "@moralisweb3/evm-utils": "^2.5.3",
     "@react-three/drei": "^9.32.4",
     "@react-three/fiber": "^8.8.7",
@@ -19,16 +20,20 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "country-data-list": "^1.2.2",
+    "firebase": "^9.11.0",
     "framer-motion": "^7.3.5",
     "googleapis": "^107.0.0",
     "moralis": "^2.5.3",
     "next": "12.3.0",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.3.4",
+    "react-select": "^5.4.0",
+    "react-select-country-list": "^2.2.3",
     "styled-components": "^5.3.5",
     "three": "^0.144.0",
     "use-react-countries": "^1.1.0"
