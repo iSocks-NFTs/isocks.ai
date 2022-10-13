@@ -21,7 +21,7 @@ const PreOrderComponent = () => {
   });
   const [otp, setOtp] = React.useState(new Array(6).fill(""));
   const [active, setActive] = React.useState(false);
-  const [emailConfirmed, setEmailConfirmed] = React.useState(false);
+  const [emailConfirmed, setEmailConfirmed] = React.useState(true);
 
   function handleChange(element, index) {
     if (isNaN(element.value)) return false;
