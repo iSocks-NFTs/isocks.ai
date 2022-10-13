@@ -69,6 +69,7 @@ export const Input = styled.input`
   background-color: #fff;
   color: var(--primary-brand);
   padding: 0 3px;
+  padding-left: ${(props) => props.paddingLeft ? props.paddingLeft : ''};
   border: 0.933743px solid #e3e6e8;
   font-size: 18px;
   border-radius: 3px;

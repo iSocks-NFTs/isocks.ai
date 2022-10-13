@@ -10,6 +10,8 @@ import {
   Button,
 } from "../style";
 import { motion } from "framer-motion";
+import { UD } from "../../Form";
+
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
@@ -28,7 +30,9 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     >
       <Form>
         <FormGroup>
-          <Label htmlFor="username" fontWeight="400">Choose a username</Label>
+          <Label htmlFor="username" fontWeight="400">
+            Choose a username
+          </Label>
           <Input
             id="username"
             value={formData.username}
@@ -39,15 +43,22 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="ud" fontWeight="400">Use your UD as a Username</Label>
+          <Label htmlFor="ud" fontWeight="400">
+            Use your UD as a Username
+          </Label>
+          <UD src="/img/icons/ud.png" alt="UD Logo" />
           <Input
             id="ud"
-            value={formData.username}
+            value={formData.UdDomainUsername}
+            paddingLeft="15rem"
             onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
+              setFormData({ ...formData, UdDomainUsername: e.target.value })
             }
           />
         </FormGroup>
+        <Label htmlFor="ud" fontWeight="bolder">
+          Get a UD domain here
+        </Label>
         <Button onClick={() => setPage(page + 1)}>Continue</Button>
       </Form>
     </FormContainer>

@@ -61,6 +61,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const FormGroup = styled.div`
+  position: relative;
   display: flex;
   flex-direction: ${(props) => props.flexDirection ? props.flexDirection : "column"};
   align-items:${(props) => props.alignItems ? props.alignItems : "flex-start"};
@@ -172,3 +173,11 @@ export const FileInput = styled.input`
   position: absolute;
   z-index: -1;
 `;
+
+export const UD = styled.img`
+  position:absolute;
+  margin-top: 2.1rem;
+  margin-left:10px;
+  width:${(props) => props.width ? props.width : '45px'};
+  height:${(props) => props.height ? props.height : '45px'};
+`
