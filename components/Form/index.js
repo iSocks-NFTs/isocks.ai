@@ -62,15 +62,24 @@ export const TextArea = styled.textarea`
 
 export const FormGroup = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => props.flexDirection ? props.flexDirection : "column"};
+  align-items:${(props) => props.alignItems ? props.alignItems : "flex-start"};
   row-gap: 0.5rem;
+  column-gap: ${(props) => props.columnGap ? props.columnGap : "0"};
+  span{
+    font-size:15px;
+    font-weight:400;
+  }
+  div{
+    width:clamp(250px, 320px, 450px);
+  }
 `;
 
 export const Button = styled.button`
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : "var(--primary-brand)"};
   padding: 15px 50px;
   font-size: 15px;
-  width: clamp(250px, 320px, 450px);
+  width: ${(props) => props.width ? props.width : "clamp(250px, 320px, 450px)"};
   color: ${(props) => props.color ? props.color : "#fff"};
   border-radius: 30px;
   transition: 0.7s;
@@ -85,6 +94,28 @@ export const Button = styled.button`
     border: 1px solid ${(props) => props.hoverBorderColor ? props.hoverBorderColor : "var(--primary-brand)"};
   }
 `;
+
+export const Icon = styled.img`
+  width:15px;
+  height:15px;
+`
+export const Msg = styled.span`
+  font-size:11px;
+  color:${(props) => props.color ? props.color : "var(--primary-brand)"};
+`
+
+export const Resend = styled.span`
+  color:var(--primary-brand);
+  text-decoration: underline;
+  :hover{
+    cursor: pointer;
+  }
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  column-gap:0.3rem;
+`
 
 export const Label = styled.label`
   font-weight: 400;
@@ -113,3 +144,31 @@ export const OTPBox = styled.input`
     outline: none;
   }
 `
+
+export const Uploaded = styled.div`
+  border: 1px solid #e3e6e8;
+  color: var(--primary-brand);
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: ${(props) => props.width ? props.width : "clamp(250px, 320px, 450px)"};
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  .uploaded_icon {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+  }
+`;
+export const FileInput = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`;
