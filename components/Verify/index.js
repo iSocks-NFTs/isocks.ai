@@ -1,3 +1,4 @@
+import React,{useState} from "react";
 import {
   ArrowRight,
   Container,
@@ -6,18 +7,35 @@ import {
   StageContainer,
   Stage,
   StageItems,
-  FormContainer,
-  FormGroup,
-  CheckBoxContainer,
-  Label,
-  CheckBox,
-  Form,
-  Input,
-  Button
 } from "./style";
 import { Row, Col } from "react-bootstrap";
+import Step1 from "./page1";
+import Step2 from "./page2";
+import Step3 from "./page3";
+import Step4 from "./page4";
 
 const VerifyComponent = () => {
+  const [page,setPage] = useState(0);
+  const [formData,setFormData] = useState({
+    isVendor:false,
+    vendorCode:'',
+    emailAddress:'',
+    firstName:'',
+    lastName:'',
+    countryOfResidence:'',
+    nationality:'',
+    username:'',
+    UdDomainUsername:''
+  })
+
+
+  const componentList = [
+    <Step1 key={1} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />,
+    <Step2 key={2} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />,
+    <Step3 key={3} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />,
+    <Step4 key={4} page={page} setPage={setPage} formData={formData} setFormData={setFormData} />,
+  ];
+
   return (
     <Container>
       <Row>
@@ -36,39 +54,21 @@ const VerifyComponent = () => {
                 src="img\icons\double_right_arrow.svg"
                 alt="arrow_right"
               />
-              <Stage color="var(--subtle-text)">Second Stage</Stage>
+              <Stage color={page > 0 ? "var(--primary-brand)" : "var(--subtle-text)"}>Second Stage</Stage>
               <ArrowRight
-                src="img\icons\double_right_arrow_faded.svg"
+                src={page > 0 ? "/img/icons/double_right_arrow.svg" : "/img/icons/double_right_arrow_faded.svg"}
                 alt="arrow_right"
               />
-              <Stage color="var(--subtle-text)">Third Stage</Stage>
+              <Stage color={page > 1 ? "var(--primary-brand)" : "var(--subtle-text)"} >Third Stage</Stage>
               <ArrowRight
-                src="img\icons\double_right_arrow_faded.svg"
+                src={page > 1 ? "/img/icons/double_right_arrow.svg" : "/img/icons/double_right_arrow_faded.svg"}
                 alt="arrow_right"
               />
-              <Stage color="var(--subtle-text)">Fourth Stage</Stage>
+              <Stage color={page > 2 ? "var(--primary-brand)" : "var(--subtle-text)" } >Fourth Stage</Stage>
             </StageItems>
           </StageContainer>
         </Col>
-        <FormContainer>
-          <Form>
-            <CheckBoxContainer>
-              <CheckBox type="checkbox" id="check" />
-              <Label htmlfor="check">I&apos;m a vendor</Label>
-            </CheckBoxContainer>
-            <FormGroup>
-              <Label htmlFor="vendorCode" fontWeight="400" color="var(--subtle-text)">
-                Vendor Code
-              </Label>
-              <Input type="text" placeholder="Enter vendor code if you are a vendor" />
-            </FormGroup>
-            <CheckBoxContainer>
-              <CheckBox type="checkbox" id="check" />
-              <Label htmlfor="check">I&apos;m not a vendor (I bought the NFT by myself)</Label>
-            </CheckBoxContainer>
-            <Button>Continue</Button>
-          </Form>
-        </FormContainer>
+        {componentList[page]}
       </Row>
     </Container>
   );
