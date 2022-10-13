@@ -11,13 +11,23 @@ import {
   Acceptance,
   Text,
   VendorLocation,
-  AcceptanceList
+  AcceptanceList,
 } from "./style";
 import { Row, Col } from "react-bootstrap";
+import { motion } from "framer-motion";
 
-const VendorComponent = () => {
+const Step2 = ({ page, setPage, formData, setFormData }) => {
+  function selectVendor() {
+    setPage(page + 1);
+  }
+
   return (
-    <Container>
+    <Container
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Row>
         <Col>
           <Heading>Vendor</Heading>
@@ -28,7 +38,7 @@ const VendorComponent = () => {
         </Col>
       </Row>
       <CardContainer>
-        <Card>
+        <Card onClick={selectVendor}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
@@ -54,7 +64,7 @@ const VendorComponent = () => {
             </Acceptance>
           </VendorData>
         </Card>
-        <Card>
+        <Card onClick={selectVendor}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
@@ -80,7 +90,7 @@ const VendorComponent = () => {
             </Acceptance>
           </VendorData>
         </Card>
-        <Card>
+        <Card onClick={selectVendor}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
@@ -111,4 +121,4 @@ const VendorComponent = () => {
   );
 };
 
-export default VendorComponent;
+export default Step2;
