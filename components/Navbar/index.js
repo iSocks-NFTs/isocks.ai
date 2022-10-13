@@ -38,7 +38,7 @@ const Navbar = () => {
         </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink href="/buy" className={router.pathname == '/buy' ? "active": ""}>
+          <NavLink href="/buy" className={router.pathname == '/buy' ? "active" : ""  || router.pathname == '/vendor' ? "active" : ""}>
             Buy iSocks
           </NavLink>
           <NavLink href="/redeem" className={router.pathname == '/redeem' ? "active" : ""} >
