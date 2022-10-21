@@ -8,14 +8,17 @@ export const GlobalContext = React.createContext({
   subscribeForm:false,
   setSubscribeForm:() => {},
   successModal:false,
-  setSuccessModal:() => {}
+  setSuccessModal:() => {},
+  openSettings:false,
+  setOpenSettings:() => {}
 });
 
 const GlobalContextProvider = ({ children }) => {
   const [comingSoonModal, setComingSoonModal] = React.useState(false);
   const [addressVerified, setAddressVerified] = React.useState(false);
-  const [subscribeForm,setSubscribeForm] = React.useState(false)
+  const [subscribeForm,setSubscribeForm] = React.useState(false);
   const [successModal,setSuccessModal] = React.useState(false);
+  const [openSettings,setOpenSettings] = React.useState(false);
 
   return (
     <GlobalContext.Provider
@@ -27,7 +30,9 @@ const GlobalContextProvider = ({ children }) => {
         subscribeForm,
         setSubscribeForm,
         successModal,
-        setSuccessModal
+        setSuccessModal,
+        openSettings,
+        setOpenSettings
       }}
     >
       {children}
