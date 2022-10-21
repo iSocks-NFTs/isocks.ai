@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: ${(props) => props.justifyContent ? props.justifyContent : "center"};
   gap: 1rem;
   flex-wrap: wrap;
 `;
@@ -27,7 +27,11 @@ export const BuyOptionLink = styled.a`
 `;
 
 export const Circle = styled.div`
-  padding: 1rem;
+  width:60px;
+  height:60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #f4f4f4;
   border-radius: 50%;
 `;
@@ -60,12 +64,17 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  justify-content: flex-start;
+  justify-content: ${(props) => props.justifyContent ? props.justifyContent : 'flex-start'};
   padding: 1rem;
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
   background-color: ${(props) => (props.bgColor ? props.bgColor : "")};
   hr {
     width: 240px;
+  }
+  transition:0.8s;
+  :hover {
+    cursor: ${(props) => (props.cursor ? props.cursor : "auto")};
+    transform: scale(1.05);
   }
 `;
 
@@ -159,13 +168,13 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 2rem 0;
-  row-gap:0.5rem;
+  row-gap: 0.5rem;
 `;
 
 export const PaymentMessage = styled.div`
   width: clamp(250px, 320px, 450px);
   display: flex;
-  column-gap:0.3rem;
+  column-gap: 0.3rem;
 `;
 
 export const Heading = styled.h3`
