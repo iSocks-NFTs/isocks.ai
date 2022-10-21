@@ -24,6 +24,16 @@ const Login = () => {
 
   const { setAuthStatus, setAuthUser, authStatus, authUser } =
     React.useContext(AuthContext);
+  const { emailAddress } = useCheckSession();
+  function checkEmail(emailAddress){
+    if (!emailAddress) {
+      console.log("No Email Session Stored");
+    } else {
+      if (emailAddress.length > 0) {
+        Router.push("/dashboard/admin");
+      }
+    }
+  }
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -34,15 +44,8 @@ const Login = () => {
   }
 
   React.useEffect(() => {
-    const { emailAddress } = useCheckSession();
-    if(!emailAddress){
-      console.log('No Email Session Stored')
-    } else {
-      if(emailAddress.length > 0){
-        Router.push('/dashboard/admin');
-      }
-    }
-  }, []);
+   checkEmail(emailAddress)
+  }, [emailAddress]);
 
   function handleSubmit(e) {
     e.preventDefault();
