@@ -94,6 +94,9 @@ export const Button = styled.button`
     background-color: ${(props) => props.hoverBackgroundColor ? props.hoverBackgroundColor : "#fff"};
     border: 1px solid ${(props) => props.hoverBorderColor ? props.hoverBorderColor : "var(--primary-brand)"};
   }
+  :focus,:active{
+    background-color: var(--primary-brand);
+  }
 `;
 
 export const Icon = styled.img`
@@ -121,7 +124,8 @@ export const ButtonContainer = styled.div`
 export const Label = styled.label`
   font-weight: 400;
   font-size: 14px;
-  color: var(--subtle-text);
+  text-align: ${({textAlign}) => textAlign ? textAlign : ''};
+  color: ${(props) => props.color ? props.color : "var(--subtle-text)"};
   width: clamp(250px, 320px, 450px);
   a{
     text-decoration: underline;
