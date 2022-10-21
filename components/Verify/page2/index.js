@@ -10,12 +10,14 @@ import {
   Button,
 } from "../style";
 import { motion } from "framer-motion";
+import {countries} from 'country-data-list';
 
 const Step2 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
 
   React.useEffect(() => {
     inputRef.current.focus();
+    console.log(countries.all)
   }, []);
 
   return (
