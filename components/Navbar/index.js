@@ -5,7 +5,6 @@ import {
   Bars,
   NavMenu,
   NavBtn,
-  Image,
   NavBtnLink,
   NavImg,
   MobileNav,
