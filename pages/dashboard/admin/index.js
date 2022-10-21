@@ -21,9 +21,9 @@ const Dashboard = () => {
   const router = Router;
   const { authStatus, setAuthStatus, setAuthUser } =
     React.useContext(AuthContext);
+  const { emailAddress } = useCheckSession();
 
   React.useEffect(() => {
-    const { emailAddress } = useCheckSession();
     if (!emailAddress) {
     } else {
       if (emailAddress.length === 0) {
@@ -32,7 +32,7 @@ const Dashboard = () => {
         router.push("/dashboard/auth");
       }
     }
-  }, []);
+  }, [emailAddress,router,setAuthStatus,setAuthUser]);
 
   return (
     <Layout>
