@@ -14,18 +14,25 @@ import {
   Image,
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
-import {AuthContext} from '../../../context/authContext';
+import { AuthContext } from "../../../context/authContext";
+import useCheckSession from "../../../hooks/useCheckSession";
 
 const Dashboard = () => {
   const router = Router;
-  const {authStatus} = React.useContext(AuthContext);
+  const { authStatus, setAuthStatus, setAuthUser } =
+    React.useContext(AuthContext);
 
-  React.useEffect(() =>{
-    console.log(authStatus)
-    if(authStatus === false){
-      router.push('/dashboard/auth');
+  React.useEffect(() => {
+    const { emailAddress } = useCheckSession();
+    if (!emailAddress) {
+    } else {
+      if (emailAddress.length === 0) {
+        setAuthStatus(false);
+        setAuthUser("");
+        router.push("/dashboard/auth");
+      }
     }
-  },[])
+  }, []);
 
   return (
     <Layout>

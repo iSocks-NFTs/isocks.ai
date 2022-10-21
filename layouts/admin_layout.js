@@ -5,7 +5,6 @@ import Head from "next/head";
 import { GlobalContext } from "../context/globalContext";
 
 export default function Layout({ children }) {
-  const { setOpenSettings } = React.useContext(GlobalContext);
 
   return (
     <>
@@ -13,7 +12,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/img/icons/logo.svg" />
       </Head>
       <Navbar />
-      <div onClick={() => setOpenSettings(false)}>{children}</div>
+      <div>{children}</div>
     </>
   );
 }

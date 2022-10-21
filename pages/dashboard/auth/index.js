@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
@@ -14,12 +15,15 @@ import {
 } from "../../../components/Form";
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
+import useCheckSession from "../../../hooks/useCheckSession";
+import useCreateSession from "../../../hooks/useCreateSession";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const { setAuthStatus, setAuthUser } = React.useContext(AuthContext);
+  const { setAuthStatus, setAuthUser, authStatus, authUser } =
+    React.useContext(AuthContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -28,6 +32,17 @@ const Login = () => {
     emailRef.current.value = "";
     passwordRef.current.value = "";
   }
+
+  React.useEffect(() => {
+    const { emailAddress } = useCheckSession();
+    if(!emailAddress){
+      console.log('No Email Session Stored')
+    } else {
+      if(emailAddress.length > 0){
+        Router.push('/dashboard/admin');
+      }
+    }
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -46,12 +61,13 @@ const Login = () => {
           if (res.data.status === "No matching User") {
             setMessage("Incorrect Email/Password");
             clearField();
-            setIsLoading(false)
+            setIsLoading(false);
           }
           if (res.data.status === "success") {
-            Router.push("/dashboard/admin");
             setAuthStatus(true);
             setAuthUser(emailAddress);
+            useCreateSession(emailAddress);
+            Router.push("/dashboard/admin");
           }
         }
       })
@@ -84,7 +100,9 @@ const Login = () => {
             <Label htmlFor="password">Password</Label>
             <Input type="password" id="password" ref={passwordRef} required />
           </FormGroup>
-          <Label textAlign="center" color="red">{message ? message : ""}</Label>
+          <Label textAlign="center" color="red">
+            {message ? message : ""}
+          </Label>
           <Button type="submit">
             {isLoading ? (
               <TailSpin
