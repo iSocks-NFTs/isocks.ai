@@ -43,7 +43,7 @@ export const FilledButton = styled.button`
   background-color: var(--primary-brand);
   border-radius: 32px;
   border: 1px solid var(--primary-brand);
-  padding: 15px 40px;
+  padding: 15px 25px;
   border-color: #e1e1e1;
   color: #fff;
   transition: 0.5s;
