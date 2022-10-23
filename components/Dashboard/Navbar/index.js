@@ -12,36 +12,39 @@ import { Button } from "../../Form";
 import { GlobalContext } from "../../../context/globalContext";
 import { AuthContext } from "../../../context/authContext";
 import Router from "next/router";
-import useEndSession from "../../../hooks/useEndSession";
-import useCheckSession from "../../../hooks/useCheckSession";
+import axios from "axios";
 
 const Navbar = () => {
   const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
-  const { setAuthStatus, authUser, setAuthUser } =
+  const { onLogout } =
     React.useContext(AuthContext);
   const [adminData, setAdminData] = React.useState({
     emailAddress: "",
   });
 
   function logOut() {
-    setAuthStatus(false);
-    setAuthUser("");
-    const {userRecord} = useEndSession();
+    onLogout();
     Router.push("/dashboard/auth");
   }
 
-  React.useEffect(() => {
-    const { emailAddress } = useCheckSession();
-    if(emailAddress){
-      setAdminData({...adminData,emailAddress:emailAddress});
-    }
-  }, []);
+  React.useEffect(() =>{
+    const userId = window.localStorage.getItem('iSockUserID');
+      axios.get(`http://localhost:1337/api/find/user/${userId}`)
+      .then((res) => {
+        if(res){
+          setAdminData({...adminData,emailAddress:res.data.emailAddress});
+        }
+      }).catch((err) => console.log(err))
+  },[adminData])
 
   return (
     <Container>
       <Brand src="/img/logo/logo.png" alt="logo" />
       <UserBox>
-        <HiUserCircle onClick={() => setOpenSettings(!openSettings)} size={35} />
+        <HiUserCircle
+          onClick={() => setOpenSettings(!openSettings)}
+          size={35}
+        />
         <AnimatePresence
           initial={false}
           node="wait"
@@ -55,7 +58,9 @@ const Navbar = () => {
               exit={{ opacity: 0 }}
             >
               <WelcomeMessage>Hey Admin</WelcomeMessage>
-              <span>{adminData.emailAddress ? adminData.emailAddress : ""}</span>
+              <span>
+                {adminData.emailAddress ? adminData.emailAddress : ""}
+              </span>
               <Button width="180px" onClick={() => logOut()}>
                 Log Out
               </Button>
