@@ -40,7 +40,7 @@ export const ARButton = styled.button`
     color:#fff;
     border:1px solid var(--primary-brand);
     padding:10px 20px;
-    font-size:15px;
+    font-size:20px;
     border-radius: 32px;
     display:inline-flex;
     align-items: center;
