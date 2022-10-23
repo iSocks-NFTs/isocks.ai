@@ -79,6 +79,9 @@ export const Input = styled.input`
   ::placeholder{
     font-size:18px;
   }
+  :hover{
+    cursor:${({cursor}) => cursor ? cursor : ''}
+  }
 `;
 
 export const CheckBoxContainer = styled.div`
