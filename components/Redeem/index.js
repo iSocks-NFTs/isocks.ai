@@ -38,10 +38,6 @@ const RedeemedComponent = () => {
     e.preventDefault();
   }
 
-  React.useEffect(() => {
-    emailRef.current.focus();
-    console.log(countries)
-  }, []);
 
   return (
     <Container>
