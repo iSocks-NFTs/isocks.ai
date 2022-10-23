@@ -42,7 +42,7 @@ const VerifyComponent = () => {
         <Col>
           <Heading>Verify iSocks</Heading>
           <P>
-            You&apos;ll need to complete the form below in order to redeem your
+            You&apos;ll need to complete the form below in order to verify your
             socks.
           </P>
         </Col>
