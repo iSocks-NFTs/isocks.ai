@@ -12,6 +12,9 @@ export const Heading = styled.h3`
     font-weight: 600;
     font-size:28px;
     margin-bottom:-0.1rem;
+    @media screen and (max-width:520px){
+        font-size:20px;
+    }
 `
 
 export const P = styled.p`
