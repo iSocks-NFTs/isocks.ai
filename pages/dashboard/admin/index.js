@@ -8,31 +8,22 @@ import {
   CardContainer,
   OptionDescription,
   Option,
-  BuyOptionLink,
-  ArrowRight,
   Circle,
   Image,
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
 import { AuthContext } from "../../../context/authContext";
-import useCheckSession from "../../../hooks/useCheckSession";
 
 const Dashboard = () => {
   const router = Router;
-  const { authStatus, setAuthStatus, setAuthUser } =
-    React.useContext(AuthContext);
-  const { emailAddress } = useCheckSession();
+  const {isLoggedIn} = React.useContext(AuthContext);
+  
 
   React.useEffect(() => {
-    if (!emailAddress) {
-    } else {
-      if (emailAddress.length === 0) {
-        setAuthStatus(false);
-        setAuthUser("");
-        router.push("/dashboard/auth");
-      }
-    }
-  }, [emailAddress,router,setAuthStatus,setAuthUser]);
+    if(!isLoggedIn){
+      router.push('/dashboard/auth');
+    } 
+  },[isLoggedIn])
 
   return (
     <Layout>
@@ -72,6 +63,7 @@ const Dashboard = () => {
       </Container>
     </Layout>
   );
+  
 };
 
 export default Dashboard;

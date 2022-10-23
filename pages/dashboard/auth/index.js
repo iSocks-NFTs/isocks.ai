@@ -15,25 +15,14 @@ import {
 } from "../../../components/Form";
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
-import useCheckSession from "../../../hooks/useCheckSession";
-import useCreateSession from "../../../hooks/useCreateSession";
+
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const router = Router;
 
-  const { setAuthStatus, setAuthUser, authStatus, authUser } =
-    React.useContext(AuthContext);
-  const { emailAddress } = useCheckSession();
-  function checkEmail(emailAddress){
-    if (!emailAddress) {
-      console.log("No Email Session Stored");
-    } else {
-      if (emailAddress.length > 0) {
-        Router.push("/dashboard/admin");
-      }
-    }
-  }
+  const { onLogin, isLoggedIn } = React.useContext(AuthContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -42,10 +31,6 @@ const Login = () => {
     emailRef.current.value = "";
     passwordRef.current.value = "";
   }
-
-  React.useEffect(() => {
-   checkEmail(emailAddress)
-  }, [emailAddress]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -67,9 +52,7 @@ const Login = () => {
             setIsLoading(false);
           }
           if (res.data.status === "success") {
-            setAuthStatus(true);
-            setAuthUser(emailAddress);
-            useCreateSession(emailAddress);
+            onLogin(res.data.token);
             Router.push("/dashboard/admin");
           }
         }
@@ -83,6 +66,13 @@ const Login = () => {
         }
       });
   }
+
+  React.useEffect(() =>{
+    if(isLoggedIn){
+      console.log(isLoggedIn)
+      router.push('/dashboard/admin');
+    }
+  },[isLoggedIn])
 
   return (
     <>
