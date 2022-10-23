@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FormContainer,
   Form,
@@ -11,6 +12,8 @@ import {
 import { motion } from "framer-motion";
 
 const Step1 = ({ formData, setFormData, page, setPage }) => {
+  const inputRef = React.useRef();
+
   return (
     <>
       <FormContainer
