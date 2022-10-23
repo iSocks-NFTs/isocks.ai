@@ -44,7 +44,7 @@ export const Stage = styled.span`
   font-weight: ${(props) => props.fontWeight ? props.fontWeight : "700"};
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
   @media screen and (max-width: 520px) {
-    font-size: 13px;
+    font-size: 10px;
   }
 `;
 
