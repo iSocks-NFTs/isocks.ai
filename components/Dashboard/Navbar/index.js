@@ -14,6 +14,12 @@ import { AuthContext } from "../../../context/authContext";
 import Router from "next/router";
 import axios from "axios";
 
+export async function getServerSideProps(context) {
+  return {
+    props: {data}, // will be passed to the page component as props
+  }
+}
+
 const Navbar = () => {
   const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
   const { onLogout } =
@@ -35,7 +41,7 @@ const Navbar = () => {
           setAdminData({...adminData,emailAddress:res.data.emailAddress});
         }
       }).catch((err) => console.log(err))
-  },[adminData])
+  },[])
 
   return (
     <Container>
