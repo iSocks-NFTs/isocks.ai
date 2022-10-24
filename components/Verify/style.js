@@ -62,7 +62,6 @@ export const Form = styled.form`
   align-items: center;
   margin: 0 auto;
   row-gap: 1rem;
-  border:1px solid red;
 `;
 
 export const Input = styled.input`
