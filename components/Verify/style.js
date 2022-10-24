@@ -96,6 +96,7 @@ export const CheckBoxContainer = styled.div`
 
 export const FormGroup = styled.div`
   display: flex;
+  position:relative;
   flex-direction: column;
   align-items: center;
   row-gap: 0.5rem;

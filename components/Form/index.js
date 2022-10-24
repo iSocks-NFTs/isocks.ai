@@ -180,8 +180,8 @@ export const FileInput = styled.input`
 
 export const UD = styled.img`
   position:absolute;
-  margin-top: 2.1rem;
-  margin-left:10px;
+  top:2rem;
+  left:1.3rem;
   width:${(props) => props.width ? props.width : '45px'};
   height:${(props) => props.height ? props.height : '45px'};
 `
