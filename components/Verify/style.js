@@ -43,8 +43,9 @@ export const StageItems = styled.div`
 export const Stage = styled.span`
   font-weight: ${(props) => props.fontWeight ? props.fontWeight : "700"};
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
+  font-size:14px;
   @media screen and (max-width: 520px) {
-    font-size: 10px;
+    font-size: 8px;
   }
 `;
 
@@ -61,17 +62,18 @@ export const Form = styled.form`
   align-items: center;
   margin: 0 auto;
   row-gap: 1rem;
+  border:1px solid red;
 `;
 
 export const Input = styled.input`
   height: ${(props) => (props.height ? props.height : "60px")};
-  width: clamp(250px, 420px, 450px);
+  width: clamp(250px, 330px, 450px);
   background-color: #fff;
   color: var(--primary-brand);
   padding: 0 3px;
   padding-left: ${(props) => props.paddingLeft ? props.paddingLeft : ''};
   border: 0.933743px solid #e3e6e8;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: 3px;
   :focus {
     outline: var(--primary-brand);
@@ -89,13 +91,14 @@ export const CheckBoxContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin-top: 1rem;
-  width: clamp(250px, 420px, 450px);
+  width: clamp(250px, 330px, 450px);
   column-gap: 5px;
 `;
 
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 0.5rem;
 `;
 
@@ -103,7 +106,7 @@ export const Button = styled.button`
   background-color: var(--primary-brand);
   padding: 15px 50px;
   font-size: 15px;
-  width: clamp(250px, 420px, 450px);
+  width: clamp(250px, 330px, 450px);
   color: #fff;
   border-radius: 30px;
   transition: 0.7s;
@@ -147,7 +150,8 @@ export const Label = styled.label`
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   font-size: 14px;
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
-  width: ${(props) => props.width ? props.width : "clamp(250px, 420px, 450px)"};
+  width: ${(props) => props.width ? props.width : "clamp(250px, 350px, 450px)"};
+  margin-left:10px;
   a {
     text-decoration: underline;
   }
