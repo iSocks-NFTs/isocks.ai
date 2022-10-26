@@ -11,6 +11,7 @@ import {
   Circle,
   Container,
 } from "../style";
+import Router from "next/router";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
@@ -32,7 +33,7 @@ const Step1 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <CardContainer>
-        <Card>
+        <Card onClick={() => Router.push("https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58")}>
           <Circle>
             <Image src="/img/logo/binance_buy.svg" alt="Binance" />
           </Circle>
