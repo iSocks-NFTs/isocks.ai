@@ -28,7 +28,7 @@ import {
   ButtonContainer,
   PaymentMessage,
 } from "../style";
-import { Button, Uploaded, Icon, FileInput } from "../../Form";
+import { Button, Uploaded, Icon, FileInput,Form } from "../../Form";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -136,11 +136,13 @@ const Step5 = ({ page, setPage, formData, setFormData }) => {
             </Uploaded>
           )}
         </PaymentProof>
+        <Form>
         <FileInput
           id="fileUpload"
           type="file"
           onChange={(e) => handleUpload(e)}
         />
+        </Form>
       </CardContainer>
       {uploadedProof.paymentConfirmed && (
         <ButtonContainer>
