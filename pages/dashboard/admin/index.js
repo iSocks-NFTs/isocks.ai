@@ -19,7 +19,9 @@ import Table from "../../../components/Dashboard/Table";
 
 export async function getServerSideProps() {
   // Fetch Data
-  const response = await fetch("https://isocksnft.herokuapp.com/api/find/transaction");
+  const response = await fetch(
+    "https://isocksnft.herokuapp.com/api/find/transaction"
+  );
   const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props
