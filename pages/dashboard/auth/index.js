@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
