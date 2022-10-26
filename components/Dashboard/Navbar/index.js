@@ -16,14 +16,14 @@ import axios from "axios";
 
 export async function getServerSideProps(context) {
   return {
-    props: {data}, // will be passed to the page component as props
-  }
+    props: { data }, // will be passed to the page component as props
+  };
 }
 
 const Navbar = () => {
-  const { openSettings, setOpenSettings,baseUrl } = React.useContext(GlobalContext);
-  const { onLogout } =
-    React.useContext(AuthContext);
+  const { openSettings, setOpenSettings, baseUrl } =
+    React.useContext(GlobalContext);
+  const { onLogout } = React.useContext(AuthContext);
   const [adminData, setAdminData] = React.useState({
     emailAddress: "",
   });
@@ -33,15 +33,15 @@ const Navbar = () => {
     Router.push("/dashboard/auth");
   }
 
-  React.useEffect(() =>{
-    const userId = window.localStorage.getItem('iSockUserID');
-      axios.get(`${baseUrl}/api/find/user/${userId}`)
-      .then((res) => {
-        if(res){
-          setAdminData({...adminData,emailAddress:res.data.emailAddress});
-        }
-      }).catch((err) => console.log(err))
-  },[adminData])
+  const userId = window.localStorage.getItem("iSockUserID");
+  axios
+    .get(`${baseUrl}/api/find/user/${userId}`)
+    .then((res) => {
+      if (res) {
+        setAdminData({ ...adminData, emailAddress: res.data.emailAddress });
+      }
+    })
+    .catch((err) => console.log(err));
 
   return (
     <Container>
