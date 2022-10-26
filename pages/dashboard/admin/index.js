@@ -23,7 +23,7 @@ const Dashboard = () => {
     if(!isLoggedIn){
       router.push('/dashboard/auth');
     } 
-  },[isLoggedIn])
+  },[isLoggedIn,router])
 
   return (
     <Layout>
