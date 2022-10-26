@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
 }
 
 const Navbar = () => {
-  const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
+  const { openSettings, setOpenSettings,baseUrl } = React.useContext(GlobalContext);
   const { onLogout } =
     React.useContext(AuthContext);
   const [adminData, setAdminData] = React.useState({
@@ -35,7 +35,7 @@ const Navbar = () => {
 
   React.useEffect(() =>{
     const userId = window.localStorage.getItem('iSockUserID');
-      axios.get(`http://localhost:1337/api/find/user/${userId}`)
+      axios.get(`${baseUrl}/api/find/user/${userId}`)
       .then((res) => {
         if(res){
           setAdminData({...adminData,emailAddress:res.data.emailAddress});
