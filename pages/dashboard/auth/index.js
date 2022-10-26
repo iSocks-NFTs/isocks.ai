@@ -41,7 +41,7 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     axios
-      .post(`${baseUrl}api/login`, {
+      .post(`${baseUrl}/api/login`, {
         emailAddress,
         password,
       })
