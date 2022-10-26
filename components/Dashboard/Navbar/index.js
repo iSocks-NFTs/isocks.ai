@@ -41,7 +41,7 @@ const Navbar = () => {
           setAdminData({...adminData,emailAddress:res.data.emailAddress});
         }
       }).catch((err) => console.log(err))
-  },[])
+  },[adminData])
 
   return (
     <Container>

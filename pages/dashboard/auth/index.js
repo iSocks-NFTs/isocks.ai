@@ -72,7 +72,7 @@ const Login = () => {
       console.log(isLoggedIn)
       router.push('/dashboard/admin');
     }
-  },[isLoggedIn])
+  },[isLoggedIn,router])
 
   return (
     <>
