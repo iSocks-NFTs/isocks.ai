@@ -140,7 +140,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Label>Kindly impute the code sent to {formData.emailAddress}</Label>
           <OTPContainer>
             {otp.map((data, index) => {
@@ -185,13 +185,12 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               Previous
             </Button>
             <Button
-              type="button"
+              type="submit"
               width="100%"
               color={buttonActive ? "" : "#fff"}
               backgroundColor={buttonActive ? "" : "#E1E1E1"}
               borderColor={buttonActive ? "" : "#E1E1E1"}
               hoverBorderColor={buttonActive ? "" : "#E1E1E1"}
-              onClick={() => handleSubmit()}
             >
               {isSubmitting ? (
                 <TailSpin

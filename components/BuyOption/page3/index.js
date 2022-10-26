@@ -68,7 +68,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label fontWeight="400" htmlFor="emailAddress">
               Email
@@ -127,7 +127,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             >
               Previous
             </Button>
-            <Button type="button" width="100%" onClick={handleSubmit}>
+            <Button type="submit" width="100%">
               {isSubmitting ? (
                 <TailSpin
                   height="25"
