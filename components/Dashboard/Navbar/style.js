@@ -13,6 +13,9 @@ export const Container = styled.div`
 export const Brand = styled.img`
   width: auto;
   height: 25px;
+  :hover{
+    cursor:pointer;
+  }
 `;
 
 export const UserSettings = styled.div`
