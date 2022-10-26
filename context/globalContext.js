@@ -20,7 +20,7 @@ const GlobalContextProvider = ({ children }) => {
   const [subscribeForm,setSubscribeForm] = React.useState(false);
   const [successModal,setSuccessModal] = React.useState(false);
   const [openSettings,setOpenSettings] = React.useState(false);
-  let baseUrl = 'https://isocksnft.herokuapp.com'
+  let baseUrl = 'http://localhost:1337'
 
   return (
     <GlobalContext.Provider
