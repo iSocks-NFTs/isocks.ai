@@ -12,36 +12,16 @@ import { Button } from "../../Form";
 import { GlobalContext } from "../../../context/globalContext";
 import { AuthContext } from "../../../context/authContext";
 import Router from "next/router";
-import axios from "axios";
-
-export async function getServerSideProps(context) {
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
-}
 
 const Navbar = () => {
   const { openSettings, setOpenSettings, baseUrl } =
     React.useContext(GlobalContext);
   const { onLogout } = React.useContext(AuthContext);
-  const [adminData, setAdminData] = React.useState({
-    emailAddress: "",
-  });
 
   function logOut() {
     onLogout();
     Router.push("/dashboard/auth");
   }
-
-  const userId = window.localStorage.getItem("iSockUserID");
-  axios
-    .get(`${baseUrl}/api/find/user/${userId}`)
-    .then((res) => {
-      if (res) {
-        setAdminData({ ...adminData, emailAddress: res.data.emailAddress });
-      }
-    })
-    .catch((err) => console.log(err));
 
   return (
     <Container>
@@ -64,9 +44,6 @@ const Navbar = () => {
               exit={{ opacity: 0 }}
             >
               <WelcomeMessage>Hey Admin</WelcomeMessage>
-              <span>
-                {adminData.emailAddress ? adminData.emailAddress : ""}
-              </span>
               <Button width="180px" onClick={() => logOut()}>
                 Log Out
               </Button>
