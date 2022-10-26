@@ -19,14 +19,14 @@ import { GlobalContext } from "../../../context/globalContext";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const {storeData} = React.useContext(TransactionContext);
-  const {baseUrl} = React.useContext(GlobalContext);
+  const { storeData } = React.useContext(TransactionContext);
+  const { baseUrl } = React.useContext(GlobalContext);
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     setIsSubmitting(true);
     const { vendorOption, emailAddress, phoneNumber, walletAddress } = formData;
     const newEmailAddress = emailAddress.toLowerCase();
-
 
     axios
       .post(`${baseUrl}/api/transaction/create`, {
@@ -37,17 +37,20 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       })
       .then((response) => {
         if (response.data.status === "ok") {
-          const {userWalletTransactionRecords} = response.data;
-          const transaction = userWalletTransactionRecords[userWalletTransactionRecords.length - 1];
-          const{iSockUser,id} = transaction;
-          storeData(iSockUser,id)
+          const { userWalletTransactionRecords } = response.data;
+          const transaction =
+            userWalletTransactionRecords[
+              userWalletTransactionRecords.length - 1
+            ];
+          const { iSockUser, id } = transaction;
+          storeData(iSockUser, id);
           setIsSubmitting(false);
           setPage(page + 1);
         }
       })
       .catch((error) => {
         setIsSubmitting(false);
-        console.log(error)
+        console.log(error);
       });
   }
 
@@ -68,7 +71,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
             <Label fontWeight="400" htmlFor="emailAddress">
               Email
