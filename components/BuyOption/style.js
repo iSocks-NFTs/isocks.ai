@@ -44,6 +44,7 @@ export const Image = styled.img`
 export const Option = styled.span`
   font-weight: 600;
   font-size: 22px;
+  margin-top:10px;
 `;
 
 export const ArrowRight = styled.img``;
