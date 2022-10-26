@@ -10,7 +10,8 @@ export const GlobalContext = React.createContext({
   successModal:false,
   setSuccessModal:() => {},
   openSettings:false,
-  setOpenSettings:() => {}
+  setOpenSettings:() => {},
+  baseUrl:'https://isocksnft.herokuapp.com/'
 });
 
 const GlobalContextProvider = ({ children }) => {
@@ -32,7 +33,8 @@ const GlobalContextProvider = ({ children }) => {
         successModal,
         setSuccessModal,
         openSettings,
-        setOpenSettings
+        setOpenSettings,
+        baseUrl
       }}
     >
       {children}
