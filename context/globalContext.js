@@ -11,7 +11,7 @@ export const GlobalContext = React.createContext({
   setSuccessModal:() => {},
   openSettings:false,
   setOpenSettings:() => {},
-  baseUrl:'https://isocksnft.herokuapp.com/'
+  baseUrl:''
 });
 
 const GlobalContextProvider = ({ children }) => {
@@ -20,6 +20,7 @@ const GlobalContextProvider = ({ children }) => {
   const [subscribeForm,setSubscribeForm] = React.useState(false);
   const [successModal,setSuccessModal] = React.useState(false);
   const [openSettings,setOpenSettings] = React.useState(false);
+  let baseUrl = 'https://isocksnft.herokuapp.com/'
 
   return (
     <GlobalContext.Provider
