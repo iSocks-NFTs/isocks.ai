@@ -4,6 +4,7 @@ import Navbar from "../components/Dashboard/Navbar";
 import Head from "next/head";
 import { GlobalContext } from "../context/globalContext";
 import NonSSRWrapper from '../components/no-ssr-wrapper';
+import Footer from "../components/Footer";
 
 export default function Layout({ children }) {
 
@@ -16,6 +17,7 @@ export default function Layout({ children }) {
         <Navbar />
       </NonSSRWrapper>
       <div>{children}</div>
+      <Footer />
     </>
   );
 }

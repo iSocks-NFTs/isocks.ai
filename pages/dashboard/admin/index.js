@@ -12,18 +12,29 @@ import {
   Image,
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
+import { AiOutlineQrcode } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 import { AuthContext } from "../../../context/authContext";
+import Table from "../../../components/Dashboard/Table";
 
-const Dashboard = () => {
+export async function getServerSideProps() {
+  // Fetch Data
+  const response = await fetch("http://localhost:1337/api/find/transaction");
+  const data = await response.json();
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
+
+const Dashboard = ({ data }) => {
   const router = Router;
-  const {isLoggedIn} = React.useContext(AuthContext);
-  
+  const { isLoggedIn } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    if(!isLoggedIn){
-      router.push('/dashboard/auth');
-    } 
-  },[isLoggedIn,router])
+    if (!isLoggedIn) {
+      router.push("/dashboard/auth");
+    }
+  }, [isLoggedIn, router]);
 
   return (
     <Layout>
@@ -59,11 +70,36 @@ const Dashboard = () => {
               Review and Confirm payment of NFTs
             </OptionDescription>
           </Card>
+          <Card
+            justifyContent="center"
+            bgColor="var(--primary-brand)"
+            color="#fff"
+            cursor="pointer"
+            onClick={() => Router.push("/dashboard/admin/qr")}
+          >
+            <Circle>
+              <AiOutlineQrcode color="var(--primary-brand)" />
+            </Circle>
+            <Option>QR Code Generation</Option>
+            <OptionDescription>
+              Generate, Edit & Delete QR Codes
+            </OptionDescription>
+          </Card>
+          <Card justifyContent="center" cursor="pointer">
+            <Circle>
+              <FiSettings />
+            </Circle>
+            <Option>Manage Account</Option>
+            <OptionDescription>
+              Review and Manage Admin Accounts
+            </OptionDescription>
+          </Card>
         </CardContainer>
+        <Heading fontWeight="300">Transaction Data Feed</Heading>
+        <Table transactions={data} />
       </Container>
     </Layout>
   );
-  
 };
 
 export default Dashboard;

@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <Container>
-      <Brand src="/img/logo/logo.png" alt="logo" />
+      <Brand src="/img/logo/logo.png" alt="logo" onClick={() => Router.push('/dashboard/admin')} />
       <UserBox>
         <HiUserCircle
           onClick={() => setOpenSettings(!openSettings)}
