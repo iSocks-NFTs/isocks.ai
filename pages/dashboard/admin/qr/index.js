@@ -4,10 +4,10 @@ import Layout from "../../../../layouts/admin_layout";
 import { AuthContext } from "../../../../context/authContext";
 import Router from "next/router";
 import QRComponent from "../../../../components/QR";
+import { QRCode } from "qrcode";
 
 const QRManagement = () => {
   const router = Router;
-  const { isLoggedIn } = React.useContext(AuthContext);
 
   // React.useEffect(() => {
   //   if (!isLoggedIn) {
