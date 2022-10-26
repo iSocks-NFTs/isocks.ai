@@ -12,7 +12,7 @@ import { AnimatePresence } from "framer-motion";
 const BuyOptionsComponent = () => {
   const [page, setPage] = React.useState(0);
   const [formData, setFormData] = React.useState({
-    vendorOption:[],
+    vendorOption:'',
     emailAddress:'',
     phoneNumber:'',
     walletAddress:'',
