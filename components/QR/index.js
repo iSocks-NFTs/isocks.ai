@@ -10,32 +10,37 @@ import {
   Label,
   Form,
 } from "../Form";
-import { QRCode } from "qrcode";
-
-function QRCodeImage({ url }) {
-  const [src,setSrc] = React.useState();
-  QRCode.toDataURL(url).then((data) =>{
-    setSrc(data);
-  })
-  return (
-    <>
-      <Image src={src} />
-    </>
-  );
-}
-
+import QRCodeImage from "./Module";
+import Router from "next/router";
+import axios from "axios";
+import { GlobalContext } from "../../context/globalContext";
 
 const QRComponent = () => {
-  const [link,setLink] = React.useState('');
-  const qrRef = React.useRef();
-  const [code,setCode] = React.useState(false);
-
+  const router = Router;
+  const [qrData, setQrData] = React.useState({
+    label: "",
+    url: "",
+  });
+  const [error, setError] = React.useState("");
+  const { baseUrl } = React.useContext(GlobalContext);
 
   function generateQRCode(e) {
     e.preventDefault();
-    const url = qrRef.current.value();
-    setLink(url);
-    setCode(true);
+    const { label, url } = qrData;
+    axios
+      .post(`${baseUrl}/api/create/qr`, {
+        label,
+        url,
+      })
+      .then((response) => {
+        const { data } = response;
+        if (data.status === "ok") {
+          router.reload();
+        }
+        if (data.status === "failed") {
+          setError("Failed to Generate QR");
+        }
+      });
   }
 
   return (
@@ -50,18 +55,34 @@ const QRComponent = () => {
         <Col>
           <Form onSubmit={(e) => generateQRCode(e)}>
             <FormGroup>
-              <Label htmlFor="qrUrl">QR Code URL</Label>
-              <Input ref={qrRef} id="qrUrl" type="url" required />
+              <Label htmlFor="qrLabel">Label</Label>
+              <Input
+                value={qrData.label}
+                onChange={(e) =>
+                  setQrData({ ...qrData, label: e.target.value })
+                }
+                id="qrLabel"
+                type="text"
+                required
+              />
             </FormGroup>
+            <FormGroup>
+              <Label htmlFor="qrUrl">QR Code URL</Label>
+              <Input
+                value={qrData.url}
+                onChange={(e) => setQrData({ ...qrData, url: e.target.value })}
+                id="qrUrl"
+                type="url"
+                required
+              />
+            </FormGroup>
+            <Label color="red" textAlign="center">
+              {error}
+            </Label>
             <ButtonContainer>
               <Button>Generate QR Code</Button>
             </ButtonContainer>
           </Form>
-        </Col>
-        <Col>
-          {code && (
-            <QRCodeImage url={link} />
-          )}
         </Col>
       </Row>
     </Container>
