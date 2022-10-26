@@ -15,7 +15,7 @@ import {
 } from "../../../components/Form";
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
-
+import { GlobalContext } from "../../../context/globalContext";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
@@ -23,6 +23,7 @@ const Login = () => {
   const router = Router;
 
   const { onLogin, isLoggedIn } = React.useContext(AuthContext);
+  const {baseUrl} = React.useContext(GlobalContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -40,7 +41,7 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     axios
-      .post("http://localhost:1337/api/login", {
+      .post(`${baseUrl}api/login`, {
         emailAddress,
         password,
       })
@@ -67,12 +68,12 @@ const Login = () => {
       });
   }
 
-  React.useEffect(() =>{
-    if(isLoggedIn){
-      console.log(isLoggedIn)
-      router.push('/dashboard/admin');
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      console.log(isLoggedIn);
+      router.push("/dashboard/admin");
     }
-  },[isLoggedIn,router])
+  }, [isLoggedIn, router]);
 
   return (
     <>
