@@ -16,21 +16,25 @@ import {
   Resend,
 } from "../../Form";
 import { motion } from "framer-motion";
+import { TailSpin } from "react-loader-spinner";
 import Divider from "../../Divider";
+import axios from "axios";
+import { TransactionContext } from "../../../context/transactionContext";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [otp, setOtp] = React.useState(new Array(6).fill(""));
   const [phoneOtp, setPhoneOtp] = React.useState(new Array(6).fill(""));
-  const [msg,setMsg] = React.useState(true);
+  const [msg, setMsg] = React.useState(true);
   const [error, setError] = React.useState(false);
   const [message, setMessage] = React.useState({
-    redColor:'#D66853',
-    greyColor:'var(--subtle-text)',
-    text1:"You didn't receive the code please ",
-    text2:"Wrong code, please check the code and impute the right one. "
+    redColor: "#D66853",
+    greyColor: "var(--subtle-text)",
+    text1: "You didn't receive the code please ",
+    text2: "Wrong code, please check the code and input the right one. ",
   });
   const [buttonActive, setButtonActive] = React.useState(false);
-
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const { transactionId } = React.useContext(TransactionContext);
 
   function handleEmailOtp(element, index) {
     if (isNaN(element.value)) return false;
@@ -59,6 +63,41 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     }
   }
 
+  function verifyOTP(otp) {
+    setIsSubmitting(true);
+    axios
+      .get(
+        `http://localhost:1337/api/transaction/verify/${otp.join("")}/${transactionId}`
+      )
+      .then((response) => {
+        const { data } = response;
+        if (data.status === "ok") {
+          setPage(page + 1);
+          setIsSubmitting(false);
+        }
+        if (data.status === "failed") {
+          setIsSubmitting(false);
+          setMsg(true);
+          setError(true);
+        }
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        console.log(error);
+        setMsg(true);
+        setError(true);
+      });
+  }
+
+  function handleSubmit() {
+    if(phoneOtp.length === 6){
+      verifyOTP(phoneOtp);
+    }
+    if(otp.length === 6){
+      verifyOTP(otp);
+    }
+  }
+
   function clearOtp() {
     setOtp([...otp.map((v) => "")]);
     setPhoneOtp([...phoneOtp.map((v) => "")]);
@@ -68,7 +107,11 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     return (
       <FormGroup flexDirection="row" columnGap="0.5rem">
         <div>
-          {error ? (<Icon src="/img/icons/info-circle-red.svg" alt="info icon" />) : (<Icon src="/img/icons/info-circle.svg" alt="info icon" />)}
+          {error ? (
+            <Icon src="/img/icons/info-circle-red.svg" alt="info icon" />
+          ) : (
+            <Icon src="/img/icons/info-circle.svg" alt="info icon" />
+          )}
           <Msg color={error ? message.redColor : message.greyColor}>
             {error ? message.text2 : message.text1}
             <Resend onClick={clearOtp}> resend code</Resend>
@@ -146,9 +189,22 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               backgroundColor={buttonActive ? "" : "#E1E1E1"}
               borderColor={buttonActive ? "" : "#E1E1E1"}
               hoverBorderColor={buttonActive ? "" : "#E1E1E1"}
-              onClick={() => setPage(page + 1)} 
+              onClick={() => handleSubmit()}
             >
-              Continue
+              {isSubmitting ? (
+                <TailSpin
+                  height="25"
+                  width="25"
+                  color="#fff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                "Continue"
+              )}
             </Button>
           </ButtonContainer>
           {msg && <MessageBox />}
