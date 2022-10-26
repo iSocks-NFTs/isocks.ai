@@ -1,16 +1,20 @@
-import {Container} from '../style';
+import {Block,TransactionData,TableContainer} from '../style';
 
-export async function getServerSideProps(context) {
-    return {
-      props: {data}, // will be passed to the page component as props
-    }
-  }
-
-const Table = ({data}) =>{
+const Table = ({transactions}) =>{
     return(
-        <Container>
-
-        </Container>
+        <TableContainer>
+            {transactions.map((transaction,index) =>{
+                return (
+                    <Block key={index}>
+                        <TransactionData>Transaction Initiated: {transaction?.transactionDateAndTime}</TransactionData>
+                        <TransactionData>Customer Wallet Address: {transaction?.buyerWalletAddress}</TransactionData>
+                        <TransactionData>Phone Number: {transaction?.phoneNumber}</TransactionData>
+                        <TransactionData>Email Address: {transaction?.emailAddress}</TransactionData>
+                        <TransactionData>Transaction Data: {transaction?.transactionStatus}</TransactionData>
+                    </Block>
+                )
+            })}
+        </TableContainer>
     )
 }
 
