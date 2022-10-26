@@ -20,6 +20,7 @@ import { TailSpin } from "react-loader-spinner";
 import Divider from "../../Divider";
 import axios from "axios";
 import { TransactionContext } from "../../../context/transactionContext";
+import { GlobalContext } from "../../../context/globalContext";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [otp, setOtp] = React.useState(new Array(6).fill(""));
@@ -35,6 +36,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [buttonActive, setButtonActive] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { transactionId } = React.useContext(TransactionContext);
+  const {baseUrl} = React.useContext(GlobalContext);
 
   function handleEmailOtp(element, index) {
     if (isNaN(element.value)) return false;
@@ -67,7 +69,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     setIsSubmitting(true);
     axios
       .get(
-        `http://localhost:1337/api/transaction/verify/${otp.join("")}/${transactionId}`
+        `${baseUrl}/api/transaction/verify/${otp.join("")}/${transactionId}`
       )
       .then((response) => {
         const { data } = response;
