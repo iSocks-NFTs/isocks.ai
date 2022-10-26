@@ -12,18 +12,18 @@ import {
   Image,
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
+import { AiOutlineQrcode } from "react-icons/ai";
 import { AuthContext } from "../../../context/authContext";
 
 const Dashboard = () => {
   const router = Router;
-  const {isLoggedIn} = React.useContext(AuthContext);
-  
+  const { isLoggedIn } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    if(!isLoggedIn){
-      router.push('/dashboard/auth');
-    } 
-  },[isLoggedIn,router])
+    if (!isLoggedIn) {
+      router.push("/dashboard/auth");
+    }
+  }, [isLoggedIn, router]);
 
   return (
     <Layout>
@@ -59,11 +59,24 @@ const Dashboard = () => {
               Review and Confirm payment of NFTs
             </OptionDescription>
           </Card>
+          <Card
+            justifyContent="center"
+            bgColor="var(--primary-brand)"
+            color="#fff"
+            cursor="pointer"
+          >
+            <Circle>
+              <AiOutlineQrcode color="var(--primary-brand)" />
+            </Circle>
+            <Option>QR Code Generation</Option>
+            <OptionDescription>
+              Generate, Edit & Delete QR Codes
+            </OptionDescription>
+          </Card>
         </CardContainer>
       </Container>
     </Layout>
   );
-  
 };
 
 export default Dashboard;
