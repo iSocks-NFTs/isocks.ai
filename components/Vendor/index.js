@@ -17,7 +17,8 @@ import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
 const Step2 = ({ page, setPage, formData, setFormData }) => {
-  function selectVendor() {
+  function selectVendor(vendorOption) {
+    setFormData({...formData,vendorOption:vendorOption})
     setPage(page + 1);
   }
 
@@ -38,7 +39,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <CardContainer>
-        <Card onClick={selectVendor}>
+        <Card onClick={() => selectVendor("1123")}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
@@ -64,7 +65,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
             </Acceptance>
           </VendorData>
         </Card>
-        <Card onClick={selectVendor}>
+        <Card onClick={() => selectVendor("1124")}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
@@ -90,7 +91,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
             </Acceptance>
           </VendorData>
         </Card>
-        <Card onClick={selectVendor}>
+        <Card onClick={() => selectVendor("1125")}>
           <Circle>
             <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
           </Circle>
