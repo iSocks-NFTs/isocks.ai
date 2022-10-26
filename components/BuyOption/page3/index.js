@@ -1,3 +1,4 @@
+import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Container, Heading, P } from "../style";
 import {
@@ -8,11 +9,46 @@ import {
   FormGroup,
   Label,
   ButtonContainer,
-  Icon
+  Icon,
 } from "../../Form";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
+import { TransactionContext } from "../../../context/transactionContext";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const {storeData} = React.useContext(TransactionContext);
+
+  function handleSubmit() {
+    setIsSubmitting(true);
+    const { vendorOption, emailAddress, phoneNumber, walletAddress } = formData;
+    const newEmailAddress = emailAddress.toLowerCase();
+
+
+    axios
+      .post("http://localhost:1337/api/transaction/create", {
+        emailAddress: newEmailAddress,
+        phoneNumber,
+        vendorId: vendorOption,
+        buyerWalletAddress: walletAddress,
+      })
+      .then((response) => {
+        if (response.data.status === "ok") {
+          const {userWalletTransactionRecords} = response.data;
+          const transaction = userWalletTransactionRecords[userWalletTransactionRecords.length - 1];
+          const{iSockUser,id} = transaction;
+          storeData(iSockUser,id)
+          setIsSubmitting(false);
+          setPage(page + 1);
+        }
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        console.log(error)
+      });
+  }
+
   return (
     <Container
       as={motion.div}
@@ -43,6 +79,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               onChange={(e) =>
                 setFormData({ ...formData, emailAddress: e.target.value })
               }
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -57,6 +94,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               onChange={(e) =>
                 setFormData({ ...formData, phoneNumber: e.target.value })
               }
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -67,13 +105,13 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               type="text"
               id="phoneNumber"
               name="phoneNumber"
-              value={formData.phoneNumber}
+              value={formData.walletAddress}
               onChange={(e) =>
-                setFormData({ ...formData, phoneNumber: e.target.value })
+                setFormData({ ...formData, walletAddress: e.target.value })
               }
+              required
             />
           </FormGroup>
-
           <ButtonContainer>
             <Button
               type="button"
@@ -87,19 +125,28 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             >
               Previous
             </Button>
-            <Button
-              type="button"
-              width="100%"
-              onClick={() => setPage(page + 1)}
-            >
-              Continue
+            <Button type="button" width="100%" onClick={handleSubmit}>
+              {isSubmitting ? (
+                <TailSpin
+                  height="25"
+                  width="25"
+                  color="#fff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                "Continue"
+              )}
             </Button>
           </ButtonContainer>
           <FormGroup flexDirection="row">
             <Icon src="/img/icons/info-circle.svg" alt="info circle" />
             <span>
-              You will need a wallet in order to buy  from a<br /> vendor know more
-              here.
+              You will need a wallet in order to buy from a<br /> vendor know
+              more here.
             </span>
           </FormGroup>
         </Form>
