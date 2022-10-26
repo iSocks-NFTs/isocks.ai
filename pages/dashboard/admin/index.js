@@ -13,10 +13,20 @@ import {
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
 import { AiOutlineQrcode } from "react-icons/ai";
-import {FiSettings} from 'react-icons/fi'
+import { FiSettings } from "react-icons/fi";
 import { AuthContext } from "../../../context/authContext";
+import Table from "../../../components/Dashboard/Table";
 
-const Dashboard = () => {
+export async function getServerSideProps() {
+  // Fetch Data
+  const response = await fetch("http://localhost:1337/api/find/transaction");
+  const data = await response.json();
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
+
+const Dashboard = ({ data }) => {
   const router = Router;
   const { isLoggedIn } = React.useContext(AuthContext);
 
@@ -85,6 +95,8 @@ const Dashboard = () => {
             </OptionDescription>
           </Card>
         </CardContainer>
+        <Heading fontWeight="300">Transaction Data Feed</Heading>
+        <Table transactions={data} />
       </Container>
     </Layout>
   );
