@@ -24,6 +24,7 @@ const Step2 = ({ page, setPage }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   function generateQRCode(e) {
+    console.log("submitting...");
     setIsSubmitting(true);
     e.preventDefault();
     const { label, url } = qrData;
@@ -33,12 +34,12 @@ const Step2 = ({ page, setPage }) => {
         url,
       })
       .then((response) => {
-        const { data } = response;
+        console.log(response)
         if (response.status === 200) {
           setIsSubmitting(false);
           router.push("/dashboard/admin/qr/list");
         }
-        if (data.status === "failed") {
+        if (response.status === 500) {
           setIsSubmitting(false);
           setError("Failed to Generate QR");
         }
@@ -46,14 +47,13 @@ const Step2 = ({ page, setPage }) => {
   }
 
   return (
-    <>
-      <Form
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onSubmit={(e) => generateQRCode(e)}
-      >
+    <div
+      as={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <Form onSubmit={(e) => generateQRCode(e)}>
         <FormGroup>
           <Label htmlFor="qrLabel">Label</Label>
           <Input
@@ -108,7 +108,7 @@ const Step2 = ({ page, setPage }) => {
           </Button>
         </ButtonContainer>
       </Form>
-    </>
+    </div>
   );
 };
 
