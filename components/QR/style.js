@@ -16,6 +16,39 @@ export const Span = styled.span`
 `
 
 export const Image = styled.img`
-    width:300px;
-    height:300px;
+    width:250px;
+    height:250px;
+    border-radius:8px;
+    /* border:2px solid transparent; */
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+`
+
+export const QRContainer = styled.div`
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3,33%);
+    @media screen and (max-width:520px) {
+        grid-template-columns: auto;
+    }
+`
+export const CodeBox = styled.div`
+    display:flex;
+    flex-direction: column;
+    row-gap:0.3rem;
+    align-items: center;
+`
+
+export const CodeLabel = styled.span``
+
+export const LinkText = styled.span`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+export const LinkHref = styled.a`
+    font-weight: 800;
+    :hover{
+        cursor:pointer;
+    }
 `
