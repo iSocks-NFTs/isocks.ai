@@ -1,19 +1,13 @@
 import React from "react";
 import { Container, Heading } from "./style";
 import { Row, Col } from "react-bootstrap";
-import {
-  ButtonContainer,
-  Button,
-  FormContainer,
-  FormGroup,
-  Input,
-  Label,
-  Form,
-} from "../Form";
 import QRCodeImage from "./Module";
 import Router from "next/router";
 import axios from "axios";
 import { GlobalContext } from "../../context/globalContext";
+import Step1 from "./steps/step1";
+import Step2 from "./steps/step2";
+import { AnimatePresence } from "framer-motion";
 
 const QRComponent = () => {
   const router = Router;
@@ -23,6 +17,7 @@ const QRComponent = () => {
   });
   const [error, setError] = React.useState("");
   const { baseUrl } = React.useContext(GlobalContext);
+  const [page, setPage] = React.useState(0);
 
   function generateQRCode(e) {
     e.preventDefault();
@@ -43,6 +38,11 @@ const QRComponent = () => {
       });
   }
 
+  const componentList = [
+    <Step1 key={1} page={page} setPage={setPage} />,
+    <Step2 key={2} page={page} setPage={setPage} />,
+  ];
+
   return (
     <Container>
       <Row>
@@ -53,36 +53,9 @@ const QRComponent = () => {
       </Row>
       <Row>
         <Col>
-          <Form onSubmit={(e) => generateQRCode(e)}>
-            <FormGroup>
-              <Label htmlFor="qrLabel">Label</Label>
-              <Input
-                value={qrData.label}
-                onChange={(e) =>
-                  setQrData({ ...qrData, label: e.target.value })
-                }
-                id="qrLabel"
-                type="text"
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="qrUrl">QR Code URL</Label>
-              <Input
-                value={qrData.url}
-                onChange={(e) => setQrData({ ...qrData, url: e.target.value })}
-                id="qrUrl"
-                type="url"
-                required
-              />
-            </FormGroup>
-            <Label color="red" textAlign="center">
-              {error}
-            </Label>
-            <ButtonContainer>
-              <Button>Generate QR Code</Button>
-            </ButtonContainer>
-          </Form>
+          <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+          {componentList[page]}
+          </AnimatePresence>
         </Col>
       </Row>
     </Container>
