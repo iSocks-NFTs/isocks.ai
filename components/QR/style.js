@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 1rem;
-    height: 120vh;
+    height: fit-content;
 `
 
 export const Heading = styled.h3`
