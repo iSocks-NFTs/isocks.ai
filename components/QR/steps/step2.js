@@ -13,10 +13,10 @@ import axios from "axios";
 import { GlobalContext } from "../../../context/globalContext";
 import { TailSpin } from "react-loader-spinner";
 
-const Step2 = ({page,setPage}) => {
+const Step2 = ({ page, setPage }) => {
+  const router = Router;
   const [error, setError] = React.useState("");
   const { baseUrl } = React.useContext(GlobalContext);
-  const router = Router;
   const [qrData, setQrData] = React.useState({
     label: "",
     url: "",
@@ -33,8 +33,8 @@ const Step2 = ({page,setPage}) => {
       })
       .then((response) => {
         const { data } = response;
-        if (data.status === "ok") {
-          router.reload();
+        if (response.status === 200) {
+          router.push('/dashboard/admin/qr/list')
         }
         if (data.status === "failed") {
           setError("Failed to Generate QR");
