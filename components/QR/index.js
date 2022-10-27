@@ -8,8 +8,6 @@ import { AnimatePresence } from "framer-motion";
 const QRComponent = () => {
 
   const [page, setPage] = React.useState(0);
-
-
   const componentList = [
     <Step1 key={1} page={page} setPage={setPage} />,
     <Step2 key={2} page={page} setPage={setPage} />,
