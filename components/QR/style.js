@@ -40,6 +40,11 @@ export const CodeBox = styled.div`
     flex-direction: column;
     row-gap:0.3rem;
     align-items: center;
+    transition: 0.8s;
+    :hover{
+        cursor: pointer;
+        transform: scale(1.05);
+    }
 `
 
 export const CodeLabel = styled.span``
