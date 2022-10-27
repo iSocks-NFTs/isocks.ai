@@ -3,7 +3,7 @@ import {Block,TransactionData,TableContainer} from '../style';
 const Table = ({transactions}) =>{
     return(
         <TableContainer>
-            {transactions.map((transaction,index) =>{
+            {transactions?.map((transaction,index) =>{
                 return (
                     <Block key={index}>
                         <TransactionData>Transaction Initiated: {transaction?.transactionDateAndTime}</TransactionData>
