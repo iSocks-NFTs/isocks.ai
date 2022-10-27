@@ -27,7 +27,7 @@ export const QRContainer = styled.div`
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(3,33%);
-    @media screen and (max-width:520px) {
+    @media screen and (max-width:768px) {
         grid-template-columns: auto;
     }
 `
