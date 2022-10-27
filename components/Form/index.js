@@ -119,6 +119,7 @@ export const Resend = styled.span`
 export const ButtonContainer = styled.div`
   display: flex;
   column-gap:0.3rem;
+  margin-top:${(props) => props.marginTop ? props.marginTop : ""}
 `
 
 export const Label = styled.label`
