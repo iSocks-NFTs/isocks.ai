@@ -8,6 +8,7 @@ import {
 import { AiOutlineQrcode } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { motion } from "framer-motion";
+import Router from "next/router";
 
 const Step1 = ({ page, setPage }) => {
   return (
@@ -33,7 +34,7 @@ const Step1 = ({ page, setPage }) => {
             Create New QR Code, with Dynamic URL Redirection.
           </OptionDescription>
         </Card>
-        <Card justifyContent="center" cursor="pointer">
+        <Card justifyContent="center" cursor="pointer" onClick={() => Router.push('/dashboard/admin/qr/list')}>
           <Circle>
             <FiSettings color="var(--primary-brand)" />
           </Circle>
