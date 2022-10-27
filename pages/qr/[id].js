@@ -1,6 +1,6 @@
 import Link from "next/link";
 // import QRCodeImage from "../../components/QR/Module";
-export async function getServerSideProps({ context }) {
+export async function getServerSideProps(context) {
   const { id } = context.query;
   // Fetch Data
   const response = await fetch(`https://isocksnft.herokuapp.com/api/find/qr/${id}`);
@@ -10,12 +10,33 @@ export async function getServerSideProps({ context }) {
   };
 }
 
+import styled from "styled-components";
+
+const Container = styled.div`
+  background-color: var(--primary-brand);
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:32px;
+  height:100vh;
+  width:100%;
+`
+
+const TextBox = styled.div`
+  h3{
+    text-align: center;
+  }
+`
+
 const QR = ({ data }) => {
   return (
-    <>
-      <div>QR Code Link</div>
-      <Link href={data?.url}>{data?.label}</Link>
-    </>
+    <Container>
+      <TextBox>
+        <h3>{data?.label}</h3>
+        <Link href={data?.url}>Click Link</Link>
+      </TextBox>
+    </Container>
   );
 };
 
