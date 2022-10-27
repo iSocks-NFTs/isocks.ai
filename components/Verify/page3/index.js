@@ -116,6 +116,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               value={formData.UdDomainUsername}
               paddingLeft="15rem"
               cursor="pointer"
+              readonly
               onClick={handleLogin}
             />
           </FormGroup>
