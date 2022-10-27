@@ -24,6 +24,7 @@ const Step2 = ({ page, setPage }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   function generateQRCode(e) {
+    setIsSubmitting(true);
     e.preventDefault();
     const { label, url } = qrData;
     axios
@@ -34,9 +35,11 @@ const Step2 = ({ page, setPage }) => {
       .then((response) => {
         const { data } = response;
         if (response.status === 200) {
-          router.push('/dashboard/admin/qr/list')
+          setIsSubmitting(false);
+          router.push("/dashboard/admin/qr/list");
         }
         if (data.status === "failed") {
+          setIsSubmitting(false);
           setError("Failed to Generate QR");
         }
       });
