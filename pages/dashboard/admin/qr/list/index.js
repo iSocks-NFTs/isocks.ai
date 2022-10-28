@@ -1,10 +1,21 @@
+import React from "react";
 import Head from "next/head";
+import { Row, Col } from "react-bootstrap";
 import QRCodeImage from "../../../../../components/QR/Module";
 import Layout from "../../../../../layouts/admin_layout";
-import { QRContainer,Container,CodeBox,CodeLabel, LinkHref,LinkText,Heading } from "../../../../../components/QR/style";
+import {
+  QRContainer,
+  Container,
+  CodeBox,
+  CodeLabel,
+  LinkHref,
+  LinkText,
+  Heading,
+} from "../../../../../components/QR/style";
 import { Button, ButtonContainer } from "../../../../../components/Form";
 import Router from "next/router";
-import {Row,Col} from 'react-bootstrap'
+import { GlobalContext } from "../../../../../context/globalContext";
+import QREditModal from "../../../../../components/Modal/Edit_QR";
 
 export async function getServerSideProps() {
   // Fetch Data
@@ -16,16 +27,25 @@ export async function getServerSideProps() {
 }
 
 const QRList = ({ data }) => {
+  const { modal, setModal } = React.useContext(GlobalContext);
+  const [qrSelect, setQrSelect] = React.useState({
+    id: "",
+    label: "",
+    url: "",
+  });
+
   return (
     <Layout>
       <Head>
         <title>iSocks | Admin QR Management</title>
       </Head>
       <Container>
+        {modal.qrEditModal && <QREditModal data={qrSelect} />}
         <Row>
           <Col>
-          <Heading>QR Management</Heading>
-          <Heading fontWeight="300">Edit/Delete QR Codes</Heading></Col>
+            <Heading>QR Management</Heading>
+            <Heading fontWeight="300">Edit/Delete QR Codes</Heading>
+          </Col>
         </Row>
         <QRContainer>
           {data.map((qr, index) => {
@@ -33,7 +53,12 @@ const QRList = ({ data }) => {
               <CodeBox key={index}>
                 <QRCodeImage id={qr.id} />
                 <CodeLabel>{qr.label}</CodeLabel>
-                <LinkText>URL: <LinkHref target="_blank" href={qr.url}>{qr.url}</LinkHref></LinkText>
+                <LinkText>
+                  URL:{" "}
+                  <LinkHref target="_blank" href={qr.url}>
+                    {qr.url}
+                  </LinkHref>
+                </LinkText>
               </CodeBox>
             );
           })}
