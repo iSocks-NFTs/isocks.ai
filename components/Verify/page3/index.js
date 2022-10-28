@@ -114,7 +114,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             <Input
               id="ud"
               value={udUsername ? udUsername : ''}
-              paddingLeft="15rem"
+              paddingLeft="9rem"
               cursor="pointer"
               onClick={handleLogin}
               readonly
