@@ -95,6 +95,7 @@ export const Button = styled.button`
     border: 1px solid ${(props) => props.hoverBorderColor ? props.hoverBorderColor : "var(--primary-brand)"};
   }
   :focus,:active{
+    color:#fff;
     background-color: var(--primary-brand);
   }
 `;

@@ -70,7 +70,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
   }
 
   async function handleLogout() {
-    setUd('')
+    setUd("");
     window.localStorage.clear();
     if (web3modal.cachedProvider === "custom-uauth") {
       await uauth.logout();
@@ -78,13 +78,13 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     web3modal.clearCachedProvider();
   }
 
-  React.useEffect(() =>{
+  React.useEffect(() => {
     const ud = window.localStorage.getItem("username");
-    if(ud !== null){
+    if (ud !== null) {
       let domain = JSON.parse(ud);
       setUd(domain.value);
     }
-  },[udUsername]);
+  }, [udUsername]);
 
   return (
     <NonSSRWrapper>
@@ -125,7 +125,17 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           <Label htmlFor="ud" fontWeight="bolder">
             Get a UD domain here
           </Label>
-          <Button type="button" onClick={() => handleLogout()}>Clear Domain</Button>
+          <Button
+            type="button"
+            color="var(--primary-brand)"
+            borderColor="#E3E5E8"
+            backgroundColor="transparent"
+            hoverBorderColor="#fff"
+            hoverBackgroundColor="#E3E5E8"
+            onClick={() => handleLogout()}
+          >
+            Clear Domain
+          </Button>
           <Button type="button">Continue</Button>
         </Form>
       </FormContainer>
