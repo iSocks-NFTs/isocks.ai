@@ -19,6 +19,8 @@ const Step1 = ({ formData, setFormData, page, setPage }) => {
     const ud = window.localStorage.getItem("username");
     if(ud !== null){
       setPage(2)
+    } else {
+      setPage(0)
     }
   },[])
   return (
