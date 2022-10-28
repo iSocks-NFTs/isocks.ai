@@ -4,7 +4,7 @@ import { BackGround, Heading, ISockLogo, ModalContainer, P } from "./Modalstyle"
 import { motion } from "framer-motion";
 
 const SuccessModal = () => {
-  const { successModal,setSuccessModal } = useContext(GlobalContext);
+  const { modal,setModal } = useContext(GlobalContext);
 
   return (
     <BackGround
@@ -12,7 +12,7 @@ const SuccessModal = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={() => setSuccessModal(!successModal)}
+      onClick={() => setModal({...modal,successModal:!modal.successModal})}
     >
       <ModalContainer
         as={motion.div}

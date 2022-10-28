@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { FaFacebookSquare } from "react-icons/fa";
 
 const Footer = () =>{
-    const {setComingSoonModal} = React.useContext(GlobalContext);
     return(
         <Container>
             <Grid>

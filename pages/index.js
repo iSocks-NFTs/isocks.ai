@@ -15,7 +15,7 @@ import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [ready, setReady] = useState(true);
-  const { comingSoonModal, subscribeForm } = useContext(GlobalContext);
+  const { modal,setModal } = useContext(GlobalContext);
 
   return (
     <>
@@ -41,8 +41,8 @@ export default function Home() {
             mode="wait"
             onExitComplete={() => null}
           >
-            {comingSoonModal && <Modal />}
-            {subscribeForm && <SubscribeModal />}
+            {modal.comingSoonModal && <Modal />}
+            {modal.subscribeForm && <SubscribeModal />}
           </AnimatePresence>
           <Subscribe />
           <Footer />
