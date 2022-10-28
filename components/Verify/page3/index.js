@@ -21,11 +21,9 @@ import Web3 from 'web3'
 // These options are used to construct the UAuthSPA instance.
 const uauthOptions = {
   clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
-  redirectUri: "https://isocksv2.netlify.app/",
-
-  // Must include both the openid and wallet scopes.
-  scope: "openid wallet",
-};
+  redirectUri: "https://isocksv2.netlify.app",
+  scope: "openid wallet"
+}
 
 const providerOptions = {
   // Currently the package isn't inside the web3modal library. For now,
