@@ -14,8 +14,8 @@ export const BackGround = styled.div`
 `
 
 export const ModalContainer = styled.div`
-    width:380px;
-    height:380px;
+    width:${({width}) => width ? width : "380px"};
+    height:${({height}) => height ? height : "380px"};
     color:var(--primary-brand);
     display:flex;
     flex-direction: column;
@@ -26,6 +26,14 @@ export const ModalContainer = styled.div`
     font-size:30px;
     top:15%;
     border-radius: 5px;
+    @media screen and (max-width:768px){
+        width:${({mdWidth}) => mdWidth ? mdWidth : "700px"};
+        height:${({mdHeight}) => mdHeight ? mdHeight : "700px"}
+    }
+    @media screen and (max-width:480px){
+        width: ${({mbWidth}) => mbWidth ? mbWidth : "450px"};
+        height: ${({mbHeight}) => mbHeight ? mbHeight : "450px"};
+    }
 `
 
 export const ISockLogo = styled.img``
