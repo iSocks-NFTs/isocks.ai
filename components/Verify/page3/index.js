@@ -22,7 +22,7 @@ import { AuthContext } from "../../../context/authContext";
 const uauthOptions = {
   clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
   redirectUri: "https://isocksv2.netlify.app/verify",
-  scope: "openid wallet"
+  scope: "openid wallet email"
 }
 
 const providerOptions = {
