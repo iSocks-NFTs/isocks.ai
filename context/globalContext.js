@@ -1,7 +1,13 @@
 import React from "react";
 
 export const GlobalContext = React.createContext({
-  modal:{},
+  modal:{
+    comingSoonModal:false,
+    addressVerified:false,
+    subscribeForm:false,
+    successModal:false,
+    qrEditModal:true
+  },
   setModal:() => {},
   openSettings:false,
   setOpenSettings:() => {},
@@ -12,13 +18,12 @@ const GlobalContextProvider = ({ children }) => {
   const [openSettings,setOpenSettings] = React.useState(false);
 
   const [modal,setModal] = React.useState({
-    comingSoonModal:true,
+    comingSoonModal:false,
     addressVerified:false,
     subscribeForm:false,
     successModal:false,
-    qrEditModal:false
+    qrEditModal:true
   })
-
 
   let baseUrl = 'https://isocksnft.herokuapp.com'
 
