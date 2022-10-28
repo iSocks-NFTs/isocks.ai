@@ -75,6 +75,7 @@ export const Input = styled.input`
   border: 0.933743px solid #e3e6e8;
   font-size: 16px;
   border-radius: 3px;
+  caret-color: ${({cursorColor}) => cursorColor ? cursorColor : ""};
   :focus {
     outline: var(--primary-brand);
   }

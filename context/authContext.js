@@ -6,11 +6,12 @@ export const AuthContext = React.createContext({
   onLogout:() => {},
   udUsername:'',
   setUDUsername:() =>{},
+  udLogOut: () =>{},
 });
 
 const AuthContextProvider = ({ children }) => {
   const [isLoggedIn,setIsLoggedIn] = React.useState(false);
-  const [udUsername,setUDUsername] = React.useState({});
+  const [udUsername,setUDUsername] = React.useState('');
 
   React.useEffect(() =>{
     const storedUserLoggedInInformation = window.localStorage.getItem('isLoggedIn');
@@ -20,6 +21,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     const udDomain = window.localStorage.getItem("username");
+    
     if(udDomain){
       const userDomain = JSON.parse(udDomain)
       setUDUsername(userDomain.value)
@@ -41,6 +43,10 @@ const AuthContextProvider = ({ children }) => {
     // Store iSock User ID 
     window.localStorage.setItem('iSockUserID',userId);
   }
+
+  const udLogoutHandler = () =>{
+    window.localStorage.removeItem('username');
+  }
   
   return (
     <AuthContext.Provider
@@ -49,7 +55,8 @@ const AuthContextProvider = ({ children }) => {
         onLogout: logOutHandler,
         onLogin: logInHandler,
         udUsername,
-        setUDUsername
+        setUDUsername,
+        udLogOut:udLogoutHandler
       }}
     >
       {children}

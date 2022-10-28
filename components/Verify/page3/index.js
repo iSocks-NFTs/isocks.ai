@@ -7,23 +7,23 @@ import {
   Label,
   FormGroup,
   Input,
-  Button,
 } from "../style";
+import { Button } from "../../Form";
 import { motion } from "framer-motion";
 import { UD } from "../../Form";
 import NonSSRWrapper from "../../no-ssr-wrapper";
-import * as UAuthWeb3Modal from '@uauth/web3modal'
-import UAuthSPA from '@uauth/js'
-import WalletConnectProvider from '@walletconnect/web3-provider'
-import Web3Modal from 'web3modal'
+import * as UAuthWeb3Modal from "@uauth/web3modal";
+import UAuthSPA from "@uauth/js";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3Modal from "web3modal";
 import { AuthContext } from "../../../context/authContext";
 
 // These options are used to construct the UAuthSPA instance.
 const uauthOptions = {
   clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
-  redirectUri: "https://isocksv2.netlify.app/verify",
-  scope: "openid wallet"
-}
+  redirectUri: "http://localhost:3000",
+  scope: "openid wallet",
+};
 
 const providerOptions = {
   // Currently the package isn't inside the web3modal library. For now,
@@ -58,30 +58,32 @@ const providerOptions = {
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
-  const {udUsername} = React.useContext(AuthContext);
+  const { udUsername, udLogOut } = React.useContext(AuthContext);
+  const [ud, setUd] = React.useState("");
   const web3modal = new Web3Modal({ providerOptions });
-
 
   // Register the web3modal so the connector has access to it.
   UAuthWeb3Modal.registerWeb3Modal(web3modal);
-
 
   async function handleLogin() {
     const provider = await web3modal.connect();
   }
 
   async function handleLogout() {
+    setUd('')
     if (web3modal.cachedProvider === "custom-uauth") {
       await uauth.logout();
     }
-    setProvider({})
     web3modal.clearCachedProvider();
   }
 
   React.useEffect(() =>{
-    console.log(udUsername)
-  },[])
-  
+    const ud = window.localStorage.getItem("username");
+    if(ud !== null){
+      let domain = JSON.parse(ud);
+      setUd(domain.value);
+    }
+  },[udUsername]);
 
   return (
     <NonSSRWrapper>
@@ -106,24 +108,24 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               ref={inputRef}
             />
           </FormGroup>
-          <FormGroup>
+          <FormGroup onClick={handleLogin}>
             <Label htmlFor="ud" fontWeight="400">
               Use your UD as a Username
             </Label>
             <UD src="/img/icons/ud.png" alt="UD Logo" />
             <Input
+              cursorColor="transparent"
               id="ud"
-              value={udUsername ? udUsername : ''}
+              value={ud}
               paddingLeft="9rem"
               cursor="pointer"
-              onClick={handleLogin}
-              readonly
             />
           </FormGroup>
           <Label htmlFor="ud" fontWeight="bolder">
             Get a UD domain here
           </Label>
-          <Button onClick={() => setPage(page + 1)}>Continue</Button>
+          <Button type="button" onClick={() => handleLogout()}>Clear Domain</Button>
+          <Button type="button">Continue</Button>
         </Form>
       </FormContainer>
     </NonSSRWrapper>
