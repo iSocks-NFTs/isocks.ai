@@ -21,7 +21,10 @@ const AuthContextProvider = ({ children }) => {
 
     const udDomain = window.localStorage.getItem("username");
     if(udDomain){
-      setUDUsername(udDomain.value)
+      const userDomain = JSON.parse(udDomain)
+      setUDUsername(userDomain.value)
+    } else {
+      setUDUsername({});
     }
 
   },[])

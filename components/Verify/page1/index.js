@@ -16,7 +16,7 @@ const Step1 = ({ formData, setFormData, page, setPage }) => {
   const {udUsername} = React.useContext(AuthContext)
   const inputRef = React.useRef();
   React.useEffect(() =>{
-    if(udUsername !== ''){
+    if(udUsername.length > 0){
       setPage(2);
     }
   },[])

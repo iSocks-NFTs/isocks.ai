@@ -58,7 +58,7 @@ const providerOptions = {
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
-  const {udUsername,setUDUsername} = React.useContext(AuthContext);
+  const {udUsername} = React.useContext(AuthContext);
   const web3modal = new Web3Modal({ providerOptions });
 
 
@@ -78,7 +78,9 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     web3modal.clearCachedProvider();
   }
 
-
+  React.useEffect(() =>{
+    console.log(udUsername)
+  },[])
   
 
   return (
@@ -111,7 +113,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             <UD src="/img/icons/ud.png" alt="UD Logo" />
             <Input
               id="ud"
-              value={udUsername}
+              value={udUsername ? udUsername : ''}
               paddingLeft="15rem"
               cursor="pointer"
               onClick={handleLogin}
