@@ -78,11 +78,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     web3modal.clearCachedProvider();
   }
 
-  React.useEffect(() =>{
-    if(udUsername !== ''){
-      setPage(2);
-    }
-  },[])
+
   
 
   return (
