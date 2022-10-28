@@ -54,6 +54,7 @@ export const ArrowRight = styled.img``;
 export const FormContainer = styled.div`
   margin: 0 auto;
   margin-top:${(props) => props.marginTop ? props.marginTop : ""};
+  height:fit-content;
 `;
 
 export const Form = styled.form`
