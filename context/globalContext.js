@@ -1,38 +1,32 @@
 import React from "react";
 
 export const GlobalContext = React.createContext({
-  comingSoonModal: false,
-  setComingSoonModal: () => {},
-  addressVerified: false,
-  setAddressVerified: () => {},
-  subscribeForm:false,
-  setSubscribeForm:() => {},
-  successModal:false,
-  setSuccessModal:() => {},
+  modal:{},
+  setModal:() => {},
   openSettings:false,
   setOpenSettings:() => {},
   baseUrl:''
 });
 
 const GlobalContextProvider = ({ children }) => {
-  const [comingSoonModal, setComingSoonModal] = React.useState(false);
-  const [addressVerified, setAddressVerified] = React.useState(false);
-  const [subscribeForm,setSubscribeForm] = React.useState(false);
-  const [successModal,setSuccessModal] = React.useState(false);
   const [openSettings,setOpenSettings] = React.useState(false);
+
+  const [modal,setModal] = React.useState({
+    comingSoonModal:true,
+    addressVerified:false,
+    subscribeForm:false,
+    successModal:false,
+    qrEditModal:false
+  })
+
+
   let baseUrl = 'https://isocksnft.herokuapp.com'
 
   return (
     <GlobalContext.Provider
       value={{
-        comingSoonModal,
-        setComingSoonModal,
-        addressVerified,
-        setAddressVerified,
-        subscribeForm,
-        setSubscribeForm,
-        successModal,
-        setSuccessModal,
+        modal,
+        setModal,
         openSettings,
         setOpenSettings,
         baseUrl
