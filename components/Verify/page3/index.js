@@ -71,6 +71,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
 
   async function handleLogout() {
     setUd('')
+    window.localStorage.clear();
     if (web3modal.cachedProvider === "custom-uauth") {
       await uauth.logout();
     }
