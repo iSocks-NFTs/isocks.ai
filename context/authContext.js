@@ -24,7 +24,7 @@ const AuthContextProvider = ({ children }) => {
       const userDomain = JSON.parse(udDomain)
       setUDUsername(userDomain.value)
     } else {
-      setUDUsername(null);
+      setUDUsername('');
     }
 
   },[])
