@@ -16,13 +16,13 @@ import * as UAuthWeb3Modal from '@uauth/web3modal'
 import UAuthSPA from '@uauth/js'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import Web3Modal from 'web3modal'
-import Web3 from 'web3'
+import { AuthContext } from "../../../context/authContext";
 
 // These options are used to construct the UAuthSPA instance.
 const uauthOptions = {
   clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
-  redirectUri: "https://isocksv2.netlify.app",
-  scope: "openid wallet"
+  redirectUri: "https://isocksv2.netlify.app/verify",
+  scope: "openid"
 }
 
 const providerOptions = {
@@ -58,9 +58,9 @@ const providerOptions = {
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
-  const [providerState, setProviderState] = React.useState(null);
-
+  const {udUsername,setUDUsername} = React.useContext(AuthContext);
   const web3modal = new Web3Modal({ providerOptions });
+
 
   // Register the web3modal so the connector has access to it.
   UAuthWeb3Modal.registerWeb3Modal(web3modal);
@@ -68,18 +68,22 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
 
   async function handleLogin() {
     const provider = await web3modal.connect();
-    if (provider) {
-      setProviderState(provider);
-      console.log(provider)
-    }
   }
 
   async function handleLogout() {
     if (web3modal.cachedProvider === "custom-uauth") {
       await uauth.logout();
     }
+    setProvider({})
     web3modal.clearCachedProvider();
   }
+
+  React.useEffect(() =>{
+    if(udUsername !== ''){
+      setPage(2);
+    }
+  },[])
+  
 
   return (
     <NonSSRWrapper>
@@ -111,7 +115,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             <UD src="/img/icons/ud.png" alt="UD Logo" />
             <Input
               id="ud"
-              value={formData.UdDomainUsername}
+              value={udUsername}
               paddingLeft="15rem"
               cursor="pointer"
               onClick={handleLogin}
