@@ -20,8 +20,8 @@ import Web3 from 'web3'
 
 // These options are used to construct the UAuthSPA instance.
 const uauthOptions = {
-  clientID: "uauth_client_id",
-  redirectUri: "http://localhost:3000",
+  clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
+  redirectUri: "https://isocksv2.netlify.app/",
 
   // Must include both the openid and wallet scopes.
   scope: "openid wallet",
@@ -116,8 +116,8 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               value={formData.UdDomainUsername}
               paddingLeft="15rem"
               cursor="pointer"
-              readonly
               onClick={handleLogin}
+              readonly
             />
           </FormGroup>
           <Label htmlFor="ud" fontWeight="bolder">
