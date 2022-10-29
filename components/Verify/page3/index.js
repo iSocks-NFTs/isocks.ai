@@ -31,6 +31,7 @@ const uauth = new UAuthConnector({
   uauth: new UAuth({
     clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
     redirectUri: "https://isocksv2.netlify.app/verify",
+    postLogoutRedirectUri: "https://isocksv2.netlify.app/verify",
     scope: "openid wallet",
   }),
   connectors: { injected, walletconnect },
