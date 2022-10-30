@@ -2,6 +2,7 @@ import React from "react";
 
 export const AuthContext = React.createContext({
   isLoggedIn:false,
+  accountId:'',
   onLogin:(userId) => {},
   onLogout:() => {},
   udUsername:'',
@@ -12,6 +13,7 @@ export const AuthContext = React.createContext({
 const AuthContextProvider = ({ children }) => {
   const [isLoggedIn,setIsLoggedIn] = React.useState(false);
   const [udUsername,setUDUsername] = React.useState('');
+  const [accountId,setAccountId] = React.useState('')
 
   React.useEffect(() =>{
     const storedUserLoggedInInformation = window.localStorage.getItem('isLoggedIn');
@@ -42,6 +44,7 @@ const AuthContextProvider = ({ children }) => {
     setIsLoggedIn(true);
     // Store iSock User ID 
     window.localStorage.setItem('iSockUserID',userId);
+    setAccountId(userId);
   }
 
   const udLogoutHandler = () =>{
@@ -52,6 +55,7 @@ const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isLoggedIn,
+        accountId,
         onLogout: logOutHandler,
         onLogin: logInHandler,
         udUsername,
