@@ -11,11 +11,11 @@ import {
   LinkHref,
   LinkText,
   Heading,
+  Link,
 } from "../../../../../components/QR/style";
 import { Button, ButtonContainer } from "../../../../../components/Form";
 import Router from "next/router";
 import { GlobalContext } from "../../../../../context/globalContext";
-import QREditModal from "../../../../../components/Modal/Edit_QR";
 
 export async function getServerSideProps() {
   // Fetch Data
@@ -27,9 +27,6 @@ export async function getServerSideProps() {
 }
 
 const QRList = ({ data }) => {
-  const { modal, setModal } = React.useContext(GlobalContext);
-  
-
   return (
     <Layout>
       <Head>
@@ -45,16 +42,18 @@ const QRList = ({ data }) => {
         <QRContainer>
           {data.map((qr, index) => {
             return (
-              <CodeBox key={index}>
-                <QRCodeImage id={qr.id} />
-                <CodeLabel>{qr.label}</CodeLabel>
-                <LinkText>
-                  URL:{" "}
-                  <LinkHref target="_blank" href={qr.url}>
-                    {qr.url}
-                  </LinkHref>
-                </LinkText>
-              </CodeBox>
+              <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+                <CodeBox key={index}>
+                  <QRCodeImage id={qr.id} />
+                  <CodeLabel>{qr.label}</CodeLabel>
+                  <LinkText>
+                    URL:{" "}
+                    <LinkHref target="_blank" href={qr.url}>
+                      {qr.url}
+                    </LinkHref>
+                  </LinkText>
+                </CodeBox>
+              </Link>
             );
           })}
         </QRContainer>
