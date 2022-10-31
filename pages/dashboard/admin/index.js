@@ -15,18 +15,18 @@ import { GrMoney } from "react-icons/gr";
 import { AiOutlineQrcode } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { AuthContext } from "../../../context/authContext";
-import { GlobalContext } from "../../../context/globalContext";
 import { useEffect } from "react";
+import {useCookies} from 'react-cookie';
 
 
 
 const Dashboard = () => {
   const router = Router;
-  const { accountId } = React.useContext(AuthContext);
   const [id,setId] = React.useState();
+  const [cookie,setCookie,removeCookie] = useCookies(["users"]);
 
   useEffect(() =>{
-    setId(accountId)
+    setId(cookie.user)
   },[])
 
 
