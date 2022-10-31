@@ -3,7 +3,7 @@ import { GlobalContext } from "../../../context/globalContext";
 import { BackGround, Heading, ISockLogo, ModalContainer, P } from "./Modalstyle";
 import { motion } from "framer-motion";
 
-const SuccessModal = () => {
+const SuccessModal = ({message}) => {
   const { modal,setModal } = useContext(GlobalContext);
 
   return (
@@ -23,7 +23,7 @@ const SuccessModal = () => {
       >
         <ISockLogo src="/img/icons/tick-circle.svg" alt="Tick Icon" />
         <Heading>Successful</Heading>
-        <P>The action has been successful. thank you.</P>
+        <P>{message ? message : "The action has been successful. thank you."}</P>
       </ModalContainer>
     </BackGround>
   );

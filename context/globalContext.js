@@ -6,7 +6,7 @@ export const GlobalContext = React.createContext({
     addressVerified:false,
     subscribeForm:false,
     successModal:false,
-    qrEditModal:true
+    qrEditModal:false
   },
   setModal:() => {},
   openSettings:false,
@@ -22,10 +22,10 @@ const GlobalContextProvider = ({ children }) => {
     addressVerified:false,
     subscribeForm:false,
     successModal:false,
-    qrEditModal:true
+    qrEditModal:false
   })
 
-  let baseUrl = 'https://isocksnft.herokuapp.com'
+  let baseUrl = 'http://localhost:1337'
 
   return (
     <GlobalContext.Provider

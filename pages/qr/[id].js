@@ -3,7 +3,7 @@ import Link from "next/link";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   // Fetch Data
-  const response = await fetch(`https://isocksnft.herokuapp.com/api/find/qr/${id}`);
+  const response = await fetch(`http://localhost:1337/api/find/qr/${id}`);
   const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props

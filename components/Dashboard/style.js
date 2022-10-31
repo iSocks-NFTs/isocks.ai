@@ -47,3 +47,13 @@ export const Block = styled.div`
 `
 
 export const TransactionData = styled.span``
+
+export const Pill = styled.span`
+    width:${({width}) => width ? width : ''};
+    height:${({height}) => height ? height : ''};
+    font-size: ${({fontSize}) => fontSize ? fontSize : '13px'};
+    background-color: var(--primary-brand);
+    color:#fff;
+    padding:10px;
+    border-radius: 8px;
+`

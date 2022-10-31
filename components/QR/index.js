@@ -1,12 +1,14 @@
 import React from "react";
+import Router from "next/router";
 import { Container, Heading } from "./style";
 import { Row, Col } from "react-bootstrap";
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 import { AnimatePresence } from "framer-motion";
+import { Button, ButtonContainer } from "../Form";
 
 const QRComponent = () => {
-
+  const router = Router;
   const [page, setPage] = React.useState(0);
   const componentList = [
     <Step1 key={1} page={page} setPage={setPage} />,
@@ -23,9 +25,18 @@ const QRComponent = () => {
       </Row>
       <Row>
         <Col>
-          <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
-          {componentList[page]}
+          <AnimatePresence
+            initial={false}
+            mode="wait"
+            onExitComplete={() => null}
+          >
+            {componentList[page]}
           </AnimatePresence>
+        </Col>
+        <Col>
+          <ButtonContainer marginTop="2rem">
+            <Button onClick={() => router.back()}>Back</Button>
+          </ButtonContainer>
         </Col>
       </Row>
     </Container>

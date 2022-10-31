@@ -14,8 +14,7 @@ import { AuthContext } from "../../../context/authContext";
 import Router from "next/router";
 
 const Navbar = () => {
-  const { openSettings, setOpenSettings, baseUrl } =
-    React.useContext(GlobalContext);
+  const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
   const { onLogout } = React.useContext(AuthContext);
 
   function logOut() {
