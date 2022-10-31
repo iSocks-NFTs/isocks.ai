@@ -53,17 +53,24 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err)
-        if (err.response.status === 401) {
-          console.log(err);
-          setMessage("Incorrect Email/Password");
+        console.log(err);
+        if (err.message === "Network Error") {
+          setMessage("Network Error");
           clearField();
           setIsLoading(false);
         }
-        if (err.response.status === 500) {
-          setMessage("Server Error");
-          clearField();
-          setIsLoading(false);
+        if (err.response) {
+          const { status } = err.response;
+          if (status === 401) {
+            setMessage("Incorrect Email/Password");
+            clearField();
+            setIsLoading(false);
+          }
+          if (status === 500) {
+            setMessage("Server Error");
+            clearField();
+            setIsLoading(false);
+          }
         }
       });
   }

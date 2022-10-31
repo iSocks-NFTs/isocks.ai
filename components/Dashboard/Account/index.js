@@ -51,13 +51,17 @@ const AccountInfo = ({ data }) => {
         }
       })
       .catch((error) => {
-        if (error.response.status === 401) {
-          setIsLoading(false);
-          setError("Wrong Password");
-        }
-        if (error.response.status === 500) {
-          setIsLoading(false);
-          setError("Server Error");
+        console.log(error)
+        if(error.response){
+          const {status} = error.response;
+          if (status === 401) {
+            setIsLoading(false);
+            setError("Wrong Password");
+          }
+          if (status === 500) {
+            setIsLoading(false);
+            setError("Server Error");
+          }
         }
       });
   }
