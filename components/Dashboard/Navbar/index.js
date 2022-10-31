@@ -12,12 +12,15 @@ import { Button } from "../../Form";
 import { GlobalContext } from "../../../context/globalContext";
 import { AuthContext } from "../../../context/authContext";
 import Router from "next/router";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
   const { onLogout } = React.useContext(AuthContext);
+  const [cookie,setCookie,removeCookie] = useCookies(["user"]);
 
   function logOut() {
+    removeCookie("user")
     onLogout();
     Router.push("/dashboard/auth");
   }

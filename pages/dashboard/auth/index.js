@@ -15,10 +15,12 @@ import {
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
 import { GlobalContext } from "../../../context/globalContext";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [cookie,setCookie] = useCookies(["user"]);
   const router = Router;
 
   const { onLogin, isLoggedIn } = React.useContext(AuthContext);
@@ -48,6 +50,11 @@ const Login = () => {
         if (res) {
           if (res.data.status === "success") {
             onLogin(res.data.token);
+            setCookie("user",res.data.token,{
+              path:"/",
+              maxAge:3600 * 24 * 3,
+              sameSite:true
+            })
             Router.push("/dashboard/admin");
           }
         }
@@ -75,12 +82,12 @@ const Login = () => {
       });
   }
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      console.log(isLoggedIn);
-      router.push("/dashboard/admin");
-    }
-  }, [isLoggedIn, router]);
+  // React.useEffect(() => {
+  //   if (isLoggedIn) {
+  //     console.log(isLoggedIn);
+  //     router.push("/dashboard/admin");
+  //   }
+  // }, [isLoggedIn, router]);
 
   return (
     <>

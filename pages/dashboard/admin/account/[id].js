@@ -11,7 +11,6 @@ export async function getServerSideProps(context) {
   // Fetch Data on Admin Account
   const response = await fetch(`http://localhost:1337/api/find/user/${id}`);
   const data = await response.json();
-  console.log(data);
   return {
     props: { data },
   };

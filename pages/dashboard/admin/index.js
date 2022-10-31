@@ -16,16 +16,19 @@ import { AiOutlineQrcode } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { AuthContext } from "../../../context/authContext";
 import { GlobalContext } from "../../../context/globalContext";
+import { useEffect } from "react";
+
+
 
 const Dashboard = () => {
   const router = Router;
-  const { isLoggedIn,accountId } = React.useContext(AuthContext);
+  const { accountId } = React.useContext(AuthContext);
+  const [id,setId] = React.useState();
 
-  React.useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/dashboard/auth");
-    }
-  }, [isLoggedIn, router]);
+  useEffect(() =>{
+    setId(accountId)
+  },[])
+
 
   return (
     <Layout>
@@ -80,7 +83,7 @@ const Dashboard = () => {
               Generate, Edit & Delete QR Codes
             </OptionDescription>
           </Card>
-          <Card justifyContent="center" cursor="pointer" onClick={() => router.push(`/dashboard/admin/account/${accountId}`) }>
+          <Card justifyContent="center" cursor="pointer" onClick={() => router.push(`/dashboard/admin/account/${id}`) }>
             <Circle>
               <FiSettings />
             </Circle>
