@@ -28,11 +28,7 @@ export async function getServerSideProps() {
 
 const QRList = ({ data }) => {
   const { modal, setModal } = React.useContext(GlobalContext);
-  const [qrSelect, setQrSelect] = React.useState({
-    id: "",
-    label: "",
-    url: "",
-  });
+  
 
   return (
     <Layout>
@@ -40,7 +36,6 @@ const QRList = ({ data }) => {
         <title>iSocks | Admin QR Management</title>
       </Head>
       <Container>
-        {modal.qrEditModal && <QREditModal data={qrSelect} />}
         <Row>
           <Col>
             <Heading>QR Management</Heading>
