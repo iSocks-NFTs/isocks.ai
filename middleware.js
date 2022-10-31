@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req) {
   const url = req.url;
-  console.log(url);
   if(url.includes("/dashboard/auth")){
     const cookie = req.cookies.get('user');
     console.log('Checking for cookies in Auth Page',cookie)

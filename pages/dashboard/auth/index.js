@@ -21,9 +21,8 @@ const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [cookie,setCookie] = useCookies(["user"]);
-  const router = Router;
 
-  const { onLogin, isLoggedIn } = React.useContext(AuthContext);
+  const { onLogin } = React.useContext(AuthContext);
   const { baseUrl } = React.useContext(GlobalContext);
 
   const emailRef = useRef();
@@ -82,12 +81,6 @@ const Login = () => {
       });
   }
 
-  // React.useEffect(() => {
-  //   if (isLoggedIn) {
-  //     console.log(isLoggedIn);
-  //     router.push("/dashboard/admin");
-  //   }
-  // }, [isLoggedIn, router]);
 
   return (
     <>

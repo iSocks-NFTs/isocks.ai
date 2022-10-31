@@ -17,20 +17,29 @@ import { useCookies } from "react-cookie";
 const Navbar = () => {
   const { openSettings, setOpenSettings } = React.useContext(GlobalContext);
   const { onLogout } = React.useContext(AuthContext);
-  const [cookie,setCookie,removeCookie] = useCookies(["user"]);
+  const [cookie, setCookie, removeCookie] = useCookies(["user"]);
 
   function logOut() {
-    removeCookie("user")
+    console.log("Log Out!");
     onLogout();
+    removeCookie("user", {
+      path: "/",
+      maxAge: 3600 * 24 * 3,
+      sameSite: true,
+    });
     Router.push("/dashboard/auth");
   }
-  React.useEffect(() =>{
+  React.useEffect(() => {
     setOpenSettings(false);
-  },[])
+  }, []);
 
   return (
     <Container>
-      <Brand src="/img/logo/logo.png" alt="logo" onClick={() => Router.push('/dashboard/admin')} />
+      <Brand
+        src="/img/logo/logo.png"
+        alt="logo"
+        onClick={() => Router.push("/dashboard/admin")}
+      />
       <UserBox>
         <HiUserCircle
           onClick={() => setOpenSettings(!openSettings)}
