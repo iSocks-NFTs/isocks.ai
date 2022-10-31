@@ -21,6 +21,9 @@ const Navbar = () => {
     onLogout();
     Router.push("/dashboard/auth");
   }
+  React.useEffect(() =>{
+    setOpenSettings(false);
+  },[])
 
   return (
     <Container>
