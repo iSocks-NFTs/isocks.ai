@@ -119,7 +119,8 @@ export const Resend = styled.span`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  column-gap:0.3rem;
+  gap:0.3rem;
+  flex-direction: ${({flexDirection}) => flexDirection ? flexDirection : 'row'};
   margin-top:${(props) => props.marginTop ? props.marginTop : ""};
 `
 
