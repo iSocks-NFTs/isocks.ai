@@ -22,7 +22,7 @@ const Login = () => {
   const router = Router;
 
   const { onLogin, isLoggedIn } = React.useContext(AuthContext);
-  const {baseUrl} = React.useContext(GlobalContext);
+  const { baseUrl } = React.useContext(GlobalContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -46,11 +46,6 @@ const Login = () => {
       })
       .then((res) => {
         if (res) {
-          if (res.data.status === "No matching User") {
-            setMessage("Incorrect Email/Password");
-            clearField();
-            setIsLoading(false);
-          }
           if (res.data.status === "success") {
             onLogin(res.data.token);
             Router.push("/dashboard/admin");
@@ -58,11 +53,17 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        if (err) {
+        console.log(err)
+        if (err.response.status === 401) {
           console.log(err);
+          setMessage("Incorrect Email/Password");
+          clearField();
           setIsLoading(false);
+        }
+        if (err.response.status === 500) {
           setMessage("Server Error");
           clearField();
+          setIsLoading(false);
         }
       });
   }
