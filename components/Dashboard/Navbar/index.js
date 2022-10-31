@@ -20,7 +20,7 @@ const Navbar = () => {
   const [cookie, setCookie, removeCookie] = useCookies(["user"]);
 
   function logOut() {
-    console.log("Log Out!");
+    setOpenSettings(false);
     onLogout();
     removeCookie("user", {
       path: "/",
