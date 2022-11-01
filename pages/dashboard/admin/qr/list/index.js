@@ -1,21 +1,20 @@
 import React from "react";
 import Head from "next/head";
-import { Row, Col } from "react-bootstrap";
 import QRCodeImage from "../../../../../components/QR/Module";
 import Layout from "../../../../../layouts/admin_layout";
+import { Container, Heading } from "../../../../../components/Dashboard/style";
+import { Button, ButtonContainer, Label } from "../../../../../components/Form";
+import Router from "next/router";
+import { Row, Col } from "react-bootstrap";
+import { TailSpin } from "react-loader-spinner";
 import {
   QRContainer,
-  Container,
   CodeBox,
   CodeLabel,
   LinkHref,
   LinkText,
-  Heading,
   Link,
 } from "../../../../../components/QR/style";
-import { Button, ButtonContainer } from "../../../../../components/Form";
-import Router from "next/router";
-import { GlobalContext } from "../../../../../context/globalContext";
 
 export async function getServerSideProps() {
   // Fetch Data
@@ -27,6 +26,13 @@ export async function getServerSideProps() {
 }
 
 const QRList = ({ data }) => {
+  const [goBack, setBack] = React.useState(false);
+
+  function back() {
+    setBack(true);
+    Router.push("/dashboard/admin/qr");
+  }
+
   return (
     <Layout>
       <Head>
@@ -40,26 +46,44 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer>
-          {data.map((qr, index) => {
-            return (
-              <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+          {data.length > 0 ? (
+            data.map((qr, index) => {
+              return (
                 <CodeBox key={index}>
                   <QRCodeImage id={qr.id} />
-                  <CodeLabel>{qr.label}</CodeLabel>
-                  <LinkText>
-                    URL:{" "}
-                    <LinkHref target="_blank" href={qr.url}>
-                      {qr.url}
-                    </LinkHref>
-                  </LinkText>
+                  <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+                    <CodeLabel>{qr.label}</CodeLabel>
+                    <LinkText>
+                      URL:{" "}
+                      <LinkHref target="_blank" href={qr.url}>
+                        {qr.url}
+                      </LinkHref>
+                    </LinkText>
+                  </Link>
                 </CodeBox>
-              </Link>
-            );
-          })}
+              );
+            })
+          ) : (
+            <Heading fontWeight="300">No QR Code in Database</Heading>
+          )}
         </QRContainer>
-
         <ButtonContainer marginTop="5rem">
-          <Button onClick={() => Router.back()}>Back</Button>
+          <Button onClick={() => back()}>
+            {goBack ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Back"
+            )}
+          </Button>
         </ButtonContainer>
       </Container>
     </Layout>
