@@ -4,6 +4,7 @@ import {
   Heading,
   Text,
 } from "../../../../components/Dashboard/style";
+import Head from "next/head";
 import Table from "../../../../components/Dashboard/Table";
 import { Button, ButtonContainer } from "../../../../components/Form";
 import Layout from "../../../../layouts/admin_layout";
@@ -21,6 +22,9 @@ const Transaction = ({ data }) => {
   const router = Router;
   return (
     <Layout>
+      <Head>
+        <title>iSocks | Admin Transactions</title>
+      </Head>
       <Container height="100vh">
         <Heading>Transaction Data Feed</Heading>
         {data.length !== 0 ? (
