@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Link = styled.a`
-
+    text-align:center;
 `
 
 export const Container = styled.div`
@@ -30,8 +30,9 @@ export const Image = styled.img`
 export const QRContainer = styled.div`
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(3,33%);
+    grid-template-columns: auto;
     gap:1rem;
+    justify-content: center;
     @media screen and (max-width:768px) {
         grid-template-columns: repeat(2,50%);
     }

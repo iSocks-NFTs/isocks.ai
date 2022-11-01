@@ -6,10 +6,17 @@ import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 import { AnimatePresence } from "framer-motion";
 import { Button, ButtonContainer } from "../Form";
+import { TailSpin } from "react-loader-spinner";
 
 const QRComponent = () => {
   const router = Router;
   const [page, setPage] = React.useState(0);
+  const [goBack, setBack] = React.useState(false);
+
+  function back() {
+    setBack(true);
+    router.push("/dashboard/admin");
+  }
   const componentList = [
     <Step1 key={1} page={page} setPage={setPage} />,
     <Step2 key={2} page={page} setPage={setPage} />,
@@ -35,7 +42,22 @@ const QRComponent = () => {
         </Col>
         <Col>
           <ButtonContainer marginTop="2rem">
-            <Button onClick={() => router.back()}>Back</Button>
+            <Button onClick={() => back()}>
+              {goBack ? (
+                <TailSpin
+                  height="25"
+                  width="25"
+                  color="#fff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                "Back"
+              )}
+            </Button>
           </ButtonContainer>
         </Col>
       </Row>

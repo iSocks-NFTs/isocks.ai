@@ -14,7 +14,6 @@ import {
 import { GrMoney } from "react-icons/gr";
 import { AiOutlineQrcode } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
-import { AuthContext } from "../../../context/authContext";
 import { useEffect } from "react";
 import {useCookies} from 'react-cookie';
 

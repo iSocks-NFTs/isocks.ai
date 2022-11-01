@@ -5,6 +5,9 @@ import {
   UserBox,
   UserSettings,
   WelcomeMessage,
+  NavLink,
+  Link,
+  NavLinks,
 } from "./style";
 import { HiUserCircle } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -40,31 +43,46 @@ const Navbar = () => {
         alt="logo"
         onClick={() => Router.push("/dashboard/admin")}
       />
-      <UserBox>
-        <HiUserCircle
-          onClick={() => setOpenSettings(!openSettings)}
-          size={35}
-        />
-        <AnimatePresence
-          initial={false}
-          node="wait"
-          onExitComplete={() => null}
-        >
-          {openSettings && (
-            <UserSettings
-              as={motion.div}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <WelcomeMessage>Hey Admin</WelcomeMessage>
-              <Button width="180px" onClick={() => logOut()}>
-                Log Out
-              </Button>
-            </UserSettings>
-          )}
-        </AnimatePresence>
-      </UserBox>
+      <>
+        <NavLink>
+          <NavLinks>
+            <Link href="/dashboard/admin">Home</Link>
+          </NavLinks>
+          <NavLinks>
+            <Link href="/dashboard/admin/transactions">Transactions</Link>
+          </NavLinks>
+          <NavLinks>
+            <Link href="/dashboard/admin/qr">QR Management</Link>
+          </NavLinks>
+        </NavLink>
+      </>
+      <>
+        <UserBox>
+          <HiUserCircle
+            onClick={() => setOpenSettings(!openSettings)}
+            size={35}
+          />
+          <AnimatePresence
+            initial={false}
+            node="wait"
+            onExitComplete={() => null}
+          >
+            {openSettings && (
+              <UserSettings
+                as={motion.div}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <WelcomeMessage>Hey Admin</WelcomeMessage>
+                <Button width="180px" onClick={() => logOut()}>
+                  Log Out
+                </Button>
+              </UserSettings>
+            )}
+          </AnimatePresence>
+        </UserBox>
+      </>
     </Container>
   );
 };

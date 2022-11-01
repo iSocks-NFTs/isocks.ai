@@ -4,7 +4,7 @@ import QRCodeImage from "../../../../../components/QR/Module";
 import Layout from "../../../../../layouts/admin_layout";
 import { Container, Heading } from "../../../../../components/Dashboard/style";
 import { Button, ButtonContainer, Label } from "../../../../../components/Form";
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
 import {
@@ -26,11 +26,12 @@ export async function getServerSideProps() {
 }
 
 const QRList = ({ data }) => {
+  const router = useRouter();
   const [goBack, setBack] = React.useState(false);
 
   function back() {
     setBack(true);
-    Router.push("/dashboard/admin/qr");
+    router.back();
   }
 
   return (
@@ -51,14 +52,15 @@ const QRList = ({ data }) => {
               return (
                 <CodeBox key={index}>
                   <QRCodeImage id={qr.id} />
+                  <CodeLabel>{qr.label}</CodeLabel>
+                  <LinkText>
+                    URL:{" "}
+                    <LinkHref target="_blank" href={qr.url}>
+                      {qr.url}
+                    </LinkHref>
+                  </LinkText>
                   <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
-                    <CodeLabel>{qr.label}</CodeLabel>
-                    <LinkText>
-                      URL:{" "}
-                      <LinkHref target="_blank" href={qr.url}>
-                        {qr.url}
-                      </LinkHref>
-                    </LinkText>
+                    <Button>View QR</Button>
                   </Link>
                 </CodeBox>
               );
@@ -67,24 +69,6 @@ const QRList = ({ data }) => {
             <Heading fontWeight="300">No QR Code in Database</Heading>
           )}
         </QRContainer>
-        <ButtonContainer marginTop="5rem">
-          <Button onClick={() => back()}>
-            {goBack ? (
-              <TailSpin
-                height="25"
-                width="25"
-                color="#fff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
-            ) : (
-              "Back"
-            )}
-          </Button>
-        </ButtonContainer>
       </Container>
     </Layout>
   );
