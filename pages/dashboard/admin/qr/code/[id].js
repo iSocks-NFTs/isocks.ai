@@ -78,7 +78,7 @@ const QR = ({ data }) => {
     setError("");
     const { newLabel, newUrl } = formData;
     axios
-      .patch(`http://localhost:1337/api/edit/qr/${data.id}`, {
+      .post(`http://localhost:1337/api/edit/qr/${data.id}`, {
         label: newLabel,
         url: newUrl,
       })
@@ -162,6 +162,22 @@ const QR = ({ data }) => {
               "Delete QR"
             )}
           </Button>
+          <Button type="submit">
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Update"
+            )}
+          </Button>
           <Button
             onClick={() => back()}
             type="button"
@@ -184,22 +200,6 @@ const QR = ({ data }) => {
               />
             ) : (
               "Back"
-            )}
-          </Button>
-          <Button type="submit">
-            {isLoading ? (
-              <TailSpin
-                height="25"
-                width="25"
-                color="#fff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
-            ) : (
-              "Submit"
             )}
           </Button>
         </Form>
