@@ -38,12 +38,7 @@ const QR = ({ data }) => {
   const [error, setError] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
-
-  const inputRef = React.useRef();
-
-  React.useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const [goBack, setBack] = React.useState(false);
 
   function deleteQr() {
     setIsDeleting(true);
@@ -52,12 +47,9 @@ const QR = ({ data }) => {
     axios
       .delete(`http://localhost:1337/api/delete/qr/${id}`)
       .then((response) => {
-        if (response) {
-          const { status } = response.data;
-          if (status === "ok") {
-            setIsDeleting(false);
-            router.push("/dashboard/qr/list");
-          }
+        if(response){
+          console.log(response);
+          router.push("/dashboard/admin/qr/list");
         }
       })
       .catch((error) => {
@@ -75,23 +67,25 @@ const QR = ({ data }) => {
       });
   }
 
+  function back() {
+    setBack(true);
+    router.push("/dashboard/admin/qr/list");
+  }
+
   function handleSubmit(e) {
     e.preventDefault;
     setIsLoading(true);
     setError("");
     const { newLabel, newUrl } = formData;
     axios
-      .put(`http://localhost:1337/api/edit/qr/${data.id}`, {
+      .patch(`http://localhost:1337/api/edit/qr/${data.id}`, {
         label: newLabel,
         url: newUrl,
       })
       .then((response) => {
-        if (response) {
-          const { status } = response.data;
-          if (status === "ok") {
-            setIsLoading(false);
-            router.push("/dashboard/qr/list");
-          }
+        if(response){
+          console.log(response);
+          router.push("/dashboard/admin/qr/list");
         }
       })
       .catch((error) => {
@@ -128,7 +122,6 @@ const QR = ({ data }) => {
               onChange={(e) =>
                 setFormData({ ...formData, newLabel: e.target.value })
               }
-              ref={inputRef}
               id="newLabel"
               required
             />
@@ -148,57 +141,67 @@ const QR = ({ data }) => {
           <Label textAlign="center" color="red">
             {error}
           </Label>
-          <FormGroup>
-            <Button
-              backgroundColor="var(--error)"
-              borderColor="transparent"
-              onClick={() => deleteQr()}
-            >
-              {isDeleting ? (
-                <TailSpin
-                  height="25"
-                  width="25"
-                  color="#fff"
-                  ariaLabel="tail-spin-loading"
-                  radius="1"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
-              ) : (
-                "Delete QR"
-              )}
-            </Button>
-            <ButtonContainer flexDirection="row">
-              <Button
-                onClick={() => Router.back()}
-                type="button"
-                color="var(--primary-brand)"
-                borderColor="#E3E5E8"
-                backgroundColor="transparent"
-                hoverBorderColor="#fff"
-                hoverBackgroundColor="#E3E5E8"
-              >
-                Back
-              </Button>
-              <Button type="submit">
-                {isLoading ? (
-                  <TailSpin
-                    height="25"
-                    width="25"
-                    color="#fff"
-                    ariaLabel="tail-spin-loading"
-                    radius="1"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                ) : (
-                  "Submit"
-                )}
-              </Button>
-            </ButtonContainer>
-          </FormGroup>
+          <Button
+            backgroundColor="var(--error)"
+            borderColor="transparent"
+            type="button"
+            onClick={() => deleteQr()}
+          >
+            {isDeleting ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Delete QR"
+            )}
+          </Button>
+          <Button
+            onClick={() => back()}
+            type="button"
+            color="var(--primary-brand)"
+            borderColor="#E3E5E8"
+            backgroundColor="transparent"
+            hoverBorderColor="#fff"
+            hoverBackgroundColor="#E3E5E8"
+          >
+            {goBack ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Back"
+            )}
+          </Button>
+          <Button type="submit">
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Submit"
+            )}
+          </Button>
         </Form>
       </Container>
     </Layout>
