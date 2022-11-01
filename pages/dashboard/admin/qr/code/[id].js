@@ -141,6 +141,22 @@ const QR = ({ data }) => {
           <Label textAlign="center" color="red">
             {error}
           </Label>
+          <Button type="submit">
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Update"
+            )}
+          </Button>
           <Button
             backgroundColor="var(--error)"
             borderColor="transparent"
@@ -160,22 +176,6 @@ const QR = ({ data }) => {
               />
             ) : (
               "Delete QR"
-            )}
-          </Button>
-          <Button type="submit">
-            {isLoading ? (
-              <TailSpin
-                height="25"
-                width="25"
-                color="#fff"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
-            ) : (
-              "Update"
             )}
           </Button>
           <Button
