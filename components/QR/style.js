@@ -30,7 +30,7 @@ export const Image = styled.img`
 export const QRContainer = styled.div`
     display: grid;
     justify-items: center;
-    grid-template-columns: auto;
+    grid-template-columns: repeat(3,33%);
     gap:1rem;
     justify-content: center;
     @media screen and (max-width:768px) {
