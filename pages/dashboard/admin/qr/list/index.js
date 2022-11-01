@@ -1,25 +1,24 @@
 import React from "react";
 import Head from "next/head";
-import { Row, Col } from "react-bootstrap";
 import QRCodeImage from "../../../../../components/QR/Module";
 import Layout from "../../../../../layouts/admin_layout";
+import { Container, Heading } from "../../../../../components/Dashboard/style";
+import { Button, ButtonContainer, Label } from "../../../../../components/Form";
+import {useRouter} from "next/router";
+import { Row, Col } from "react-bootstrap";
+import { TailSpin } from "react-loader-spinner";
 import {
   QRContainer,
-  Container,
   CodeBox,
   CodeLabel,
   LinkHref,
   LinkText,
-  Heading,
+  Link,
 } from "../../../../../components/QR/style";
-import { Button, ButtonContainer } from "../../../../../components/Form";
-import Router from "next/router";
-import { GlobalContext } from "../../../../../context/globalContext";
-import QREditModal from "../../../../../components/Modal/Edit_QR";
 
 export async function getServerSideProps() {
   // Fetch Data
-  const response = await fetch("https://isocksnft.herokuapp.com/api/find/qr");
+  const response = await fetch("http://localhost:1337/api/find/qr");
   const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props
@@ -27,20 +26,20 @@ export async function getServerSideProps() {
 }
 
 const QRList = ({ data }) => {
-  const { modal, setModal } = React.useContext(GlobalContext);
-  const [qrSelect, setQrSelect] = React.useState({
-    id: "",
-    label: "",
-    url: "",
-  });
+  const router = useRouter();
+  const [goBack, setBack] = React.useState(false);
+
+  function back() {
+    setBack(true);
+    router.back();
+  }
 
   return (
     <Layout>
       <Head>
         <title>iSocks | Admin QR Management</title>
       </Head>
-      <Container>
-        {modal.qrEditModal && <QREditModal data={qrSelect} />}
+      <Container height="100vh">
         <Row>
           <Col>
             <Heading>QR Management</Heading>
@@ -48,25 +47,27 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer>
-          {data.map((qr, index) => {
-            return (
-              <CodeBox key={index}>
-                <QRCodeImage id={qr.id} />
-                <CodeLabel>{qr.label}</CodeLabel>
-                <LinkText>
-                  URL:{" "}
-                  <LinkHref target="_blank" href={qr.url}>
-                    {qr.url}
-                  </LinkHref>
-                </LinkText>
-              </CodeBox>
-            );
-          })}
+          {data.length > 0 ? (
+            data.map((qr, index) => {
+              return (
+                <CodeBox key={index}>
+                  <QRCodeImage id={qr.id} />
+                  <CodeLabel>{qr.label}</CodeLabel>
+                  <LinkText>
+                    URL:{" "}
+                    <LinkHref target="_blank" href={qr.url}>
+                      {qr.url}
+                    </LinkHref>
+                  </LinkText>
+                  <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+                    <Button>View QR</Button>
+                  </Link>
+                </CodeBox>
+              );
+            })
+          ) : ""}
         </QRContainer>
-
-        <ButtonContainer marginTop="5rem">
-          <Button onClick={() => Router.back()}>Back</Button>
-        </ButtonContainer>
+        {data.length === 0 ? <Heading fontWeight="300">No QR Code In System</Heading> : ""}
       </Container>
     </Layout>
   );

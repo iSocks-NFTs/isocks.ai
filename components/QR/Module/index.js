@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 const QRCodeImage = ({ id }) => {
   const [src, setSrc] = React.useState();
 
-  QRCode.toDataURL(`https://isocksv2.netlify.app/qr/${id}`).then((data) => {
+  QRCode.toDataURL(`http://localhost:3000/qr/${id}`).then((data) => {
     setSrc(data);
   });
 

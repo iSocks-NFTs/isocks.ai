@@ -55,3 +55,18 @@ export const UserBox = styled.div`
     cursor: pointer;
   }
 `;
+
+export const NavLink = styled.ul`
+  list-style:none;
+  display: flex;
+  column-gap:1rem;
+  @media screen and (max-width:520px) {
+    display:none;
+  }
+`
+
+export const NavLinks = styled.li`
+  color:var(--subtle-text);
+`
+
+export const Link = styled.a``

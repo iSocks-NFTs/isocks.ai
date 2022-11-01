@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 1rem;
+    height: ${({height}) => height ? height : ""};
+    @media screen and (max-width:520px) {
+        height:fit-content;
+    }
 `
 
 export const Heading = styled.h3`
@@ -10,14 +14,17 @@ export const Heading = styled.h3`
     font-weight: ${({fontWeight})  => fontWeight ? fontWeight : ''};
 `
 
+export const Text = styled.p`
+    text-align: ${({textAlign}) => textAlign ? textAlign : ''};
+`
+
 export const TableContainer = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
     row-gap:1rem;
     padding:1rem;
-    height:50vh;
-    overflow-y: scroll;
+    height: fit-content;
 `
 
 export const Span = styled.span`
@@ -43,3 +50,13 @@ export const Block = styled.div`
 `
 
 export const TransactionData = styled.span``
+
+export const Pill = styled.span`
+    width:${({width}) => width ? width : ''};
+    height:${({height}) => height ? height : ''};
+    font-size: ${({fontSize}) => fontSize ? fontSize : '13px'};
+    background-color: var(--primary-brand);
+    color:#fff;
+    padding:10px;
+    border-radius: 8px;
+`

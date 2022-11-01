@@ -2,8 +2,6 @@ import React from "react";
 import {
   FormContainer,
   Form,
-  CheckBoxContainer,
-  CheckBox,
   Label,
   FormGroup,
   Input,
@@ -11,13 +9,11 @@ import {
 import { Button } from "../../Form";
 import { motion } from "framer-motion";
 import { UD } from "../../Form";
-import NonSSRWrapper from "../../no-ssr-wrapper";
 import { useWeb3React } from "@web3-react/core";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
-import { AuthContext } from "../../../context/authContext";
-import { useSigner } from '@web3modal/react'
 import UAuth from "@uauth/js";
-import { UAuthConnector } from "@uauth/web3-react";import {InjectedConnector} from '@web3-react/injected-connector'
+import { UAuthConnector } from "@uauth/web3-react";
+import {InjectedConnector} from '@web3-react/injected-connector'
 import { useAccount } from "@web3modal/react";
 
 export const injected = new InjectedConnector({supportedChainIds: [1]})

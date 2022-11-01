@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Link = styled.a`
+    text-align:center;
+`
+
 export const Container = styled.div`
     padding: 1rem;
     height: fit-content;
@@ -28,6 +32,7 @@ export const QRContainer = styled.div`
     justify-items: center;
     grid-template-columns: repeat(3,33%);
     gap:1rem;
+    justify-content: center;
     @media screen and (max-width:768px) {
         grid-template-columns: repeat(2,50%);
     }

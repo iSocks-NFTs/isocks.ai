@@ -15,14 +15,15 @@ import {
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
 import { GlobalContext } from "../../../context/globalContext";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
-  const router = Router;
+  const [cookie,setCookie] = useCookies(["user"]);
 
-  const { onLogin, isLoggedIn } = React.useContext(AuthContext);
-  const {baseUrl} = React.useContext(GlobalContext);
+  const { onLogin } = React.useContext(AuthContext);
+  const { baseUrl } = React.useContext(GlobalContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -46,33 +47,40 @@ const Login = () => {
       })
       .then((res) => {
         if (res) {
-          if (res.data.status === "No matching User") {
-            setMessage("Incorrect Email/Password");
-            clearField();
-            setIsLoading(false);
-          }
           if (res.data.status === "success") {
             onLogin(res.data.token);
+            setCookie("user",res.data.token,{
+              path:"/",
+              maxAge:3600 * 24 * 3,
+              sameSite:true
+            })
             Router.push("/dashboard/admin");
           }
         }
       })
       .catch((err) => {
-        if (err) {
-          console.log(err);
-          setIsLoading(false);
-          setMessage("Server Error");
+        console.log(err);
+        if (err.message === "Network Error") {
+          setMessage("Network Error");
           clearField();
+          setIsLoading(false);
+        }
+        if (err.response) {
+          const { status } = err.response;
+          if (status === 401) {
+            setMessage("Incorrect Email/Password");
+            clearField();
+            setIsLoading(false);
+          }
+          if (status === 500) {
+            setMessage("Server Error");
+            clearField();
+            setIsLoading(false);
+          }
         }
       });
   }
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      console.log(isLoggedIn);
-      router.push("/dashboard/admin");
-    }
-  }, [isLoggedIn, router]);
 
   return (
     <>
