@@ -39,7 +39,7 @@ const QRList = ({ data }) => {
       <Head>
         <title>iSocks | Admin QR Management</title>
       </Head>
-      <Container>
+      <Container height="100vh">
         <Row>
           <Col>
             <Heading>QR Management</Heading>
@@ -65,10 +65,9 @@ const QRList = ({ data }) => {
                 </CodeBox>
               );
             })
-          ) : (
-            <Heading fontWeight="300">No QR Code in Database</Heading>
-          )}
+          ) : ""}
         </QRContainer>
+        {data.length === 0 ? <Heading fontWeight="300">No QR Code In System</Heading> : ""}
       </Container>
     </Layout>
   );

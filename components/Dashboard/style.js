@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
     padding: 1rem;
     height: ${({height}) => height ? height : ""};
+    @media screen and (max-width:520px) {
+        height:fit-content;
+    }
 `
 
 export const Heading = styled.h3`

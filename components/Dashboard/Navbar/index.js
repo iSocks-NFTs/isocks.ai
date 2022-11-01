@@ -44,19 +44,6 @@ const Navbar = () => {
         onClick={() => Router.push("/dashboard/admin")}
       />
       <>
-        <NavLink>
-          <NavLinks>
-            <Link href="/dashboard/admin">Home</Link>
-          </NavLinks>
-          <NavLinks>
-            <Link href="/dashboard/admin/transactions">Transactions</Link>
-          </NavLinks>
-          <NavLinks>
-            <Link href="/dashboard/admin/qr">QR Management</Link>
-          </NavLinks>
-        </NavLink>
-      </>
-      <>
         <UserBox>
           <HiUserCircle
             onClick={() => setOpenSettings(!openSettings)}
