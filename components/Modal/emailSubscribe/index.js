@@ -4,7 +4,7 @@ import { BackGround, ISockLogo, ModalContainer } from "./Modalstyle";
 import { motion } from "framer-motion";
 
 const SubscribeModal = () => {
-  const { subscribeForm, setSubscribeForm } = useContext(GlobalContext);
+  const { modal,setModal } = useContext(GlobalContext);
 
   return (
     <BackGround
@@ -12,7 +12,7 @@ const SubscribeModal = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={() => setSubscribeForm(!subscribeForm)}
+      onClick={() => setModal({...modal,subscribeForm:!modal.subscribeForm})}
     >
       <ModalContainer
         as={motion.div}

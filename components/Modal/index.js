@@ -4,7 +4,7 @@ import { BackGround, ISockLogo, ModalContainer } from "./Modalstyle";
 import { motion } from "framer-motion";
 
 const Modal = () => {
-  const { comingSoonModal, setComingSoonModal } = useContext(GlobalContext);
+  const { modal,setModal } = useContext(GlobalContext);
 
   return (
     <BackGround
@@ -12,7 +12,7 @@ const Modal = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={() => setComingSoonModal(!comingSoonModal)}
+      onClick={() => setModal({...modal,comingSoonModal:!modal.comingSoonModal})}
     >
       <ModalContainer
         as={motion.div}
