@@ -14,7 +14,7 @@ import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
   const { modal,setModal } = useContext(GlobalContext);
 
   return (
