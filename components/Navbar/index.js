@@ -5,7 +5,6 @@ import {
   Bars,
   NavMenu,
   NavBtn,
-  Image,
   NavBtnLink,
   NavImg,
   MobileNav,
@@ -18,8 +17,10 @@ import Link from "next/link";
 import { GlobalContext } from "../../context/globalContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaDiscord } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [mobileNav, setMobileNav] = React.useState(false);
   const { setComingSoonModal, comingSoonModal } = useContext(GlobalContext);
 
@@ -36,13 +37,13 @@ const Navbar = () => {
         </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="/buy" className={router.pathname == '/buy' ? "active" : ""  || router.pathname == '/vendor' ? "active" : ""}>
             Buy iSocks
           </NavLink>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="/redeem" className={router.pathname == '/redeem' ? "active" : ""} >
             Redeem iSocks
           </NavLink>
-          <NavLink onClick={() => setComingSoonModal(true)} activeStyle>
+          <NavLink href="/verify" className={router.pathname == '/verify' ? "active" : ""}>
             Verify iSocks
           </NavLink>
           {/* Second Nav */}
@@ -52,7 +53,7 @@ const Navbar = () => {
           <NavBtnLink02 href="https://discord.gg/nbrsZY9z59" target="_blank">
             <FaDiscord size={15} />
             Join Discord</NavBtnLink02>
-          <NavBtnLink href="/join-whitelist">Join the whitelist</NavBtnLink>
+          <NavBtnLink href="/preorder">Pre Order</NavBtnLink>
         </NavBtn>
       </Nav>
       <AnimatePresence initial={false} node="wait" onExitComplete={() => null}>
@@ -73,10 +74,11 @@ const Navbar = () => {
               <NavLinkOG href="/">
                 <NavImg src="/img/logo/logo.png" alt="logo" />
               </NavLinkOG>
-              <span onClick={() => closeFunction()}>Buy iSocks</span>
-              <span onClick={() => closeFunction()}>Redeem iSocks</span>
-              <span onClick={() => closeFunction()}>Verify iSocks</span>
+              <Link href="/buy">Buy iSocks</Link>
+              <Link href="/redeem">Redeem iSocks</Link>
+              <Link href="/verify">Verify iSocks</Link>
               <Link href="/join-whitelist">Join Whitelist</Link>
+              <Link href="/preorder">Pre Order</Link>
               <Link href="https://discord.gg/nbrsZY9z59" target="_blank">Join Discord</Link>
             </MobileNav>
             <Close

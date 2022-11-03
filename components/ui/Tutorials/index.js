@@ -1,11 +1,19 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { CardHeader, CardHeaderImg, CardStack, CardText, Heading, P } from "./styles/tutorialStyles";
+import { Row, Col } from "react-bootstrap";
+import {
+  Container,
+  CardHeader,
+  CardHeaderImg,
+  CardStack,
+  CardText,
+  Heading,
+  P,
+} from "./styles/tutorialStyles";
 import { Card } from "./styles/tutorialStyles";
 
 const Tutorial = () => {
   return (
-    <Container className="my-5">
+    <Container>
       <Row>
         <Col>
           <Heading>Tutorials</Heading>
@@ -17,34 +25,46 @@ const Tutorial = () => {
       </Row>
       <CardStack>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
         <Card>
-            <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
-            <CardHeader>Buy on binance</CardHeader>
-            <CardText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CardText>
+          <CardHeaderImg src="/img/tutorials/binance.png" alt="Binance" />
+          <CardHeader>Buy on binance</CardHeader>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </CardText>
         </Card>
       </CardStack>
     </Container>

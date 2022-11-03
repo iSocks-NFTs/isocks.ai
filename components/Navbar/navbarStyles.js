@@ -17,7 +17,7 @@ export const NavImg = styled.img`
   height: 25px;
 `;
 
-export const NavLink = styled.span`
+export const NavLink = styled.a`
   color: var(--subtle-text);
   display: flex;
   align-items: center;
@@ -63,6 +63,11 @@ export const NavMenu = styled.div`
   margin-right: 24px;
   @media screen and (max-width: 768px) {
     display: none;
+  }
+  .active{
+    text-decoration: underline;
+    font-weight: 600;
+    color:var(--primary-brand);
   }
 `;
 
