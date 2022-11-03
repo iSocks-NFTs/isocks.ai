@@ -26,7 +26,6 @@ const GlobalContextProvider = ({ children }) => {
   })
 
   let baseUrl = 'http://13.245.209.100'
-
   return (
     <GlobalContext.Provider
       value={{

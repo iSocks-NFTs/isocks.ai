@@ -17,6 +17,7 @@ export default function Home() {
   const [ready, setReady] = useState(false);
   const { modal,setModal } = useContext(GlobalContext);
 
+
   return (
     <>
       <Head>
