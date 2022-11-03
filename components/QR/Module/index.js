@@ -3,9 +3,9 @@ import { Image } from "../style";
 import QRCode from "qrcode";
 
 const QRCodeImage = ({ id }) => {
-  const [src, setSrc] = React.useState();
+  const [src, setSrc] = React.useState('');
 
-  QRCode.toDataURL(`http://localhost:3000/qr/${id}`).then((data) => {
+  QRCode.toDataURL(`https://isocks.ai/qr/${id}`).then((data) => {
     setSrc(data);
   });
 
