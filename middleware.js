@@ -7,7 +7,7 @@ export async function middleware(req) {
     console.log("Checking for cookies in Auth Page", cookie);
     if (cookie) {
       console.log("Session Exists, redirecting to Admin Dashboard...");
-      return NextResponse.redirect("http://127.0.0.1:3000/dashboard/admin");
+      return NextResponse.redirect("https://isocks.ai/dashboard/admin");
     }
   }
 
@@ -16,7 +16,7 @@ export async function middleware(req) {
     console.log("Checking for cookies in Admin page", cookie);
     if (!cookie) {
       console.log("No Session exists, redirecting to Login...");
-      return NextResponse.redirect("http://127.0.0.1:3000/dashboard/auth");
+      return NextResponse.redirect("https://isocks.ai/dashboard/auth");
     }
   }
 
