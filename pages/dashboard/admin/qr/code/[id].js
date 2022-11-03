@@ -45,7 +45,7 @@ const QR = ({ data }) => {
     setError("");
     const { id } = data;
     axios
-      .delete(`http://localhost:1337/api/delete/qr/${id}`)
+      .delete(`https://api.isocks.ai/api/delete/qr/${id}`)
       .then((response) => {
         if(response){
           console.log(response);
