@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   // Fetch Data on Admin Account
-  const response = await fetch(`http://13.245.209.100/api/find/user/${id}`);
+  const response = await fetch(`https://api.isocks.ai/api/find/user/${id}`);
   const data = await response.json();
   return {
     props: { data },
