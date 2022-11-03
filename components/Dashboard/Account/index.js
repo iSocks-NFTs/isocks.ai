@@ -29,6 +29,10 @@ const AccountInfo = ({ data }) => {
   });
   const [error, setError] = React.useState("");
 
+  function clearField(){
+    setFormData({...formData,oldPassword:'',newPassword:''});
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -48,6 +52,7 @@ const AccountInfo = ({ data }) => {
         if (response.data.status === "ok") {
           setIsLoading(false);
           setModal({ ...modal, successModal: true });
+          clearField();
         }
       })
       .catch((error) => {
@@ -57,10 +62,12 @@ const AccountInfo = ({ data }) => {
           if (status === 401) {
             setIsLoading(false);
             setError("Wrong Password");
+            clearField()
           }
           if (status === 500) {
             setIsLoading(false);
             setError("Server Error");
+            clearField()
           }
         }
       });
