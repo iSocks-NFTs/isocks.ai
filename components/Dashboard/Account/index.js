@@ -41,6 +41,7 @@ const AccountInfo = ({ data }) => {
     if (oldPassword === newPassword) {
       setIsLoading(false);
       setError("Old Password can't be New Password");
+      clearField()
       return;
     }
     axios
