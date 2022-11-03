@@ -19,7 +19,7 @@ export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
 
   // Fetch Data on single QR Code
-  const response = await fetch(`http://13.245.209.100/api/find/qr/${id}`);
+  const response = await fetch(`https://api.isocks.ai/api/find/qr/${id}`);
   const data = await response.json();
 
   return {

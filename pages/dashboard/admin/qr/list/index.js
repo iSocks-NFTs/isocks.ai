@@ -18,7 +18,7 @@ import {
 
 export async function getServerSideProps() {
   // Fetch Data
-  const response = await fetch("http://13.245.209.100/api/find/qr");
+  const response = await fetch("https://api.isocks.ai/api/find/qr");
   const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props
