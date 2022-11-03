@@ -78,7 +78,7 @@ const QR = ({ data }) => {
     setError("");
     const { newLabel, newUrl } = formData;
     axios
-      .post(`https://api.isocks.ai/api/edit/qr/${data.id}`, {
+      .patch(`https://api.isocks.ai/api/edit/qr/${data.id}`, {
         label: newLabel,
         url: newUrl,
       })
