@@ -11,7 +11,7 @@ import Layout from "../../../../layouts/admin_layout";
 
 export async function getServerSideProps() {
   // Fetch Data
-  const response = await fetch("http://localhost:1337/api/find/transaction");
+  const response = await fetch("http://13.245.209.100/api/find/transaction");
   let data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props

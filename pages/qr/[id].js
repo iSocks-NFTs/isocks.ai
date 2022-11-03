@@ -8,7 +8,7 @@ import Head from "next/head";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   // Fetch Data
-  const response = await fetch(`http://localhost:1337/api/find/qr/${id}`);
+  const response = await fetch(`http://13.245.209.100/api/find/qr/${id}`);
   const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props

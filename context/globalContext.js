@@ -25,7 +25,7 @@ const GlobalContextProvider = ({ children }) => {
     qrEditModal:false
   })
 
-  let baseUrl = 'https://api.isocks.ai'
+  let baseUrl = 'http://13.245.209.100'
 
   return (
     <GlobalContext.Provider
