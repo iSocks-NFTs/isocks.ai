@@ -39,14 +39,14 @@ const QRList = ({ data }) => {
       <Head>
         <title>iSocks | Admin QR Management</title>
       </Head>
-      <Container height="100vh">
+      <Container height="fit-content">
         <Row>
           <Col>
             <Heading>QR Management</Heading>
             <Heading fontWeight="300">Edit/Delete QR Codes</Heading>
           </Col>
         </Row>
-        <QRContainer>
+        <QRContainer height="fit-content">
           {data.length > 0 ? (
             data.map((qr, index) => {
               return (
