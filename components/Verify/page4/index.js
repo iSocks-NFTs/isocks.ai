@@ -114,7 +114,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
               </Circle>
               <Option>iSocks</Option>
               <OptionDescription>
-                Take a photo of your iscoks please your photos should clearly
+                Take a photo of your iSocks please your photos should clearly
                 show full card.
               </OptionDescription>
               <BuyOptionLink>
