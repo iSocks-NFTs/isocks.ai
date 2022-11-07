@@ -183,7 +183,7 @@ export const FileInput = styled.input`
 
 export const UD = styled.img`
   position:absolute;
-  top:2rem;
+  top:2.15rem;
   left:1.3rem;
   width:${(props) => props.width ? props.width : '45px'};
   height:${(props) => props.height ? props.height : '45px'};

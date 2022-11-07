@@ -56,6 +56,10 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     }
   }, [account]);
 
+  function next(){
+    setPage(page + 1);
+  }
+
   return (
     <>
       <FormContainer
@@ -106,7 +110,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           >
             Clear Domain
           </Button>
-          <Button type="button">Continue</Button>
+          <Button type="button" onClick={() => next()}>Continue</Button>
         </Form>
       </FormContainer>
     </>
