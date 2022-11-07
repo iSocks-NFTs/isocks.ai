@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import {
   Container,
   FormContainer,
@@ -15,7 +15,7 @@ import {
 import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
 import countryList from "react-select-country-list";
-import CountrySelector from "../../CountrySelector";
+import CountrySelector from "../../components/CountrySelector";
 
 const RedeemedComponent = () => {
   const [formValues, setFormValues] = React.useState({
@@ -32,7 +32,7 @@ const RedeemedComponent = () => {
   const options = useMemo(() => countryList().getData(), []);
   const changeHandler = (value) => {
     setValue(value);
-    setFormValues({...formValues,countryOfResidence:value})
+    setFormValues({ ...formValues, countryOfResidence: value });
   };
 
   const emailRef = React.useRef();
@@ -40,7 +40,6 @@ const RedeemedComponent = () => {
   function handleSubmit(e) {
     e.preventDefault();
   }
-
 
   return (
     <Container>
@@ -70,7 +69,11 @@ const RedeemedComponent = () => {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="country">Country</Label>
-            <CountrySelector options={options} value={value} changeHandler={changeHandler} />
+            <CountrySelector
+              options={options}
+              value={value}
+              changeHandler={changeHandler}
+            />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="currentState">Current State</Label>
