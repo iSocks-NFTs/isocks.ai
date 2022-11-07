@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height:130vh;
+  height:150vh;
   border:1px solid transparent;
   background-image: url('img/bg/logo_bg.png');
   background-position: 100% 50%;
