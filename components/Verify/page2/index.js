@@ -1,23 +1,27 @@
-import React from "react";
+import React,{ useState, useMemo } from "react";
 import {
   FormContainer,
   Form,
-  CheckBoxContainer,
-  CheckBox,
   Label,
   FormGroup,
   Input,
   Button,
 } from "../style";
 import { motion } from "framer-motion";
-import {countries} from 'country-data-list';
+import countryList from "react-select-country-list";
+import CountrySelector from "../../CountrySelector";
 
 const Step2 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
+
+  const changeHandler = (value) => {
+    setValue(value);
+  };
 
   React.useEffect(() => {
     inputRef.current.focus();
-    console.log(countries.all)
   }, []);
 
   return (
@@ -69,13 +73,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
           <Label htmlFor="countryOfResidence" fontWeight="400">
             Country of Residence
           </Label>
-          <Input
-            id="countryOfResidence"
-            value={formData.countryOfResidence}
-            onChange={(e) =>
-              setFormData({ ...formData, countryOfResidence: e.target.value })
-            }
-          />
+          <CountrySelector options={options} value={value} changeHandler={changeHandler} />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="nationality" fontWeight="400">
