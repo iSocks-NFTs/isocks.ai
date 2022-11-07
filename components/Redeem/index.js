@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import {
   Container,
   FormContainer,
@@ -14,30 +14,32 @@ import {
 } from "./style";
 import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
-import { motion } from "framer-motion";
-import { useCountries } from "use-react-countries";
-import Dropdown from "../DropDown";
+import countryList from "react-select-country-list";
+import CountrySelector from "../../components/CountrySelector";
 
 const RedeemedComponent = () => {
   const [formValues, setFormValues] = React.useState({
     emailAddress: "",
-    country: null,
+    country: "",
     currentState: "",
     walletAddress: "",
     nftContractId: "",
     vendorCode: "",
   });
-  const [loading, setLoading] = React.useState(false);
-  const [countryListData, setCountryListData] = React.useState([]);
 
-  const { countries } = useCountries();
+  const [loading, setLoading] = React.useState(false);
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
+  const changeHandler = (value) => {
+    setValue(value);
+    setFormValues({ ...formValues, countryOfResidence: value });
+  };
 
   const emailRef = React.useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
   }
-
 
   return (
     <Container>
@@ -66,7 +68,12 @@ const RedeemedComponent = () => {
             />
           </FormGroup>
           <FormGroup>
-            <Dropdown />
+            <Label htmlFor="country">Country</Label>
+            <CountrySelector
+              options={options}
+              value={value}
+              changeHandler={changeHandler}
+            />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="currentState">Current State</Label>
@@ -82,7 +89,7 @@ const RedeemedComponent = () => {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="walletAddress">
-              Wallet address used in purchase
+              Wallet Address used in purchase
             </Label>
             <Input
               type="text"
