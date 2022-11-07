@@ -6,6 +6,9 @@ export const Container = styled.div`
     position: relative;
     padding-top:1rem;
     background-color: #FAFAFA;
+    @media screen and (max-width:330px) {
+        padding-top:0;
+    }
 `
 
 export const Heading = styled.h3`
