@@ -18,6 +18,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
 
   const changeHandler = (value) => {
     setValue(value);
+    setFormData({...formData,countryOfResidence:value})
   };
 
   React.useEffect(() => {
