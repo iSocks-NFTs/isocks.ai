@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 5rem 0;
+  height:150vh;
+  border:1px solid transparent;
+  background-image: url('img/bg/logo_bg.png');
+  background-position: 100% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const Heading = styled.h3`
