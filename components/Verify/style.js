@@ -7,6 +7,10 @@ export const Container = styled.div`
   background-position: 100% 50%;
   background-size: auto 95%;
   background-repeat: no-repeat;
+  @media screen and (max-width:380px) {
+    height:fit-content;
+    background-position: center;
+  }
 `;
 
 export const Heading = styled.h3`
