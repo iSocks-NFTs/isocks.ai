@@ -91,7 +91,8 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       });
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     if(phoneOtp.length === 6){
       verifyOTP(phoneOtp);
     }
@@ -140,7 +141,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={() => handleSubmit(e)}>
           <Label>Kindly impute the code sent to {formData.emailAddress}</Label>
           <OTPContainer>
             {otp.map((data, index) => {
