@@ -48,6 +48,7 @@
     "react-select": "^5.4.0",
     "react-select-country-list": "^2.2.3",
     "styled-components": "^5.3.5",
+    "styled-qr-code": "^1.0.0",
     "three": "^0.144.0",
     "use-react-countries": "^1.1.0",
     "web3": "^1.8.0",
