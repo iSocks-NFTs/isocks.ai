@@ -3,7 +3,7 @@ import React from "react";
 export const TransactionContext = React.createContext({
   userId: "",
   transactionId: "",
-  storeData:(userId,transactionId) => {}
+  storeData: (userId, transactionId) => {},
 });
 
 const TransactionContextProvider = ({ children }) => {
@@ -21,22 +21,30 @@ const TransactionContextProvider = ({ children }) => {
         userId: "",
         transactionId: "",
       });
+    } else {
+      const userId = window.localStorage.getItem("userId");
+      const transactionId = window.localStorage.getItem("transactionId");
+      setTransactionData({
+        ...transactionData,
+        userId,
+        transactionId,
+      });
     }
   }, []);
 
-  const storeData = (userId,transactionId) =>{
-    setTransactionData({...transactionData,userId});
-    setTransactionData({...transactionData,transactionId});
-    window.localStorage.setItem('userId',userId);
-  }
-
+  const storeData = (userId, transactionId) => {
+    setTransactionData({ ...transactionData, userId });
+    setTransactionData({ ...transactionData, transactionId });
+    window.localStorage.setItem("userId", userId);
+    window.localStorage.setItem("transactionId", transactionId);
+  };
 
   return (
     <TransactionContext.Provider
       value={{
         userId: transactionData.userId,
         transactionId: transactionData.transactionId,
-        storeData
+        storeData,
       }}
     >
       {children}
