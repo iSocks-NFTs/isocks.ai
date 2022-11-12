@@ -74,7 +74,6 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       .then((response) => {
         const { data } = response;
         if (data.status === "ok") {
-          setPage(page + 1);
           setIsSubmitting(false);
         }
         if (data.status === "failed") {
@@ -83,12 +82,13 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           setError(true);
         }
       })
+      .then(setPage(page + 1))
       .catch((error) => {
         setIsSubmitting(false);
         console.log(error);
         setMsg(true);
         setError(true);
-      });
+      })
   }
 
   function handleSubmit(e) {
@@ -141,7 +141,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form onSubmit={() => handleSubmit(e)}>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Label>Kindly impute the code sent to {formData.emailAddress}</Label>
           <OTPContainer>
             {otp.map((data, index) => {
