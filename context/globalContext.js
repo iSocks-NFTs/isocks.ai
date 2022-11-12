@@ -16,6 +16,7 @@ export const GlobalContext = React.createContext({
 
 const GlobalContextProvider = ({ children }) => {
   const [openSettings,setOpenSettings] = React.useState(false);
+  const [baseUrl,setBaseUrl] = React.useState('')
 
   const [modal,setModal] = React.useState({
     comingSoonModal:false,
@@ -25,7 +26,16 @@ const GlobalContextProvider = ({ children }) => {
     qrEditModal:false
   })
 
-  let baseUrl = 'https://api.isocks.ai'
+  React.useEffect(() =>{
+    if(process.env === "PRODUCTION"){
+      setBaseUrl('https://api.isocks.ai')
+    } else {
+      setBaseUrl('http://localhost:1337')
+    }
+  },[])
+
+
+
   return (
     <GlobalContext.Provider
       value={{
