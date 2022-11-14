@@ -74,8 +74,8 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       .then((response) => {
         const { data } = response;
         if (data.status === "ok") {
-          setPage(page + 1);
           setIsSubmitting(false);
+          setPage(page + 1)
         }
         if (data.status === "failed") {
           setIsSubmitting(false);
@@ -88,15 +88,15 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         console.log(error);
         setMsg(true);
         setError(true);
-      });
+      })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(phoneOtp.length === 6){
+    if(phoneOtp.join("").length === 6){
       verifyOTP(phoneOtp);
     }
-    if(otp.length === 6){
+    if(otp.join("").length === 6){
       verifyOTP(otp);
     }
   }
@@ -141,7 +141,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form onSubmit={() => handleSubmit(e)}>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Label>Kindly impute the code sent to {formData.emailAddress}</Label>
           <OTPContainer>
             {otp.map((data, index) => {

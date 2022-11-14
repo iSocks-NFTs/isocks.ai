@@ -20,7 +20,7 @@ const BuyOptionsComponent = () => {
     uploadedProof:{
       uploaded:false,
       imgfileName:'test.png',
-      paymentConfirmed:false
+      imgFile:null
     }
   });
 

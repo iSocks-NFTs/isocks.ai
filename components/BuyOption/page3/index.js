@@ -37,13 +37,9 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       })
       .then((response) => {
         if (response.data.status === "ok") {
-          const { userWalletTransactionRecords } = response.data;
-          const transaction =
-            userWalletTransactionRecords[
-              userWalletTransactionRecords.length - 1
-            ];
-          const { iSockUser, id } = transaction;
-          storeData(iSockUser, id);
+          const { record } = response.data;
+          const { transactionId, user } = record;
+          storeData(user, transactionId);
           setIsSubmitting(false);
           setPage(page + 1);
         }
