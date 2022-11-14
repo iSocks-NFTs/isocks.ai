@@ -75,6 +75,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         const { data } = response;
         if (data.status === "ok") {
           setIsSubmitting(false);
+          setPage(page + 1)
         }
         if (data.status === "failed") {
           setIsSubmitting(false);
@@ -82,7 +83,6 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           setError(true);
         }
       })
-      .then(setPage(page + 1))
       .catch((error) => {
         setIsSubmitting(false);
         console.log(error);
@@ -93,10 +93,10 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(phoneOtp.length === 6){
+    if(phoneOtp.join("").length === 6){
       verifyOTP(phoneOtp);
     }
-    if(otp.length === 6){
+    if(otp.join("").length === 6){
       verifyOTP(otp);
     }
   }
