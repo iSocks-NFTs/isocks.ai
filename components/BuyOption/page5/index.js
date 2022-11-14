@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   CardContainer,
   Container,
@@ -28,24 +29,68 @@ import {
   ButtonContainer,
   PaymentMessage,
 } from "../style";
-import { Button, Uploaded, Icon, FileInput,Form } from "../../Form";
+import { Button, Uploaded, Icon, FileInput, Form } from "../../Form";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { GlobalContext } from "../../../context/globalContext";
 
-const Step5 = ({ page, setPage, formData, setFormData }) => {
+const Step5 = ({ formData, setFormData }) => {
   const [copied, setCopied] = React.useState(false);
+  const [id, setId] = React.useState("");
   const { uploadedProof } = formData;
+  const { baseUrl } = React.useContext(GlobalContext);
+
+  React.useEffect(() => {
+    const id = window.localStorage.getItem("transactionId");
+    console.log(id);
+    if (id) {
+      setId(id);
+    }
+  });
 
   function handleUpload(e) {
     let files = e.target.files;
+    let img = files[0];
+
+    if (
+      !["image/jpeg", "image/gif", "image/png", "image/svg+xml"].includes(
+        img.type
+      )
+    ) {
+      alert("Only images are allowed!");
+      console.log("Only images are allowed.");
+      return;
+    }
+
+    if (img.size > 3 * 1024 * 1024) {
+      alert("File must be less than 3MB");
+      console.log("File must be less than 3MB");
+      return;
+    }
+
+    console.log("Attempting Upload...");
+    const fd = new FormData();
+    fd.append("payment-proof", img, img.name);
+
     setFormData({
       ...formData,
       uploadedProof: {
         uploaded: true,
         imgfileName: files[0].name,
+        imgFile: files[0],
       },
     });
+
+    console.log(fd);
+
+    fetch(`${baseUrl}/api/upload/payment/${id}`, {
+      method: "PATCH",
+      body: fd,
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -137,11 +182,11 @@ const Step5 = ({ page, setPage, formData, setFormData }) => {
           )}
         </PaymentProof>
         <Form>
-        <FileInput
-          id="fileUpload"
-          type="file"
-          onChange={(e) => handleUpload(e)}
-        />
+          <FileInput
+            id="fileUpload"
+            type="file"
+            onChange={(e) => handleUpload(e)}
+          />
         </Form>
       </CardContainer>
       {uploadedProof.paymentConfirmed && (
