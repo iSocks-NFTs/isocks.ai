@@ -4,14 +4,18 @@ import { useRouter } from "next/router";
 import { TailSpin } from "react-loader-spinner";
 import Head from "next/head";
 
-// import QRCodeImage from "../../components/QR/Module";
 export async function getServerSideProps(context) {
   const { id } = context.query;
+  const baseURL =
+    process.env === "PRODUCTION"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const endpoint = `/api/find/qr/${id}`;
   // Fetch Data
-  const response = await fetch(`https://api.isocks.ai/api/find/qr/${id}`);
+  const response = await fetch(`${baseURL + endpoint}`);
   const data = await response.json();
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { data },
   };
 }
 
@@ -32,11 +36,11 @@ const TextBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  .label{
+  .label {
     font-weight: bolder;
-    font-size:28px;
+    font-size: 28px;
   }
-  .url{
+  .url {
     font-size: 20px;
   }
 `;
@@ -44,7 +48,7 @@ const TextBox = styled.div`
 const QR = ({ data }) => {
   const router = useRouter();
   useEffect(() => {
-    if(data.url){
+    if (data.url) {
       setTimeout(() => {
         router.push(data.url);
       }, 5000);
@@ -54,7 +58,7 @@ const QR = ({ data }) => {
   return (
     <Container>
       <Head>
-        <title>iSocks QR | {data.label ? data.label : 'Invalid QR Code'}</title>
+        <title>iSocks QR | {data.label ? data.label : "Invalid QR Code"}</title>
       </Head>
       <TextBox>
         <TailSpin
@@ -69,7 +73,13 @@ const QR = ({ data }) => {
         />
         <span className="label">{data?.label}</span>
         <span className="url">{data?.url}</span>
-        {data.url ? <Link href={data.url ? data.url : 'isocks.ai'}>Redirecting to link shortly</Link> : "Invalid QR Code"}
+        {data.url ? (
+          <Link href={data.url ? data.url : "isocks.ai"}>
+            Redirecting to link shortly
+          </Link>
+        ) : (
+          "Invalid QR Code"
+        )}
       </TextBox>
     </Container>
   );

@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import Head from "next/head";
-import axios from "axios";
+import axios from "../../api/axios";
 import { TailSpin } from "react-loader-spinner";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { Heading, P } from "../../../components/BuyOption/style";
 import {
   FormContainer,
@@ -14,8 +14,8 @@ import {
 } from "../../../components/Form";
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
-import { GlobalContext } from "../../../context/globalContext";
 import { useCookies } from "react-cookie";
+const LOGIN = '/api/login';
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
@@ -23,7 +23,6 @@ const Login = () => {
   const [cookie,setCookie] = useCookies(["user"]);
 
   const { onLogin } = React.useContext(AuthContext);
-  const { baseUrl } = React.useContext(GlobalContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -41,7 +40,7 @@ const Login = () => {
     const password = passwordRef.current.value;
 
     axios
-      .post(`${baseUrl}/api/login`, {
+      .post(LOGIN, {
         emailAddress,
         password,
       })

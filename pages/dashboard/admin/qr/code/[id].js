@@ -11,15 +11,21 @@ import {
 } from "../../../../../components/Form";
 import { Container } from "../../../../../components/QR/style";
 import Layout from "../../../../../layouts/admin_layout";
-import axios from "axios";
+import axios from "../../../../api/axios";
 import { TailSpin } from "react-loader-spinner";
 import { useRouter } from "next/router";
+import SuccessModal from "../../../../../components/Modal/success";
+import { GlobalContext } from "../../../../../context/globalContext";
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
-
+  const FIND_QR = `/api/find/qr/${id}`;
+  const baseURL =
+    process.env === "PRODUCTION"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   // Fetch Data on single QR Code
-  const response = await fetch(`https://api.isocks.ai/api/find/qr/${id}`);
+  const response = await fetch(`${baseURL + FIND_QR}`);
   const data = await response.json();
 
   return {
@@ -39,15 +45,17 @@ const QR = ({ data }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
   const [goBack, setBack] = React.useState(false);
+  const { modal, setModal } = React.useContext(GlobalContext);
 
   function deleteQr() {
     setIsDeleting(true);
     setError("");
     const { id } = data;
+    const endpoint = `/api/delete/qr/${id}`;
     axios
-      .delete(`https://api.isocks.ai/api/delete/qr/${id}`)
+      .delete(endpoint)
       .then((response) => {
-        if(response){
+        if (response) {
           console.log(response);
           router.push("/dashboard/admin/qr/list");
         }
@@ -73,19 +81,24 @@ const QR = ({ data }) => {
   }
 
   function handleSubmit(e) {
-    e.preventDefault;
+    e.preventDefault();
     setIsLoading(true);
     setError("");
     const { newLabel, newUrl } = formData;
+    const endpoint = `/api/edit/qr/${data.id}`;
+
     axios
-      .patch(`https://api.isocks.ai/api/edit/qr/${data.id}`, {
+      .patch(endpoint, {
         label: newLabel,
         url: newUrl,
       })
       .then((response) => {
-        if(response){
+        if (response) {
           console.log(response);
-          router.push("/dashboard/admin/qr/list");
+          setModal({ ...modal, successModal: true });
+          setTimeout(() => {
+            router.push("/dashboard/admin/qr/list");
+          }, 1000);
         }
       })
       .catch((error) => {
@@ -105,6 +118,11 @@ const QR = ({ data }) => {
   }
   return (
     <Layout>
+      {modal.successModal ? (
+        <SuccessModal message="Dynamic QR Update Successful" />
+      ) : (
+        <></>
+      )}
       <Head>
         <title>iSocks | Editing QR Code {data?.label}</title>
       </Head>

@@ -12,15 +12,14 @@ import {
   Icon,
 } from "../../Form";
 import { motion } from "framer-motion";
-import axios from "axios";
+import axios from "../../../pages/api/axios";
 import { TailSpin } from "react-loader-spinner";
 import { TransactionContext } from "../../../context/transactionContext";
-import { GlobalContext } from "../../../context/globalContext";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { storeData } = React.useContext(TransactionContext);
-  const { baseUrl } = React.useContext(GlobalContext);
+  const CREATE_TRANSACTION = "/api/transaction/create";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +28,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     const newEmailAddress = emailAddress.toLowerCase();
 
     axios
-      .post(`${baseUrl}/api/transaction/create`, {
+      .post(CREATE_TRANSACTION, {
         emailAddress: newEmailAddress,
         phoneNumber,
         vendorId: vendorOption,

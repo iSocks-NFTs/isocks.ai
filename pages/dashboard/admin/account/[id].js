@@ -4,13 +4,15 @@ import { Container, Heading } from "../../../../components/Dashboard/style";
 import AccountInfo from "../../../../components/Dashboard/Account";
 import Layout from "../../../../layouts/admin_layout";
 import { Button, ButtonContainer } from "../../../../components/Form";
+import axios from '../../../api/axios';
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
+  const FIND_USER = `/api/find/user/${id}`
 
   // Fetch Data on Admin Account
-  const response = await fetch(`https://api.isocks.ai/api/find/user/${id}`);
-  const data = await response.json();
+  const response = axios.get(FIND_USER);
+  const data = await response.data;
   return {
     props: { data },
   };

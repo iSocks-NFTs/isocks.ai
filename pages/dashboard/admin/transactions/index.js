@@ -10,8 +10,10 @@ import { Button, ButtonContainer } from "../../../../components/Form";
 import Layout from "../../../../layouts/admin_layout";
 
 export async function getServerSideProps() {
+  const baseURL = process.env === "PRODUCTION" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const endpoint = `/api/find/transaction`
   // Fetch Data
-  const response = await fetch("https://api.isocks.ai/api/find/transaction");
+  const response = await fetch(`${baseURL + endpoint}`);
   let data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props

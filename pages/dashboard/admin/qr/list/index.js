@@ -19,12 +19,13 @@ import {
   LinkText,
   Link,
 } from "../../../../../components/QR/style";
+import axios from "../../../../api/axios";
 
 export async function getServerSideProps() {
-  const domain = "https://api.isocks.ai";
-  // Fetch Data
-  const response = await fetch(`${domain}/api/find/qr`);
-  const data = await response.json();
+  const baseURL = process.env === "PRODUCTION" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const QR_LIST = `/api/find/qr`;
+  const response = await fetch(`${baseURL + QR_LIST}`)
+  const data = await response.json()
   return {
     props: { data }, // will be passed to the page component as props
   };
