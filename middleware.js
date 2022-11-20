@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+const baseURL = process.env === "PRODUCTION" ? "https://isocks.ai" : 'http://localhost:3000'
 
 export async function middleware(req) {
   const url = req.url;
@@ -7,7 +8,7 @@ export async function middleware(req) {
     console.log("Checking for cookies in Auth Page", cookie);
     if (cookie) {
       console.log("Session Exists, redirecting to Admin Dashboard...");
-      return NextResponse.redirect("https://isocks.ai/dashboard/admin");
+      return NextResponse.redirect(`${baseURL}/dashboard/admin`);
     }
   }
 
@@ -16,7 +17,7 @@ export async function middleware(req) {
     console.log("Checking for cookies in Admin page", cookie);
     if (!cookie) {
       console.log("No Session exists, redirecting to Login...");
-      return NextResponse.redirect("https://isocks.ai/dashboard/auth");
+      return NextResponse.redirect(`${baseURL}/dashboard/auth`);
     }
   }
 
