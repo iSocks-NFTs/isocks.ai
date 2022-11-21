@@ -22,7 +22,7 @@ import {
 import axios from "../../../../api/axios";
 
 export async function getServerSideProps() {
-  const baseURL = process.env.NODE_ENV === "PRODUCTION" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const baseURL = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const QR_LIST = `/api/find/qr`;
   const response = await fetch(`${baseURL + QR_LIST}`)
   const data = await response.json()

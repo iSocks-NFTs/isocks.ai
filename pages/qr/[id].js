@@ -7,7 +7,7 @@ import Head from "next/head";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const baseURL =
-    process.env.NODE_ENV === "PRODUCTION"
+    process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const endpoint = `/api/find/qr/${id}`;

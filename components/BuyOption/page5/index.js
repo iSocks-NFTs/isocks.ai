@@ -46,7 +46,7 @@ const Step5 = ({ formData, setFormData }) => {
   const [errorMsg, setErrorMsg] = React.useState("");
 
   const baseURL =
-    process.env.NODE_ENV === "PRODUCTION"
+    process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const endpoint = `/api/upload/payment/${id}`;
