@@ -22,7 +22,7 @@ export const P = styled.p`
 export const Container = styled.div`
   max-width: 100%;
   padding:10px 0;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
   background-image: url("/roadmap/background.png");
   background-position: center;
   background-repeat: no-repeat;
