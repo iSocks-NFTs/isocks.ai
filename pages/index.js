@@ -14,7 +14,7 @@ import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(true);
   const { modal,setModal } = useContext(GlobalContext);
 
 
@@ -25,7 +25,7 @@ export default function Home() {
         <link rel="icon" href="/img/icons/logo.svg" />
         <meta name="author" content="Adefeyitimi Adeyeloja" />
         <meta name="description" content="Welcome to the iSocks NFT Community" />
-        <meta name="keywords" content="iSocks, iSocks.ai, iSocks NFT Community, iSocks, meta nfts, Binance, Open Sea" />
+        <meta name="keywords" content="iSocks, iSocks.ai, iSocks NFT Community, iSocks, Meta nfts, Binance, Open Sea" />
         <meta name="robots" content="index" />
       </Head>
       {ready ? (

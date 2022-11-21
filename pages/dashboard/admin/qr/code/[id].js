@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
   const FIND_QR = `/api/find/qr/${id}`;
   const baseURL =
-    process.env === "PRODUCTION"
+    process.env.NODE_ENV === "PRODUCTION"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   // Fetch Data on single QR Code

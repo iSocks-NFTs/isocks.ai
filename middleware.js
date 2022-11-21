@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-const baseURL = process.env === "PRODUCTION" ? "https://isocks.ai" : 'http://localhost:3000'
+const baseURL = process.env.NODE_ENV === "PRODUCTION" ? "https://isocks.ai" : 'http://localhost:3000'
 
 export async function middleware(req) {
   const url = req.url;

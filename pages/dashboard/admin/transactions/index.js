@@ -10,7 +10,7 @@ import { Button, ButtonContainer } from "../../../../components/Form";
 import Layout from "../../../../layouts/admin_layout";
 
 export async function getServerSideProps() {
-  const baseURL = process.env === "PRODUCTION" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const baseURL = process.env.NODE_ENV === "PRODUCTION" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const endpoint = `/api/find/transaction`
   // Fetch Data
   const response = await fetch(`${baseURL + endpoint}`);
