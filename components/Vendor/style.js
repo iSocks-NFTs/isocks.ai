@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   grid-template-columns:repeat(3,25%);
   justify-content: center;
   @media screen and (max-width:750px) {
-    grid-template-columns: auto;
+    grid-template-columns:repeat(2,50%);
     grid-gap: 1rem;
   }
   @media screen and (max-width:520px) {
