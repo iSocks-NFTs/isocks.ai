@@ -47,6 +47,7 @@
     "react-loader-spinner": "^5.3.4",
     "react-select": "^5.4.0",
     "react-select-country-list": "^2.2.3",
+    "react-swipeable": "^7.0.0",
     "styled-components": "^5.3.5",
     "styled-qr-code": "^1.0.0",
     "three": "^0.144.0",
