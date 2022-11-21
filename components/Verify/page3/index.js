@@ -19,16 +19,16 @@ import { useAccount } from "@web3modal/react";
 export const injected = new InjectedConnector({supportedChainIds: [1]})
 
 export const walletconnect = new WalletConnectConnector({
-  infuraId: "24a33794805b4a2c962e674f31277ba4",
+  infuraId: process.env.NEXT_PUBLIC_INFURA_ID,
   qrcode: true,
 })
 
 const uauth = new UAuthConnector({
   uauth: new UAuth({
-    clientID: "8d942179-0841-496c-a1d4-a6c87b19636b",
-    redirectUri: "https://isocksv2.netlify.app/verify",
-    postLogoutRedirectUri: "https://isocksv2.netlify.app/verify",
-    scope: "openid wallet",
+    clientID: process.env.NEXT_PUBLIC_CLIENT_ID,
+    redirectUri: process.env.NEXT_PUBLIC_REDIRECTURI,
+    postLogoutRedirectUri: process.env.NEXT_PUBLIC_POSTLOGOUT,
+    scope: process.env.NEXT_PUBLIC_SCOPE,
   }),
   connectors: { injected, walletconnect },
 });

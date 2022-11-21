@@ -13,8 +13,7 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../../../context/authContext";
 
 const Step1 = ({ formData, setFormData, page, setPage }) => {
-  const {udUsername} = React.useContext(AuthContext)
-  const inputRef = React.useRef();
+
   React.useEffect(() =>{
     const ud = window.localStorage.getItem("username");
     if(ud !== null){

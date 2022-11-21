@@ -34,12 +34,22 @@ import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { GlobalContext } from "../../../context/globalContext";
+import FailModal from "../../Modal/fail";
+import SuccessModal from "../../Modal/success";
+import Router from "next/router";
 
 const Step5 = ({ formData, setFormData }) => {
   const [copied, setCopied] = React.useState(false);
   const [id, setId] = React.useState("");
   const { uploadedProof } = formData;
-  const { baseUrl } = React.useContext(GlobalContext);
+  const { modal, setModal } = React.useContext(GlobalContext);
+  const [errorMsg, setErrorMsg] = React.useState("");
+
+  const baseURL =
+    process.env === "PRODUCTION"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const endpoint = `/api/upload/payment/${id}`;
 
   React.useEffect(() => {
     const id = window.localStorage.getItem("transactionId");
@@ -50,6 +60,7 @@ const Step5 = ({ formData, setFormData }) => {
   });
 
   function handleUpload(e) {
+    setErrorMsg("");
     let files = e.target.files;
     let img = files[0];
 
@@ -58,13 +69,14 @@ const Step5 = ({ formData, setFormData }) => {
         img.type
       )
     ) {
-      alert("Only images are allowed!");
+      setErrorMsg("Only images are allowed!");
       console.log("Only images are allowed.");
+      setModal({ ...modal, failModal: true });
       return;
     }
 
     if (img.size > 3 * 1024 * 1024) {
-      alert("File must be less than 3MB");
+      setErrorMsg("File must be less than 3MB");
       console.log("File must be less than 3MB");
       return;
     }
@@ -84,12 +96,18 @@ const Step5 = ({ formData, setFormData }) => {
 
     console.log(fd);
 
-    fetch(`${baseUrl}/api/upload/payment/${id}`, {
+    fetch(`${baseURL + endpoint}`, {
       method: "PATCH",
       body: fd,
     })
       .then((res) => res.json())
-      .then((json) => console.log(json))
+      .then((json) => {
+        setModal({ ...modal, successModal: true });
+        console.log(json);
+        setTimeout(() => {
+          Router.push('/');
+        }, 2000);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -100,6 +118,19 @@ const Step5 = ({ formData, setFormData }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      {modal.failModal ? (
+        <FailModal heading="Upload Failed" message={errorMsg} />
+      ) : (
+        <></>
+      )}
+      {modal.successModal ? (
+        <SuccessModal
+          heading="Upload Successful"
+          message="Transaction uploaded!"
+        />
+      ) : (
+        <></>
+      )}
       <Row>
         <Col>
           <Heading>Vendor</Heading>

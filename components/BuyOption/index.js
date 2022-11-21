@@ -10,7 +10,7 @@ import SuccessModal from "../Modal/success";
 import { AnimatePresence } from "framer-motion";
 
 const BuyOptionsComponent = () => {
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(4);
   const [formData, setFormData] = React.useState({
     vendorOption:'',
     emailAddress:'',
