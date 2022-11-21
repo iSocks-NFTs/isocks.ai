@@ -53,7 +53,7 @@ export const P = styled.p`
 export const CardStack = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 26%);
-  justify-items:center;
+  justify-content:center;
   row-gap: 1rem;
   width: 85%;
   margin: 0 auto;
