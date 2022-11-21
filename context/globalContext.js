@@ -6,33 +6,25 @@ export const GlobalContext = React.createContext({
     addressVerified:false,
     subscribeForm:false,
     successModal:false,
-    qrEditModal:false
+    qrEditModal:false,
+    failModal:false
   },
   setModal:() => {},
   openSettings:false,
   setOpenSettings:() => {},
-  baseUrl:''
 });
 
 const GlobalContextProvider = ({ children }) => {
   const [openSettings,setOpenSettings] = React.useState(false);
-  const [baseUrl,setBaseUrl] = React.useState('')
 
   const [modal,setModal] = React.useState({
     comingSoonModal:false,
     addressVerified:false,
     subscribeForm:false,
     successModal:false,
-    qrEditModal:false
+    qrEditModal:false,
+    failModal:false
   })
-
-  React.useEffect(() =>{
-    if(process.env === "PRODUCTION"){
-      setBaseUrl('https://api.isocks.ai')
-    } else {
-      setBaseUrl('http://localhost:1337')
-    }
-  },[])
 
 
 
