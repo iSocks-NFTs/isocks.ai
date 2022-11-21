@@ -35,7 +35,6 @@ const GlobalContextProvider = ({ children }) => {
         setModal,
         openSettings,
         setOpenSettings,
-        baseUrl
       }}
     >
       {children}
