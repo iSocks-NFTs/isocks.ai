@@ -8,12 +8,19 @@ export const CardContainer = styled.div`
   display: grid;
   grid-template-columns:repeat(3,25%);
   justify-content: center;
-  @media screen and (max-width:750px) {
-    grid-template-columns:repeat(2,50%);
+  @media screen and (max-width:1024px) {
+    justify-items:center;
+    grid-template-columns:repeat(2,30%);
+    grid-gap:1rem;
+  }
+  @media screen and (max-width:768px) {
+    grid-template-columns:repeat(2,40%);
+    justify-items:center;
     grid-gap: 1rem;
   }
   @media screen and (max-width:520px) {
     grid-template-columns: auto;
+    justify-items:center;
     grid-gap: 1rem;
   }
 `;
