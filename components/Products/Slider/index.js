@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import React from "react";
 import {
   SliderContainer,
@@ -6,10 +5,6 @@ import {
   ProductDescription,
   ProductCard,
 } from "../style";
-import { useSwipeable } from "react-swipeable";
-
-import carouselReducer from "../../../reducer/carouselReducer";
-
 const productList = [
   {
     imgUrl: "/img/products/sock2.png",
