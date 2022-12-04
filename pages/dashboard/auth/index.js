@@ -55,6 +55,10 @@ const Login = () => {
             })
             Router.push("/dashboard/admin");
           }
+          if(res.data.status === 'unauthorized'){
+            setMessage("Invalid Access Key");
+            setIsLoading(false);
+          }
         }
       })
       .catch((err) => {
