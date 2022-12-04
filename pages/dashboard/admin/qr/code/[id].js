@@ -16,14 +16,11 @@ import { TailSpin } from "react-loader-spinner";
 import { useRouter } from "next/router";
 import SuccessModal from "../../../../../components/Modal/success";
 import { GlobalContext } from "../../../../../context/globalContext";
+import { baseURL } from "../../../../../config";
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
   const FIND_QR = `/api/find/qr/${id}`;
-  const baseURL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
-      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   // Fetch Data on single QR Code
   const response = await fetch(`${baseURL + FIND_QR}`);
   const data = await response.json();

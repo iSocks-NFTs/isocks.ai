@@ -4,15 +4,16 @@ import { Container, Heading } from "../../../../components/Dashboard/style";
 import AccountInfo from "../../../../components/Dashboard/Account";
 import Layout from "../../../../layouts/admin_layout";
 import { Button, ButtonContainer } from "../../../../components/Form";
-import axios from '../../../api/axios';
+import { baseURL } from "../../../../config";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const FIND_USER = `/api/find/user/${id}`
 
   // Fetch Data on Admin Account
-  const response = axios.get(FIND_USER);
-  const data = await response.data;
+  const response = await fetch(`${baseURL + FIND_USER}`);
+  const data = await response.json();
+
   return {
     props: { data },
   };

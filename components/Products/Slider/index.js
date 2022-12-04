@@ -8,7 +8,7 @@ import {
 const productList = [
   {
     imgUrl: "/img/products/sock2.png",
-    caption: "1",
+    caption: "",
   },
   {
     imgUrl: "/img/products/sock1.png",
@@ -16,7 +16,7 @@ const productList = [
   },
   {
     imgUrl: "/img/products/sock1.png",
-    caption: "3",
+    caption: "",
   },
 ];
 const Slider = () => {

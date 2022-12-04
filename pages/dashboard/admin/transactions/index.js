@@ -9,8 +9,10 @@ import Table from "../../../../components/Dashboard/Table";
 import { Button, ButtonContainer } from "../../../../components/Form";
 import Layout from "../../../../layouts/admin_layout";
 
+import { baseURL } from "../../../../config";
+
 export async function getServerSideProps() {
-  const baseURL = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  
   const endpoint = `/api/find/transaction`
   // Fetch Data
   const response = await fetch(`${baseURL + endpoint}`);
@@ -27,7 +29,7 @@ const Transaction = ({ data }) => {
       <Head>
         <title>iSocks | Admin Transactions</title>
       </Head>
-      <Container height="100vh">
+      <Container height="100%">
         <Heading>Transaction Data Feed</Heading>
         {data.length !== 0 ? (
           <Table transactions={data} />

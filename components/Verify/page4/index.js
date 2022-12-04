@@ -23,10 +23,30 @@ import {
 } from "../style";
 import { motion } from "framer-motion";
 import { Button } from "../../../components/Form/index";
+import FailModal from "../../Modal/fail";
+import SuccessModal from "../../Modal/success";
+import { GlobalContext } from "../../../context/globalContext";
 
 const Step4 = ({ page, setPage, formData, setFormData }) => {
-  const [formFilled, setFormFilled] = React.useState(false);
   const [active, setActive] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState("");
+  const [id, setId] = React.useState("");
+
+  React.useEffect(() => {
+    const id = window.localStorage.getItem("transactionId");
+    console.log(id);
+    if (id) {
+      setId(id);
+    }
+  });
+
+  const baseURL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+
+  const isockEndpoint = `/api/verify/isock/upload/${id}`;
+  const accessCardEndpoint = `/api/verify/access/upload/${id}`;
 
   const [upload, setUploaded] = React.useState({
     isocks: false,
@@ -39,59 +59,109 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
     accessCardFileData: null,
   });
 
+  const { modal, setModal } = React.useContext(GlobalContext);
+
+  function checkStatus() {
+    const { isocks, accessCard } = upload;
+    console.log("Checking Status...");
+    if (isocks === true || accessCard === true) {
+      setActive(true);
+    }
+  }
+
   function handleIsocksUpload(e) {
     let files = e.target.files;
-    let reader = new FileReader();
-    reader.readAsBinaryString(files[0]);
-    reader.onload = (e) => {
-      setUploaded({
-        ...upload,
-        isocksFileData: e.target.result,
-        isocks:true,
-        isocksimgName: files[0].name,
-        isocksFile: files[0],
-      });
-    };
-    reader.onloadend = () =>{
-      checkStatus();
+    let img = files[0];
+
+    setErrorMsg("");
+    if (
+      !["image/jpeg", "image/gif", "image/png", "image/svg+xml"].includes(
+        img.type
+      )
+    ) {
+      setErrorMsg("Only images are allowed!");
+      console.log("Only images are allowed.");
+      setModal({ ...modal, failModal: true });
+      return;
     }
-    console.log("iSocks Image Upload:", reader.readyState === 1 ? 'File Loaded' : 'File Unloaded');
+
+    if (img.size > 3 * 1024 * 1024) {
+      setErrorMsg("File must be less than 3MB");
+      console.log("File must be less than 3MB");
+      return;
+    }
+    setUploaded({
+      ...upload,
+      isocksFileData: e.target.result,
+      isocks: true,
+      isocksimgName: files[0].name,
+      isocksFile: files[0],
+    });
+
+    checkStatus();
     console.log(files[0]);
   }
 
   function handleAccessCardUpload(e) {
     let files = e.target.files;
-    let reader = new FileReader();
-    reader.readAsBinaryString(files[0]);
-    reader.onload = (e) => {
-      setUploaded({
-        ...upload,
-        accessCardFileData: e.target.result,
-        accessCard:true,
-        accessCardImgName: files[0].name,
-        accessCardFile: files[0],
-      });
-    };
-    reader.onloadend = () =>{
-      checkStatus();
+    let img = files[0];
+
+    setErrorMsg("");
+
+    if (
+      !["image/jpeg", "image/gif", "image/png", "image/svg+xml"].includes(
+        img.type
+      )
+    ) {
+      setErrorMsg("Only images are allowed!");
+      console.log("Only images are allowed.");
+      setModal({ ...modal, failModal: true });
+      return;
     }
-    console.log("Access Card Image Upload:", reader.readyState === 1 ? 'File Loaded' : 'File Unloaded');
+
+    if (img.size > 3 * 1024 * 1024) {
+      setErrorMsg("File must be less than 3MB");
+      console.log("File must be less than 3MB");
+      return;
+    }
+
+    setUploaded({
+      ...upload,
+      accessCardFileData: e.target.result,
+      accessCard: true,
+      accessCardImgName: files[0].name,
+      accessCardFile: files[0],
+    });
+
+    checkStatus();
     console.log(files[0]);
-    
   }
 
-  function checkStatus() {
-    const { isocksFileData,accessCardFileData } = upload;
-    console.log('Checking Status...');
-    if (isocksFileData || accessCardFileData) {
-      setActive(true);
+  function uploadImg(file,endpoint,fileType){
+    const fd = new FormData();
+    if(fileType === "isock"){
+      fd.append("isock",file,file.name);
+    } else {
+      fd.append("accesscard",file,file.name);
     }
+
+    fetch(`${baseURL + endpoint}`,{
+      method:"PATCH",
+      body:fd
+    })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+      return json;
+    })
+    .catch((err) => console.log(err));
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { isocksFile, accessCardFile } = upload;
-    alert('Image Submission!')
+    const i = uploadImg(isocksFile,isockEndpoint,"isock");
+    const j = uploadImg(accessCardFile,accessCardEndpoint,"accesscard");
   };
 
   return (
@@ -102,6 +172,19 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      {modal.failModal ? (
+        <FailModal heading="Upload Failed" message={errorMsg} />
+      ) : (
+        <></>
+      )}
+      {modal.successModal ? (
+        <SuccessModal
+          heading="Upload Successful"
+          message="Transaction uploaded!"
+        />
+      ) : (
+        <></>
+      )}
       <Form onSubmit={(e) => handleSubmit(e)}>
         <CardContainer>
           <Label width="auto" htmlFor="isocks">

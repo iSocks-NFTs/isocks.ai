@@ -60,3 +60,8 @@ export const Pill = styled.span`
     padding:10px;
     border-radius: 8px;
 `
+
+export const Link = styled.a`
+    display:flex;
+    flex-direction :column;
+`
