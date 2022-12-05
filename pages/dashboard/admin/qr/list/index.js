@@ -30,7 +30,7 @@ export async function getServerSideProps() {
   const QR_LIST = `/api/find/qr/0/*`;
   const response = await fetch(`${baseURL + QR_LIST}`, {
     headers: {
-      x_api_key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+      key: process.env.NEXT_PUBLIC_BACKEND_KEY,
     },
   });
   const data = await response.json();

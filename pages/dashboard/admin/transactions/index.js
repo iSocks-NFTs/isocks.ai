@@ -17,7 +17,7 @@ export async function getServerSideProps() {
   // Fetch Data
   const response = await fetch(`${baseURL + endpoint}`,{
     headers:{
-      x_api_key:process.env.NEXT_PUBLIC_BACKEND_KEY
+      key:process.env.NEXT_PUBLIC_BACKEND_KEY
     }
   });
   let data = await response.json();
