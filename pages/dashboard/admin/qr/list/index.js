@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 const QRCodeImage = dynamic(
@@ -18,7 +18,9 @@ import {
   LinkHref,
   LinkText,
   Link,
+  PaginationContainer,
 } from "../../../../../components/QR/style";
+import Pagination from "../../../../../components/Pagination";
 
 export async function getServerSideProps() {
   const baseURL =
@@ -26,10 +28,10 @@ export async function getServerSideProps() {
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const QR_LIST = `/api/find/qr/0/*`;
-  const response = await fetch(`${baseURL + QR_LIST}`,{
-    headers:{
-      'x_api_key': process.env.NEXT_PUBLIC_BACKEND_KEY,
-    }
+  const response = await fetch(`${baseURL + QR_LIST}`, {
+    headers: {
+      x_api_key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+    },
   });
   const data = await response.json();
   return {
@@ -37,9 +39,18 @@ export async function getServerSideProps() {
   };
 }
 
+let PageSize = 6;
+
 const QRList = ({ data }) => {
   const router = useRouter();
   const [goBack, setBack] = React.useState(false);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const currentQRData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return data.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
 
   React.useEffect(() => {
     console.log(data);
@@ -64,7 +75,7 @@ const QRList = ({ data }) => {
         </Row>
         <QRContainer height="fit-content">
           {data.length > 0
-            ? data.map((qr, index) => {
+            ? currentQRData.map((qr, index) => {
                 return (
                   <CodeBox key={index}>
                     <QRCodeImage id={qr.id} />
@@ -83,6 +94,15 @@ const QRList = ({ data }) => {
               })
             : ""}
         </QRContainer>
+        <PaginationContainer>
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={data.length}
+            pageSize={PageSize}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </PaginationContainer>
         {data.length === 0 ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (

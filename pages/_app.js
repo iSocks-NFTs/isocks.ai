@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import '../styles/pagination.scss';
 import React from "react";
 import GlobalContextProvider from "../context/globalContext";
 import AuthContextProvider from "../context/authContext";
