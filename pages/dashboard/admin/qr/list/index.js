@@ -40,9 +40,10 @@ export async function getServerSideProps() {
 
 let PageSize = 6;
 
-const QRList = ({ data }) => {
+const QRList = () => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [data, setData] = React.useState([]);
 
   const currentQRData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -51,7 +52,21 @@ const QRList = ({ data }) => {
   }, [currentPage]);
 
   React.useEffect(() => {
-    console.log(data);
+    const baseURL =
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+        : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+    const QR_LIST = `/api/find/qr/0/*`;
+    fetch(`${baseURL + QR_LIST}`, {
+      headers: {
+        key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   function back() {
@@ -72,7 +87,7 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer height="fit-content">
-          {data !== {} ? currentQRData.map((qr, index) => {
+          {currentQRData.map((qr, index) => {
             return (
               <CodeBox key={index}>
                 <QRCodeImage id={qr.id} />
@@ -88,7 +103,7 @@ const QRList = ({ data }) => {
                 </Link>
               </CodeBox>
             );
-          }) : ""}
+          })}
         </QRContainer>
         <PaginationContainer>
           <Pagination
@@ -99,7 +114,7 @@ const QRList = ({ data }) => {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </PaginationContainer>
-        {data !== {} ? (
+        {data.length === 0 ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (
           ""
