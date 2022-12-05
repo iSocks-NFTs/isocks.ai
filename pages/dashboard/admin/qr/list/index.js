@@ -21,7 +21,7 @@ import {
 } from "../../../../../components/QR/style";
 import Pagination from "../../../../../components/Pagination";
 
-export async function getServerSideProps() {
+export async function getStaticProps () {
   const baseURL =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
@@ -40,10 +40,10 @@ export async function getServerSideProps() {
 
 let PageSize = 6;
 
-const QRList = () => {
+const QRList = ({data}) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
 
   const currentQRData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -51,23 +51,7 @@ const QRList = () => {
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
-  React.useEffect(() => {
-    const baseURL =
-      process.env.NODE_ENV === "production"
-        ? process.env.NEXT_PUBLIC_LIVE_BASEURL
-        : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
-    const QR_LIST = `/api/find/qr/0/*`;
-    fetch(`${baseURL + QR_LIST}`, {
-      headers: {
-        key: process.env.NEXT_PUBLIC_BACKEND_KEY,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  
 
   function back() {
     setBack(true);
