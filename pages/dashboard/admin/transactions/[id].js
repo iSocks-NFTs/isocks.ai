@@ -1,5 +1,6 @@
 import React from "react";
 import { baseURL } from "../../../../config";
+import Image from "next/image";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -26,7 +27,7 @@ const TransactionData = ({ data }) => {
               <div>{transaction?.buyerWalletAddress}</div>
               <div>{transaction?.transactionStatus}</div>
               <div>
-                <img
+                <Image
                   src={transaction?.transactionProofIMGURL}
                   alt="transaction Receipt"
                 />
