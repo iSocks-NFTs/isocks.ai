@@ -95,7 +95,7 @@ const QRList = ({ data }) => {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={data.length}
+            totalCount={data !== {} ? data.length : ""}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
