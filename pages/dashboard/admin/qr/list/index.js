@@ -21,23 +21,6 @@ import {
 } from "../../../../../components/QR/style";
 import Pagination from "../../../../../components/Pagination";
 
-export async function getServerSideProps() {
-  const baseURL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
-      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
-  const QR_LIST = `/api/find/qr/0/*`;
-  const response = await fetch(`${baseURL + QR_LIST}`, {
-    headers: {
-      key: process.env.NEXT_PUBLIC_BACKEND_KEY,
-    },
-  });
-  const data = await response.json();
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
-}
-
 let PageSize = 6;
 
 const QRList = ({ data }) => {
@@ -99,6 +82,24 @@ const QRList = ({ data }) => {
       </Container>
     </Layout>
   );
+};
+
+
+QRList.getInitialProps = async (ctx) => {
+  const baseURL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const QR_LIST = `/api/find/qr/0/*`;
+  const response = await fetch(`${baseURL + QR_LIST}`, {
+    headers: {
+      key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+    },
+  });
+  const data = await response.json();
+  return {
+    data,
+  };
 };
 
 export default QRList;
