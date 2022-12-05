@@ -99,7 +99,7 @@ const QRCodeImage = ({ id }) => {
     qrCode.update({
       data: url,
     });
-  }, url);
+  }, [url]);
 
   return (
     <>
