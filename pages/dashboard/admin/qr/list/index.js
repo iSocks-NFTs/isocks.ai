@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 const QRCodeImage = dynamic(
@@ -7,7 +7,7 @@ const QRCodeImage = dynamic(
 );
 import Layout from "../../../../../layouts/admin_layout";
 import { Container, Heading } from "../../../../../components/Dashboard/style";
-import { Button, } from "../../../../../components/Form";
+import { Button } from "../../../../../components/Form";
 import { useRouter } from "next/router";
 import { Row, Col } from "react-bootstrap";
 import {
@@ -21,7 +21,7 @@ import {
 } from "../../../../../components/QR/style";
 import Pagination from "../../../../../components/Pagination";
 
-export async function getStaticProps () {
+export async function getServerSideProps() {
   const baseURL =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
@@ -40,23 +40,16 @@ export async function getStaticProps () {
 
 let PageSize = 6;
 
-const QRList = ({data}) => {
+const QRList = ({ data }) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = React.useState(1);
-  // const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([{}]);
 
   const currentQRData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
-
-  
-
-  function back() {
-    setBack(true);
-    router.back();
-  }
 
   return (
     <Layout>
