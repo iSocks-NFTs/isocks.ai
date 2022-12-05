@@ -7,7 +7,7 @@ const QRCodeImage = dynamic(
 );
 import Layout from "../../../../../layouts/admin_layout";
 import { Container, Heading } from "../../../../../components/Dashboard/style";
-import { Button, ButtonContainer, Label } from "../../../../../components/Form";
+import { Button, } from "../../../../../components/Form";
 import { useRouter } from "next/router";
 import { Row, Col } from "react-bootstrap";
 import {
