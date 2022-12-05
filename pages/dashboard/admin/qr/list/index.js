@@ -25,7 +25,7 @@ export async function getServerSideProps() {
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_LIVE_BASEURL
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
-  const QR_LIST = `/api/find/qr/0/5`;
+  const QR_LIST = `/api/find/qr/0/*`;
   const response = await fetch(`${baseURL + QR_LIST}`,{
     headers:{
       'x_api_key': process.env.NEXT_PUBLIC_BACKEND_KEY,
