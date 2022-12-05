@@ -19,13 +19,19 @@ import {
   LinkText,
   Link,
 } from "../../../../../components/QR/style";
-import axios from "../../../../api/axios";
 
 export async function getServerSideProps() {
-  const baseURL = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_LIVE_BASEURL : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
-  const QR_LIST = `/api/find/qr`;
-  const response = await fetch(`${baseURL + QR_LIST}`)
-  const data = await response.json()
+  const baseURL =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
+      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  const QR_LIST = `/api/find/qr/0/5`;
+  const response = await fetch(`${baseURL + QR_LIST}`,{
+    headers:{
+      'x_api_key': process.env.NEXT_PUBLIC_BACKEND_KEY,
+    }
+  });
+  const data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props
   };
@@ -34,6 +40,10 @@ export async function getServerSideProps() {
 const QRList = ({ data }) => {
   const router = useRouter();
   const [goBack, setBack] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log(data);
+  }, []);
 
   function back() {
     setBack(true);

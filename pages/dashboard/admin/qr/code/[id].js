@@ -22,7 +22,11 @@ export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
   const FIND_QR = `/api/find/qr/${id}`;
   // Fetch Data on single QR Code
-  const response = await fetch(`${baseURL + FIND_QR}`);
+  const response = await fetch(`${baseURL + FIND_QR}`, {
+    headers: {
+      x_api_key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+    },
+  });
   const data = await response.json();
 
   return {

@@ -11,7 +11,11 @@ export async function getServerSideProps(context) {
   const FIND_USER = `/api/find/user/${id}`
 
   // Fetch Data on Admin Account
-  const response = await fetch(`${baseURL + FIND_USER}`);
+  const response = await fetch(`${baseURL + FIND_USER}`,{
+    headers:{
+      x_api_key:process.env.NEXT_PUBLIC_BACKEND_KEY
+    }
+  });
   const data = await response.json();
 
   return {

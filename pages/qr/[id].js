@@ -12,7 +12,11 @@ export async function getServerSideProps(context) {
       : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
   const endpoint = `/api/find/qr/${id}`;
   // Fetch Data
-  const response = await fetch(`${baseURL + endpoint}`);
+  const response = await fetch(`${baseURL + endpoint}`,{
+    headers:{
+      x_api_key:process.env.NEXT_PUBLIC_BACKEND_KEY
+    }
+  });
   const data = await response.json();
   return {
     props: { data },

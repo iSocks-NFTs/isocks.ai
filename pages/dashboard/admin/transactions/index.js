@@ -15,7 +15,11 @@ export async function getServerSideProps() {
   
   const endpoint = `/api/find/transaction`
   // Fetch Data
-  const response = await fetch(`${baseURL + endpoint}`);
+  const response = await fetch(`${baseURL + endpoint}`,{
+    headers:{
+      x_api_key:process.env.NEXT_PUBLIC_BACKEND_KEY
+    }
+  });
   let data = await response.json();
   return {
     props: { data }, // will be passed to the page component as props
