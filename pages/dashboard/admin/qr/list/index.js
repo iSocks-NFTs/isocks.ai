@@ -43,7 +43,6 @@ let PageSize = 6;
 
 const QRList = ({ data }) => {
   const router = useRouter();
-  const [goBack, setBack] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const currentQRData = useMemo(() => {
@@ -74,7 +73,7 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer height="fit-content">
-          {data && currentQRData.map((qr, index) => {
+          {data !== {} ? currentQRData.map((qr, index) => {
             return (
               <CodeBox key={index}>
                 <QRCodeImage id={qr.id} />
@@ -90,7 +89,7 @@ const QRList = ({ data }) => {
                 </Link>
               </CodeBox>
             );
-          })}
+          }) : ""}
         </QRContainer>
         <PaginationContainer>
           <Pagination
@@ -101,7 +100,7 @@ const QRList = ({ data }) => {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </PaginationContainer>
-        {!data ? (
+        {data !== {} ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (
           ""
