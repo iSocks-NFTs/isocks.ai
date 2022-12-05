@@ -98,11 +98,11 @@ const QRList = ({data}) => {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </PaginationContainer>
-        {data.length === 0 ? (
+        {/* {data.length === 0 ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (
           ""
-        )}
+        )} */}
       </Container>
     </Layout>
   );
