@@ -74,25 +74,23 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer height="fit-content">
-          {data.length > 0
-            ? currentQRData.map((qr, index) => {
-                return (
-                  <CodeBox key={index}>
-                    <QRCodeImage id={qr.id} />
-                    <CodeLabel>{qr.label}</CodeLabel>
-                    <LinkText>
-                      URL:{" "}
-                      <LinkHref target="_blank" href={qr.url}>
-                        {qr.url}
-                      </LinkHref>
-                    </LinkText>
-                    <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
-                      <Button>View QR</Button>
-                    </Link>
-                  </CodeBox>
-                );
-              })
-            : ""}
+          {data && currentQRData.map((qr, index) => {
+            return (
+              <CodeBox key={index}>
+                <QRCodeImage id={qr.id} />
+                <CodeLabel>{qr.label}</CodeLabel>
+                <LinkText>
+                  URL:{" "}
+                  <LinkHref target="_blank" href={qr.url}>
+                    {qr.url}
+                  </LinkHref>
+                </LinkText>
+                <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+                  <Button>View QR</Button>
+                </Link>
+              </CodeBox>
+            );
+          })}
         </QRContainer>
         <PaginationContainer>
           <Pagination
@@ -103,7 +101,7 @@ const QRList = ({ data }) => {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </PaginationContainer>
-        {data.length === 0 ? (
+        {!data ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (
           ""
