@@ -19,12 +19,14 @@ import {
   Link,
   PaginationContainer,
 } from "../../../../../components/QR/style";
-import Pagination from "../../../../../components/Pagination";
+const Pagination = dynamic(
+  () => import("../../../../../components/Pagination"),
+  { ssr: false }
+);
 
 let PageSize = 6;
 
 const QRList = ({ data }) => {
-  const router = useRouter();
   const [currentPage, setCurrentPage] = React.useState(1);
   // const [data, setData] = React.useState([{}]);
 
@@ -74,16 +76,15 @@ const QRList = ({ data }) => {
             onPageChange={(page) => setCurrentPage(page)}
           />
         </PaginationContainer>
-        {/* {data.length === 0 ? (
+        {data.length === 0 ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
         ) : (
           ""
-        )} */}
+        )}
       </Container>
     </Layout>
   );
 };
-
 
 QRList.getInitialProps = async (ctx) => {
   const baseURL =
