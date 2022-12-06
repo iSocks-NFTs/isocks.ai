@@ -8,7 +8,6 @@ const QRCodeImage = dynamic(
 import Layout from "../../../../../layouts/admin_layout";
 import { Container, Heading } from "../../../../../components/Dashboard/style";
 import { Button } from "../../../../../components/Form";
-import { useRouter } from "next/router";
 import { Row, Col } from "react-bootstrap";
 import {
   QRContainer,
@@ -48,15 +47,15 @@ const QRList = ({ data }) => {
           {currentQRData.map((qr, index) => {
             return (
               <CodeBox key={index}>
-                <QRCodeImage id={qr.id} />
-                <CodeLabel>{qr.label}</CodeLabel>
+                <QRCodeImage id={qr?.id} />
+                <CodeLabel>{qr?.label}</CodeLabel>
                 <LinkText>
                   URL:{" "}
-                  <LinkHref target="_blank" href={qr.url}>
-                    {qr.url}
+                  <LinkHref target="_blank" href={qr?.url}>
+                    {qr?.url}
                   </LinkHref>
                 </LinkText>
-                <Link href={`/dashboard/admin/qr/code/${qr.id}`}>
+                <Link href={`/dashboard/admin/qr/code/${qr?.id}`}>
                   <Button>View QR</Button>
                 </Link>
               </CodeBox>
@@ -67,7 +66,7 @@ const QRList = ({ data }) => {
           <Pagination
             className="pagination-bar"
             currentPage={currentPage}
-            totalCount={data.length}
+            totalCount={data?.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
           />
