@@ -25,11 +25,11 @@ let PageSize = 6;
 const QRList = ({ data }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const currentQRData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  // const currentQRData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return data.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
 
   return (
     <Layout>
@@ -44,7 +44,7 @@ const QRList = ({ data }) => {
           </Col>
         </Row>
         <QRContainer height="fit-content">
-          {currentQRData.map((qr, index) => {
+          {data.map((qr, index) => {
             return (
               <CodeBox key={index}>
                 <QRCodeImage id={qr?.id} />
@@ -63,13 +63,13 @@ const QRList = ({ data }) => {
           })}
         </QRContainer>
         <PaginationContainer>
-          <Pagination
+          {/* <Pagination
             className="pagination-bar"
             currentPage={currentPage}
             totalCount={data?.length}
             pageSize={PageSize}
             onPageChange={(page) => setCurrentPage(page)}
-          />
+          /> */}
         </PaginationContainer>
         {data.length === 0 ? (
           <Heading fontWeight="300">No QR Code In System</Heading>
