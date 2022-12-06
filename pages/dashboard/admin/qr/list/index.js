@@ -19,16 +19,12 @@ import {
   Link,
   PaginationContainer,
 } from "../../../../../components/QR/style";
-const Pagination = dynamic(
-  () => import("../../../../../components/Pagination"),
-  { ssr: false }
-);
+import Pagination from "../../../../../components/Pagination"
 
 let PageSize = 6;
 
 const QRList = ({ data }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
-  // const [data, setData] = React.useState([{}]);
 
   const currentQRData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
