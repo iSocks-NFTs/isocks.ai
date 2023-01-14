@@ -48,7 +48,7 @@ export const Input = styled.input`
   background-color: #fff;
   color: var(--primary-brand);
   padding:5px;
-  border: 0.933743px solid #e3e6e8;
+  border: 2px solid #e3e6e8;
   font-size: 20px;
   ::placeholder{
     font-size:16px;
