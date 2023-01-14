@@ -32,7 +32,7 @@ export const FormContainer = styled.div`
   border-radius: 32px;
   height: 50px;
   margin: 0 auto;
-  width: 40%;
+  width: 30%;
   margin-top: 1rem;
   background-color: #fff;
   @media screen and (max-width: 480px) {
