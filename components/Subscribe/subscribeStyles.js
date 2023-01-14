@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   max-width: 100%;
   height: 40vh;
-  position: relative;
-  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1rem;
   background-color: #fafafa;
-  @media screen and (max-width: 330px) {
-    padding-top: 0;
-  }
 `;
 
 export const Heading = styled.h3`
@@ -28,12 +28,11 @@ export const Form = styled.form`
 `;
 
 export const FormContainer = styled.div`
-  margin: 1rem 0;
   border: 1px solid #e1e1e1;
   border-radius: 32px;
   height: 50px;
   margin: 0 auto;
-  width: 30%;
+  width: 40%;
   margin-top: 1rem;
   background-color: #fff;
   @media screen and (max-width: 480px) {
@@ -41,6 +40,7 @@ export const FormContainer = styled.div`
   }
   .status {
     text-align: center;
+    font-size: 12px;
   }
 `;
 
@@ -55,6 +55,7 @@ export const Input = styled.input`
   border: none;
   :focus {
     outline: none;
+    background: none;
   }
 `;
 
