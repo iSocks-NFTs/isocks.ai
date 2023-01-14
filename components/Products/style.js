@@ -14,6 +14,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 1rem;
+  max-width: 100%;
 `;
 
 export const ProductSlide = styled.div`
@@ -47,7 +48,8 @@ export const FilledButton = styled.button`
   border-color: #e1e1e1;
   color: #fff;
   transition: 0.5s;
-  width: 350px;
+  width: ${(props) =>
+    props.width ? props.width : "clamp(250px, 320px, 450px)"};
   :hover {
     cursor: pointer;
     border: 1px solid #e1e1e1;
@@ -64,14 +66,14 @@ export const ProductCard = styled.div`
   border: ${({ border }) => (border ? border : "")};
   cursor: pointer;
   height: fit-content;
-  width:280px;
+  width: 280px;
   border-radius: 8px;
   transition: 0.8s;
   transform: ${({ transform }) => (transform ? transform : "")};
 `;
 
 export const ProductDescription = styled.span`
-  padding:1rem;
+  padding: 1rem;
   font-size: 11px;
 `;
 
@@ -80,7 +82,7 @@ export const SliderContainer = styled.div`
   overflow-x: hidden;
   height: 400px;
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   column-gap: 3rem;
 `;
@@ -90,8 +92,8 @@ export const ProductImage = styled.img`
   width: ${(props) => (props.width ? props.width : "250px")};
   transition: 0.8s;
   border-radius: 8px;
-  padding:1rem;
-  background-color: #F6F6F6;;
+  padding: 1rem;
+  background-color: #f6f6f6;
   :hover {
     transform: scale(1.025);
   }
