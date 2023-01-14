@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
-:root{
-  --primary-brand:#0D0D0D;
-  --secondary-brand:#F5EDF0;
-  --text:#1B1725;
-  --subtle-text:#8C8CA1;
-  --accent:#ECF1F4;
-  --light:#FAFCFE;
-  --success:#226F54;
-  --error:#FE5050; 
-  --background-color:#f6f6f6;
-  --grey-border-color:#E1E1E1;
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --primary-brand: #0d0d0d;
+  --secondary-brand: #f5edf0;
+  --text: #1b1725;
+  --subtle-text: #8c8ca1;
+  --accent: #ecf1f4;
+  --light: #fafcfe;
+  --success: #226f54;
+  --error: #fe5050;
+  --background-color: #f6f6f6;
+  --grey-border-color: #e1e1e1;
 }
 html,
 body {
@@ -17,6 +17,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 a {
