@@ -12,7 +12,8 @@ const productList = [
   },
   {
     imgUrl: "/img/products/sock1.png",
-    caption: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. ",
+    caption:
+      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. ",
   },
   {
     imgUrl: "/img/products/sock1.png",
@@ -27,7 +28,10 @@ const Slider = () => {
       {productList.map((product, index) => {
         const { imgUrl, caption } = product;
         return (
-          <ProductCard key={index} border={index === 1 ? "1px solid var(--primary-brand)" : ""} transform={index === 1 ? "scale(1.20)" : ""}>
+          <ProductCard
+            key={index}
+            border={index === 1 ? "1px solid var(--primary-brand)" : ""}
+          >
             <ProductImage src={imgUrl} />
             <ProductDescription>{caption}</ProductDescription>
           </ProductCard>
