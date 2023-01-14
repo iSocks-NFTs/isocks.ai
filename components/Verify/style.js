@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height:130vh;
-  border:1px solid transparent;
-  background-image: url('img/bg/logo_bg.png');
+  height: 130vh;
+  border: 1px solid transparent;
+  background-image: url("img/bg/logo_bg.png");
   background-position: 100% 50%;
   background-size: auto 95%;
   background-repeat: no-repeat;
-  @media screen and (max-width:380px) {
-    height:fit-content;
+  @media screen and (max-width: 380px) {
+    height: fit-content;
     background-position: center;
   }
 `;
@@ -50,9 +50,9 @@ export const StageItems = styled.div`
 `;
 
 export const Stage = styled.span`
-  font-weight: ${(props) => props.fontWeight ? props.fontWeight : "700"};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
-  font-size:14px;
+  font-size: 14px;
   @media screen and (max-width: 520px) {
     font-size: 10px;
   }
@@ -62,8 +62,8 @@ export const ArrowRight = styled.img``;
 
 export const FormContainer = styled.div`
   margin: 0 auto;
-  margin-top:${(props) => props.marginTop ? props.marginTop : ""};
-  height:fit-content;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "")};
+  height: fit-content;
 `;
 
 export const Form = styled.form`
@@ -80,19 +80,19 @@ export const Input = styled.input`
   background-color: #fff;
   color: var(--primary-brand);
   padding: 0 3px;
-  padding-left: ${(props) => props.paddingLeft ? props.paddingLeft : ''};
-  border: 0.933743px solid #e3e6e8;
+  padding-left: ${(props) => (props.paddingLeft ? props.paddingLeft : "")};
+  border: 2px solid #e3e6e8;
   font-size: 16px;
   border-radius: 3px;
-  caret-color: ${({cursorColor}) => cursorColor ? cursorColor : ""};
+  caret-color: ${({ cursorColor }) => (cursorColor ? cursorColor : "")};
   :focus {
     outline: var(--primary-brand);
   }
-  ::placeholder{
-    font-size:18px;
+  ::placeholder {
+    font-size: 18px;
   }
-  :hover{
-    cursor:${({cursor}) => cursor ? cursor : ''}
+  :hover {
+    cursor: ${({ cursor }) => (cursor ? cursor : "")};
   }
 `;
 
@@ -107,7 +107,7 @@ export const CheckBoxContainer = styled.div`
 
 export const FormGroup = styled.div`
   display: flex;
-  position:relative;
+  position: relative;
   flex-direction: column;
   align-items: center;
   row-gap: 0.5rem;
@@ -125,7 +125,7 @@ export const Button = styled.button`
   display: inline-flex;
   justify-content: center;
   border: 1px solid var(--primary-brand);
-  margin-top: ${(props) => props.marginTop ? props.marginTop : ''};
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "")};
   :hover {
     cursor: pointer;
     color: var(--primary-brand);
@@ -161,73 +161,73 @@ export const Label = styled.label`
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   font-size: 14px;
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
-  width: ${(props) => props.width ? props.width : "clamp(250px, 350px, 450px)"};
-  margin-left:10px;
+  width: ${(props) =>
+    props.width ? props.width : "clamp(250px, 350px, 450px)"};
+  margin-left: 10px;
   a {
     text-decoration: underline;
   }
-  :hover{
+  :hover {
     cursor: pointer;
   }
 `;
 
 // Step 4 Upload Cards
 export const CardContainer = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
 
 export const BuyOptionLink = styled.span`
-    text-decoration: underline;
-    color:var(--primary-brand);
-    display: inline-flex;
-    align-items: center;
-    column-gap: 0.5rem;
-    transition: 0.7s;
-    :hover{
-        cursor:pointer;
-    }
-`
+  text-decoration: underline;
+  color: var(--primary-brand);
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  transition: 0.7s;
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 export const Circle = styled.div`
-    padding:1rem;
-    background-color: #F4F4F4;
-    border-radius:50%;
-`
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+`;
 
 export const Image = styled.img`
-    width:50px;
-    height:50px;
-
-`
+  width: 50px;
+  height: 50px;
+`;
 
 export const Option = styled.span`
-    font-weight: 600;
-    font-size:22px;
-`
+  font-weight: 600;
+  font-size: 22px;
+`;
 
 export const OptionDescription = styled.span`
-    padding:15px;
-    text-align: center;
-    color:var(--subtle-text);
-`
+  padding: 15px;
+  text-align: center;
+  color: var(--subtle-text);
+`;
 
 export const Card = styled.div`
-  border: ${(props) => props.border ? props.border : "1px solid var(--grey-border-color)"};
+  border: ${(props) =>
+    props.border ? props.border : "1px solid var(--grey-border-color)"};
   width: 300px;
   height: 300px;
   display: flex;
-  row-gap:0.1rem;
+  row-gap: 0.1rem;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
   justify-content: center;
-  background-color: ${(props) => props.bgColor ? props.bgColor : ""};
+  background-color: ${(props) => (props.bgColor ? props.bgColor : "")};
 `;
-
 
 export const UploadLabel = styled.label`
   border: 1px solid #e3e6e8;
@@ -253,10 +253,10 @@ export const Uploaded = styled.div`
   display: flex;
   align-items: center;
   column-gap: 0.3rem;
-  .uploaded_icon{
+  .uploaded_icon {
     display: flex;
     align-items: center;
-    column-gap:0.5rem;
+    column-gap: 0.5rem;
   }
 `;
 export const FileInput = styled.input`
@@ -272,5 +272,5 @@ export const Icon = styled.img``;
 
 export const LabelContainer = styled.div`
   display: flex;
-  column-gap:1rem;
-`
+  column-gap: 1rem;
+`;
