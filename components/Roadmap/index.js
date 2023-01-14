@@ -29,7 +29,7 @@ const Roadmap = () => {
               NFwear Concept ideation, Team members Assembling, Reserch,
               Website/Product <br /> demo.
             </PointHeaderBody>
-            <TimeStamp>12th June, 2022</TimeStamp>
+            <TimeStamp>Q1, 2022</TimeStamp>
           </Box>
           <PointImage alt="iSocks Sweater" src="/img/roadmap/sweater.svg" />
         </Point>
@@ -41,7 +41,7 @@ const Roadmap = () => {
               Social media presence, iSocks NFT whitelist, community
               collaboration,Marketing, Physical isocks production.
             </PointHeaderBody>
-            <TimeStamp>12th June, 2022</TimeStamp>
+            <TimeStamp>Q2, 2022</TimeStamp>
           </Box>
         </Point>
         <Point>
@@ -52,8 +52,7 @@ const Roadmap = () => {
               Development, platform integration, iSocks listing date on Binance.
             </PointHeaderBody>
             <div>
-              <TimeStamp>08th Oct., 2022</TimeStamp>{" "}
-              <TimeStamp>11th Oct., 2022</TimeStamp>
+              <TimeStamp>Q3/Q4, 2023</TimeStamp>{" "}
             </div>
           </Box>
           <PointImage alt="iSocks Sweater" src="/img/roadmap/scarf.png" />
@@ -64,15 +63,14 @@ const Roadmap = () => {
             <PointHeaderText>Socks</PointHeaderText>
             <PointHeaderBody>
               NFT full launch on Binance. Physical isocks redeeming/Distribution
-              date, iSocks holders undergroud party announcement. iSocks holders
-              decides what infinity auctions built next.
+              date, iSocks holders undergroud party announcement.
             </PointHeaderBody>
-            <TimeStamp>12th June, 2022</TimeStamp>
+            <TimeStamp>Q1, 2023</TimeStamp>
             <PointHeaderBody>
               iSocks DAO launch, isocks token launch, isocks mint0.12. NFwear
               mobile app launch.
             </PointHeaderBody>
-            <TimeStamp width="25%">2023</TimeStamp>
+            <TimeStamp width="25%">Q3, 2023</TimeStamp>
           </Box>
         </Point>
       </Row>
