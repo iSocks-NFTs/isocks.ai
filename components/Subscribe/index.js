@@ -8,33 +8,36 @@ import {
   Input,
 } from "./subscribeStyles";
 import { Row, Col } from "react-bootstrap";
-import { user } from "../JoinWhiteListForm/user";
-import { GlobalContext } from "../../context/globalContext";
 import { TailSpin } from "react-loader-spinner";
+import axios from "axios";
 
 const Subscribe = () => {
-  const [email, setEmailAddress] = React.useState("");
-  const [err, setMsg] = React.useState("");
-  const { setSubscribeForm } = React.useContext(GlobalContext);
+  const [emailAddress, setEmailAddress] = React.useState("");
+  const [msg, setMsg] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
-    event.preventDefault();
-    const doc = {
-      _type: "emailAddresses",
-      emailAddress: email,
-    };
-    user
-      .create(doc)
-      .then((res) => {
-        console.log(res);
-        setLoading(false);
-        setSubscribeForm(true);
+    axios
+      .post("https://isocks-mail-chimp.onrender.com/subscribe", {
+        emailAddress,
       })
-      .catch(() => {
-        setMsg("Email Subscription Failed!");
+      .then((response) => {
+        if (response.status === 200) {
+          setMsg(
+            "Thank you for subscribing! You will now receive updates and exclusive offers from us."
+          );
+          setLoading(false);
+          setEmailAddress("");
+        }
+      })
+      .catch((error) => {
         setLoading(false);
+        setMsg("");
+        setEmailAddress("");
+        setMsg("Subscription Failed! Please try again later 😥");
+        console.log(error);
       });
   };
   return (
@@ -50,7 +53,7 @@ const Subscribe = () => {
                 type="email"
                 name="email"
                 id="mce-EMAIL"
-                value={email}
+                value={emailAddress}
                 onChange={(e) => setEmailAddress(e.target.value)}
                 placeholder="Enter your mail"
                 required
@@ -71,8 +74,8 @@ const Subscribe = () => {
                   "Subscribe"
                 )}
               </Button>
-              <p>{err}</p>
             </Form>
+            <p className="status">{msg}</p>
           </FormContainer>
         </Col>
       </Row>
