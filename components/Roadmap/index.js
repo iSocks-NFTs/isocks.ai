@@ -18,7 +18,7 @@ const Roadmap = () => {
       <Row>
         <Col>
           <Heading>Where are we going?</Heading>
-          <P>Our roadmap is our north star</P>
+          <P>Our Roadmap is our North Star</P>
         </Col>
       </Row>
       <Row>
@@ -27,7 +27,7 @@ const Roadmap = () => {
             <PointHeaderText>Sweater</PointHeaderText>
             <PointHeaderBody>
               NFwear Concept ideation, Team members Assembling, Reserch,
-              Website/product <br /> demo.
+              Website/Product <br /> demo.
             </PointHeaderBody>
             <TimeStamp>12th June, 2022</TimeStamp>
           </Box>
@@ -48,7 +48,7 @@ const Roadmap = () => {
           <Box>
             <PointHeaderText>Scarf</PointHeaderText>
             <PointHeaderBody>
-              AR/website full lunch, Utility Announcement, Smart contract
+              AR/website full launch, Utility Announcement, Smart contract
               Development, platform integration, iSocks listing date on Binance.
             </PointHeaderBody>
             <div>
@@ -63,18 +63,16 @@ const Roadmap = () => {
           <Box>
             <PointHeaderText>Socks</PointHeaderText>
             <PointHeaderBody>
-              NFT full lunch on Binance. Physical isocks redeeming/Distribution
+              NFT full launch on Binance. Physical isocks redeeming/Distribution
               date, iSocks holders undergroud party announcement. iSocks holders
               decides what infinity auctions built next.
             </PointHeaderBody>
             <TimeStamp>12th June, 2022</TimeStamp>
             <PointHeaderBody>
-              iSocks DAO lunch, isocks token lunch, isocks mint0.12. NFwear
+              iSocks DAO launch, isocks token launch, isocks mint0.12. NFwear
               mobile app launch.
             </PointHeaderBody>
-            <TimeStamp
-            width="25%"
-            >2023</TimeStamp>
+            <TimeStamp width="25%">2023</TimeStamp>
           </Box>
         </Point>
       </Row>
