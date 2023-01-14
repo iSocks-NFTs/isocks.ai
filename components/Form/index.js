@@ -15,7 +15,7 @@ export const Input = styled.input`
   background-color: #fff;
   color: var(--primary-brand);
   padding: 0 3px;
-  border: 0.933743px solid #e3e6e8;
+  border: 2px solid #e3e6e8;
   font-size: 20px;
   border-radius: 3px;
   :focus {

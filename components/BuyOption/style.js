@@ -66,7 +66,7 @@ export const OptionDescription = styled.span`
 
 export const Card = styled.div`
   border: ${(props) =>
-    props.border ? props.border : "1px solid var(--grey-border-color)"};
+    props.border ? props.border : "2px solid var(--grey-border-color)"};
   width: ${(props) => (props.width ? props.width : "300px")};
   height: ${(props) => (props.height ? props.height : "300px")};
   display: flex;

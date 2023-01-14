@@ -187,7 +187,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             <Button
               type="submit"
               width="100%"
-              color={buttonActive ? "" : "#fff"}
+              color={buttonActive ? "" : "#000"}
               backgroundColor={buttonActive ? "" : "#E1E1E1"}
               borderColor={buttonActive ? "" : "#E1E1E1"}
               hoverBorderColor={buttonActive ? "" : "#E1E1E1"}
