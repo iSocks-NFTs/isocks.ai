@@ -9,11 +9,11 @@ const Header = () => {
       <Row>
         <Col>
           <Heading>
-            Wear it, trade it, and never worry about a missing socks. <br />{" "}
-            iSocks is a physical product with blockchain records of the owner.
+            Experience the Future of Fashion with iSocksNFT: <br /> Wear, Trade
+            and Prove Ownership
           </Heading>
           <ButtonContainer>
-            <ARButton onClick={() => Router.push('/ar')}>
+            <ARButton onClick={() => Router.push("/ar")}>
               {" "}
               <Icon src="/img/icons/ar.svg" alt="AR Icon" /> See how it fits on
               AR.
