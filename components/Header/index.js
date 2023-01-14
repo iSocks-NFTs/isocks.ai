@@ -20,9 +20,9 @@ const Header = () => {
             </ARButton>
           </ButtonContainer>
         </Col>
-        <Col>
+        <div>
           <ProductSlide />
-        </Col>
+        </div>
       </Row>
     </Container>
   );
