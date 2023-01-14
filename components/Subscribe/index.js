@@ -42,43 +42,36 @@ const Subscribe = () => {
   };
   return (
     <Container>
-      <Row>
-        <Col>
-          <Heading>Subscribe to iSocks</Heading>
-        </Col>
-        <Col>
-          <FormContainer>
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Input
-                type="email"
-                name="email"
-                id="mce-EMAIL"
-                value={emailAddress}
-                onChange={(e) => setEmailAddress(e.target.value)}
-                placeholder="Enter your mail"
-                required
+      <Heading>Subscribe to iSocks</Heading>
+      <FormContainer>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <Input
+            type="email"
+            name="email"
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
+            placeholder="Enter your mail"
+            required
+          />
+          <Button>
+            {loading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#0D0D0D"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
               />
-              <Button>
-                {loading ? (
-                  <TailSpin
-                    height="25"
-                    width="25"
-                    color="#0D0D0D"
-                    ariaLabel="tail-spin-loading"
-                    radius="1"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                ) : (
-                  "Subscribe"
-                )}
-              </Button>
-            </Form>
-            <p className="status">{msg}</p>
-          </FormContainer>
-        </Col>
-      </Row>
+            ) : (
+              "Subscribe"
+            )}
+          </Button>
+        </Form>
+        <p className="status">{msg}</p>
+      </FormContainer>
     </Container>
   );
 };
