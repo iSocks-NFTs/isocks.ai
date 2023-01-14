@@ -9,7 +9,7 @@ export const Container = styled.div`
     align-items: center;
     column-gap: 1rem;
   }
-  p {
+  .quote {
     width: 50%;
     font-size: 32px;
     font-family: cursive;
@@ -22,7 +22,7 @@ export const Container = styled.div`
       width: 300px;
       height: auto;
     }
-    p {
+    .quote {
       width: 100%;
       text-align: center;
       font-size: 18px;
@@ -32,7 +32,7 @@ export const Container = styled.div`
     .section {
       flex-direction: column;
     }
-    p {
+    .quote {
       width: 100%;
       font-size: 20px;
       text-align: center;
