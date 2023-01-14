@@ -15,7 +15,7 @@ import Step3 from "./page3";
 import Step4 from "./page4";
 
 const VerifyComponent = () => {
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
     isVendor: false,
     vendorCode: "",
