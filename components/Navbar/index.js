@@ -37,14 +37,35 @@ const Navbar = () => {
         </NavLinkOG>
         <Bars onClick={() => setMobileNav(!mobileNav)} />
         <NavMenu>
-          <NavLink href="/buy" className={router.pathname == '/buy' ? "active" : ""  || router.pathname == '/vendor' ? "active" : ""}>
+          <NavLink
+            href="/buy"
+            className={
+              router.pathname == "/buy"
+                ? "active"
+                : "" || router.pathname == "/vendor"
+                ? "active"
+                : ""
+            }
+          >
             Buy iSocks
           </NavLink>
-          <NavLink href="/redeem" className={router.pathname == '/redeem' ? "active" : ""} >
+          <NavLink
+            href="/redeem"
+            className={router.pathname == "/redeem" ? "active" : ""}
+          >
             Redeem iSocks
           </NavLink>
-          <NavLink href="/verify" className={router.pathname == '/verify' ? "active" : ""}>
+          <NavLink
+            href="/verify"
+            className={router.pathname == "/verify" ? "active" : ""}
+          >
             Verify iSocks
+          </NavLink>
+          <NavLink
+            href="/partners"
+            className={router.pathname == "/partners" ? "active" : ""}
+          >
+            Partners
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
@@ -52,7 +73,8 @@ const Navbar = () => {
         <NavBtn>
           <NavBtnLink02 href="https://discord.gg/nbrsZY9z59" target="_blank">
             <FaDiscord size={15} />
-            Join Discord</NavBtnLink02>
+            Join Discord
+          </NavBtnLink02>
           <NavBtnLink href="/preorder">Pre Order</NavBtnLink>
         </NavBtn>
       </Nav>
@@ -79,7 +101,9 @@ const Navbar = () => {
               <Link href="/verify">Verify iSocks</Link>
               <Link href="/join-whitelist">Join Whitelist</Link>
               <Link href="/preorder">Pre Order</Link>
-              <Link href="https://discord.gg/nbrsZY9z59" target="_blank">Join Discord</Link>
+              <Link href="https://discord.gg/nbrsZY9z59" target="_blank">
+                Join Discord
+              </Link>
             </MobileNav>
             <Close
               src="/img/icons/close.svg"
