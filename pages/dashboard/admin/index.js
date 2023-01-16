@@ -97,7 +97,7 @@ const Dashboard = () => {
             bgColor="var(--primary-brand)"
             color="#fff"
             cursor="pointer"
-            onClick={() => router.push(`/dashboard/vendor`)}
+            onClick={() => router.push(`/dashboard/admin/vendor`)}
           >
             <Circle>
               <FiUserCheck color="var(--primary-brand)" />
@@ -110,7 +110,7 @@ const Dashboard = () => {
           <Card
             justifyContent="center"
             cursor="pointer"
-            onClick={() => router.push(`/dashboard/partners`)}
+            onClick={() => router.push(`/dashboard/admin/partners`)}
           >
             <Circle>
               <FiUsers />
@@ -125,7 +125,7 @@ const Dashboard = () => {
             cursor="pointer"
             bgColor="var(--primary-brand)"
             color="#fff"
-            onClick={() => router.push(`/dashboard/superadmin`)}
+            onClick={() => router.push(`/dashboard/admin/superadmin`)}
           >
             <Circle>
               <FiUsers color="var(--primary-brand)" />
