@@ -15,12 +15,12 @@ import {
 import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
 import { useCookies } from "react-cookie";
-const LOGIN = '/api/login';
+const LOGIN = "/api/login";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [cookie,setCookie] = useCookies(["user"]);
+  const [cookie, setCookie] = useCookies(["user"]);
 
   const { onLogin } = React.useContext(AuthContext);
 
@@ -48,14 +48,14 @@ const Login = () => {
         if (res) {
           if (res.data.status === "success") {
             onLogin(res.data.token);
-            setCookie("user",res.data.token,{
-              path:"/",
-              maxAge:3600 * 24 * 3,
-              sameSite:true
-            })
+            setCookie("user", res.data.token, {
+              path: "/",
+              maxAge: 3600 * 24 * 3,
+              sameSite: true,
+            });
             Router.push("/dashboard/admin");
           }
-          if(res.data.status === 'unauthorized'){
+          if (res.data.status === "unauthorized") {
             setMessage("Invalid Access Key");
             setIsLoading(false);
           }
@@ -70,7 +70,7 @@ const Login = () => {
         }
         if (err.response) {
           const { status } = err.response;
-          if (status === 401) {
+          if (status === 401 || status === 404) {
             setMessage("Incorrect Email/Password");
             clearField();
             setIsLoading(false);
@@ -83,7 +83,6 @@ const Login = () => {
         }
       });
   }
-
 
   return (
     <>
