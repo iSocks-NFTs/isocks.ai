@@ -99,13 +99,16 @@ const Step5 = ({ formData, setFormData }) => {
     fetch(`${baseURL + endpoint}`, {
       method: "PATCH",
       body: fd,
+      headers: {
+        key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+      },
     })
       .then((res) => res.json())
       .then((json) => {
         setModal({ ...modal, successModal: true });
         console.log(json);
         setTimeout(() => {
-          Router.push('/');
+          Router.push("/");
         }, 2000);
       })
       .catch((err) => console.log(err));
