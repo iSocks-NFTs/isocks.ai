@@ -137,31 +137,34 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
     console.log(files[0]);
   }
 
-  function uploadImg(file,endpoint,fileType){
+  function uploadImg(file, endpoint, fileType) {
     const fd = new FormData();
-    if(fileType === "isock"){
-      fd.append("isock",file,file.name);
+    if (fileType === "isock") {
+      fd.append("isock", file, file.name);
     } else {
-      fd.append("accesscard",file,file.name);
+      fd.append("accesscard", file, file.name);
     }
 
-    fetch(`${baseURL + endpoint}`,{
-      method:"PATCH",
-      body:fd
+    fetch(`${baseURL + endpoint}`, {
+      method: "PATCH",
+      body: fd,
+      headers: {
+        key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+      },
     })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
-      return json;
-    })
-    .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        return json;
+      })
+      .catch((err) => console.log(err));
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { isocksFile, accessCardFile } = upload;
-    const i = uploadImg(isocksFile,isockEndpoint,"isock");
-    const j = uploadImg(accessCardFile,accessCardEndpoint,"accesscard");
+    const i = uploadImg(isocksFile, isockEndpoint, "isock");
+    const j = uploadImg(accessCardFile, accessCardEndpoint, "accesscard");
   };
 
   return (
