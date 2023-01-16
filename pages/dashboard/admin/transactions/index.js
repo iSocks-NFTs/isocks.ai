@@ -33,7 +33,7 @@ const Transaction = ({ data }) => {
       <Head>
         <title>iSocks | Admin Transactions</title>
       </Head>
-      <Container height="100%">
+      <Container>
         <Heading>Transaction Data Feed</Heading>
         {data.length !== 0 ? (
           <Table transactions={data} />
