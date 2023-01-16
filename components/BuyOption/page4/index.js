@@ -157,23 +157,6 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               );
             })}
           </OTPContainer>
-          <Divider />
-          <Label>Kindly impute the code sent to {formData.phoneNumber}</Label>
-          <OTPContainer>
-            {phoneOtp.map((data, index) => {
-              return (
-                <OTPBox
-                  type="text"
-                  maxLength="1"
-                  name="otp"
-                  key={index}
-                  value={data}
-                  onChange={(e) => handlePhoneOTP(e.target, index)}
-                  onFocus={(e) => e.target.select()}
-                />
-              );
-            })}
-          </OTPContainer>
           <ButtonContainer>
             <Button
               width="100%"
