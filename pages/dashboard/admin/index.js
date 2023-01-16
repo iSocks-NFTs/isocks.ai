@@ -13,21 +13,18 @@ import {
 } from "../../../components/BuyOption/style";
 import { GrMoney } from "react-icons/gr";
 import { AiOutlineQrcode } from "react-icons/ai";
-import { FiSettings } from "react-icons/fi";
+import { FiSettings, FiUsers, FiUserCheck } from "react-icons/fi";
 import { useEffect } from "react";
-import {useCookies} from 'react-cookie';
-
-
+import { useCookies } from "react-cookie";
 
 const Dashboard = () => {
   const router = Router;
-  const [id,setId] = React.useState();
-  const [cookie,setCookie,removeCookie] = useCookies(["users"]);
+  const [id, setId] = React.useState();
+  const [cookie, setCookie, removeCookie] = useCookies(["users"]);
 
-  useEffect(() =>{
-    setId(cookie.user)
-  },[])
-
+  useEffect(() => {
+    setId(cookie.user);
+  }, []);
 
   return (
     <Layout>
@@ -82,13 +79,60 @@ const Dashboard = () => {
               Generate, Edit & Delete QR Codes
             </OptionDescription>
           </Card>
-          <Card justifyContent="center" cursor="pointer" onClick={() => router.push(`/dashboard/admin/account/${id}`) }>
+          <Card
+            justifyContent="center"
+            cursor="pointer"
+            onClick={() => router.push(`/dashboard/admin/account/${id}`)}
+          >
             <Circle>
               <FiSettings />
             </Circle>
             <Option>Manage Account</Option>
             <OptionDescription>
               Review and Change Account Settings
+            </OptionDescription>
+          </Card>
+          <Card
+            justifyContent="center"
+            bgColor="var(--primary-brand)"
+            color="#fff"
+            cursor="pointer"
+            onClick={() => router.push(`/dashboard/vendor`)}
+          >
+            <Circle>
+              <FiUserCheck color="var(--primary-brand)" />
+            </Circle>
+            <Option>Vendor Management</Option>
+            <OptionDescription>
+              Create Vendors & Manage their Accounts{" "}
+            </OptionDescription>
+          </Card>
+          <Card
+            justifyContent="center"
+            cursor="pointer"
+            onClick={() => router.push(`/dashboard/partners`)}
+          >
+            <Circle>
+              <FiUsers />
+            </Circle>
+            <Option>Review Partnership</Option>
+            <OptionDescription>
+              Review & Manage List of Partners
+            </OptionDescription>
+          </Card>
+          <Card
+            justifyContent="center"
+            cursor="pointer"
+            bgColor="var(--primary-brand)"
+            color="#fff"
+            onClick={() => router.push(`/dashboard/superadmin`)}
+          >
+            <Circle>
+              <FiUsers color="var(--primary-brand)" />
+            </Circle>
+            <Option>Super Admin</Option>
+            <OptionDescription>
+              Create & Manage Admin Accounts
             </OptionDescription>
           </Card>
         </CardContainer>
