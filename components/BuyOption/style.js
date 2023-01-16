@@ -84,7 +84,6 @@ export const Card = styled.div`
   transition:0.8s;
   :hover {
     cursor: ${(props) => (props.cursor ? props.cursor : "auto")};
-    transform: scale(1.05);
   }
 `;
 
