@@ -33,9 +33,10 @@ export default function Page() {
         <FormContainer>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
-              <Label>Full Name</Label>
+              <Label htmlFor="fullName">Full Name</Label>
               <Input
                 type="text"
+                id="fullName"
                 value={formData.fullName}
                 onChange={(e) =>
                   setFormData({ ...formData, fullName: e.target.value })
@@ -44,9 +45,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Email Address</Label>
+              <Label htmlFor="emailAddress">Email Address</Label>
               <Input
                 type="email"
+                id="emailAddress"
                 value={formData.emailAddress}
                 onChange={(e) =>
                   setFormData({ ...formData, emailAddress: e.target.value })
@@ -55,9 +57,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Job Title</Label>
+              <Label htmlFor="jobTitle">Job Title</Label>
               <Input
                 type="text"
+                id="jobTitle"
                 value={formData.jobTitle}
                 onChange={(e) =>
                   setFormData({ ...formData, jobTitle: e.target.value })
@@ -66,9 +69,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>App Name</Label>
+              <Label htmlFor="appName">App Name</Label>
               <Input
                 type="text"
+                id="appName"
                 value={formData.appName}
                 onChange={(e) =>
                   setFormData({ ...formData, appName: e.target.value })
@@ -77,9 +81,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>App Website URL</Label>
+              <Label htmlFor="appUrl">App Website URL</Label>
               <Input
                 type="url"
+                id="appUrl"
                 value={formData.appUrl}
                 onChange={(e) =>
                   setFormData({ ...formData, appUrl: e.target.value })
@@ -88,9 +93,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Total Users</Label>
+              <Label htmlFor="totalUsers">Total Users</Label>
               <Input
                 type="number"
+                id="totalUsers"
                 value={formData.totalUsers}
                 min={0}
                 onChange={(e) =>
@@ -100,9 +106,10 @@ export default function Page() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Type of Company</Label>
+              <Label htmlFor="companyType">Type of Company</Label>
               <Input
                 type="text"
+                id="companyType"
                 value={formData.companyType}
                 onChange={(e) =>
                   setFormData({ ...formData, companyType: e.target.value })
