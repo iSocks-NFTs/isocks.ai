@@ -54,8 +54,8 @@ const Footer = () => {
           </Socials>
           <ContactUs>
             <span>Contact Us</span>
-            <Link className="email" href="mailto:isocksnftofficial@gmail.com">
-              isocksnftofficial@gmail.com
+            <Link className="email" href="mailto:info@isocks.ai">
+              info@isocks.ai
             </Link>
           </ContactUs>
         </Information>
