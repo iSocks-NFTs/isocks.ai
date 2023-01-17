@@ -3,8 +3,15 @@ import { Heading, P } from "../Roadmap/RoadmapStyles";
 import { Container } from "./style";
 import { Form, FormContainer, Button, FormGroup, Input, Label } from "../Form";
 import axios from "../../pages/api/axios";
+import SuccessModal from "../Modal/success";
+import FailModal from "../Modal/fail";
+import { TailSpin } from "react-loader-spinner";
+import { GlobalContext } from "../../context/globalContext";
+import { useRouter } from "next/router";
 
 export default function Page() {
+  const { modal, setModal } = React.useContext(GlobalContext);
+  const [loading, setLoading] = React.useState(false);
   const [formData, setFormData] = React.useState({
     fullName: "",
     emailAddress: "",
@@ -15,15 +22,61 @@ export default function Page() {
     companyType: "",
   });
 
+  const router = useRouter();
+
+  function clearFields() {
+    setFormData({
+      ...formData,
+      fullName: "",
+      emailAddress: "",
+      jobTitle: "",
+      appName: "",
+      appUrl: "",
+      totalUsers: 0,
+      companyType: "",
+    });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("/api/partner", {
-      ...formData,
-    });
+    axios
+      .post("/api/partner", {
+        ...formData,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          clearFields();
+          setLoading(false);
+          setModal({ ...modal, successModal: true });
+          setTimeout(() => {
+            router.push("/");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        clearFields();
+        console.log(err);
+      });
   }
 
   return (
     <div style={{ padding: "2rem 0" }}>
+      {modal.successModal && (
+        <SuccessModal
+          heading="Success"
+          message="Successfully Submitted Partnership Form, We'll Keep in Touch!"
+        />
+      )}
+
+      {modal.failModal && (
+        <FailModal
+          heading="Form Submission Failed"
+          message="We are sorry! Seems to be a problem from our end, could you try again later"
+        />
+      )}
+
       <Heading>Looking to Partner Up?</Heading>
       <P>
         Before we begin, please provide a brief overview of your business so we
@@ -117,7 +170,22 @@ export default function Page() {
                 required
               />
             </FormGroup>
-            <Button>Submit</Button>
+            <Button type="submit" onClick={() => setLoading(true)}>
+              {loading ? (
+                <TailSpin
+                  height="25"
+                  width="25"
+                  color="#fff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                "Submit"
+              )}
+            </Button>
           </Form>
         </FormContainer>
       </Container>
