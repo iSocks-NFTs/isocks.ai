@@ -28,7 +28,7 @@ export const OutLineButton = styled.button`
   border-radius: 32px;
   border: none;
   padding: 15px 50px;
-  width: 165px;
+  width: 150px;
   background-color: #fff;
   border: 1px solid #e1e1e1;
   color: var(--primary-brand);
