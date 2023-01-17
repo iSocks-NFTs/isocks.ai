@@ -18,9 +18,10 @@ import { GlobalContext } from "../../../context/globalContext";
 import SuccessModal from "../../Modal/success";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
+import { baseURL } from "../../../config";
 
 const AccountInfo = ({ data }) => {
-  const { modal, setModal, baseUrl } = React.useContext(GlobalContext);
+  const { modal, setModal } = React.useContext(GlobalContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const inputRef = useRef();
   const [formData, setFormData] = React.useState({
@@ -45,7 +46,7 @@ const AccountInfo = ({ data }) => {
       return;
     }
     axios
-      .put(`${baseUrl}/api/user/change/password/${data.id}`, {
+      .put(`${baseURL}/api/user/change/password/${data.id}`, {
         oldPassword,
         newPassword,
       })
@@ -57,18 +58,18 @@ const AccountInfo = ({ data }) => {
         }
       })
       .catch((error) => {
-        console.log(error)
-        if(error.response){
-          const {status} = error.response;
+        console.log(error);
+        if (error.response) {
+          const { status } = error.response;
           if (status === 401) {
             setIsLoading(false);
             setError("Wrong Password");
-            clearField()
+            clearField();
           }
           if (status === 500) {
             setIsLoading(false);
             setError("Server Error");
-            clearField()
+            clearField();
           }
         }
       });
