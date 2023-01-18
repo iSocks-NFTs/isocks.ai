@@ -56,7 +56,7 @@ export default function Vendor() {
           <Card
             justifyContent="center"
             cursor="pointer"
-            onClick={() => router.push("/dashboard/admin/vendor/review")}
+            onClick={() => router.push("/dashboard/admin/vendor/manage")}
           >
             <Circle>
               <FiUser />
