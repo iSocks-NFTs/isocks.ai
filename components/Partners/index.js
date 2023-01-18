@@ -56,6 +56,7 @@ export default function Page() {
       })
       .catch((err) => {
         setLoading(false);
+        setModal({ ...modal, failModal: true });
         clearFields();
         console.log(err);
       });
