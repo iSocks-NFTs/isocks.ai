@@ -46,12 +46,9 @@ export default function Page() {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          clearFields();
           setLoading(false);
           setModal({ ...modal, successModal: true });
-          setTimeout(() => {
-            router.push("/");
-          }, 2000);
+          clearFields();
         }
       })
       .catch((err) => {
