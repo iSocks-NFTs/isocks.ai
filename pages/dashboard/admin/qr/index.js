@@ -1,12 +1,10 @@
 import Head from "next/head";
 import React from "react";
 import Layout from "../../../../layouts/admin_layout";
-import Router from "next/router";
 import QRComponent from "../../../../components/QR";
 
 
 const QRManagement = () => {
-  const router = Router;
 
   return (
     <Layout>
