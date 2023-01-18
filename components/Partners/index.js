@@ -71,7 +71,7 @@ export default function Page() {
       {modal.failModal && (
         <FailModal
           heading="Form Submission Failed"
-          message="We are sorry! Seems to be a problem from our end, could you try again later"
+          message="It seems to be a problem from our end, could you try again later"
         />
       )}
 
