@@ -28,7 +28,7 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   border: ${(props) => props.border ? props.border : "1px solid var(--grey-border-color)"};
   width: 300px;
-  height: 300px;
+  min-height: 300px;
   display: flex;
   row-gap: 0.1rem;
   flex-direction: column;
