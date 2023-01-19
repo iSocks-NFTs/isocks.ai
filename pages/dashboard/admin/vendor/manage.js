@@ -98,9 +98,7 @@ export default function ManageVendor({ data }) {
                     key={index}
                     display={!isVisible ? "none" : ""}
                     onClick={() =>
-                      router.push(
-                        `/dashboard/admin/vendor/manage/${vendor.vendorId}`
-                      )
+                      router.push(`/dashboard/admin/vendor/${vendor.id}`)
                     }
                   >
                     <Circle>
