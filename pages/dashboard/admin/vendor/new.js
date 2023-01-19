@@ -206,7 +206,7 @@ export default function NewVendor() {
                 </Button>
               </ButtonContainer>
               <ButtonContainer>
-                <Button onClick={back}>
+                <Button onClick={back} type="button">
                   {goBack ? (
                     <TailSpin
                       height="25"
