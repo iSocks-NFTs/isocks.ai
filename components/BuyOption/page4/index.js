@@ -1,25 +1,24 @@
+import Toast from "awesome-toast-component";
+import { motion } from "framer-motion";
 import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { Container, Heading, P } from "../style";
+import { Col, Row } from "react-bootstrap";
+import { TailSpin } from "react-loader-spinner";
+import { TransactionContext } from "../../../context/transactionContext";
+import axios from "../../../pages/api/axios";
 import {
+  Button,
+  ButtonContainer,
   Form,
   FormContainer,
-  Input,
-  Button,
   FormGroup,
-  Label,
-  ButtonContainer,
-  OTPContainer,
-  OTPBox,
   Icon,
+  Label,
   Msg,
+  OTPBox,
+  OTPContainer,
   Resend,
 } from "../../Form";
-import { motion } from "framer-motion";
-import { TailSpin } from "react-loader-spinner";
-import Divider from "../../Divider";
-import axios from "../../../pages/api/axios";
-import { TransactionContext } from "../../../context/transactionContext";
+import { Container, Heading, P } from "../style";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [otp, setOtp] = React.useState(new Array(6).fill(""));
@@ -49,35 +48,46 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     }
   }
 
-  function handlePhoneOTP(element, index) {
-    if (isNaN(element.value)) return false;
-    setPhoneOtp([
-      ...phoneOtp.map((d, idx) => (idx === index ? element.value : d)),
-    ]);
-    // Focus Next Box
-    if (element.nextSibling) {
-      element.nextSibling.focus();
-    }
-    if (phoneOtp.length === 6) {
-      setButtonActive(true);
-    }
-  }
+  // function handlePhoneOTP(element, index) {
+  //   if (isNaN(element.value)) return false;
+  //   setPhoneOtp([
+  //     ...phoneOtp.map((d, idx) => (idx === index ? element.value : d)),
+  //   ]);
+  //   // Focus Next Box
+  //   if (element.nextSibling) {
+  //     element.nextSibling.focus();
+  //   }
+  //   if (phoneOtp.length === 6) {
+  //     setButtonActive(true);
+  //   }
+  // }
 
   function verifyOTP(otp) {
-    const VERIFY_OTP = `/api/transaction/verify/${otp.join("")}/${transactionId}`
+    setMsg(false);
+    setError(false);
+    const VERIFY_OTP = `/api/transaction/verify/${otp.join(
+      ""
+    )}/${transactionId}`;
     setIsSubmitting(true);
     axios
-      .get(
-        VERIFY_OTP
-      )
+      .get(VERIFY_OTP)
       .then((response) => {
         const { data } = response;
         if (data.status === "ok") {
           setIsSubmitting(false);
-          setPage(page + 1)
+          new Toast("OTP Verified", {
+            style: {
+              container: [["background-color", "green"]],
+              message: [["color", "#eee"]],
+            },
+          });
+          setTimeout(() => {
+            setPage(page + 1);
+          }, 2000);
         }
         if (data.status === "failed") {
           setIsSubmitting(false);
+          new Toast("OTP Verification Failed");
           setMsg(true);
           setError(true);
         }
@@ -85,24 +95,53 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
       .catch((error) => {
         setIsSubmitting(false);
         console.log(error);
+        if (error.response.status === 409) {
+          new Toast("Wrong OTP, Please Confirm and Try Again", {
+            style: {
+              container: [["background-color", "red"]],
+              message: [["color", "#eee"]],
+            },
+            timeout: 3000,
+          });
+        }
+        if (error.response.status === 400) {
+          new Toast("OTP Expired, Click ", {
+            style: {
+              container: [["background-color", "red"]],
+              message: [["color", "#eee"]],
+            },
+            timeout: 3000,
+          });
+        }
         setMsg(true);
         setError(true);
-      })
+      });
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    if(phoneOtp.join("").length === 6){
+    e.preventDefault();
+    if (phoneOtp.join("").length === 6) {
       verifyOTP(phoneOtp);
     }
-    if(otp.join("").length === 6){
+    if (otp.join("").length === 6) {
       verifyOTP(otp);
     }
   }
 
   function clearOtp() {
+    const new_otp = `/api/otp/${transactionId}`;
     setOtp([...otp.map((v) => "")]);
     setPhoneOtp([...phoneOtp.map((v) => "")]);
+    axios.get(new_otp).then((response) => {
+      if (response.status === 200) {
+        new Toast("Sent New OTP", {
+          style: {
+            container: [["background-color", "green"]],
+            message: [["color", "#eee"]],
+          },
+        });
+      }
+    });
   }
 
   function MessageBox() {
