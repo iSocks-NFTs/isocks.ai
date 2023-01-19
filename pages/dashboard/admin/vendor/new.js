@@ -1,50 +1,91 @@
 import Head from "next/head";
-import React from "react";
-import Layout from "../../../../layouts/admin_layout";
+import { useRouter } from "next/router";
+import React, { useContext } from "react";
+import { TailSpin } from "react-loader-spinner";
+import { Card, CardContainer } from "../../../../components/BuyOption/style";
 import {
   Container,
   Heading,
   Text,
 } from "../../../../components/Dashboard/style";
-import { FiUser } from "react-icons/fi";
-import {
-  Card,
-  CardContainer,
-  OptionDescription,
-  Option,
-  Circle,
-} from "../../../../components/BuyOption/style";
-import { TailSpin } from "react-loader-spinner";
 import {
   Button,
   ButtonContainer,
   Form,
   FormGroup,
-  Label,
   Input,
+  Label,
 } from "../../../../components/Form";
-import { useRouter } from "next/router";
+import Layout from "../../../../layouts/admin_layout";
 import axios from "../../../api/axios";
-import { GlobalContext } from "../../../../context/globalContext";
+import { AuthContext } from "../../../../context/authContext";
+import Toast from "awesome-toast-component";
 
 export default function NewVendor() {
+  const { accountId } = useContext(AuthContext);
   const [goBack, setBack] = React.useState(false);
+  const [isCreating, setIsCreating] = React.useState(false);
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
     emailAddress: "",
+    currentState: "",
+    nationality: "",
+    noOfAvailableNFTs: "",
   });
   const router = useRouter();
 
+  function clearFields() {
+    setFormData({
+      ...formData,
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      currentState: "",
+      nationality: "",
+      noOfAvailableNFTs: "",
+    });
+  }
+
   function handleSubmit(e) {
+    setIsCreating(true);
     e.preventDefault();
+    console.log(formData);
     axios
-      .post("", { ...formData })
+      .post(`/api/user/vendor/`, { ...formData, adminId: accountId })
       .then((res) => {
         console.log(res);
+        setIsCreating(false);
+        new Toast("Created New Vendor", {
+          timeout: 3000,
+        });
+        setTimeout(() => {
+          router.push("/dashboard/admin/vendor/manage");
+        }, 1000);
+        clearFields();
       })
       .catch((err) => {
         console.log(err);
+        setIsCreating(false);
+        clearFields();
+        if (err.status === 409) {
+          new Toast("Failed To Create New Vendor", {
+            style: {
+              container: [["background-color", "red"]],
+              message: [["color", "#eee"]],
+            },
+            timeout: 5000,
+          });
+        }
+        if (err.response.data.error === "Vendor record already exists") {
+          new Toast("Vendor with this Email already exists", {
+            style: {
+              container: [["background-color", "var(--error)"]],
+              message: [["color", "#eee"]],
+            },
+            timeout: 5000,
+          });
+        }
       });
   }
 
@@ -75,6 +116,7 @@ export default function NewVendor() {
                   onChange={(e) =>
                     setFormData({ ...formData, firstName: e.target.value })
                   }
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -86,6 +128,7 @@ export default function NewVendor() {
                   onChange={(e) =>
                     setFormData({ ...formData, lastName: e.target.value })
                   }
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -97,13 +140,73 @@ export default function NewVendor() {
                   onChange={(e) =>
                     setFormData({ ...formData, emailAddress: e.target.value })
                   }
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="currentState">Current State</Label>
+                <Input
+                  type="text"
+                  id="currentState"
+                  value={formData.currentState}
+                  onChange={(e) =>
+                    setFormData({ ...formData, currentState: e.target.value })
+                  }
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="countryOfResidence">Country</Label>
+                <Input
+                  type="text"
+                  id="countryOfResidence"
+                  value={formData.nationality}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nationality: e.target.value })
+                  }
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="noOfNFTs">No of NFTs</Label>
+                <Input
+                  type="number"
+                  id="noOfNFTs"
+                  value={formData.noOfAvailableNFTs}
+                  min="0"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      noOfAvailableNFTs: e.target.value,
+                    })
+                  }
+                  required
                 />
               </FormGroup>
               <ButtonContainer>
-                <Button type="submit">Create Vendor</Button>
+                <Button
+                  type="submit"
+                  backgroundColor="#fff"
+                  color="var(--primary-brand)"
+                >
+                  {isCreating ? (
+                    <TailSpin
+                      height="25"
+                      width="25"
+                      color="var(--primary-brand)"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  ) : (
+                    "Create Vendor"
+                  )}
+                </Button>
               </ButtonContainer>
               <ButtonContainer>
-                <Button onClick={back}>
+                <Button onClick={back} type="button">
                   {goBack ? (
                     <TailSpin
                       height="25"

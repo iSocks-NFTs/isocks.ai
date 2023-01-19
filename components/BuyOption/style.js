@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 100%;
-  height:130vh;
-  border:1px solid transparent;
-  background-image: url('img/bg/logo_bg.png');
+  min-height: 130vh;
+  border: 1px solid transparent;
+  background-image: url("img/bg/logo_bg.png");
   background-position: 100% 50%;
   background-size: auto 95%;
   background-repeat: no-repeat;
-  @media screen and (max-width:380px) {
-    height:fit-content;
+  @media screen and (max-width: 380px) {
+    height: fit-content;
     background-position: center;
   }
 `;
@@ -17,7 +17,8 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: ${(props) => props.justifyContent ? props.justifyContent : "center"};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "center"};
   gap: 1rem;
   flex-wrap: wrap;
 `;
@@ -36,8 +37,8 @@ export const BuyOptionLink = styled.a`
 `;
 
 export const Circle = styled.div`
-  width:60px;
-  height:60px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,8 +53,8 @@ export const Image = styled.img`
 
 export const Option = styled.span`
   font-weight: 600;
-  font-size: ${({fontSize}) => fontSize ? fontSize : "22px"};
-  margin-top:10px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : "22px")};
+  margin-top: 10px;
 `;
 
 export const ArrowRight = styled.img``;
@@ -74,14 +75,15 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  justify-content: ${(props) => props.justifyContent ? props.justifyContent : 'flex-start'};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex-start"};
   padding: 1rem;
   color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
   background-color: ${(props) => (props.bgColor ? props.bgColor : "")};
   hr {
     width: 240px;
   }
-  transition:0.8s;
+  transition: 0.8s;
   :hover {
     cursor: ${(props) => (props.cursor ? props.cursor : "auto")};
   }

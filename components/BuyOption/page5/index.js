@@ -107,9 +107,6 @@ const Step5 = ({ formData, setFormData }) => {
       .then((json) => {
         setModal({ ...modal, successModal: true });
         console.log(json);
-        setTimeout(() => {
-          Router.push("/");
-        }, 2000);
       })
       .catch((err) => console.log(err));
   }
@@ -129,7 +126,7 @@ const Step5 = ({ formData, setFormData }) => {
       {modal.successModal ? (
         <SuccessModal
           heading="Upload Successful"
-          message="Transaction uploaded!"
+          message="Transaction receipt uploaded! Our Vendor will contact you shortly"
         />
       ) : (
         <></>

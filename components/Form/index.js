@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const FormContainer = styled.div``;
+export const FormContainer = styled.div`
+  margin: ${(props) => (props.margin ? props.margin : "")};
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -23,12 +25,13 @@ export const Input = styled.input`
   }
 `;
 
-export const Type = styled.span``
+export const Type = styled.span``;
 
 export const WalletAddress = styled.input`
   height: ${(props) => (props.height ? props.height : "60px")};
   width: clamp(250px, 320px, 450px);
-  background-color: ${(props) => props.backgroundColor ? props.backgroundColor : "#fff"};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "#fff"};
   color: var(--primary-brand);
   padding: 0 3px;
   border: 0.933743px solid #e3e6e8;
@@ -37,10 +40,10 @@ export const WalletAddress = styled.input`
   :focus {
     outline: var(--primary-brand);
   }
-  ::after{
-    content:'ERC20'
+  ::after {
+    content: "ERC20";
   }
-`
+`;
 
 export const TextArea = styled.textarea`
   height: ${(props) => (props.height ? props.height : "120px")};
@@ -63,95 +66,109 @@ export const TextArea = styled.textarea`
 export const FormGroup = styled.div`
   position: relative;
   display: flex;
-  flex-direction: ${(props) => props.flexDirection ? props.flexDirection : "column"};
-  align-items:${(props) => props.alignItems ? props.alignItems : "flex-start"};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "column"};
+  align-items: ${(props) =>
+    props.alignItems ? props.alignItems : "flex-start"};
   row-gap: 0.5rem;
-  column-gap: ${(props) => props.columnGap ? props.columnGap : "0"};
-  span{
-    font-size:15px;
-    font-weight:400;
+  column-gap: ${(props) => (props.columnGap ? props.columnGap : "0")};
+  span {
+    font-size: 15px;
+    font-weight: 400;
   }
-  div{
-    width:clamp(250px, 320px, 450px);
+  div {
+    width: clamp(250px, 320px, 450px);
   }
 `;
 
 export const Button = styled.button`
-  background-color: ${(props) => props.backgroundColor ? props.backgroundColor : "var(--primary-brand)"};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "var(--primary-brand)"};
   padding: 15px 50px;
   font-size: 15px;
-  width: ${(props) => props.width ? props.width : "clamp(250px, 320px, 450px)"};
-  color: ${(props) => props.color ? props.color : "#fff"};
+  width: ${(props) =>
+    props.width ? props.width : "clamp(250px, 320px, 450px)"};
+  color: ${(props) => (props.color ? props.color : "#fff")};
   border-radius: 30px;
   transition: 0.7s;
   margin: 0 auto;
   display: inline-flex;
   justify-content: center;
-  border: 1px solid ${(props) => props.borderColor ? props.borderColor : "var(--primary-brand)"};
+  border: 1px solid
+    ${(props) =>
+      props.borderColor ? props.borderColor : "var(--primary-brand)"};
   :hover {
-    cursor: ${(props) => props.cursor ? props.cursor : "pointer"};
-    color: ${(props) => props.hoverColor ? props.hoverColor : "var(--primary-brand)"};
-    background-color: ${(props) => props.hoverBackgroundColor ? props.hoverBackgroundColor : "#fff"};
-    border: 1px solid ${(props) => props.hoverBorderColor ? props.hoverBorderColor : "var(--primary-brand)"};
+    cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
+    color: ${(props) =>
+      props.hoverColor ? props.hoverColor : "var(--primary-brand)"};
+    background-color: ${(props) =>
+      props.hoverBackgroundColor ? props.hoverBackgroundColor : "#fff"};
+    border: 1px solid
+      ${(props) =>
+        props.hoverBorderColor
+          ? props.hoverBorderColor
+          : "var(--primary-brand)"};
   }
-  :focus,:active{
-    color:#fff;
+  :focus,
+  :active {
+    color: #fff;
     background-color: var(--primary-brand);
   }
 `;
 
 export const Icon = styled.img`
-  width:15px;
-  height:15px;
-`
+  width: 15px;
+  height: 15px;
+`;
 export const Msg = styled.span`
-  font-size:11px;
-  color:${(props) => props.color ? props.color : "var(--primary-brand)"};
-`
+  font-size: 11px;
+  color: ${(props) => (props.color ? props.color : "var(--primary-brand)")};
+`;
 
 export const Resend = styled.span`
-  color:var(--primary-brand);
+  color: var(--primary-brand);
   text-decoration: underline;
-  :hover{
+  :hover {
     cursor: pointer;
   }
-`
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap:0.3rem;
-  flex-direction: ${({flexDirection}) => flexDirection ? flexDirection : 'row'};
-  margin-top:${(props) => props.marginTop ? props.marginTop : ""};
-`
+  gap: 0.3rem;
+  flex-direction: ${({ flexDirection }) =>
+    flexDirection ? flexDirection : "row"};
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "")};
+`;
 
 export const Label = styled.label`
   font-weight: 400;
   font-size: 14px;
-  text-align: ${({textAlign}) => textAlign ? textAlign : ''};
-  color: ${(props) => props.color ? props.color : "var(--subtle-text)"};
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : "")};
+  color: ${(props) => (props.color ? props.color : "var(--subtle-text)")};
   width: clamp(250px, 320px, 450px);
-  a{
+  a {
     text-decoration: underline;
   }
 `;
 
 export const OTPContainer = styled.div`
-    display:flex;
-    column-gap:0.5rem;
-`
+  display: flex;
+  column-gap: 0.5rem;
+`;
 export const OTPBox = styled.input`
-  width:45px;
-  height:45px;
+  width: 45px;
+  height: 45px;
   background-color: #fff;
   border: 0.933743px solid #e3e6e8;
-  color:var(--primary-brand);
-  font-size:25px;
-  padding-left:0.9rem;
+  color: var(--primary-brand);
+  font-size: 25px;
+  padding-left: 0.9rem;
   border-radius: 3px;
-  :focus{
+  :focus {
     outline: none;
   }
-`
+`;
 
 export const Uploaded = styled.div`
   border: 1px solid #e3e6e8;
@@ -160,7 +177,8 @@ export const Uploaded = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${(props) => props.width ? props.width : "clamp(250px, 320px, 450px)"};
+  width: ${(props) =>
+    props.width ? props.width : "clamp(250px, 320px, 450px)"};
   padding: 5px;
   cursor: pointer;
   display: flex;
@@ -182,9 +200,9 @@ export const FileInput = styled.input`
 `;
 
 export const UD = styled.img`
-  position:absolute;
-  top:2.15rem;
-  left:1.3rem;
-  width:${(props) => props.width ? props.width : '45px'};
-  height:${(props) => props.height ? props.height : '45px'};
-`
+  position: absolute;
+  top: 2.15rem;
+  left: 1.3rem;
+  width: ${(props) => (props.width ? props.width : "45px")};
+  height: ${(props) => (props.height ? props.height : "45px")};
+`;

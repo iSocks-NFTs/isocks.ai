@@ -16,9 +16,10 @@ import {
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 
-const Step2 = ({ page, setPage, formData, setFormData }) => {
+const Step2 = ({ page, setPage, formData, setFormData, vendors }) => {
+  console.log(vendors);
   function selectVendor(vendorOption) {
-    setFormData({...formData,vendorOption:vendorOption})
+    setFormData({ ...formData, vendorOption: vendorOption });
     setPage(page + 1);
   }
 
@@ -38,86 +39,49 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
           </P>
         </Col>
       </Row>
-      <CardContainer>
-        <Card onClick={() => selectVendor("1123")}>
-          <Circle>
-            <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
-          </Circle>
-          <FullName>John Freeman</FullName>
-          <hr />
-          <VendorData>
-            <VendorLocation color="#8C8CA1">
-              <span>Location:</span>
-              <span>NFT</span>
-            </VendorLocation>
-            <VendorLocation fontSize="20px">
-              <span>Lagos, Nigeria.</span>
-              <span>300</span>
-            </VendorLocation>
-            <Acceptance>
-              <Text>Accepting:</Text>
-              <AcceptanceList>
-                <span>Accepts Fiat</span>
-                <span>Card</span>
-                <span>Bank Transfer</span>
-                <span>Crypto</span>
-              </AcceptanceList>
-            </Acceptance>
-          </VendorData>
-        </Card>
-        <Card onClick={() => selectVendor("1124")}>
-          <Circle>
-            <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
-          </Circle>
-          <FullName>John Freeman</FullName>
-          <hr />
-          <VendorData>
-            <VendorLocation color="#8C8CA1">
-              <span>Location:</span>
-              <span>NFT</span>
-            </VendorLocation>
-            <VendorLocation fontSize="20px">
-              <span>Lagos, Nigeria.</span>
-              <span>300</span>
-            </VendorLocation>
-            <Acceptance>
-              <Text>Accepting:</Text>
-              <AcceptanceList>
-                <span>Accepts Fiat</span>
-                <span>Card</span>
-                <span>Bank Transfer</span>
-                <span>Crypto</span>
-              </AcceptanceList>
-            </Acceptance>
-          </VendorData>
-        </Card>
-        <Card onClick={() => selectVendor("1125")}>
-          <Circle>
-            <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
-          </Circle>
-          <FullName>John Freeman</FullName>
-          <hr />
-          <VendorData>
-            <VendorLocation color="#8C8CA1">
-              <span>Location:</span>
-              <span>NFT</span>
-            </VendorLocation>
-            <VendorLocation fontSize="20px">
-              <span>Lagos, Nigeria.</span>
-              <span>300</span>
-            </VendorLocation>
-            <Acceptance>
-              <Text>Accepting:</Text>
-              <AcceptanceList>
-                <span>Accepts Fiat</span>
-                <span>Card</span>
-                <span>Bank Transfer</span>
-                <span>Crypto</span>
-              </AcceptanceList>
-            </Acceptance>
-          </VendorData>
-        </Card>
-      </CardContainer>
+      {vendors.length === 0 ? (
+        <P>There are no Vendors to Purchase from at this time</P>
+      ) : (
+        <CardContainer>
+          {vendors.map((vendor, index) => {
+            return (
+              <Card
+                onClick={() => selectVendor(`${vendor?.vendorId}`)}
+                key={index}
+              >
+                <Circle>
+                  <Image src="/img/logo/vendor_buy.svg" alt="Vendor SVG" />
+                </Circle>
+                <FullName>{`${
+                  vendor?.firstName + " " + vendor?.lastName
+                }`}</FullName>
+                <hr />
+                <VendorData>
+                  <VendorLocation color="#8C8CA1">
+                    <span>Location:</span>
+                    <span>NFT</span>
+                  </VendorLocation>
+                  <VendorLocation fontSize="20px">
+                    <span>
+                      {vendor?.currentState} State, {vendor?.nationality}.
+                    </span>
+                    <span>{vendor?.noOfAvailableNFTs}</span>
+                  </VendorLocation>
+                  <Acceptance>
+                    <Text>Accepting:</Text>
+                    <AcceptanceList>
+                      <span>Accepts Fiat</span>
+                      <span>Card</span>
+                      <span>Bank Transfer</span>
+                      <span>Crypto</span>
+                    </AcceptanceList>
+                  </Acceptance>
+                </VendorData>
+              </Card>
+            );
+          })}
+        </CardContainer>
+      )}
     </Container>
   );
 };

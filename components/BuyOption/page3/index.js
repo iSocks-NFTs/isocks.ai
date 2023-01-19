@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import axios from "../../../pages/api/axios";
 import { TailSpin } from "react-loader-spinner";
 import { TransactionContext } from "../../../context/transactionContext";
+import Toast from "awesome-toast-component";
 
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -40,11 +41,23 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           const { transactionId, user } = record;
           storeData(user, transactionId);
           setIsSubmitting(false);
-          setPage(page + 1);
+          new Toast("Transaction Initiated", {
+            timeout: 3000,
+          });
+          setTimeout(() => {
+            setPage(page + 1);
+          }, 2000);
         }
       })
       .catch((error) => {
         setIsSubmitting(false);
+        new Toast("Failed to Initiate Transaction", {
+          style: {
+            container: [["background-color", "red"]],
+            message: [["color", "#eee"]],
+          },
+          timeout: 3000,
+        });
         console.log(error);
       });
   }

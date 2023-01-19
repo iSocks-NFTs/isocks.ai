@@ -3,13 +3,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { TailSpin } from "react-loader-spinner";
 import Head from "next/head";
+import { baseURL } from "../../config";
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  const baseURL =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_LIVE_BASEURL
-      : process.env.NEXT_PUBLIC_LOCAL_BASEURL;
+  
   const endpoint = `/api/find/qr/${id}`;
   // Fetch Data
   const response = await fetch(`${baseURL + endpoint}`,{

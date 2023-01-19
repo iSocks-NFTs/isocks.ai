@@ -17,9 +17,14 @@ const AuthContextProvider = ({ children }) => {
 
   React.useEffect(() =>{
     const storedUserLoggedInInformation = window.localStorage.getItem('isLoggedIn');
+    const iSockAdmin = window.localStorage.getItem("iSockUserID");
 
     if(storedUserLoggedInInformation === "1"){
       setIsLoggedIn(true);
+    }
+
+    if(iSockAdmin){
+      setAccountId(iSockAdmin);
     }
 
     const udDomain = window.localStorage.getItem("username");

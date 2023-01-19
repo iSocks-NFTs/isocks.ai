@@ -27,6 +27,7 @@
     "@web3-react/walletconnect-connector": "^6.2.13",
     "@web3modal/ethereum": "^2.0.0-beta.1",
     "@web3modal/react": "^2.0.0-beta.1",
+    "awesome-toast-component": "^2.0.6",
     "axios": "^1.1.2",
     "bootstrap": "^5.2.1",
     "classnames": "^2.3.2",
