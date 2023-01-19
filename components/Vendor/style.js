@@ -6,16 +6,16 @@ export const Container = styled.div`
 
 export const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 25%);
-  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
   grid-gap: 1rem;
   @media screen and (max-width: 1024px) {
     justify-items: center;
-    grid-template-columns: repeat(2, 30%);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
   }
   @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(2, 40%);
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     grid-gap: 1rem;
   }
