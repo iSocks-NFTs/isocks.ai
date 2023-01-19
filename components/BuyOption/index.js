@@ -3,25 +3,25 @@ import { Container } from "./style";
 import Step1 from "./page1";
 import Step2 from "../Vendor";
 import Step3 from "./page3";
-import Step4 from './page4';
+import Step4 from "./page4";
 import Step5 from "./page5";
 import { GlobalContext } from "../../context/globalContext";
 import SuccessModal from "../Modal/success";
 import { AnimatePresence } from "framer-motion";
 
-const BuyOptionsComponent = () => {
+const BuyOptionsComponent = ({ vendors }) => {
   const [page, setPage] = React.useState(0);
   const [formData, setFormData] = React.useState({
-    vendorOption:'',
-    emailAddress:'',
-    phoneNumber:'',
-    walletAddress:'',
-    KudaBankAccountNumber:243435335646,
-    uploadedProof:{
-      uploaded:false,
-      imgfileName:'test.png',
-      imgFile:null
-    }
+    vendorOption: "",
+    emailAddress: "",
+    phoneNumber: "",
+    walletAddress: "",
+    KudaBankAccountNumber: 243435335646,
+    uploadedProof: {
+      uploaded: false,
+      imgfileName: "test.png",
+      imgFile: null,
+    },
   });
 
   const { successModal, setSuccessModal } = useContext(GlobalContext);
@@ -40,6 +40,7 @@ const BuyOptionsComponent = () => {
       setPage={setPage}
       formData={formData}
       setFormData={setFormData}
+      vendors={vendors}
     />,
     <Step3
       key={3}
