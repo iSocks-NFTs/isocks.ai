@@ -40,7 +40,6 @@ const BuyOptionsComponent = ({ vendors }) => {
       setPage={setPage}
       formData={formData}
       setFormData={setFormData}
-      vendors={vendors}
     />,
     <Step3
       key={3}

@@ -16,6 +16,7 @@ import Router from "next/router";
 import { AuthContext } from "../../../context/authContext";
 import { useCookies } from "react-cookie";
 const LOGIN = "/api/login";
+import Toast from "awesome-toast-component";
 
 const Login = () => {
   const [message, setMessage] = React.useState("");
@@ -53,6 +54,9 @@ const Login = () => {
               maxAge: 3600 * 24 * 3,
               sameSite: true,
             });
+            new Toast("Login Successful", {
+              timeout: 5000,
+            });
             Router.push("/dashboard/admin");
           }
           if (res.data.status === "unauthorized") {
@@ -64,7 +68,13 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         if (err.message === "Network Error") {
-          setMessage("Network Error");
+          new Toast("Network Error", {
+            style: {
+              container: [["background-color", "red"]],
+              message: [["color", "#eee"]],
+            },
+            timeout: 5000,
+          });
           clearField();
           setIsLoading(false);
         }
@@ -72,6 +82,13 @@ const Login = () => {
           const { status } = err.response;
           if (status === 401 || status === 404) {
             setMessage("Incorrect Email/Password");
+            new Toast("Incorrect Email/Password", {
+              style: {
+                container: [["background-color", "red"]],
+                message: [["color", "#eee"]],
+              },
+              timeout: 5000,
+            });
             clearField();
             setIsLoading(false);
           }
