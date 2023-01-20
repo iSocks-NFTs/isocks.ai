@@ -12,6 +12,7 @@ import {
   Text,
   VendorLocation,
   AcceptanceList,
+  Loader,
 } from "./style";
 import { Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
@@ -47,6 +48,9 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
           setVendors(data);
         }
         setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(true);
       });
   }, []);
 
@@ -74,10 +78,10 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
       </Row>
       <VendorStatus />
       {isLoading ? (
-        <P>
+        <Loader>
           <TailSpin
-            height="250"
-            width="250"
+            height="150"
+            width="150"
             color="var(--primary-brand)"
             ariaLabel="tail-spin-loading"
             radius="1"
@@ -85,7 +89,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
             wrapperClass=""
             visible={true}
           />
-        </P>
+        </Loader>
       ) : (
         ""
       )}
