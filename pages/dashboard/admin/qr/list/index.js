@@ -1,24 +1,23 @@
-import React, { useEffect, useMemo } from "react";
-import Head from "next/head";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { Container, Heading } from "../../../../../components/Dashboard/style";
+import { Button } from "../../../../../components/Form";
+import {
+  CodeBox,
+  CodeLabel,
+  Link,
+  LinkHref,
+  LinkText,
+  PaginationContainer,
+  QRContainer,
+} from "../../../../../components/QR/style";
+import Layout from "../../../../../layouts/admin_layout";
 const QRCodeImage = dynamic(
   () => import("../../../../../components/QR/Module"),
   { ssr: false }
 );
-import Layout from "../../../../../layouts/admin_layout";
-import { Container, Heading } from "../../../../../components/Dashboard/style";
-import { Button } from "../../../../../components/Form";
-import { Row, Col } from "react-bootstrap";
-import {
-  QRContainer,
-  CodeBox,
-  CodeLabel,
-  LinkHref,
-  LinkText,
-  Link,
-  PaginationContainer,
-} from "../../../../../components/QR/style";
-import Pagination from "../../../../../components/Pagination"
 
 let PageSize = 6;
 
