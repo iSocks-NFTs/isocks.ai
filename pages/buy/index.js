@@ -4,7 +4,7 @@ import Layout from "../../layouts/normal_layout";
 
 import { baseURL } from "../../config";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const endpoint = "/api/user/vendor";
 
   const response = await fetch(`${baseURL + endpoint}`, {
