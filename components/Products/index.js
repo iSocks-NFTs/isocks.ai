@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import {
   FilledButton,
   OutLineButton,
@@ -8,23 +8,22 @@ import {
 } from "./style";
 import Slider from "./Slider";
 
-
-
 const ProductSlide = () => {
+  const router = useRouter();
 
   return (
     <Container>
       <Slider />
       <ButtonContainer>
-        <FilledButton onClick={() => Router.push("/buy")}>
+        <FilledButton onClick={() => router.push("/buy")}>
           Buy Sock
         </FilledButton>
       </ButtonContainer>
       <ButtonContainer>
-        <OutLineButton onClick={() => Router.push("/redeem")}>
+        <OutLineButton onClick={() => router.push("/redeem")}>
           Redeem
         </OutLineButton>
-        <OutLineButton onClick={() => Router.push("/verify")}>
+        <OutLineButton onClick={() => router.push("/verify")}>
           Verify
         </OutLineButton>
       </ButtonContainer>
