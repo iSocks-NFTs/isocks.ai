@@ -38,7 +38,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
     if (id) {
       setId(id);
     }
-  });
+  },[id]);
 
   const baseURL =
     process.env.NODE_ENV === "production"
