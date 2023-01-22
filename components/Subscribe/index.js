@@ -20,7 +20,7 @@ const Subscribe = () => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post("https://isocks-mailchimp.vercel.app/subscribe", {
+      .post("https://real-puce-hen-wrap.cyclic.app/subscribe", {
         emailAddress,
       })
       .then((response) => {
