@@ -38,6 +38,11 @@ export const Container = styled.div`
       text-align: center;
     }
   }
+  @media screen and (max-width: 1024px) {
+    .quote {
+      font-size: 25px;
+    }
+  }
 `;
 
 export const Image = styled.img`
