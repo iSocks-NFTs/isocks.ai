@@ -7,15 +7,16 @@ import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
 import Header from "../components/Header";
 import ComingSoon from "../components/ComingSoon";
+import ChatSection from "../components/ChatSection";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
 import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Main = styled.main`
-  width:100%;
-`
+  width: 100%;
+`;
 
 export default function Home() {
   const [ready, setReady] = useState(true);
@@ -41,6 +42,7 @@ export default function Home() {
         <>
           <Navbar />
           <Header />
+          <ChatSection />
           {/* <Tutorial /> */}
           <Section />
           <Roadmap />
