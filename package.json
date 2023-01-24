@@ -11,6 +11,7 @@
   "dependencies": {
     "@firebase/firestore": "^3.6.0",
     "@moralisweb3/evm-utils": "^2.5.3",
+    "@moralisweb3/next": "2.11.0",
     "@react-three/drei": "^9.32.4",
     "@react-three/fiber": "^8.8.7",
     "@react-three/xr": "^5.0.1",
@@ -29,14 +30,17 @@
     "@web3modal/react": "^2.0.0-beta.1",
     "awesome-toast-component": "^2.0.6",
     "axios": "^1.1.2",
+    "blockscanchat-sdk": "^1.0.6",
     "bootstrap": "^5.2.1",
     "classnames": "^2.3.2",
     "country-data-list": "^1.2.2",
+    "date-fns": "^2.29.3",
     "ethers": "^5.7.2",
     "framer-motion": "^7.3.5",
     "googleapis": "^107.0.0",
-    "moralis": "^2.5.3",
+    "moralis": "^2.11.1",
     "next": "12.3.0",
+    "next-auth": "^4.18.8",
     "qrcode": "^1.5.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -54,11 +58,13 @@
     "styled-qr-code": "^1.0.0",
     "three": "^0.144.0",
     "use-react-countries": "^1.1.0",
+    "wagmi": "^0.10.12",
     "web3": "^1.8.0",
     "web3modal": "^1.9.9"
   },
   "devDependencies": {
     "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0"
+    "eslint-config-next": "12.3.0",
+    "typescript": "4.9.4"
   }
 }
