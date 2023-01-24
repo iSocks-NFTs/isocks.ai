@@ -7,7 +7,6 @@ import {
   Form,
   Input,
 } from "./subscribeStyles";
-import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 

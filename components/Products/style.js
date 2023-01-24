@@ -94,7 +94,4 @@ export const ProductImage = styled.img`
   border-radius: 8px;
   padding: 1rem;
   background-color: #f6f6f6;
-  :hover {
-    transform: scale(1.025);
-  }
 `;

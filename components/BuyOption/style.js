@@ -200,8 +200,8 @@ export const P = styled.p`
   text-align: center;
   width: 35%;
   margin: 0 auto;
-  margin-bottom: 2rem;
-  color: var(--subtle-text);
+  margin-bottom: ${(marginBottom) => (marginBottom ? marginBottom : "2rem")};
+  color: ${(color) => (color ? color : "var(--subtle-text)")};
   @media screen and (max-width: 480px) {
     width: 100%;
   }
