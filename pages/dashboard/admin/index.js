@@ -14,16 +14,34 @@ import {
 import { GrMoney } from "react-icons/gr";
 import { AiOutlineQrcode } from "react-icons/ai";
 import { FiSettings, FiUsers, FiUserCheck } from "react-icons/fi";
-import { useEffect } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useCookies } from "react-cookie";
+import { TailSpin } from "react-loader-spinner";
+import Toast from "awesome-toast-component";
+import { baseURL } from "../../../config";
+import { AuthContext } from "../../../context/authContext";
 
 const Dashboard = () => {
   const router = Router;
   const [id, setId] = React.useState();
   const [cookie, setCookie, removeCookie] = useCookies(["users"]);
+  const [loading, setLoading] = useState(false);
+  const [userStatus, setUserStatus] = useState(null);
+  const { accountId } = useContext(AuthContext);
 
   useEffect(() => {
     setId(cookie.user);
+    setLoading(true);
+    const endpoint = `/api/find/user/${accountId}`;
+    fetch(`${baseURL + endpoint}`, {
+      headers: {
+        key: process.env.NEXT_PUBLIC_BACKEND_KEY,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   }, []);
 
   return (

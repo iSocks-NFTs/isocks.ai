@@ -42,9 +42,9 @@ export default function Home() {
         <>
           <Navbar />
           <Header />
-          <ChatSection />
           {/* <Tutorial /> */}
           <Section />
+          <ChatSection />
           <Roadmap />
           <Subscribe />
           <Footer />
