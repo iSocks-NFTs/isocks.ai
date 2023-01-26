@@ -82,7 +82,19 @@ export const ChatScreen = styled.div`
   overflow-y: scroll;
 `;
 
-export const SentChatBox = styled.div``;
+export const Message = styled.div`
+  .recieved{
+
+  }
+
+  .sent{
+
+  }
+`
+
+export const MessageList = styled.div`
+  height:fit-content;
+`
 
 export const InputForm = styled.form`
   width: 100%;
@@ -115,7 +127,7 @@ export const SendButton = styled.button`
 `;
 
 export const NoMoreMessages = styled.p`
-  text-align:center;
-  font-size:12px;
-  color:var(--subtle-text);
-`
+  text-align: center;
+  font-size: 12px;
+  color: var(--subtle-text);
+`;
