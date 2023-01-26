@@ -7,6 +7,8 @@ import {
   Img,
   Input,
   InputForm,
+  MessageList,
+  Message,
   NoMoreMessages,
   SendButton,
   TopBar,
@@ -22,7 +24,7 @@ const ChatPage = ({ user }) => {
   return (
     <>
       <Head>
-        <title>iSocks | Live Chat</title>
+        <title>iSocks | Wallet-to-Wallet Chat</title>
       </Head>
       <Background>
         <ChatLayout>
@@ -30,11 +32,16 @@ const ChatPage = ({ user }) => {
             <Img src="/img/logo/isock.svg" />
             <div className="tag">
               <span className="community_name">iSocks Community Chat</span>
-              <span className="members">{user.address}</span>
+              <span className="members">
+                {user
+                  ? user.address
+                  : "0xF2255c5F4dd0a2dfC4B65bab08EE27CA58333362"}
+              </span>
             </div>
           </TopBar>
           <ChatScreen>
             <NoMoreMessages>~ no more new messages to load ~</NoMoreMessages>
+            <Message></Message>
           </ChatScreen>
           <InputForm>
             <Input
