@@ -21,7 +21,7 @@ export default function WalletConnectionOption({ setOpen }) {
   const { push } = useRouter();
 
   async function walletSelect(option) {
-    console.log(`Wallet ${option} : Selected`);
+    console.log(`Selected : ${option}`);
     if (option === "MetaMask") {
       await handleAuthMetaMask();
     }
@@ -31,7 +31,34 @@ export default function WalletConnectionOption({ setOpen }) {
     }
   }
 
-  async function handleAuthWalletConnect() {}
+  async function handleAuthWalletConnect() {
+    if (isConnected) {
+      await disconnectAsync();
+    }
+
+    const { account, chain } = await connectAsync({
+      connector: new WalletConnectConnector({ options: { qrcode: true } }),
+    });
+
+    const { message } = await requestChallengeAsync({
+      address: account,
+      chainId: chain.id,
+    });
+
+    const signature = await signMessageAsync({ message });
+
+    const { url } = await signIn("moralis-auth", {
+      message,
+      signature,
+      redirect: false,
+      callbackUrl: "/chat/user",
+    });
+
+    const userData = { address: account, chainId: chain.id };
+    console.log("User Data 😁", userData);
+
+    push(url);
+  }
 
   async function handleAuthMetaMask() {
     if (isConnected) {

@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   display: flex;
+  background-color: var(--light);
+  margin-top:3rem;
+  padding:3rem 0;
   flex-direction: row;
   text-align: left;
   justify-content: center;
@@ -11,19 +14,20 @@ export const Container = styled.div`
   .text {
     width: 45%;
   }
-  .text *{
-    margin:1rem 0;
+  .text * {
+    margin: 1rem 0;
   }
   img {
     border-radius: 8px;
+    filter: grayscale(100%);
   }
-  @media screen and (max-width:768px){
-    flex-direction:column-reverse;
-    text-align:center;
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    text-align: center;
   }
-  @media screen and (max-width:480px){
-    .text{
-        width:100%;
+  @media screen and (max-width: 480px) {
+    .text {
+      width: 100%;
     }
   }
 `;

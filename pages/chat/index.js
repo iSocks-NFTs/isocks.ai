@@ -17,10 +17,10 @@ const Chat = () => {
         {open ? <WalletConnectionOption setOpen={setOpen} /> : ""}
       </AnimatePresence>
       <Head>
-        <title>iSocks | Live Chat</title>
+        <title>iSocks | Wallet-to-Wallet Chat</title>
       </Head>
       <Background>
-        <Heading>iSocks Live Chat</Heading>
+        <Heading>iSocks Wallet-To-Wallet Chat Beta v1</Heading>
         <P color="var(--primary-brand)" marginBottom="0">
           Connect with your web3 based wallet and sign-in.
         </P>
