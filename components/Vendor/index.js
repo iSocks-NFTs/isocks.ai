@@ -28,7 +28,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
   }
 
   const [vendors, setVendors] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,6 +56,9 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
 
   function VendorStatus() {
     if (vendors !== null && vendors.length === 0) {
+      return <P>There are no vendors to purchase from at this time</P>;
+    }
+    if (isLoading) {
       return <P>There are no vendors to purchase from at this time</P>;
     }
   }
