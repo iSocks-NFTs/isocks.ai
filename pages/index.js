@@ -13,6 +13,7 @@ import Modal from "../components/Modal";
 import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
+import { ProductSection } from "../components/Products/ProductSection";
 
 const Main = styled.main`
   width: 100%;
@@ -21,6 +22,9 @@ const Main = styled.main`
 export default function Home() {
   const [ready, setReady] = useState(true);
   const { modal, setModal } = useContext(GlobalContext);
+  const textBody = `A work of art in itself. Designed to perfectly complement our handmade, premium socks, each box is made from high-quality materials and features unique, eye catching designs, Whether it's for personal use or as a gift, the iSocksNFT packaging box adds an extra touch of luxury to the already premium product.
+  
+  Get yours today on BINANCE Marketplace and elevate your style.`;
 
   return (
     <Main>
@@ -44,7 +48,13 @@ export default function Home() {
           <Header />
           {/* <Tutorial /> */}
           <Section />
+          <ProductSection />
           <ChatSection />
+          <ProductSection
+            heading="The Package"
+            textBody={textBody}
+            imgSrc="/img/products/package.jpg"
+          />
           <Roadmap />
           <Subscribe />
           <Footer />
