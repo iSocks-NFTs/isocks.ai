@@ -21,7 +21,7 @@ export const Container = styled.div`
     filter: grayscale(100%);
   }
   @media screen and (max-width: 768px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
   }
   @media screen and (max-width: 480px) {
