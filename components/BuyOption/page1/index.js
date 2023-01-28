@@ -26,14 +26,20 @@ const Step1 = ({ page, setPage, formData, setFormData }) => {
       <Row>
         <Col>
           <Heading>Choose Buying Option</Heading>
-          <P>
+          <P marginBottom="4rem">
             All our buying options are easy & fast. We can&#39;t wait to see you
             at the otherside.
           </P>
         </Col>
       </Row>
       <CardContainer>
-        <Card onClick={() => Router.push("https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58")}>
+        <Card
+          onClick={() =>
+            Router.push(
+              "https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58"
+            )
+          }
+        >
           <Circle>
             <Image src="/img/logo/binance_buy.svg" alt="Binance" />
           </Circle>
