@@ -68,8 +68,9 @@ export const ProductCard = styled.div`
   height: fit-content;
   width: 280px;
   border-radius: 8px;
+  background-color:var(--light);
   transition: 0.8s;
-  transform: ${({ transform }) => (transform ? transform : "")};
+  transform: translateX(0);
 `;
 
 export const ProductDescription = styled.span`
@@ -81,10 +82,20 @@ export const SliderContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   height: 400px;
+  width: 900px;
   display: flex;
+  position: relative;
+  justify-content: space-between;
+  column-gap: 10rem;
+  transition: all 0.8s ease;
   align-items: center;
-  justify-content: center;
-  column-gap: 3rem;
+  .center {
+    position: absolute;
+    transition: 0.8s;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -93,5 +104,6 @@ export const ProductImage = styled.img`
   transition: 0.8s;
   border-radius: 8px;
   padding: 1rem;
+  object-fit: cover;
   background-color: #f6f6f6;
 `;
