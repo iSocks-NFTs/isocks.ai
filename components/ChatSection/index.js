@@ -7,6 +7,12 @@ export default function ChatSection() {
   const { push } = useRouter();
   return (
     <Container>
+      <Image
+        src={`/img/chat/chat02.jpg`}
+        width="450"
+        height="450px"
+        alt="Chat Illustration"
+      />
       <div class="text">
         <Heading>iSocks Wallet-to-Wallet Chat</Heading>
         <TextBody>
@@ -24,7 +30,6 @@ export default function ChatSection() {
         </TextBody>
         <Button onClick={() => push("/chat")}>Connect Wallet</Button>
       </div>
-      <Image src={`/img/chat/chat02.jpg`} width="450" height="450px" />
     </Container>
   );
 }
