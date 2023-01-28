@@ -75,6 +75,7 @@ const Slider = () => {
 
       return (
         <ProductCard
+          key={index}
           border={"1px solid var(--primary-brand)"}
           className={index === active ? "center" : ""}
           onMouseDown={handleMouseDown}
