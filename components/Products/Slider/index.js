@@ -9,18 +9,12 @@ import {
 const productList = [
   {
     imgUrl: "/img/products/01.jpg",
-    caption:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. ",
   },
   {
     imgUrl: "/img/products/02.jpg",
-    caption:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. ",
   },
   {
     imgUrl: "/img/products/03.jpg",
-    caption:
-      "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. ",
   },
 ];
 const Slider = () => {
@@ -50,25 +44,6 @@ const Slider = () => {
     setDragEnd(null);
   };
 
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    if (window.innerWidth < 480) {
-      function countWithDelay() {
-        let count = 0;
-        const interval = setTimeout(() => {
-          console.log("Current Count:", count);
-          count++;
-          if (count < 3) {
-            interval = setTimeout(countWithDelay, 10000);
-          } else {
-            count = 0;
-          }
-          setActive(count);
-        }, 10000);
-      }
-    }
-  }, [windowWidth]);
-
   const renderProduct = () => {
     return productList.map((product, index) => {
       const { imgUrl, caption } = product;
@@ -76,7 +51,7 @@ const Slider = () => {
       return (
         <ProductCard
           key={index}
-          border={"1px solid var(--primary-brand)"}
+          border={"0.5px solid var(--primary-brand)"}
           className={index === active ? "center" : ""}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
@@ -84,7 +59,11 @@ const Slider = () => {
         >
           <ProductImage src={imgUrl} />
           {index === active ? (
-            <ProductDescription>{caption}</ProductDescription>
+            <ProductDescription>
+              Total Supply 80 <br />
+              Tribe: J!J! Klan Socks <br />
+              Limited edition with variable pricing based on Ethereum price.
+            </ProductDescription>
           ) : (
             ""
           )}

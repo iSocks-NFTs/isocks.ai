@@ -1,6 +1,6 @@
 import { Container, Heading, TextBody } from "./style";
-import Image from "next/image";
 import { Button } from "../../Form";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 export function ProductSection({ heading, textBody, imgSrc }) {
@@ -17,15 +17,12 @@ export function ProductSection({ heading, textBody, imgSrc }) {
         </TextBody>
         <Button onClick={() => push("/buy")}>Buy Now</Button>
       </div>
-      <div>
-        <Image
-          src={imgSrc ? imgSrc : "/img/products/sock_wrapped.jpg"}
-          width={480}
-          height={480}
-          layout="intrinsic"
-          alt="Sock Product"
-        />
-      </div>
+      <Image
+        width="550px"
+        height="350px"
+        src={imgSrc ? imgSrc : "/img/products/sock_wrapped.jpg"}
+        alt="Sock Product"
+      />
     </Container>
   );
 }

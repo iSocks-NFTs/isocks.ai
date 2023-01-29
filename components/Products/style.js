@@ -68,19 +68,21 @@ export const ProductCard = styled.div`
   height: fit-content;
   width: 280px;
   border-radius: 8px;
-  background-color:var(--light);
+  background-color: var(--light);
   transition: 0.8s;
   transform: translateX(0);
 `;
 
 export const ProductDescription = styled.span`
   padding: 1rem;
-  font-size: 11px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: bold;
 `;
 
 export const SliderContainer = styled.div`
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 400px;
   width: 900px;
   display: flex;
@@ -104,6 +106,6 @@ export const ProductImage = styled.img`
   transition: 0.8s;
   border-radius: 8px;
   padding: 1rem;
-  object-fit: cover;
+  object-fit: contain;
   background-color: #f6f6f6;
 `;

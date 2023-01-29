@@ -12,7 +12,6 @@ export const Container = styled.div`
   .quote {
     width: 50%;
     font-size: 32px;
-    font-family: cursive;
   }
   @media screen and (max-width: 480px) {
     .section {
