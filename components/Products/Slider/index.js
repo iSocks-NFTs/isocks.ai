@@ -5,6 +5,7 @@ import {
   ProductDescription,
   ProductCard,
 } from "../style";
+import { useMediaQuery } from "react-responsive";
 
 const productList = [
   {
@@ -22,6 +23,9 @@ const Slider = () => {
   const [dragStart, setDragStart] = useState(null);
   const [dragEnd, setDragEnd] = useState(null);
   const [windowWidth, setWindowWidth] = useState(0);
+  const isMobile = useMediaQuery({
+    query: "(max-width:480px)",
+  });
 
   const handleMouseDown = (e) => {
     setDragStart({ x: e.clientX, y: e.clientY });
@@ -44,15 +48,32 @@ const Slider = () => {
     setDragEnd(null);
   };
 
+  useEffect(() => {
+    let count = 0;
+    function startCounting() {
+      console.log("Current Count", count);
+      count = (count + 1) % 3;
+
+      setActive(count);
+
+      setTimeout(startCounting, 5000);
+    }
+    if (isMobile) {
+      startCounting();
+    }
+  }, [isMobile]);
+
   const renderProduct = () => {
     return productList.map((product, index) => {
-      const { imgUrl, caption } = product;
+      const { imgUrl } = product;
 
       return (
         <ProductCard
           key={index}
           border={"0.5px solid var(--primary-brand)"}
-          className={index === active ? "center" : ""}
+          className={`${index === active && "center"} ${
+            index === 1 && index !== active ? "left" : "right"
+          }`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={(e) => handleMouseUp(e, index)}

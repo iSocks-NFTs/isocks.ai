@@ -98,6 +98,18 @@ export const SliderContainer = styled.div`
     transform: translateX(-50%);
     z-index: 999;
   }
+  .left {
+    .left {
+      position: absolute;
+      left: 0;
+    }
+  }
+  .right {
+    .right {
+      position: absolute;
+      right: 0;
+    }
+  }
 `;
 
 export const ProductImage = styled.img`
