@@ -8,7 +8,7 @@ export function ProductSection({ heading, textBody, imgSrc }) {
 
   return (
     <Container>
-      <div>
+      <div className="text_section">
         <Heading>{heading ? heading : "The iSock"}</Heading>
         <TextBody>
           {textBody

@@ -38,6 +38,7 @@ export const Heading = styled.h3`
 export const TextBody = styled.p`
   width: 380px;
   font-size: 18px;
+  margin-bottom: 1.5rem;
 
   @media screen and (max-width: 480px) {
     width: 100%;
