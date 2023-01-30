@@ -96,7 +96,6 @@ export const SliderContainer = styled.div`
     transition: 0.8s;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 999;
   }
   .left {
     .left {
