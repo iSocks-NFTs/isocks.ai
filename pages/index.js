@@ -30,17 +30,6 @@ export default function Home() {
     <Main>
       <Head>
         <title>iSocks | Homepage</title>
-        <link rel="icon" href="/img/icons/logo.svg" />
-        <meta name="author" content="Adefeyitimi Adeyeloja" />
-        <meta
-          name="description"
-          content="Welcome to the iSocks NFT Community"
-        />
-        <meta
-          name="keywords"
-          content="iSocks, iSocks.ai, iSocks NFT Community, iSocks, Meta nfts, Binance, Open Sea"
-        />
-        <meta name="robots" content="index" />
       </Head>
       {ready ? (
         <>

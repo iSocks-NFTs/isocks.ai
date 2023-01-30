@@ -36,6 +36,17 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           />
+          <meta name="robots" content="index" />
+          <link rel="icon" href="/img/icons/logo.svg" />
+          <meta name="author" content="Adefeyitimi Adeyeloja" />
+          <meta
+            name="description"
+            content="Welcome to the iSocks NFT Community"
+          />
+          <meta
+            name="keywords"
+            content="iSocks, iSocks.ai, iSocks NFT Community, iSocks, Meta nfts, Binance, Open Sea, Adefeyitimi Adeyeloja"
+          />
         </Head>
         <body>
           <Main />
