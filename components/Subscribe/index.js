@@ -33,10 +33,8 @@ const Subscribe = () => {
       })
       .catch((error) => {
         setLoading(false);
-        setMsg("");
         setEmailAddress("");
-        console.log(error);
-        if (error.status === 500) {
+        if (error) {
           setMsg("You are already subscribed 😁");
         }
       });
