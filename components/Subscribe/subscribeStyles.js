@@ -40,7 +40,8 @@ export const FormContainer = styled.div`
   }
   .status {
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
+    margin-top:1rem;
   }
 `;
 
