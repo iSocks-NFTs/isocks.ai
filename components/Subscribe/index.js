@@ -35,8 +35,10 @@ const Subscribe = () => {
         setLoading(false);
         setMsg("");
         setEmailAddress("");
-        setMsg("Subscription Failed! Please try again later 😥");
         console.log(error);
+        if (error.status === 500) {
+          setMsg("You are already subscribed 😁");
+        }
       });
   };
   return (
