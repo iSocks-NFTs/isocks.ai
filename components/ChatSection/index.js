@@ -13,7 +13,7 @@ export default function ChatSection() {
         height="450px"
         alt="Chat Illustration"
       />
-      <div class="text">
+      <div className="text">
         <Heading>iSocks Wallet-to-Wallet Chat</Heading>
         <TextBody>
           We are excited to offer our customers a convenient and secure
