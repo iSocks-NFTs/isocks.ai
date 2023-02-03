@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FormContainer,
-  Form,
-  Label,
-  FormGroup,
-  Input,
-} from "../style";
+import { FormContainer, Form, Label, FormGroup, Input } from "../style";
 import { Button } from "../../Form";
 import { motion } from "framer-motion";
 import { UD } from "../../Form";
@@ -13,15 +7,15 @@ import { useWeb3React } from "@web3-react/core";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import UAuth from "@uauth/js";
 import { UAuthConnector } from "@uauth/web3-react";
-import {InjectedConnector} from '@web3-react/injected-connector'
+import { InjectedConnector } from "@web3-react/injected-connector";
 import { useAccount } from "@web3modal/react";
 
-export const injected = new InjectedConnector({supportedChainIds: [1]})
+export const injected = new InjectedConnector({ supportedChainIds: [1] });
 
 export const walletconnect = new WalletConnectConnector({
   infuraId: process.env.NEXT_PUBLIC_INFURA_ID,
   qrcode: true,
-})
+});
 
 const uauth = new UAuthConnector({
   uauth: new UAuth({
@@ -36,8 +30,8 @@ const uauth = new UAuthConnector({
 const Step3 = ({ page, setPage, formData, setFormData }) => {
   const inputRef = React.useRef();
   const [ud, setUd] = React.useState("");
-  const { activate,deactivate } = useWeb3React();
-  const { account } = useAccount()
+  const { activate, deactivate } = useWeb3React();
+  const { account } = useAccount();
 
   async function handleLogin() {
     await activate(uauth);
@@ -56,7 +50,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     }
   }, [account]);
 
-  function next(){
+  function next() {
     setPage(page + 1);
   }
 
@@ -92,7 +86,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               cursorColor="transparent"
               id="ud"
               value={ud}
-              paddingLeft="1.5rem"
+              paddingLeft="4rem"
               cursor="pointer"
             />
           </FormGroup>
@@ -110,7 +104,9 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
           >
             Clear Domain
           </Button>
-          <Button type="button" onClick={() => next()}>Continue</Button>
+          <Button type="button" onClick={() => next()}>
+            Continue
+          </Button>
         </Form>
       </FormContainer>
     </>
