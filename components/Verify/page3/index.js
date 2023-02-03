@@ -9,6 +9,7 @@ import UAuth from "@uauth/js";
 import { UAuthConnector } from "@uauth/web3-react";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useAccount } from "@web3modal/react";
+import { useRouter } from "next/router";
 
 export const injected = new InjectedConnector({ supportedChainIds: [1] });
 
@@ -32,6 +33,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
   const [ud, setUd] = React.useState("");
   const { activate, deactivate } = useWeb3React();
   const { account } = useAccount();
+  const { push } = useRouter();
 
   async function handleLogin() {
     await activate(uauth);
@@ -90,9 +92,9 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               cursor="pointer"
             />
           </FormGroup>
-          <Label htmlFor="ud" fontWeight="bolder">
+          {/* <Label htmlFor="ud" fontWeight="bolder" onClick={push}>
             Get a UD domain here
-          </Label>
+          </Label> */}
           <Button
             type="button"
             color="var(--primary-brand)"
