@@ -92,7 +92,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
               cursorColor="transparent"
               id="ud"
               value={ud}
-              paddingLeft="9rem"
+              paddingLeft="1.5rem"
               cursor="pointer"
             />
           </FormGroup>
