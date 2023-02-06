@@ -26,13 +26,13 @@ const Step1 = ({ page, setPage, formData, setFormData }) => {
       <Row>
         <Col>
           <Heading>Choose Buying Option</Heading>
-          <P marginBottom="4rem">
+          <P>
             All our buying options are easy & fast. We can&#39;t wait to see you
             at the otherside.
           </P>
         </Col>
       </Row>
-      <CardContainer>
+      <CardContainer className="mt-[2.5rem]">
         <Card
           onClick={() =>
             Router.push(

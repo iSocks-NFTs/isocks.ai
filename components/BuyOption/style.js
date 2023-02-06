@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   max-width: 100%;
   min-height: 130vh;
+  padding-top: 2.5rem;
   border: 1px solid transparent;
   background-image: url("img/bg/logo_bg.png");
   background-position: 100% 50%;
@@ -200,7 +201,8 @@ export const P = styled.p`
   text-align: center;
   width: 35%;
   margin: 0 auto;
-  margin-bottom: ${(marginBottom) => (marginBottom ? marginBottom : "2rem")};
+  margin-bottom: ${(marginBottom) =>
+    marginBottom ? marginBottom : "2rem !important"};
   color: ${(color) => (color ? color : "var(--subtle-text)")};
   @media screen and (max-width: 480px) {
     width: 100%;
