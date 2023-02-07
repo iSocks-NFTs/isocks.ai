@@ -3,26 +3,48 @@ import { Button } from "../../Form";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-export function ProductSection({ heading, textBody, imgSrc }) {
+export function ProductSection() {
   const { push } = useRouter();
+
+  const products = [
+    {
+      imgUrl: "/img/products/sock_wrapped.jpg",
+      heading: "The iSocks",
+      description:
+        "The ultimate in luxury and craftsmanship. Made from 100% handpicked fine cotton, our socks are handmade from start to finish, ensuring the highest quality and attention to detail.",
+    },
+    {
+      imgUrl: "/img/products/package.jpg",
+      heading: "The Package",
+      description:
+        "A work of art in itself. Designed to perfectly complement our handmade, premium socks, each box is made from high-quality materials and features unique, eye catching designs, Whether it's for personal use or as a gift, the iSocksNFT packaging box adds an extra touch of luxury to the already premium product.",
+    },
+  ];
 
   return (
     <Container>
-      <div className="text_section">
-        <Heading>{heading ? heading : "The iSock"}</Heading>
-        <TextBody>
-          {textBody
-            ? textBody
-            : "The ultimate in luxury and craftsmanship. Made from 100% handpicked fine cotton, our socks are handmade from start to finish, ensuring the highest quality and attention to detail."}
-        </TextBody>
-        <Button onClick={() => push("/buy")}>Buy Now</Button>
+      <h3 className="text-4xl text-center font-semibold">Our Products</h3>
+      <p className="text-center text-[var(--subtle-text)]">
+        What We have Built
+      </p>
+      <div className="flex sm:flex-row flex-col sm:justify-center items-center gap-5 mt-5 p-5">
+        {products.map((product, index) => {
+          return (
+            <div
+              className="text-center sm:w-[350px] sm:h-[480px] w-[280px]  flex flex-col justify-start border-2 rounded-md  hover:scale-105 duration-500 ease-in hover:cursor-pointer"
+              key={index}
+            >
+              <img
+                src={product.imgUrl}
+                className="rounded-md object-contain"
+                alt={product.heading}
+              />
+              <h4 className="text-2xl font-semibold mt-2">{product.heading}</h4>
+              <p className="p-2">{product.description}</p>
+            </div>
+          );
+        })}
       </div>
-      <Image
-        width="550px"
-        height="350px"
-        src={imgSrc ? imgSrc : "/img/products/sock_wrapped.jpg"}
-        alt="Sock Product"
-      />
     </Container>
   );
 }

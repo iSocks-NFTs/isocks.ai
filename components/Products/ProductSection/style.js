@@ -1,27 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 3rem;
-  column-gap: 10rem;
-  img {
-    object-fit: contain;
-    border-radius: 8px;
-    margin: 1rem 0;
-  }
-  @media screen and (max-width: 768px) {
-    flex-direction: column-reverse;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
+  padding: 6rem 0;
 `;
 
 export const Heading = styled.h3`
