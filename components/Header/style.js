@@ -10,7 +10,7 @@ export const Heading = styled.h3`
   font-family: "Nunito Sans";
   text-align: center;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: -0.1rem;
   @media screen and (max-width: 520px) {
     font-size: 20px;

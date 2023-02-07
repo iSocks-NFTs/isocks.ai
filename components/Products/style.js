@@ -112,11 +112,10 @@ export const SliderContainer = styled.div`
 `;
 
 export const ProductImage = styled.img`
-  height: ${(props) => (props.height ? props.height : "250px")};
-  width: ${(props) => (props.width ? props.width : "250px")};
+  height: ${(props) => (props.height ? props.height : "fit-content")};
+  width: ${(props) => (props.width ? props.width : "fit-content")};
   transition: 0.8s;
   border-radius: 8px;
-  padding: 1rem;
   object-fit: contain;
   background-color: #f6f6f6;
 `;
