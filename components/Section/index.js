@@ -1,11 +1,12 @@
-import { Container, Image } from "./style";
-import { Heading, P } from "../Roadmap/RoadmapStyles";
-
 export default function Section() {
   return (
     <div className="w-full flex sm:flex-row md:flex-col lg:flex-row flex-col h-fit">
       <div className="sm:w-[60%] md:w-full lg:w-[55%] w-full">
-        <img src="/img/section/wb.png" alt="White and Black Photo" className="border-0"/>
+        <img
+          src="/img/section/wb.png"
+          alt="White and Black Photo"
+          className="border-0"
+        />
       </div>
       <div className="sm:w-[40%] md:w-full lg:w-[45%] w-full bg-black text-white sm:text-right md:text-center lg:text-right text-center flex flex-col justify-center p-2">
         <h3 className="sm:text-[3.2rem] text-[2.8rem]">Our Vision</h3>
