@@ -7,7 +7,6 @@ import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
 import Header from "../components/Header";
 import ComingSoon from "../components/ComingSoon";
-import ChatSection from "../components/ChatSection";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
 import SubscribeModal from "../components/Modal/emailSubscribe/index";
@@ -38,7 +37,6 @@ export default function Home() {
           {/* <Tutorial /> */}
           <Section />
           <ProductSection />
-          <ChatSection />
           <ProductSection
             heading="The Package"
             textBody={textBody}
