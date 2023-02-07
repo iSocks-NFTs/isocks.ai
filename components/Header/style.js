@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   max-width: 100%;
   background-color: #fff;
-  padding: 1rem 0;
+  padding: 1rem 0 8rem 0;
 `;
 
 export const Heading = styled.h3`
