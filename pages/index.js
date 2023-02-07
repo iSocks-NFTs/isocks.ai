@@ -34,14 +34,8 @@ export default function Home() {
         <>
           <Navbar />
           <Header />
-          {/* <Tutorial /> */}
           <Section />
           <ProductSection />
-          <ProductSection
-            heading="The Package"
-            textBody={textBody}
-            imgSrc="/img/products/package.jpg"
-          />
           <Roadmap />
           <Subscribe />
           <Footer />
