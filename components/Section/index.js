@@ -9,11 +9,13 @@ export default function Section() {
         />
       </div>
       <div className="sm:w-[40%] md:w-full lg:w-[45%] w-full bg-black text-white sm:text-right md:text-center lg:text-right text-center flex flex-col justify-center p-2">
-        <h3 className="sm:text-[3.2rem] lg:text-[2.3rem] text-[2.8rem]">Our Vision</h3>
-        <p className="sm:text-[2.5rem] lg:text-[1.8rem] text-[2rem] font-semibold">
+        <h3 className="sm:text-[3.2rem] xl:text-[3.2rem] lg:text-[2.3rem] text-[2.8rem]">
+          Our Vision
+        </h3>
+        <p className="sm:text-[2.5rem] xl:text-[2.5rem] lg:text-[1.8rem] text-[2rem] font-semibold">
           Long-term goals and objectives
         </p>
-        <p className="sm:text-[1.7rem] lg:text-[1.2rem] text-[1rem] font-thin">
+        <p className="sm:text-[1.7rem] xl:text-[1.7rem] lg:text-[1.2rem] text-[1rem] font-thin">
           {" "}
           "We believe that the future of fashion is about more than just looking
           good, it is about being able to prove the authencity and ownership of
