@@ -7,12 +7,14 @@ import Roadmap from "../components/Roadmap";
 import Subscribe from "../components/Subscribe";
 import Header from "../components/Header";
 import ComingSoon from "../components/ComingSoon";
+import Wardrobe from "../components/Wardrobe";
 import { GlobalContext } from "../context/globalContext";
 import Modal from "../components/Modal";
 import SubscribeModal from "../components/Modal/emailSubscribe/index";
 import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { ProductSection } from "../components/Products/ProductSection";
+import PartnerSection from "../components/Partner";
 
 const Main = styled.main`
   width: 100%;
@@ -36,7 +38,9 @@ export default function Home() {
           <Header />
           <Section />
           <ProductSection />
+          <Wardrobe />
           <Roadmap />
+          <PartnerSection />
           <Subscribe />
           <Footer />
         </>
