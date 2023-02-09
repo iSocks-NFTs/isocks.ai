@@ -2,8 +2,11 @@ import { FaHandshake, FaEthereum } from "react-icons/fa";
 import { GiLifeSupport } from "react-icons/gi";
 import unstoppableDomain from "../../public/img/logo/partners/unstoppabledomain.svg";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function PartnerSection() {
+  const { push } = useRouter();
   const iconSize = 45;
   const color = "#8c8ca1";
   const content = [
@@ -42,12 +45,12 @@ export default function PartnerSection() {
         <Image src={unstoppableDomain} alt="Unstoppable Domain Logo" />
       </div>
       <div>
-        <a
-          href="/partners"
+        <button
+          onClick={() => push("/partners")}
           className="bg-[#fff] py-[10px] px-[20px] border-black border-[1px] text-2xl hover:bg-black hover:border-white hover:text-white duration-300 ease-in rounded-md"
         >
           Become a Partner
-        </a>
+        </button>
       </div>
     </div>
   );
