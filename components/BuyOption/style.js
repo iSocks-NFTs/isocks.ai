@@ -200,7 +200,7 @@ export const P = styled.p`
   font-family: "Nunito Sans";
   text-align: center;
   width: 35%;
-  margin: 0 auto;
+  margin: 1rem auto;
   margin-bottom: ${(marginBottom) =>
     marginBottom ? marginBottom : "2rem !important"};
   color: ${(color) => (color ? color : "var(--subtle-text)")};
