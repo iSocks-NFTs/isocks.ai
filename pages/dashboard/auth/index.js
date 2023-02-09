@@ -102,14 +102,14 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="w-full h-[100vh] flex flex-col items-center justify-center">
       <Head>
         <title>iSocks | Admin Sign In</title>
       </Head>
-      <Row>
-        <Heading>iSocks Admin Access</Heading>
-        <P>Login in with Email & Password</P>
-      </Row>
+      <div>
+        <h4 className="text-3xl font-semibold">iSocks Admin Access</h4>
+        <p className="font-thin text-center">Login in with Email & Password</p>
+      </div>
       <FormContainer>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
@@ -141,7 +141,7 @@ const Login = () => {
           </Button>
         </Form>
       </FormContainer>
-    </>
+    </div>
   );
 };
 
