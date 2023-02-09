@@ -42,7 +42,14 @@ export default function PartnerSection() {
         })}
       </div>
       <div>
-        <Image src={unstoppableDomain} alt="Unstoppable Domain Logo" />
+        <Image
+          src={unstoppableDomain}
+          alt="Unstoppable Domain Logo"
+          onClick={() =>
+            push("https://unstoppabledomains.com/?ref=infinityauctions")
+          }
+          className="hover:cursor-pointer"
+        />
       </div>
       <div>
         <button
