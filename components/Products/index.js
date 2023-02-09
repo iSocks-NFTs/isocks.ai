@@ -16,7 +16,7 @@ const ProductSlide = () => {
       <Slider />
       <ButtonContainer>
         <FilledButton onClick={() => router.push("/buy")}>
-          Buy Sock
+          Marketplace
         </FilledButton>
       </ButtonContainer>
       <ButtonContainer>
