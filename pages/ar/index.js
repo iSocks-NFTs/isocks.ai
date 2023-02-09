@@ -2,6 +2,7 @@ import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
 import Head from "next/head";
 import styled from "styled-components";
+import { TailSpin } from "react-loader-spinner";
 
 const Container = styled.div`
   background-color: var(--primary-brand);
@@ -11,20 +12,21 @@ const Container = styled.div`
 
 function XRSetup() {
   return (
-    <>
-      <ARButton mode="AR" />
-      <Canvas>
-        <XR>
-          <Hands />
-          <mesh>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <boxGeometry />
-            <meshBasicMaterial color="red" />
-          </mesh>
-        </XR>
-      </Canvas>
-    </>
+    <div className="w-full h-full bg-black flex justify-center items-center text-white flex-col gap-5">
+      <TailSpin
+        height="100"
+        width="100"
+        color="#fff"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
+      <h4 className="sm:text-4xl text-3xl sm:text-left text-center">
+        iSocks AR Currently in Closed Beta
+      </h4>
+    </div>
   );
 }
 
