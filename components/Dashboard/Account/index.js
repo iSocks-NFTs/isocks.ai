@@ -16,7 +16,7 @@ import {
 import { Pill } from "../style";
 import { GlobalContext } from "../../../context/globalContext";
 import SuccessModal from "../../Modal/success";
-import axios from "axios";
+import axios from "../../../pages/api/axios";
 import { TailSpin } from "react-loader-spinner";
 import { baseURL } from "../../../config";
 
@@ -30,19 +30,19 @@ const AccountInfo = ({ data }) => {
   });
   const [error, setError] = React.useState("");
 
-  function clearField(){
-    setFormData({...formData,oldPassword:'',newPassword:''});
+  function clearField() {
+    setFormData({ ...formData, oldPassword: "", newPassword: "" });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    setError("")
+    setError("");
     const { oldPassword, newPassword } = formData;
     if (oldPassword === newPassword) {
       setIsLoading(false);
       setError("Old Password can't be New Password");
-      clearField()
+      clearField();
       return;
     }
     axios
@@ -64,6 +64,11 @@ const AccountInfo = ({ data }) => {
           if (status === 401) {
             setIsLoading(false);
             setError("Wrong Password");
+            clearField();
+          }
+          if (status === 403) {
+            setIsLoading(false);
+            setError("Authorization Error");
             clearField();
           }
           if (status === 500) {
