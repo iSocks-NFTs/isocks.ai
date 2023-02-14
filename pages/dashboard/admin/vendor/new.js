@@ -100,10 +100,10 @@ export default function NewVendor() {
         <title>iSocks | New Vendor</title>
       </Head>
       <Container>
-        <Heading>Create New Vendor</Heading>
-        <Text textAlign="center" fontSize="18px">
-          You can set up Vendor's Information here
-        </Text>
+        <div className="text-center my-4">
+          <h3 className="font-semibold text-3xl">Create New Vendor</h3>
+          <p className="text-[18px] text-[var(--subtle-text)]">You can set up Vendor's Information here</p>
+        </div>
         <CardContainer justifyContent="center">
           <Card width="420px" height="fit-content">
             <Form onSubmit={handleSubmit}>
