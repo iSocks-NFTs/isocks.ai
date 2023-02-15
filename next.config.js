@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  images: {
+    domains: ["localhost", "api.isocks.ai"],
+    loader: "custom",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
