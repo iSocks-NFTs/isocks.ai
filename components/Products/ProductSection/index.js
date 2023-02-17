@@ -40,6 +40,7 @@ export function ProductSection() {
                 src={product.imgUrl}
                 className="rounded-md object-contain"
                 alt={product.heading}
+                loader={({ src }) => src}
               />
               <h4 className="text-2xl font-semibold mt-2">{product.heading}</h4>
               <p className="p-2">{product.description}</p>

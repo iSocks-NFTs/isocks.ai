@@ -45,6 +45,7 @@ export default function PartnerSection() {
         <Image
           src={unstoppableDomain}
           alt="Unstoppable Domain Logo"
+          loader={({ src }) => src}
           onClick={() =>
             push("https://unstoppabledomains.com/?ref=infinityauctions")
           }
