@@ -18,6 +18,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
+  margin:3rem 0;
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   gap: 1rem;
