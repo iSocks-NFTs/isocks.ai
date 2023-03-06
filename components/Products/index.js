@@ -15,7 +15,13 @@ const ProductSlide = () => {
     <Container>
       <Slider />
       <ButtonContainer>
-        <FilledButton onClick={() => router.push("/buy")}>
+        <FilledButton
+          onClick={() =>
+            router.push(
+              "https://www.binance.com/en/nft/collection/isocks-nft-621979014298828801?isBack=1"
+            )
+          }
+        >
           Marketplace
         </FilledButton>
       </ButtonContainer>
