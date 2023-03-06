@@ -18,7 +18,7 @@ const ProductSlide = () => {
         <FilledButton
           onClick={() =>
             router.push(
-              "https://www.binance.com/en/nft/collection/isocks-nft-621979014298828801?isBack=1"
+              "/buy"
             )
           }
         >
