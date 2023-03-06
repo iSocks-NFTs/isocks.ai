@@ -49,6 +49,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
     if (ud !== null) {
       let domain = JSON.parse(ud);
       setUd(domain.value);
+      setFormData({ ...formData, UdDomainUsername: domain.value });
     }
   }, [account]);
 
@@ -66,19 +67,6 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         exit={{ opacity: 0 }}
       >
         <Form>
-          <FormGroup>
-            <Label htmlFor="username" fontWeight="400">
-              Choose a username
-            </Label>
-            <Input
-              id="username"
-              value={formData.username}
-              onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
-              }
-              ref={inputRef}
-            />
-          </FormGroup>
           <FormGroup onClick={handleLogin}>
             <Label htmlFor="ud" fontWeight="400">
               Use your UD as a Username
