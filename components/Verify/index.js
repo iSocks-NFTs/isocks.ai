@@ -1,34 +1,40 @@
 import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import Step1 from "./page1";
+import Step2 from "./page2";
+import Step3 from "./page3";
+import Step4 from "./page4";
 import {
   ArrowRight,
   Container,
   Heading,
   P,
-  StageContainer,
   Stage,
+  StageContainer,
   StageItems,
 } from "./style";
-import { Row, Col } from "react-bootstrap";
-import Step1 from "./page1";
-import Step2 from "./page2";
-import Step3 from "./page3";
-import Step4 from "./page4";
 
 const VerifyComponent = () => {
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
-    isVendor: false,
+    isVendor: true,
     vendorCode: "",
     emailAddress: "",
     firstName: "",
     lastName: "",
     countryOfResidence: "",
     nationality: "",
-    username: "",
     UdDomainUsername: "",
   });
 
   const componentList = [
+    <Step3
+      key={3}
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
     <Step1
       key={1}
       page={page}
@@ -38,13 +44,6 @@ const VerifyComponent = () => {
     />,
     <Step2
       key={2}
-      page={page}
-      setPage={setPage}
-      formData={formData}
-      setFormData={setFormData}
-    />,
-    <Step3
-      key={3}
       page={page}
       setPage={setPage}
       formData={formData}
@@ -62,13 +61,13 @@ const VerifyComponent = () => {
   return (
     <Container>
       <Row>
-        <Col>
+        <div className="mt-10">
           <Heading>Verify iSocks</Heading>
           <P>
             You&apos;ll need to complete the form below in order to verify your
             socks.
           </P>
-        </Col>
+        </div>
         <Col>
           <StageContainer>
             <StageItems>
