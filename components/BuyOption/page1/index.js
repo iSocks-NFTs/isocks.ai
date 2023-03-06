@@ -36,7 +36,7 @@ const Step1 = ({ page, setPage, formData, setFormData }) => {
         <Card
           onClick={() =>
             Router.push(
-              "https://www.binance.com/en/nft/profile/infinityauctions-75c2a0a5e2b863dd04940f1085992f58"
+              "https://www.binance.com/en/nft/collection/isocks-nft-621979014298828801?isBack=1"
             )
           }
         >
