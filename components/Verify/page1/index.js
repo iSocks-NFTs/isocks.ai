@@ -11,22 +11,17 @@ import {
   Label,
 } from "../style";
 import Toast from "awesome-toast-component";
+import { TailSpin } from "react-loader-spinner";
+import axios from "../../../pages/api/axios";
 
 const Step1 = ({ formData, setFormData, page, setPage }) => {
-  useEffect(() => {
-    const ud = window.localStorage.getItem("username");
-    if (ud !== null) {
-      setPage(2);
-    } else {
-      setPage(0);
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   function isVendorChecked(e) {
     setFormData({ ...formData, isVendor: !e.target.checked });
   }
 
-  function next() {
+  async function next() {
     const { isVendor, vendorCode } = formData;
     if (isVendor && vendorCode === "") {
       new Toast("Vendor Code Required", {
@@ -35,7 +30,29 @@ const Step1 = ({ formData, setFormData, page, setPage }) => {
       return;
     }
 
-    setPage(page + 1);
+    if (isVendor && vendorCode !== "") {
+      setIsLoading(true);
+      axios
+        .get(`/api/user/vendor/${vendorCode}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setIsLoading(false);
+            setPage(page + 1);
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            new Toast("Vendor ID not Found");
+            setFormData({ ...formData, vendorCode: "" });
+            setIsLoading(false);
+            return;
+          }
+        });
+    }
+
+    if (!isVendor) {
+      setPage(page + 1);
+    }
   }
 
   return (
@@ -99,7 +116,20 @@ const Step1 = ({ formData, setFormData, page, setPage }) => {
             </CheckBoxContainer>
           )}
           <Button onClick={next} type="button">
-            Continue
+            {isLoading ? (
+              <TailSpin
+                height="25"
+                width="25"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Continue"
+            )}
           </Button>
         </Form>
       </FormContainer>
