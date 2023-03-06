@@ -17,6 +17,7 @@ import {
 import { TailSpin } from "react-loader-spinner";
 import { Button, ButtonContainer } from "../../../../components/Form";
 import { useRouter } from "next/router";
+import Toast from "awesome-toast-component";
 
 export default function SuperAdmin({}) {
   const [goBack, setBack] = React.useState(false);
@@ -25,6 +26,12 @@ export default function SuperAdmin({}) {
   function back() {
     setBack(true);
     router.push("/dashboard/admin");
+  }
+
+  function development() {
+    new Toast("Feature still in Development", {
+      timeout: 5000,
+    });
   }
 
   return (
@@ -43,7 +50,7 @@ export default function SuperAdmin({}) {
             bgColor="var(--primary-brand)"
             color="#fff"
             cursor="pointer"
-            onClick={() => router.push("/dashboard/admin/superadmin/new")}
+            onClick={development}
           >
             <Circle>
               <FiUser color="var(--primary-brand)" />
@@ -51,11 +58,7 @@ export default function SuperAdmin({}) {
             <Option>New Admin</Option>
             <OptionDescription>Create a new iSock Admin</OptionDescription>
           </Card>
-          <Card
-            justifyContent="center"
-            cursor="pointer"
-            onClick={() => router.push("/dashboard/admin/superadmin/manage")}
-          >
+          <Card justifyContent="center" cursor="pointer" onClick={development}>
             <Circle>
               <FiUser />
             </Circle>
