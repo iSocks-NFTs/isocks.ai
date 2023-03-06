@@ -88,9 +88,23 @@ const AccountInfo = ({ data }) => {
         <SuccessModal message="Password Changed Successfully" />
       )}
       <Card height="230px" width="350px" justifyContent="center">
-        <Pill>{data?.isAdmin === true ? "Admin Account" : "iSock User"}</Pill>
-        <Option fontSize="13px">Admin ID: {data?.id}</Option>
+        <Pill>
+          {data?.userType === "vendor" ? "Vendor" : "iSock Admin"}
+        </Pill>
+        <Option fontSize="13px">
+          {data.userType === "vendor" ? "Vendor" : "Admin"} ID: {data?.id}
+        </Option>
         <Option fontSize="13px">Email: {data?.emailAddress}</Option>
+        {data.userType === "vendor" && (
+          <div className="flex flex-col items-center">
+            <Option fontSize="13px">
+              Full Name: {data?.firstName} {data?.lastName}
+            </Option>
+            <Option fontSize="13px">
+              Available NFTs: {data?.noOfAvailableNFTs}
+            </Option>
+          </div>
+        )}
       </Card>
       <Card height="fit-content" width="580px" justifyContent="center">
         <Form onSubmit={(e) => handleSubmit(e)}>
