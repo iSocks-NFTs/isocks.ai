@@ -1,44 +1,44 @@
-import React from "react";
-import {
-  FormContainer,
-  Form,
-  CheckBoxContainer,
-  CheckBox,
-  Label,
-  FormGroup,
-  Input,
-  CardContainer,
-  Card,
-  Circle,
-  ArrowRight,
-  BuyOptionLink,
-  FileInput,
-  UploadLabel,
-  Uploaded,
-  Icon,
-  OptionDescription,
-  Image,
-  Option,
-  LabelContainer,
-} from "../style";
+import Toast from "awesome-toast-component";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+import React from "react";
 import { Button } from "../../../components/Form/index";
+import { GlobalContext } from "../../../context/globalContext";
 import FailModal from "../../Modal/fail";
 import SuccessModal from "../../Modal/success";
-import { GlobalContext } from "../../../context/globalContext";
+import {
+  ArrowRight,
+  BuyOptionLink,
+  Card,
+  CardContainer,
+  Circle,
+  FileInput,
+  Form,
+  FormContainer,
+  Icon,
+  Image,
+  Label,
+  LabelContainer,
+  Option,
+  OptionDescription,
+  Uploaded,
+} from "../style";
+import { TailSpin } from "react-loader-spinner";
 
 const Step4 = ({ page, setPage, formData, setFormData }) => {
   const [active, setActive] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState("");
   const [id, setId] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState("");
+  const { push } = useRouter();
 
   React.useEffect(() => {
-    const id = window.localStorage.getItem("transactionId");
+    const id = window.localStorage.getItem("verifyId");
     console.log(id);
     if (id) {
       setId(id);
     }
-  },[id]);
+  }, [id]);
 
   const baseURL =
     process.env.NODE_ENV === "production"
@@ -137,7 +137,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
     console.log(files[0]);
   }
 
-  function uploadImg(file, endpoint, fileType) {
+  async function uploadImg(file, endpoint, fileType) {
     const fd = new FormData();
     if (fileType === "isock") {
       fd.append("isock", file, file.name);
@@ -145,26 +145,43 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
       fd.append("accesscard", file, file.name);
     }
 
-    fetch(`${baseURL + endpoint}`, {
+    const data = await fetch(`${baseURL + endpoint}`, {
       method: "PATCH",
       body: fd,
       headers: {
         key: process.env.NEXT_PUBLIC_BACKEND_KEY,
       },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        return json;
-      })
-      .catch((err) => console.log(err));
+    });
+
+    return data;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const { isocksFile, accessCardFile } = upload;
-    const i = uploadImg(isocksFile, isockEndpoint, "isock");
-    const j = uploadImg(accessCardFile, accessCardEndpoint, "accesscard");
+
+    Promise.all([
+      uploadImg(isocksFile, isockEndpoint, "isock"),
+      uploadImg(accessCardFile, accessCardEndpoint, "accesscard"),
+    ])
+      .then((responses) => {
+        const image1 = responses[0];
+        const image2 = responses[1];
+        if (image1.status === 200 && image2.status === 200) {
+          setIsLoading(false);
+          new Toast("Images Successfully Uploaded! Redirecting...", {
+            timeout: 5000,
+          });
+          setTimeout(() => {
+            push("/");
+          }, 5000);
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
   };
 
   return (
@@ -188,7 +205,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
       ) : (
         <></>
       )}
-      <Form onSubmit={(e) => handleSubmit(e)}>
+      <Form onSubmit={handleSubmit}>
         <CardContainer>
           <Label width="auto" htmlFor="isocks">
             <Card>
@@ -239,6 +256,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
           <FileInput
             type="file"
             id="isocks"
+            accept=".png,.jpg,.gif,.jpeg"
             name="iSocksImg"
             onChange={(e) => handleIsocksUpload(e)}
             required
@@ -266,6 +284,7 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
           )}
           <FileInput
             type="file"
+            accept=".png,.jpg,.gif,.jpeg"
             id="accessCard"
             name="accessCardImg"
             onChange={(e) => handleAccessCardUpload(e)}
@@ -303,7 +322,20 @@ const Step4 = ({ page, setPage, formData, setFormData }) => {
           hoverBackgroundColor={active ? "#fff" : "#E3E5E8"}
           cursor={active ? "pointer" : "auto"}
         >
-          Continue
+          {isLoading ? (
+            <TailSpin
+              height="25"
+              width="25"
+              color="#fff"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          ) : (
+            "Upload"
+          )}
         </Button>
       </Form>
     </FormContainer>
