@@ -116,8 +116,8 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
             </Label>
             <Input
               type="text"
-              id="phoneNumber"
-              name="phoneNumber"
+              id="walletAddress"
+              name="walletAddress"
               value={formData.walletAddress}
               onChange={(e) =>
                 setFormData({ ...formData, walletAddress: e.target.value })
