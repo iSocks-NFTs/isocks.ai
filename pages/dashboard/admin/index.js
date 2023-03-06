@@ -1,22 +1,22 @@
-import React from "react";
+import Toast from "awesome-toast-component";
 import Head from "next/head";
 import Router from "next/router";
-import Layout from "../../../layouts/admin_layout";
-import { Container, Heading, Span } from "../../../components/Dashboard/style";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { AiOutlineQrcode } from "react-icons/ai";
+import { FiSettings, FiUserCheck, FiUsers } from "react-icons/fi";
+import { GrMoney } from "react-icons/gr";
 import {
   Card,
   CardContainer,
-  OptionDescription,
-  Option,
   Circle,
   Image,
+  Option,
+  OptionDescription,
 } from "../../../components/BuyOption/style";
-import { GrMoney } from "react-icons/gr";
-import { AiOutlineQrcode } from "react-icons/ai";
-import { FiSettings, FiUsers, FiUserCheck } from "react-icons/fi";
-import { useEffect, useState, useContext } from "react";
-import { useCookies } from "react-cookie";
+import { Container, Heading, Span } from "../../../components/Dashboard/style";
 import { baseURL } from "../../../config";
+import Layout from "../../../layouts/admin_layout";
 
 const Dashboard = () => {
   const router = Router;
@@ -36,10 +36,15 @@ const Dashboard = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.userType);
-        setUserStatus(data.userType)
+        setUserStatus(data.userType);
       });
   }, []);
+
+  function development() {
+    new Toast("Feature Still in Development", {
+      timeout: 5000,
+    });
+  }
 
   function AdminFunctions() {
     return (
@@ -52,6 +57,7 @@ const Dashboard = () => {
             bgColor="var(--primary-brand)"
             color="#fff"
             cursor="pointer"
+            onClick={development}
           >
             <Circle>
               <Image src="/img/logo/isock.svg" alt="Binance" />
@@ -167,7 +173,7 @@ const Dashboard = () => {
       </Head>
       <Container height="fit-content">
         <Heading>
-          <Span>Welcome</Span> Admin
+          <Span>Welcome</Span> {userStatus === "vendor" ? "Vendor" : "Admin"}
         </Heading>
         <Heading fontWeight="300" paddingBottom="1.5rem">
           Manage iSocks NFT Systems
