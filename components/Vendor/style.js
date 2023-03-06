@@ -13,7 +13,9 @@ export const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
+  place-items:center;
   grid-gap: 1rem;
+  width: 100%;
   @media screen and (max-width: 1024px) {
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
