@@ -56,6 +56,9 @@ export const Stage = styled.span`
   @media screen and (max-width: 520px) {
     font-size: 10px;
   }
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const ArrowRight = styled.img``;
@@ -135,12 +138,12 @@ export const Button = styled.button`
 `;
 
 export const CheckBox = styled.input`
-  appearance: none;
-  -webkit-appearance: none;
-  height: 15px;
-  width: 15px;
+  /* appearance: none;
+  -webkit-appearance: none; */
+  height: 20px;
+  width: 20px;
   background-color: transparent;
-  outline: 1px solid var(--subtle-text);
+  /* outline: 1px solid var(--subtle-text); */
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -148,13 +151,13 @@ export const CheckBox = styled.input`
   :hover {
     cursor: pointer;
   }
-  :checked::after {
+  /* :checked::after {
     outline: none;
     font-family: "Font Awesome 6 Free";
     content: "\f00c";
     font-weight: 900;
     background-color: var(--primary-brand);
-  }
+  } */
 `;
 
 export const Label = styled.label`
@@ -257,6 +260,10 @@ export const Uploaded = styled.div`
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
   }
 `;
 export const FileInput = styled.input`
