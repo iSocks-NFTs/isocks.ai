@@ -54,3 +54,23 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+/* Hide the default checkbox tick
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Add the black tick when the checkbox is checked */
+/* input[type="checkbox"]:checked::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: 2px;
+  margin-left: 2px;
+} */ 

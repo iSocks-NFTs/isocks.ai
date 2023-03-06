@@ -44,7 +44,10 @@ const WalletVerification = () => {
       method: "GET",
       url: "https://deep-index.moralis.io/api/v2/nft/0x85444182a28533100E98237E2Ee5B43fFfe2363F/owners",
       params: { chain: "bsc", format: "decimal" },
-      headers: { accept: "application/json", "X-API-Key": `xxbiP29wq7eOr4rvIYwUag0XUHMdfbS9TbMrbV1LC3UgBhOM5RLOtdqP4S4ufhIQ` },
+      headers: {
+        accept: "application/json",
+        "X-API-Key": process.env.NEXT_PUBLIC_MORALIS_API_KEY,
+      },
     };
 
     axios

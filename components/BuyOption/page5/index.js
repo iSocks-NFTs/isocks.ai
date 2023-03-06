@@ -36,7 +36,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { GlobalContext } from "../../../context/globalContext";
 import FailModal from "../../Modal/fail";
 import SuccessModal from "../../Modal/success";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 const Step5 = ({ formData, setFormData }) => {
   const [copied, setCopied] = React.useState(false);
@@ -44,6 +44,7 @@ const Step5 = ({ formData, setFormData }) => {
   const { uploadedProof } = formData;
   const { modal, setModal } = React.useContext(GlobalContext);
   const [errorMsg, setErrorMsg] = React.useState("");
+  const { push } = useRouter();
 
   const baseURL =
     process.env.NODE_ENV === "production"
@@ -106,7 +107,9 @@ const Step5 = ({ formData, setFormData }) => {
       .then((res) => res.json())
       .then((json) => {
         setModal({ ...modal, successModal: true });
-        console.log(json);
+        setTimeout(() => {
+          push("/");
+        }, 3000);
       })
       .catch((err) => console.log(err));
   }

@@ -16,7 +16,7 @@ import {
 import { Pill } from "../style";
 import { GlobalContext } from "../../../context/globalContext";
 import SuccessModal from "../../Modal/success";
-import axios from "axios";
+import axios from "../../../pages/api/axios";
 import { TailSpin } from "react-loader-spinner";
 import { baseURL } from "../../../config";
 
@@ -30,19 +30,19 @@ const AccountInfo = ({ data }) => {
   });
   const [error, setError] = React.useState("");
 
-  function clearField(){
-    setFormData({...formData,oldPassword:'',newPassword:''});
+  function clearField() {
+    setFormData({ ...formData, oldPassword: "", newPassword: "" });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    setError("")
+    setError("");
     const { oldPassword, newPassword } = formData;
     if (oldPassword === newPassword) {
       setIsLoading(false);
       setError("Old Password can't be New Password");
-      clearField()
+      clearField();
       return;
     }
     axios
@@ -66,6 +66,11 @@ const AccountInfo = ({ data }) => {
             setError("Wrong Password");
             clearField();
           }
+          if (status === 403) {
+            setIsLoading(false);
+            setError("Authorization Error");
+            clearField();
+          }
           if (status === 500) {
             setIsLoading(false);
             setError("Server Error");
@@ -83,9 +88,23 @@ const AccountInfo = ({ data }) => {
         <SuccessModal message="Password Changed Successfully" />
       )}
       <Card height="230px" width="350px" justifyContent="center">
-        <Pill>{data?.isAdmin === true ? "Admin Account" : "iSock User"}</Pill>
-        <Option fontSize="13px">Admin ID: {data?.id}</Option>
+        <Pill>
+          {data?.userType === "vendor" ? "Vendor" : "iSock Admin"}
+        </Pill>
+        <Option fontSize="13px">
+          {data.userType === "vendor" ? "Vendor" : "Admin"} ID: {data?.id}
+        </Option>
         <Option fontSize="13px">Email: {data?.emailAddress}</Option>
+        {data.userType === "vendor" && (
+          <div className="flex flex-col items-center">
+            <Option fontSize="13px">
+              Full Name: {data?.firstName} {data?.lastName}
+            </Option>
+            <Option fontSize="13px">
+              Available NFTs: {data?.noOfAvailableNFTs}
+            </Option>
+          </div>
+        )}
       </Card>
       <Card height="fit-content" width="580px" justifyContent="center">
         <Form onSubmit={(e) => handleSubmit(e)}>

@@ -6,7 +6,7 @@ import {
   Text,
 } from "../../../../components/Dashboard/style";
 import Head from "next/head";
-import Table from "../../../../components/Dashboard/Table";
+import Transactions from "../../../../components/Table/Transactions";
 import { Button, ButtonContainer } from "../../../../components/Form";
 import Layout from "../../../../layouts/admin_layout";
 import { TailSpin } from "react-loader-spinner";
@@ -35,6 +35,14 @@ const Transaction = ({ data }) => {
     setLoading(true);
   }
 
+  function Table(){
+    if(data.length === 0){
+      return <p className="text-center mb-10">There are no Transactions at this time</p>
+    } else {
+      return <Transactions transactions={data} />;
+    }
+  }
+
   return (
     <Layout>
       <Head>
@@ -42,11 +50,8 @@ const Transaction = ({ data }) => {
       </Head>
       <Container>
         <Heading>Transaction Data Feed</Heading>
-        {data.length !== 0 ? (
-          <Table transactions={data} />
-        ) : (
-          <Text textAlign="center">No Transactions Available</Text>
-        )}
+        <p></p>
+        <Table />
         <ButtonContainer>
           <Button onClick={back}>
             {loading ? (

@@ -65,7 +65,7 @@ const Navbar = () => {
             href="/partners"
             className={router.pathname == "/partners" ? "active" : ""}
           >
-            Partners
+            Partner With Us
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}

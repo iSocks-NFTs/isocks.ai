@@ -74,7 +74,7 @@ export default function ManageVendor({ data }) {
           You can Review and Remove Vendors
         </Text>
         {data.length === 0 ? (
-          <P>You haven't created Vendors for iSocks Users to Purchase From</P>
+          <p className="text-center my-5 text-[var(--subtle-text)]">You haven't created Vendors for iSocks Users to Purchase From</p>
         ) : (
           <>
             <FormContainer margin="2rem">

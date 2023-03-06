@@ -33,10 +33,10 @@ export default function Vendor() {
         <title>iSocks | Vendor Management</title>
       </Head>
       <Container>
-        <Heading>Vendors</Heading>
-        <Text textAlign="center" fontSize="18px">
-          Manage Vendor Accounts
-        </Text>
+        <div className="text-center my-4">
+          <h3 className="font-semibold text-3xl">Vendors</h3>
+          <p className="text-xl">Manage Vendor Accounts</p>
+        </div>
         <CardContainer>
           <Card
             justifyContent="center"

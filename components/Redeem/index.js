@@ -16,44 +16,115 @@ import { Row, Col } from "react-bootstrap";
 import { TailSpin } from "react-loader-spinner";
 import countryList from "react-select-country-list";
 import CountrySelector from "../../components/CountrySelector";
+import Toast from "awesome-toast-component";
+import axios from "../../pages/api/axios";
+
+import { useRouter } from "next/router";
 
 const RedeemedComponent = () => {
+  const [value, setValue] = useState("");
   const [formValues, setFormValues] = React.useState({
     emailAddress: "",
-    country: "",
     currentState: "",
     walletAddress: "",
     nftContractId: "",
-    vendorCode: "",
+    vendorId: "",
+    isBuyer: false,
+    countryOfResidence: value,
   });
 
   const [loading, setLoading] = React.useState(false);
-  const [value, setValue] = useState("");
+
+  const { push } = useRouter();
+
   const options = useMemo(() => countryList().getData(), []);
+
   const changeHandler = (value) => {
     setValue(value);
-    setFormValues({ ...formValues, countryOfResidence: value });
+    setFormValues({ ...formValues, countryOfResidence: value.label });
   };
 
-  const emailRef = React.useRef();
+  function isVendorChecked(e) {
+    setFormValues({ ...formValues, isBuyer: e.target.checked });
+  }
+
+  function clearFields() {
+    setFormValues({
+      ...formValues,
+      emailAddress: "",
+      currentState: "",
+      walletAddress: "",
+      nftContractId: "",
+      vendorId: "",
+      isBuyer: false,
+      countryOfResidence: value,
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
+    const { countryOfResidence } = formValues;
+
+    if (countryOfResidence === "") {
+      new Toast("Please select your country of residence", {
+        timeout: 5000,
+        style: {
+          container: [["background-color", "red"]],
+          message: [["color", "#eee"]],
+        },
+      });
+
+      return;
+    }
+
+    console.log(formValues);
+
+    axios
+      .post("/api/buyer", formValues)
+      .then((res) => {
+        if (res.status === 200) {
+          new Toast("Form Successfully Submitted", {
+            timeout: 3000,
+          });
+          setLoading(false);
+          setTimeout(() => {
+            clearFields();
+            new Toast("Redirecting...");
+            push("/");
+          }, 5000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        const { status, data } = err.response;
+        if (status === 409 || status === 404 || status === 400) {
+          new Toast(data.reason, {
+            timeout: 5000,
+            style: {
+              container: [["background-color", "red"]],
+              message: [["color", "#eee"]],
+            },
+          });
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+        clearFields();
+      });
   }
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <Heading>Redeem</Heading>
-          <P>
-            You&apos;ll need to complete the form below in order to redeem your
-            socks.
-          </P>
-        </Col>
-      </Row>
+      <div className="mt-5">
+        <Heading>Redeem</Heading>
+        <P>
+          You&apos;ll need to complete the form below in order to redeem your
+          socks.
+        </P>
+      </div>
       <FormContainer>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -63,7 +134,6 @@ const RedeemedComponent = () => {
               onChange={(e) =>
                 setFormValues({ ...formValues, emailAddress: e.target.value })
               }
-              ref={emailRef}
               required
             />
           </FormGroup>
@@ -113,24 +183,46 @@ const RedeemedComponent = () => {
               required
             />
           </FormGroup>
-          <FormGroup>
-            <Label htmlFor="vendorCode">Vendor Code</Label>
-            <Input
-              type="text"
-              placeholder="Enter vendor code if you're a vendor"
-              id="vendorCode"
-              value={formValues.vendorCode}
-              onChange={(e) =>
-                setFormValues({ ...formValues, vendorCode: e.target.value })
-              }
-              required
-            />
-          </FormGroup>
+          {!formValues.isBuyer && (
+            <FormGroup>
+              <Label htmlFor="vendorCode">Vendor Code</Label>
+              <Input
+                type="text"
+                placeholder="Enter vendor code if you're a vendor"
+                id="vendorCode"
+                value={formValues.vendorId}
+                onChange={(e) =>
+                  setFormValues({ ...formValues, vendorId: e.target.value })
+                }
+                required
+              />
+            </FormGroup>
+          )}
           <CheckBoxContainer>
-            <CheckBox type="checkbox" name="isAVendor" id="vendorCheck" />
+            <input
+              type="checkbox"
+              id="vendorCheck"
+              checked={formValues.isBuyer}
+              onChange={isVendorChecked}
+              className="appearance-none w-6 h-6 border rounded border-gray-400 checked:bg-black checked:border-transparent"
+            />
+            <label
+              htmlFor="vendorCheck"
+              className="ml-2 text-gray-700 select-none cursor-pointer"
+            >
+              I’m not a vendor (I bought the NFT by myself)
+            </label>
+
+            {/* <CheckBox
+              type="checkbox"
+              name="isAVendor"
+              id="vendorCheck"
+              checked={formValues.isBuyer}
+              onChange={isVendorChecked}
+            />
             <Label htmlFor="vendorCheck">
               I’m not a vendor (I bought the NFT by myself)
-            </Label>
+            </Label> */}
           </CheckBoxContainer>
           <Button type="submit">
             {loading ? (

@@ -18,6 +18,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
+  margin:3rem 0;
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   gap: 1rem;
@@ -200,7 +201,7 @@ export const P = styled.p`
   font-family: "Nunito Sans";
   text-align: center;
   width: 35%;
-  margin: 0 auto;
+  margin: 1rem auto;
   margin-bottom: ${(marginBottom) =>
     marginBottom ? marginBottom : "2rem !important"};
   color: ${(color) => (color ? color : "var(--subtle-text)")};

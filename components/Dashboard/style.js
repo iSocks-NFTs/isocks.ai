@@ -9,6 +9,7 @@ export const Heading = styled.h3`
   font-size: 28px;
   text-align: center;
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : "")};
+  padding-bottom:${({paddingBottom}) => (paddingBottom ? paddingBottom : "")};
 `;
 
 export const Text = styled.p`

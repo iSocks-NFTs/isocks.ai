@@ -15,7 +15,13 @@ const ProductSlide = () => {
     <Container>
       <Slider />
       <ButtonContainer>
-        <FilledButton onClick={() => router.push("/buy")}>
+        <FilledButton
+          onClick={() =>
+            router.push(
+              "/buy"
+            )
+          }
+        >
           Marketplace
         </FilledButton>
       </ButtonContainer>
