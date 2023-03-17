@@ -40,7 +40,6 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data === []) {
           setVendors(null);
           console.log(vendors);
