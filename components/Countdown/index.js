@@ -36,7 +36,7 @@ const Countdown = () => {
         </p>
         <div>
           <a
-            className="bg-[var(--primary-brand)] hover:bg-transparent hover:text-[var(--primary-brand)] hover:border-black hover:border text-xl duration-500  text-white font-bold py-2 px-4 rounded inline-flex gap-2 justify-center"
+            className="bg-[var(--primary-brand)] hover:bg-transparent hover:text-[var(--primary-brand)] hover:border-black hover:border sm:text-xl text-10px duration-500  text-white font-bold py-2 px-4 rounded inline-flex gap-2 justify-center"
             href="https://unstoppabledomains.com/?ref=infinityauctions"
             target="blank"
           >
