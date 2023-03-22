@@ -1,19 +1,19 @@
+import { motion } from "framer-motion";
+import Router from "next/router";
+import { Col, Row } from "react-bootstrap";
 import {
-  Heading,
-  P,
+  ArrowRight,
+  BuyOptionLink,
   Card,
   CardContainer,
-  Image,
-  OptionDescription,
-  Option,
-  BuyOptionLink,
-  ArrowRight,
   Circle,
   Container,
+  Heading,
+  Image,
+  Option,
+  OptionDescription,
+  P,
 } from "../style";
-import Router from "next/router";
-import { Row, Col } from "react-bootstrap";
-import { motion } from "framer-motion";
 
 const Step1 = ({ page, setPage, formData, setFormData }) => {
   return (
