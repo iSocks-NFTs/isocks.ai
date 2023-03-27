@@ -47,6 +47,19 @@ export default class MyDocument extends Document {
             name="keywords"
             content="iSocks, iSocks.ai, iSocks NFT Community, iSocks, Meta nfts, Binance, Open Sea, Adefeyitimi Adeyeloja"
           />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-F43MQK2MBS"></script>
+          <script
+          dangerouslySetInnerHTML={{
+            __html:`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-F43MQK2MBS');
+            `
+          }}
+          >
+          </script>
         </Head>
         <body>
           <Main />
