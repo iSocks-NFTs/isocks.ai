@@ -85,7 +85,7 @@ export default function BioData({ option, setOption, formData, setFormData }) {
             >
               Previous
             </Button>
-            <Button width="100%" onClick={nextForm}>
+            <Button type="button" width="100%" onClick={nextForm}>
               Next
             </Button>
           </ButtonContainer>

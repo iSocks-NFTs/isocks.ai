@@ -22,17 +22,17 @@ export default function Partners() {
   });
 
   const optionList = [
-    <Option1 key={1} option={option} setOption={setOption} />,
-    <Page key={2} option={option} setOption={setOption} />,
+    <Option1 key={0} option={option} setOption={setOption} />,
+    <Page key={1} option={option} setOption={setOption} />,
     <BioData
-      key={3}
+      key={2}
       option={option}
       setOption={setOption}
       formData={formData}
       setFormData={setFormData}
     />,
     <CompanyData
-      key={4}
+      key={3}
       option={option}
       setOption={setOption}
       formData={formData}
