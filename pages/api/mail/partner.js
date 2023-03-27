@@ -13,19 +13,6 @@ export default function handler(req, res) {
     targetAudience,
   } = JSON.parse(req.body);
 
-  console.log(
-    "Data",
-    fullName,
-    brandName,
-    emailAddress,
-    ownIsockNFT,
-    walletAddress,
-    ownStore,
-    storeAddress,
-    brandAge,
-    targetAudience
-  );
-
   const transporter = nodemailer.createTransport({
     host: "smtp.elasticemail.com",
     port: 465,

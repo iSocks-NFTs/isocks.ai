@@ -57,6 +57,7 @@ function TelegramModal() {
             <a
               href="https://t.me/isocksnft"
               target="_blank"
+              rel="noreferrer"
               onClick={() => setShowModal(false)}
               className="border-2 py-2 px-5 inline-flex justify-center items-center gap-1 duration-300 rounded-sm text-lg hover:bg-[var(--primary-brand)] hover:text-white"
             >

@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { TailSpin } from "react-loader-spinner";
 import Toast from "awesome-toast-component";
 import { useRouter } from "next/router";
+import { FaTelegram } from "react-icons/fa";
 
 function Modal() {
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +42,7 @@ function Modal() {
             <a
               href="https://t.me/isocksnft"
               target="_blank"
+              rel="noreferrer"
               onClick={() => setShowModal(false)}
               className="border-2 py-2 px-5 inline-flex justify-center items-center gap-1 duration-300 rounded-sm text-lg hover:bg-[var(--primary-brand)] hover:text-white"
             >
