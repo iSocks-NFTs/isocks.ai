@@ -90,9 +90,13 @@ export const NavBtnLink = styled.a`
   color: #fff;
   outline: none;
   border: none;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  height:auto;
+  height: auto;
   text-decoration: none;
   &:hover {
     transition: all 0.2s ease-in-out;
