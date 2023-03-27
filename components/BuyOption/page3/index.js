@@ -79,7 +79,7 @@ const Step3 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <FormContainer>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label fontWeight="400" htmlFor="emailAddress">
               Email

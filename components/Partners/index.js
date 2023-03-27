@@ -7,7 +7,7 @@ import SuccessModal from "../Modal/success";
 import FailModal from "../Modal/fail";
 import { TailSpin } from "react-loader-spinner";
 import { GlobalContext } from "../../context/globalContext";
-import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 export default function Page() {
   const { modal, setModal } = React.useContext(GlobalContext);
@@ -21,8 +21,6 @@ export default function Page() {
     totalUsers: 0,
     companyType: "",
   });
-
-  const router = useRouter();
 
   function clearFields() {
     setFormData({
@@ -60,7 +58,12 @@ export default function Page() {
   }
 
   return (
-    <div style={{ padding: "2rem 0" }}>
+    <motion.div
+      style={{ padding: "2rem 0" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {modal.successModal && (
         <SuccessModal
           heading="Success"
@@ -187,6 +190,6 @@ export default function Page() {
           </Form>
         </FormContainer>
       </Container>
-    </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Section from "../components/Section";
@@ -15,17 +15,64 @@ import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { ProductSection } from "../components/Products/ProductSection";
 import PartnerSection from "../components/Partner";
+import { FaTelegram } from "react-icons/fa";
+import {motion} from 'framer-motion'
 
 const Main = styled.main`
   width: 100%;
 `;
 
+function TelegramModal() {
+  const [showModal, setShowModal] = useState(true);
+    useEffect(() => {
+      const timer = setTimeout(() => setShowModal(false), 10000);
+      return () => clearTimeout(timer);
+    }, []);
+
+  return (
+    <div className="relative">
+      {showModal && (
+        <motion.div
+          className="fixed z-10 inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div
+            className="absolute inset-0 bg-gray-500 opacity-75"
+            onClick={() => setShowModal(false)}
+          ></div>
+          <div className="bg-white flex justify-center flex-col items-center rounded-lg p-8 max-w-md mx-auto z-20">
+            <img
+              src="/img/logo/logo.png"
+              alt="logo"
+              className="max-w-full h-auto"
+            />
+            <h2 className="text-lg font-medium mb-4 text-center ">
+              Join our Telegram Group!
+            </h2>
+            <p className="text-center">
+              Stay up to date with the community and get rewards.
+            </p>
+            <a
+              href="https://t.me/isocksnft"
+              target="_blank"
+              onClick={() => setShowModal(false)}
+              className="border-2 py-2 px-5 inline-flex justify-center items-center gap-1 duration-300 rounded-sm text-lg hover:bg-[var(--primary-brand)] hover:text-white"
+            >
+              <FaTelegram size={15} />
+              Join Us
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [ready, setReady] = useState(true);
   const { modal, setModal } = useContext(GlobalContext);
-  const textBody = `A work of art in itself. Designed to perfectly complement our handmade, premium socks, each box is made from high-quality materials and features unique, eye catching designs, Whether it's for personal use or as a gift, the iSocksNFT packaging box adds an extra touch of luxury to the already premium product.
-  
-  Get yours today on BINANCE Marketplace and elevate your style.`;
 
   return (
     <Main>
@@ -35,6 +82,7 @@ export default function Home() {
       {ready ? (
         <>
           <Navbar />
+          <TelegramModal />
           <Header />
           <Section />
           <ProductSection />

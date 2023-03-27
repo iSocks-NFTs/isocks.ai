@@ -17,6 +17,7 @@ import Link from "next/link";
 import { GlobalContext } from "../../context/globalContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaDiscord } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
@@ -73,9 +74,12 @@ const Navbar = () => {
         <NavBtn>
           <NavBtnLink02 href="https://discord.gg/nbrsZY9z59" target="_blank">
             <FaDiscord size={15} />
-            Join Discord
+            Discord
           </NavBtnLink02>
-          <NavBtnLink href="/preorder">Pre Order</NavBtnLink>
+          <NavBtnLink href="https://t.me/isocksnft">
+            <FaTelegram size={15} />
+            Telegram
+          </NavBtnLink>
         </NavBtn>
       </Nav>
       <AnimatePresence initial={false} node="wait" onExitComplete={() => null}>
@@ -100,7 +104,8 @@ const Navbar = () => {
               <Link href="/redeem">Redeem iSocks</Link>
               <Link href="/verify">Verify iSocks</Link>
               <Link href="/join-whitelist">Join Whitelist</Link>
-              <Link href="/preorder">Pre Order</Link>
+              <Link href="https://t.me/isocksnft">Telegram</Link>
+              <Link href="/partners">Partner With Us</Link>
               <Link href="https://discord.gg/nbrsZY9z59" target="_blank">
                 Join Discord
               </Link>
