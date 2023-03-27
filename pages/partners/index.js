@@ -16,21 +16,23 @@ export default function Partners() {
     ownIsockNFT: false,
     walletAddress: "",
     ownStore: false,
-    storeAddress:"",
+    storeAddress: "",
     brandAge: "",
     targetAudience: "",
   });
 
   const optionList = [
-    <Option1 option={option} setOption={setOption} />,
-    <Page option={option} setOption={setOption} />,
+    <Option1 key={1} option={option} setOption={setOption} />,
+    <Page key={2} option={option} setOption={setOption} />,
     <BioData
+      key={3}
       option={option}
       setOption={setOption}
       formData={formData}
       setFormData={setFormData}
     />,
     <CompanyData
+      key={4}
       option={option}
       setOption={setOption}
       formData={formData}
