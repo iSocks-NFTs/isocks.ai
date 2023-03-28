@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container } from "./style";
 import Step1 from "./page1";
 import Step2 from "../Vendor";
@@ -9,7 +9,7 @@ import { GlobalContext } from "../../context/globalContext";
 import SuccessModal from "../Modal/success";
 import { AnimatePresence } from "framer-motion";
 import Countdown from "../Countdown";
-import {isSameDay} from 'date-fns'
+import { isSameDay, isAfter } from "date-fns";
 
 const BuyOptionsComponent = ({ vendors }) => {
   const [page, setPage] = React.useState(0);
@@ -25,7 +25,7 @@ const BuyOptionsComponent = ({ vendors }) => {
       imgFile: null,
     },
   });
-  const [showCountdown,isShowCountdown] = useState(true);
+  const [showCountdown, isShowCountdown] = useState(true);
 
   const { successModal, setSuccessModal } = useContext(GlobalContext);
 
@@ -67,13 +67,13 @@ const BuyOptionsComponent = ({ vendors }) => {
     />,
   ];
 
-  function RenderOptions(){
+  function RenderOptions() {
     const today = new Date();
     const launchDate = new Date("2023-03-28");
-    if(isSameDay(launchDate,today)){
+    if (isSameDay(launchDate, today) || isAfter(launchDate, today)) {
       return componentList[page];
     } else {
-      return <Countdown />
+      return <Countdown />;
     }
   }
 
