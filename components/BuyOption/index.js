@@ -68,13 +68,7 @@ const BuyOptionsComponent = ({ vendors }) => {
   ];
 
   function RenderOptions() {
-    const today = new Date();
-    const launchDate = new Date("2023-03-28");
-    if (isSameDay(launchDate, today) || isAfter(launchDate, today)) {
-      return componentList[page];
-    } else {
-      return <Countdown />;
-    }
+    return <Countdown />;
   }
 
   return (
