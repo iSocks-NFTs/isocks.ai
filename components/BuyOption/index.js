@@ -68,7 +68,7 @@ const BuyOptionsComponent = ({ vendors }) => {
   ];
 
   function RenderOptions() {
-    return <Countdown />;
+    return componentList[page];
   }
 
   return (
