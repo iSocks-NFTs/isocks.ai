@@ -13,24 +13,6 @@ export default function handler(req, res) {
     targetAudience,
   } = JSON.parse(req.body);
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.elasticemail.com",
-    port: 465,
-    auth: {
-      user: process.env.NEXT_PUBLIC_SMTP_EMAIL,
-      pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD,
-    },
-  });
-
-  transporter.verify((error, success) => {
-    if (error) {
-      console.log(error);
-      res.status(500).send("Set Up Error");
-    } else {
-      console.log("Server is ready to send Emails 😊", success);
-    }
-  });
-
   const customerEmailBody = `
     <html>
       <head>
@@ -86,6 +68,24 @@ export default function handler(req, res) {
     </html>
   `;
 
+  const transporter = nodemailer.createTransport({
+    host: "smtp.elasticemail.com",
+    port: 465,
+    auth: {
+      user: process.env.NEXT_PUBLIC_SMTP_EMAIL,
+      pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD,
+    },
+  });
+
+  transporter.verify((error, success) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Set Up Error");
+    } else {
+      console.log("Server is ready to send Emails 😊", success);
+    }
+  });
+
   async function sendEmail(emailAddress, emailSubject, emailBody) {
     let message = {
       from: "info@isocks.ai",
@@ -94,33 +94,41 @@ export default function handler(req, res) {
       html: emailBody,
     };
 
-    let status = transporter.sendMail(message, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send("Message Sent Fail");
-      } else {
-        console.log("Email Sent", +info.response);
-        res.status(200).send("Message Sent");
-      }
+    return new Promise((resolve, reject) => {
+      transporter.sendMail(message, (error, info) => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Email Sent", +info.response);
+          resolve(info);
+        }
+      });
     });
-
-    console.log(status);
-    return status;
   }
 
-  Promise.all([
-    sendEmail("info@isocks.ai", "New Partnership Form Submission", adminBody),
-    sendEmail(
-      emailAddress,
-      "iSocks: Partnership Form Submited",
-      customerEmailBody
-    ),
-  ])
-    .then((responses) => {
-      res.status(200).send("Email Sent Successfully");
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send("Failed to Send Email");
-    });
+  try {
+    Promise.all([
+      sendEmail("info@isocks.ai", "New Partnership Form Submission", adminBody),
+      sendEmail(
+        emailAddress,
+        "iSocks: Partnership Form Submited",
+        customerEmailBody
+      ),
+    ])
+      .then((responses) => {
+        const email1 = responses[0];
+        const email2 = responses[1];
+        if (email1.accepted && email2.accepted) {
+          res.status(200).send("Email Sent Successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send("Failed to Send Email");
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to Send Email");
+  }
 }
