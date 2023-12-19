@@ -5,16 +5,12 @@ import { useRouter } from "next/router";
 export default function Wardrobe() {
   const { push } = useRouter();
   return (
-    <div className="w-full h-fit flex sm:flex-row flex-col-reverse items-center justify-between bg-[var(--primary-brand)] p-3 sm:gap-0 gap-4">
-      <div className="sm:w-[40%] w-[100%] text-[var(--light)] space-y-2 sm:space-y-5 sm:text-left text-center flex flex-col sm:items-start items-center">
-        <h3 className="font-semibold lg:text-5xl text-2xl">
-          Unique and memorable online address that represents you and your Web3
-          fashion products
+    <div className="w-full h-fit flex flex-col-reverse items-center justify-between bg-[var(--primary-brand)] px-3 py-10 sm:gap-0 gap-y-5">
+      <div className="text-[var(--light)] space-y-5 sm:text-left text-center flex flex-col items-center justify-center">
+        <h3 className="font-semibold text-center lg:text-5xl text-2xl py-3 w-full">
+          Secure Your Unstoppable Domain Now!<br />
+          Claim It Before It's Gone!
         </h3>
-        <p className="font-thin lg:text-3xl text-xl">
-          It's a powerful tool that can help you stand out and build a strong
-          online presence in the new fashion realm .
-        </p>
         <button
           onClick={() =>
             push("https://unstoppabledomains.com/?ref=infinityauctions")
@@ -29,7 +25,7 @@ export default function Wardrobe() {
           Claim Your Wardrobe Name
         </button>
       </div>
-      <div className="sm:w-[40%] w-[100%]">
+      <div className="sm:w-[30%] w-[100%]">
         <img
           src="/illustration/shopping.svg"
           alt="Shopping Online"
