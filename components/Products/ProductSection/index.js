@@ -80,7 +80,7 @@ export function ProductSection() {
       <p className="text-center text-[var(--subtle-text)]">
         Pick From Our Collection
       </p>
-      <div className="flex sm:flex-row flex-col flex-wrap mx-auto justify-between items-center mt-5 p-5">
+      <div className="flex sm:flex-row flex-col flex-wrap mx-auto justify-center gap-4 items-center mt-5 p-5">
         {products.map((product, index) => {
           return (
             <Link key={index} href={product.url}>
