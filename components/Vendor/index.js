@@ -58,7 +58,7 @@ const Step2 = ({ page, setPage, formData, setFormData }) => {
       return <P>There are no vendors to purchase from at this time</P>;
     }
     if (isLoading) {
-      return <P>There are no vendors to purchase from at this time</P>;
+      return <P>Checking for available Vendors...</P>;
     }
   }
 

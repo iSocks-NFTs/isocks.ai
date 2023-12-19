@@ -23,7 +23,7 @@ const Main = styled.main`
 `;
 
 function TelegramModal() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
     useEffect(() => {
       const timer = setTimeout(() => setShowModal(false), 10000);
       return () => clearTimeout(timer);
