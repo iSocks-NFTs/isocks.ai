@@ -34,14 +34,17 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sm:px-24 px-3 py-3 items-center flex justify-between shadow-sm w-full bg-white">
-        <Image
-          src="/img/logo/logo.png"
-          height={55 / 2}
-          width={285 / 2}
-          alt="iSocks Logo"
-        />
-        <ul className="sm:flex hidden gap-x-4">
+      <nav className="sm:px-24 md:px-3 px-3 py-3 items-center flex justify-between shadow-sm w-full bg-white">
+        <Link href="/">
+          <Image
+            src="/img/logo/logo.png"
+            height={55 / 2}
+            width={285 / 2}
+            alt="iSocks Logo"
+            className="cursor-pointer"
+          />
+        </Link>
+        <ul className="md:flex hidden gap-x-4">
           {links.map((link, index) => {
             return (
               <li
@@ -57,7 +60,7 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <div className="sm:flex hidden items-center gap-x-4">
+        <div className="md:flex hidden items-center gap-x-4">
           <button
             className="bg-white text-black px-5 py-3 rounded-md inline-flex justify-center items-center gap-x-3 border duration-300 hover:bg-black hover:text-white hover:border"
             onClick={() => push("https://discord.gg/nbrsZY9z59")}
@@ -76,7 +79,7 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className="hover:cursor-pointer sm:hidden block"
+          className="hover:cursor-pointer md:hidden block"
           onClick={() => setMobileNav(true)}
         >
           <IoMdMenu size={35} />
