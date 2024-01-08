@@ -8,7 +8,7 @@ export default function NotFound() {
       <Head>
         <title>iSocks | Page Not Found</title>
       </Head>
-      <div className="w-full flex items-center justify-center flex-col h-screen">
+      <div className="w-full flex items-center justify-center flex-col h-screen text-center">
         <Link href="/store">
           <Image
             src="/img/logo/isocks_store.svg"
