@@ -33,6 +33,8 @@ export default function SignUp() {
           path: "/",
           maxAge: 3600 * 24 * 30, // 30 days
           sameSite: true,
+          httpOnly: true,
+          secure: true,
         });
 
         new Toast("Sign Up Successful... Redirecting to Dashboard", {

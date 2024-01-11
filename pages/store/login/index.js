@@ -28,11 +28,13 @@ export default function Login() {
 
       const response = await axios.post(login, form);
 
-      if(response.status === 200){
+      if (response.status === 200) {
         setCookie("isocks_store_user", response.data.token, {
           path: "/",
           maxAge: 3600 * 24 * 30, // 30 days
           sameSite: true,
+          httpOnly: true,
+          secure: true,
         });
 
         new Toast("Sign Up Successful... Redirecting to Dashboard", {
@@ -40,8 +42,6 @@ export default function Login() {
           afterHide: () => push("/store/profile"),
         });
       }
-
-
     } catch (error) {
       console.error(error);
       if (error.response) {
