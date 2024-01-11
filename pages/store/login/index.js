@@ -2,22 +2,78 @@ import { useState } from "react";
 import Head from "next/head";
 import Navbar from "../../../components/Navbar/Store/Auth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { endpoints } from "../../../utils/endpoints";
+import axios from "axios";
+import Toast from "awesome-toast-component";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [form, setForm] = useState({
     emailAddress: "",
     password: "",
   });
-
   const [passwordForm, setPasswordForm] = useState("password");
+  const [cookies, setCookie] = useCookies(["isocks_store_user"]);
+  const { push } = useRouter();
 
   function handleSubmit(e) {
     e.preventDefault();
+    login(form);
+  }
+
+  async function login(form) {
+    try {
+      const { login } = endpoints;
+
+      const response = await axios.post(login, form);
+
+      if(response.status === 200){
+        setCookie("isocks_store_user", response.data.token, {
+          path: "/",
+          maxAge: 3600 * 24 * 30, // 30 days
+          sameSite: true,
+        });
+
+        new Toast("Sign Up Successful... Redirecting to Dashboard", {
+          timeout: 5000,
+          afterHide: () => push("/store/profile"),
+        });
+      }
+
+
+    } catch (error) {
+      console.error(error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          new Toast("Email/Password can't be empty", {
+            timeout: 5000,
+          });
+        }
+
+        if (error.response.status === 500) {
+          new Toast("Server Error", {
+            timeout: 5000,
+          });
+        }
+
+        if (error.response.status === 401) {
+          new Toast("Email Address/Password doesn't exist on database", {
+            timeout: 5000,
+          });
+        }
+      }
+
+      if (error && !error.response) {
+        new Toast(
+          "Server is Unavailable at this time... Please Try again later..."
+        );
+      }
+    }
   }
 
   function handleChange(e) {
     const { name, value } = e.target;
-
     setForm((form) => ({ ...form, [name]: value }));
   }
 
