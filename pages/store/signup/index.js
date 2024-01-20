@@ -173,11 +173,11 @@ export default function SignUp() {
           <div>
             <p className="text-center text-xs text-semibold">
               By signing up, you agree you've read and accepted our{" "}
-              <a href="/terms" className="underline">
+              <button onClick={() => push("/terms")} className="underline">
                 Terms and
                 <br />
                 Conditions
-              </a>
+              </button>
               . Please see our Privacy Policy for information on how we
               <br />
               process your data.

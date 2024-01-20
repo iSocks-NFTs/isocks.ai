@@ -146,13 +146,13 @@ export default function Login() {
           <div>
             <p className="text-center text-xs text-semibold">
               By logging in, you agree to the{" "}
-              <a href="/terms" className="underline">
+              <button onClick={() => push("/terms")} className="underline">
                 Terms of Service
-              </a>{" "}
+              </button>{" "}
               and{" "}
-              <a href="/privacy" className="underline">
+              <button onClick={() => push("/privacy")} className="underline">
                 Privacy Policy
-              </a>
+              </button>
             </p>
           </div>
           <div>
