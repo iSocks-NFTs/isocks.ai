@@ -3,8 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["localhost", "api.isocks.ai"],
-    loader: "custom",
+    domains: [
+      "localhost",
+      "api.isocks.ai",
+      "bscscan.com",
+      "www.defitigertoken.com",
+    ],
   },
 };
 
