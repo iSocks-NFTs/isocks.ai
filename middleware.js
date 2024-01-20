@@ -24,6 +24,22 @@ export async function middleware(req) {
     }
   }
 
+  if (url.includes("/store/manager/login")) {
+    const cookie = req.cookies.get("isocks_store_admin");
+    if (cookie) {
+      console.log("Manager Session Exists, Redirecting to Dashboard");
+      return NextResponse.redirect(`${baseURL}/store/manager`);
+    }
+  }
+
+  if (url.includes("/store/manager/dashboard")) {
+    const cookie = req.cookies.get("isocks_store_admin");
+    if (!cookie) {
+      console.log("No Session Exits, Redirecting to Auth Page...");
+      return NextResponse.redirect(`${baseURL}/store/manager/login`);
+    }
+  }
+
   if (url.includes("/store/login") || url.includes("/store/signup")) {
     const cookie = req.cookies.get("isocks_store_user");
     if (cookie) {
@@ -32,7 +48,13 @@ export async function middleware(req) {
     }
   }
 
-  if (url.includes("/store/profile")) {
+  if (
+    url.includes("/store/profile") ||
+    url.includes("/store/orders") ||
+    url.includes("/store/notifications") ||
+    url.includes("/store/management") ||
+    url.includes("/store/recently-viewed")
+  ) {
     const cookie = req.cookies.get("isocks_store_user");
     if (!cookie) {
       console.log("No Session Exists, redirecting to Login");
