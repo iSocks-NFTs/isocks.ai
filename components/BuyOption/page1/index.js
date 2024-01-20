@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { Col, Row } from "react-bootstrap";
 import {
   ArrowRight,
@@ -16,6 +16,8 @@ import {
 } from "../style";
 
 const Step1 = ({ page, setPage, formData, setFormData }) => {
+  const { push } = useRouter();
+
   return (
     <Container
       as={motion.div}
@@ -33,9 +35,25 @@ const Step1 = ({ page, setPage, formData, setFormData }) => {
         </Col>
       </Row>
       <CardContainer className="mt-[2.5rem]">
+        <Card border="none" bgColor="#fafafa">
+          <Circle>
+            <Image src="/img/logo/icon_no_background.png" alt="iSocks Logo" />
+          </Circle>
+          <Option>iSocks Store</Option>
+          <OptionDescription>
+            Purchase iSocks from our Online Store using USDT, NGN & DTG Token.
+          </OptionDescription>
+          <BuyOptionLink onClick={() => push("/store")}>
+            Buy iSock{" "}
+            <ArrowRight
+              src="/img/logo/arrow-right.svg"
+              alt="Arrow Right Icon"
+            />
+          </BuyOptionLink>
+        </Card>
         <Card
           onClick={() =>
-            Router.push(
+            push(
               "https://www.binance.com/en/nft/collection/isocks-nft-621979014298828801?tradeType=0&collections=621979014298828801&isBack=1&order=amount_sort%401"
             )
           }
