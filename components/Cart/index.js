@@ -46,18 +46,18 @@ export default function Cart() {
   return (
     <div className="relative">
       <div
-        className="inline-flex text-black bg-white p-2 rounded-md cursor-pointer relative"
+        className="inline-flex text-black bg-white p-3 rounded-md cursor-pointer relative"
         onClick={() => setCartDropdown(!cartDropdown)}
       >
-        <FaShoppingCart size={20} />
+        <FaShoppingCart size={25} />
         <span className="bg-black text-white rounded-full border-2 border-white absolute h-5 w-5 inline-flex justify-center items-center -top-2 -right-2">
           {calculateTotalQuantity()}
         </span>
       </div>
-      <AnimatePresence>
+      <AnimatePresence initial={false} node="wait" onExitComplete={() => null}>
         {cartDropdown && (
           <motion.div
-            className="absolute md:top-10 top-0 right-0 rounded-md border border-solid bg-[--primary-brand] border-white border-opacity-40 bg-gradient-to-b from-opacity-4 via-opacity-1 via-opacity-0 to-transparent shadow-lg backdrop-blur-20 h-[450px] w-[380px] p-3 z-50 text-white flex flex-col justify-between items-center gap-y-3"
+            className="sm:absolute relative md:top-14 top-3 right-0 rounded-md border border-solid bg-[--primary-brand] border-white border-opacity-40 bg-gradient-to-b from-opacity-4 via-opacity-1 via-opacity-0 to-transparent shadow-lg backdrop-blur-20 h-[450px] w-[380px] p-3 z-50 text-white flex flex-col justify-between items-center gap-y-3"
             initial={{
               opacity: 0,
             }}
