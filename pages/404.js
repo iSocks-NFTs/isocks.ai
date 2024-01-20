@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function NotFound() {
+  const { push } = useRouter();
+  
   return (
     <div className="h-screen w-full bg-[--primary-brand] text-white">
       <Head>
@@ -21,9 +24,9 @@ export default function NotFound() {
         <p className="text-xl">
           Sorry We could not find the link you were looking for.
         </p>
-        <a href="/store" className="underline font-thin">
+        <button onClick={() => push("/store")} className="underline font-thin">
           Get Back to Shopping
-        </a>
+        </button>
       </div>
     </div>
   );
