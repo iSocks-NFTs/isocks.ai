@@ -32,15 +32,15 @@ export default function Login() {
         setCookie("isocks_store_user", response.data.token, {
           path: "/",
           maxAge: 3600 * 24 * 30, // 30 days
-          sameSite: true,
-          httpOnly: true,
-          secure: true,
         });
 
-        new Toast("Sign Up Successful... Redirecting to Dashboard", {
+        new Toast("Sign In Successful... Redirecting to Store", {
           timeout: 5000,
-          afterHide: () => push("/store/profile"),
         });
+
+        setTimeout(() => {
+          push("/store");
+        }, 2000);
       }
     } catch (error) {
       console.error(error);
@@ -58,7 +58,7 @@ export default function Login() {
         }
 
         if (error.response.status === 401) {
-          new Toast("Email Address/Password doesn't exist on database", {
+          new Toast("Invalid Email Addresss/Password", {
             timeout: 5000,
           });
         }
@@ -158,9 +158,12 @@ export default function Login() {
           <div>
             <p className="text-center text-xs text-semibold">
               Need an Account?{" "}
-              <a href="/store/signup" className="underline">
+              <button
+                onClick={() => push("/store/signup")}
+                className="underline"
+              >
                 Sign Up
-              </a>
+              </button>
             </p>
           </div>
         </form>
