@@ -1,87 +1,90 @@
-import React, { useContext } from "react";
-import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu,
-  NavBtn,
-  NavBtnLink,
-  NavImg,
-  MobileNav,
-  Close,
-  BackDrop,
-  NavLinkOG,
-  NavBtnLink02,
-} from "./navbarStyles";
+import { useState } from "react";
+import { NavImg, MobileNav, Close, BackDrop, NavLinkOG } from "./navbarStyles";
 import Link from "next/link";
-import { GlobalContext } from "../../context/globalContext";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaDiscord } from "react-icons/fa";
-import { FaTelegram } from "react-icons/fa";
+import { IoMdMenu } from "react-icons/io";
 import { useRouter } from "next/router";
+import Toast from "awesome-toast-component";
+import Image from "next/image";
+import { FaDiscord, FaTelegram } from "react-icons/fa";
 
 const Navbar = () => {
   const router = useRouter();
-  const [mobileNav, setMobileNav] = React.useState(false);
-  const { setComingSoonModal, comingSoonModal } = useContext(GlobalContext);
+  const { pathname, push } = router;
+  const [mobileNav, setMobileNav] = useState(false);
 
-  function closeFunction() {
-    setMobileNav(false);
-    setComingSoonModal(true);
-  }
+  const links = [
+    {
+      title: "Buy iSocks",
+      url: "/buy",
+    },
+    {
+      title: "Redeem iSocks",
+      url: "/redeem",
+    },
+    {
+      title: "Verify iSocks",
+      url: "/verify",
+    },
+    {
+      title: "Partner With Us",
+      url: "/partners",
+    },
+  ];
 
   return (
     <>
-      <Nav>
-        <NavLinkOG href="/">
-          <NavImg src="/img/logo/logo.png" alt="logo" />
-        </NavLinkOG>
-        <Bars onClick={() => setMobileNav(!mobileNav)} />
-        <NavMenu>
-          <NavLink
-            href="/buy"
-            className={
-              router.pathname == "/buy"
-                ? "active"
-                : "" || router.pathname == "/vendor"
-                ? "active"
-                : ""
-            }
+      <nav className="sm:px-24 md:px-3 px-3 py-3 items-center flex justify-between shadow-sm w-full bg-white">
+        <Link href="/">
+          <Image
+            src="/img/logo/logo.png"
+            height={55 / 2}
+            width={285 / 2}
+            alt="iSocks Logo"
+            className="cursor-pointer"
+          />
+        </Link>
+        <ul className="md:flex hidden gap-x-4">
+          {links.map((link, index) => {
+            return (
+              <li
+                key={index}
+                className={`${
+                  pathname === link.url
+                    ? "text-black underline"
+                    : "text-[--subtle-text]"
+                }`}
+              >
+                <Link href={link.url}>{link.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="md:flex hidden items-center gap-x-4">
+          <button
+            className="bg-white text-black px-5 py-3 rounded-md inline-flex justify-center items-center gap-x-3 border duration-300 hover:bg-black hover:text-white hover:border"
+            onClick={() => push("https://discord.gg/nbrsZY9z59")}
+            target="_blank"
           >
-            Buy iSocks
-          </NavLink>
-          <NavLink
-            href="/redeem"
-            className={router.pathname == "/redeem" ? "active" : ""}
-          >
-            Redeem iSocks
-          </NavLink>
-          <NavLink
-            href="/verify"
-            className={router.pathname == "/verify" ? "active" : ""}
-          >
-            Verify iSocks
-          </NavLink>
-          <NavLink
-            href="/partners"
-            className={router.pathname == "/partners" ? "active" : ""}
-          >
-            Partner With Us
-          </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
-        </NavMenu>
-        <NavBtn>
-          <NavBtnLink02 href="https://discord.gg/nbrsZY9z59" target="_blank">
-            <FaDiscord size={15} />
+            <FaDiscord />
             Discord
-          </NavBtnLink02>
-          <NavBtnLink href="https://t.me/isocksnft">
-            <FaTelegram size={15} />
+          </button>
+          <button
+            className="bg-black text-white px-5 py-3 rounded-md inline-flex justify-center items-center gap-x-3 border duration-300 hover:bg-white hover:text-black hover:border"
+            onClick={() => push("https://t.me/isocksnft")}
+            target="_blank"
+          >
+            <FaTelegram />
             Telegram
-          </NavBtnLink>
-        </NavBtn>
-      </Nav>
+          </button>
+        </div>
+        <div
+          className="hover:cursor-pointer md:hidden block"
+          onClick={() => setMobileNav(true)}
+        >
+          <IoMdMenu size={35} />
+        </div>
+      </nav>
       <AnimatePresence initial={false} node="wait" onExitComplete={() => null}>
         {mobileNav && (
           <BackDrop
@@ -102,7 +105,12 @@ const Navbar = () => {
               </NavLinkOG>
               <Link href="/buy">Buy iSocks</Link>
               <Link href="/redeem">Redeem iSocks</Link>
-              <Link href="/verify">Verify iSocks</Link>
+              <p
+                className="text-black hover:cursor-pointer"
+                onClick={() => new Toast("Feature Under Maintainance")}
+              >
+                Verify iSocks
+              </p>
               <Link href="/join-whitelist">Join Whitelist</Link>
               <Link href="https://t.me/isocksnft">Telegram</Link>
               <Link href="/partners">Partner With Us</Link>

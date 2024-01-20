@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
-  margin:3rem 0;
+  margin: 3rem 0;
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   gap: 1rem;
@@ -87,7 +87,7 @@ export const Card = styled.div`
   }
   transition: 0.8s;
   :hover {
-    cursor: ${(props) => (props.cursor ? props.cursor : "auto")};
+    cursor: ${(props) => (props.cursor ? props.cursor : "pointer")};
   }
 `;
 

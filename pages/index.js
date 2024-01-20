@@ -79,6 +79,8 @@ export default function Home() {
     <Main>
       <Head>
         <title>iSocks | Homepage</title>
+        <meta name="author" description="Adefeyitimi Gbolahan Adeyeloja" />
+        <meta name="keywords" description="iSocks, NFTs, Web3 Fashion" />
       </Head>
       {ready ? (
         <>
