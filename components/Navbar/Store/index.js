@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { IoMdMenu } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
+import Profile from "../../Store/Profile";
 
 export default function StoreNavbar() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -35,6 +36,21 @@ export default function StoreNavbar() {
     },
   ];
 
+  const mobileLinks = [
+    {
+      title: "All Products",
+      url: "/store/products",
+    },
+    {
+      title: "Collections",
+      url: "/store/collections",
+    },
+    {
+      title: "Profile",
+      url: "/store/profile",
+    },
+  ];
+
   const links = [
     {
       title: "All Products",
@@ -46,12 +62,12 @@ export default function StoreNavbar() {
     },
   ];
 
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   return (
     <>
-      <div className="w-full bg-white text-center ">
-        <p className="inline-flex items-center gap-x-3">
+      <div className="w-full bg-white text-center text-[--primary-brand]">
+        <p className="inline-flex items-center gap-x-3 mx-1">
           <span>30% Off Purchases using DeFi Tiger Token </span>
           <Image
             src="https://www.defitigertoken.com/dtg.png"
@@ -60,8 +76,12 @@ export default function StoreNavbar() {
             alt="Defi Tiger Token"
           />
         </p>
+        <p className="inline-flex items-center gap-x-3 mx-1">
+          <span>Buy More than 1 iSock and Get Free Shipping </span>
+          🧦
+        </p>
       </div>
-      <nav className="sm:px-24 md:px-3 px-3 py-3 text-white flex justify-between w-full">
+      <nav className="sm:px-24 md:px-3 px-3 py-3 text-white flex justify-between w-full bg-[--primary-brand] items-center">
         <div className="md:hidden block">
           <Cart />
         </div>
@@ -74,21 +94,21 @@ export default function StoreNavbar() {
           />
         </Link>
         <div className="md:flex hidden items-center justify-center gap-x-1 border rounded-full px-3 cursor-pointer">
-          <span>We Accept</span>
+          <span className="text-lg">We Accept</span>
           {currency.map((currency, index) => {
             return (
               <Image
                 src={currency.imgURL}
                 alt={currency.title}
                 title={currency.title}
-                width={20}
-                height={20}
+                width={25}
+                height={25}
                 key={index}
               />
             );
           })}
         </div>
-        <div className="md:flex hidden gap-x-2 items-center justify-center">
+        <div className="md:flex hidden gap-x-4 items-center justify-center">
           {links.map((link, index) => {
             return (
               <a
@@ -102,6 +122,7 @@ export default function StoreNavbar() {
           })}
           <FaMagnifyingGlass size={20} className="cursor-pointer" />
           <CurrencySelect />
+          <Profile />
           <Cart />
         </div>
         <div className="hover:cursor-pointer md:hidden block gap-x-3">
@@ -122,7 +143,7 @@ export default function StoreNavbar() {
               x: -500,
             }}
           >
-            <div className="w-full flex justify-end pr-3 pt-3">
+            <div className="w-full flex justify-end pr-3 pt-3 text-black">
               <IoMdClose onClick={() => setMobileNavOpen(false)} size={35} />
             </div>
             <div className="w-full flex flex-col items-center justify-center gap-y-3">
@@ -151,17 +172,15 @@ export default function StoreNavbar() {
                 })}
               </div>
               <div className="flex gap-x-2 items-center flex-col justify-center">
-                {links.map((link, index) => {
+                {mobileLinks.map((link, index) => {
                   return (
-                    <a
+                    <button
                       key={index}
-                      href={link.url}
-                      className={`${
-                        pathname === link.url && "text-white underline"
-                      }`}
+                      onClick={() => push(link.url)}
+                      className="text-[--primary-brand]"
                     >
                       {link.title}
-                    </a>
+                    </button>
                   );
                 })}
                 <p className="inline-flex items-center justify-center bg-black text-white rounded-full px-6 py-3 gap-x-1">
