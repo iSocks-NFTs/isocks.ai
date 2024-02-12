@@ -50,10 +50,10 @@ export default function useAuth() {
         setLoading(false);
       } catch (error) {
         console.error(error);
-        if (error.response.status === 401) {
-          deleteCookie();
-          push("/store/login");
-        }
+        // if (error.response.status === 401) {
+        //   deleteCookie();
+        //   push("/store/login");
+        // }
         setUser(null);
         setLoading(false);
         setError(true);
