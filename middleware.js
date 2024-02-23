@@ -28,7 +28,7 @@ export async function middleware(req) {
     const cookie = req.cookies.get("isocks_store_admin");
     if (cookie) {
       console.log("Manager Session Exists, Redirecting to Dashboard");
-      return NextResponse.redirect(`${baseURL}/store/manager`);
+      return NextResponse.redirect(`${baseURL}/store/manager/dashboard`);
     }
   }
 
