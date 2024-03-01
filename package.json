@@ -14,6 +14,7 @@
     "autoprefixer": "^10.4.16",
     "awesome-toast-component": "^2.0.6",
     "axios": "^1.1.2",
+    "cookie": "^0.6.0",
     "country-data-list": "^1.2.2",
     "daisyui": "^4.4.20",
     "date-fns": "^2.29.3",
