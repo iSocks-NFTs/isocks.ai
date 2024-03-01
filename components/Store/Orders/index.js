@@ -1,5 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Product from "./Product";
+import axios from "axios";
+import { endpoints } from "../../../utils/endpoints";
+import Toast from "awesome-toast-component";
+import useAuth from "../../../hooks/useAuth";
 
 const orderStatus = [
   {
@@ -101,13 +105,50 @@ export default function UserOrders() {
       date: "On 21-08",
     },
   ];
+  const [orders, setOrders] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const { token } = useAuth();
+
+  useEffect(() => {
+    async function getOrders() {
+      const { getOrders } = endpoints;
+      try {
+        const response = await axios.get(getOrders, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setOrders(response.data);
+      } catch (error) {
+        console.error(error);
+        if (error && !error.response) {
+          new Toast("Server Connection Failure...");
+        }
+
+        if (error && error.response) {
+          const { status } = error.response;
+
+          if (status === 500) {
+            new Toast("Server Failure... Something went wrong...");
+          }
+        }
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getOrders();
+  }, []);
 
   return (
     <div className="rounded-md bg-white text-[--primary-brand] py-3 md:w-4/6 w-5/6">
       <div className="w-full border-b p-2">
         <h3 className="text-2xl font-semibold">Orders</h3>
       </div>
-      <div className="p-2 flex gap-x-2 items-center">
+      {/* <div className="p-2 flex gap-x-2 items-center">
         {orderStatus.map((order, index) => {
           return (
             <button
@@ -123,10 +164,13 @@ export default function UserOrders() {
             </button>
           );
         })}
+      </div> */}
+      <div className="flex justify-center items-center w-full h-[550px] border">
+        {orders.length === 0 && <p>You haven't made an order yet...</p>}
       </div>
       <div className="my-3 px-2 flex flex-col gap-y-3 overflow-y-auto h-screen">
-        {products.map((product, index) => {
-          return <Product product={product} key={index} />;
+        {orders?.map((order, index) => {
+          return <Product product={order} key={index} />;
         })}
       </div>
     </div>

@@ -2,36 +2,32 @@ import { useState } from "react";
 import { PiCaretDown, PiCaretUp } from "react-icons/pi";
 import Image from "next/image";
 
-export default function CurrencySelect() {
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState({
+const currency = [
+  {
+    title: "USDT - Tether",
+    imgURL: "/img/currency/usdt.svg",
+    shortForm: "USDT",
+  },
+  {
     title: "US Dollar",
     imgURL: "/img/currency/dollar.svg",
     shortForm: "USD",
-  });
+  },
+  {
+    title: "Nigerian Naira",
+    imgURL: "/img/currency/naira.svg",
+    shortForm: "NGN",
+  },
+  {
+    title: "Defi Tiger",
+    imgURL: "https://bscscan.com/token/images/defitiger_32.png",
+    shortForm: "DTG",
+  },
+];
 
-  const currency = [
-    {
-      title: "US Dollar",
-      imgURL: "/img/currency/dollar.svg",
-      shortForm: "USD",
-    },
-    {
-      title: "USDT - Tether",
-      imgURL: "/img/currency/usdt.svg",
-      shortForm: "USDT",
-    },
-    {
-      title: "Nigerian Naira",
-      imgURL: "/img/currency/naira.svg",
-      shortForm: "NGN",
-    },
-    {
-      title: "Defi Tiger",
-      imgURL: "https://bscscan.com/token/images/defitiger_32.png",
-      shortForm: "DTG",
-    },
-  ];
+export default function CurrencySelect() {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState(currency[0]);
 
   function handleClick(currency) {
     setSelectedCurrency(currency);
@@ -40,8 +36,9 @@ export default function CurrencySelect() {
 
   return (
     <div className="relative">
-      <span className="flex justify-center items-center cursor-pointer gap-x-1"
-      onClick={() => setOpenDropdown(!openDropdown)}
+      <span
+        className="flex justify-center items-center cursor-pointer gap-x-1"
+        onClick={() => setOpenDropdown(!openDropdown)}
       >
         {selectedCurrency.shortForm}{" "}
         {openDropdown ? <PiCaretUp /> : <PiCaretDown />}

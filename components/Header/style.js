@@ -4,13 +4,17 @@ export const Container = styled.div`
   max-width: 100%;
   background-color: #fff;
   padding: 1rem 0 8rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 `;
 
 export const Heading = styled.h3`
   font-family: "Nunito Sans";
   text-align: center;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 3rem;
   margin-bottom: -0.1rem;
   @media screen and (max-width: 520px) {
     font-size: 20px;

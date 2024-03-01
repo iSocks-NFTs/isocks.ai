@@ -30,7 +30,9 @@ function ProductImage({ images, setCurrentImage }) {
 }
 
 export default function ProductImageSelector({ images }) {
-  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentImage, setCurrentImage] = useState(
+    images[0] ? images[0] : "/img/function/error/broken.png"
+  );
 
   return (
     <div

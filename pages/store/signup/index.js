@@ -90,9 +90,12 @@ export default function SignUp() {
         <title>iSocks Store | Sign Up</title>
       </Head>
       <Navbar />
-      <div className="flex flex-col justify-center items-center mt-20">
+      <div className="flex flex-col justify-center items-center mt-20 mx-auto">
         <h3 className="text-3xl font-bold">Sign Up</h3>
-        <form className="flex flex-col gap-y-5" onSubmit={handleSubmit}>
+        <form
+          className="flex flex-col gap-y-5 justify-center items-center"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-col justify-start gap-y-2">
             <label htmlFor="fullName" className="text-[--subtle-text] text-xs">
               Full Name
@@ -166,21 +169,18 @@ export default function SignUp() {
           </div>
           <button
             type="submit"
-            className="text-white bg-[--primary-brand] py-3 rounded-full"
+            className="text-white bg-[--primary-brand] py-3 rounded-full w-[380px]"
           >
             Sign Up
           </button>
           <div>
-            <p className="text-center text-xs text-semibold">
+            <p className="text-center text-xs text-semibold w-[380px]">
               By signing up, you agree you've read and accepted our{" "}
               <button onClick={() => push("/terms")} className="underline">
-                Terms and
-                <br />
-                Conditions
+                Terms and Conditions
               </button>
-              . Please see our Privacy Policy for information on how we
-              <br />
-              process your data.
+              . Please see our Privacy Policy for information on how we process
+              your data.
             </p>
           </div>
         </form>

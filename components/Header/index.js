@@ -12,6 +12,9 @@ const Header = () => {
             Experience the Future of Fashion with iSocksNFT: <br /> Wear, Trade
             and Prove Ownership
           </Heading>
+          <p className="text-center text-xl">
+            Own the Trend: NFT-Powered Fashion for the Modern Connoisseur
+          </p>
           <ButtonContainer>
             <ARButton onClick={() => Router.push("/ar")}>
               {" "}

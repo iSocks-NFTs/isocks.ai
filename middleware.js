@@ -28,11 +28,17 @@ export async function middleware(req) {
     const cookie = req.cookies.get("isocks_store_admin");
     if (cookie) {
       console.log("Manager Session Exists, Redirecting to Dashboard");
-      return NextResponse.redirect(`${baseURL}/store/manager`);
+      return NextResponse.redirect(`${baseURL}/store/manager/dashboard`);
     }
   }
 
-  if (url.includes("/store/manager/dashboard")) {
+  if (
+    url.includes("/store/manager/dashboard") ||
+    url.includes("/store/manager/products") ||
+    url.includes("/store/manager/orders") ||
+    url.includes("/store/manager/gallery") ||
+    url.includes("/store/manager/settings")
+  ) {
     const cookie = req.cookies.get("isocks_store_admin");
     if (!cookie) {
       console.log("No Session Exits, Redirecting to Auth Page...");

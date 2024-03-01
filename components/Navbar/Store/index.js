@@ -121,7 +121,6 @@ export default function StoreNavbar() {
             );
           })}
           <FaMagnifyingGlass size={20} className="cursor-pointer" />
-          <CurrencySelect />
           <Profile />
           <Cart />
         </div>

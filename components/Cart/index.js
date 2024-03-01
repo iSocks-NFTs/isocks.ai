@@ -7,41 +7,15 @@ import Product from "./Product";
 
 export default function Cart() {
   const [cartDropdown, setCartDropdown] = useState(false);
-  const { calculateTotalPrice, calculateTotalQuantity } = useCartContext();
-
-  const shoppingData = [
-    {
-      productIMGURL: "/img/products/store/test/product_2.jpg",
-      productTitle: "Shuffle Hat Black",
-      quantity: 3,
-      price: "$35",
-    },
-    {
-      productIMGURL: "/img/products/store/test/product.jpg",
-      productTitle: "Shuffle Hat Black",
-      quantity: 3,
-      price: "$35",
-    },
-    {
-      productIMGURL: "/img/products/store/test/product.jpg",
-      productTitle: "Shuffle Hat Black",
-      quantity: 3,
-      price: "$35",
-    },
-    {
-      productIMGURL: "/img/products/store/test/product_2.jpg",
-      productTitle: "Shuffle Hat Black",
-      quantity: 3,
-      price: "$35",
-    },
-
-    {
-      productIMGURL: "/img/products/store/test/product_2.jpg",
-      productTitle: "Shuffle Hat Black",
-      quantity: 3,
-      price: "$35",
-    },
-  ];
+  const {
+    cartItems,
+    calculateTotalPrice,
+    calculateTotalQuantity,
+    removeFromCart,
+    incrementQuantity,
+    decrementQuantity,
+    checkOut,
+  } = useCartContext();
 
   return (
     <div className="relative">
@@ -50,7 +24,7 @@ export default function Cart() {
         onClick={() => setCartDropdown(!cartDropdown)}
       >
         <FaShoppingCart size={25} />
-        <span className="bg-black text-white rounded-full border-2 border-white absolute h-5 w-5 inline-flex justify-center items-center -top-2 -right-2">
+        <span className="bg-black text-white rounded-full border-[3px] border-white absolute h-6 w-6 inline-flex justify-center items-center -top-2 -right-2">
           {calculateTotalQuantity()}
         </span>
       </div>
@@ -79,17 +53,25 @@ export default function Cart() {
             </div>
 
             <div className="h-full w-full overflow-y-auto p-1 flex flex-col gap-y-2">
-              {shoppingData.map((data, index) => {
+              {cartItems.map((data, index) => {
                 return (
                   <Product
                     key={index}
-                    productIMGURL={data.productIMGURL}
+                    productIMGURL={data.imgUrl}
                     productTitle={data.productTitle}
                     quantity={data.quantity}
                     price={data.price}
+                    removeFromCart={() => removeFromCart(data.id)}
+                    increaseQuantity={() => incrementQuantity(data.id)}
+                    decreaseQuantity={() => decrementQuantity(data.id)}
                   />
                 );
               })}
+              {cartItems.length === 0 ? (
+                <p>Your Cart is currently empty...</p>
+              ) : (
+                ""
+              )}
             </div>
 
             <div className="flex w-full justify-end items-start gap-x-5">
@@ -97,12 +79,12 @@ export default function Cart() {
               <p className="text-2xl">${calculateTotalPrice()}</p>
             </div>
 
-            <a
+            <button
               className="uppercase font-Zen-Dots rounded-sm border border-solid border-white border-opacity-40 bg-gradient-to-b from-opacity-4 via-opacity-1 via-opacity-0 to-transparent shadow-lg backdrop-blur-20 px-5 py-3 hover:bg-white hover:text-[--primary-brand] w-full text-center"
-              href="/store/product/checkout"
+              onClick={checkOut}
             >
               Checkout
-            </a>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

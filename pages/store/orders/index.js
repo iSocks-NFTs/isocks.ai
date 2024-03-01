@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import StoreNavbar from "../../../components/Navbar/Store";
 import Sidebar from "../../../components/Store/Sidebar";

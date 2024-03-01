@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useCartContext } from "../../../../context/CartContext";
 
-export default function Quantity() {
+export default function Quantity({ productId }) {
   const [productQuantity, setProductQuantity] = useState(0);
+  const {
+    cartItems,
+    incrementQuantity,
+    decrementQuantity,
+    getProductQuantity,
+  } = useCartContext();
 
   function increase() {
     setProductQuantity((productQuantity) => productQuantity + 1);
+    incrementQuantity(productId);
   }
 
   function decrease() {
@@ -13,6 +21,7 @@ export default function Quantity() {
     }
 
     setProductQuantity((productQuantity) => productQuantity - 1);
+    decrementQuantity(productId);
   }
 
   return (
@@ -25,7 +34,7 @@ export default function Quantity() {
         >
           -
         </button>
-        {productQuantity}
+        {getProductQuantity(productId)}
         <button
           onClick={increase}
           className="border rounded-full h-10 w-10 bg-black text-white"

@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 export default function useAuth() {
   const [cookies, setCookie, removeCookie] = useCookies(["isocks_store_user"]);
   const [token, setToken] = useState(cookies.isocks_store_user);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
+  const [billingInfo, setBillingInfo] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { getUser } = endpoints;
@@ -30,11 +31,32 @@ export default function useAuth() {
     push("/store/login");
   }
 
-  function deleteCookie() {
-    removeCookie("isocks_store_user", {
-      path: "/",
-      maxAge: 3600 * 24 * 3,
-    });
+  async function refreshData() {
+    try {
+      const response = await axios.get(getUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const { data } = response;
+
+      const billingData = data.billingInfo;
+
+      const remapData = billingData.map((address) => ({
+        ...address,
+        selected: address.isDefault ? true : false,
+      }));
+
+      setUser(response.data);
+      setBillingInfo(remapData);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setUser(null);
+      setLoading(false);
+      setError(true);
+    }
   }
 
   useEffect(() => {
@@ -46,17 +68,20 @@ export default function useAuth() {
           },
         });
 
+        const billingData = response?.data?.billingInfo;
+        const remapData = billingData?.map((address) => ({
+          ...address,
+          selected: address.isDefault ? true : false,
+        }));
+
         setUser(response.data);
-        setLoading(false);
+        setBillingInfo(remapData);
       } catch (error) {
         console.error(error);
-        if (error.response.status === 401) {
-          deleteCookie();
-          push("/store/login");
-        }
         setUser(null);
-        setLoading(false);
         setError(true);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -69,6 +94,8 @@ export default function useAuth() {
     user,
     loading,
     error,
+    billingInfo,
+    refreshData,
     logOut,
   };
 }
