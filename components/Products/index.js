@@ -13,7 +13,7 @@ const ProductSlide = () => {
 
   return (
     <Container>
-      <Slider />
+      {/* <Slider /> */}
       <ButtonContainer>
         <FilledButton
           onClick={() =>
@@ -25,14 +25,14 @@ const ProductSlide = () => {
           Marketplace
         </FilledButton>
       </ButtonContainer>
-      <ButtonContainer>
+      {/* <ButtonContainer>
         <OutLineButton onClick={() => router.push("/redeem")}>
           Redeem
         </OutLineButton>
         <OutLineButton onClick={() => router.push("/verify")}>
           Verify
         </OutLineButton>
-      </ButtonContainer>
+      </ButtonContainer> */}
     </Container>
   );
 };

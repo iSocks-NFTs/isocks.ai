@@ -3,7 +3,7 @@ import { FaPencilAlt } from "react-icons/fa";
 
 export default function ProfileCard() {
   return (
-    <div className="rounded-md bg-white text-[--primary-brand] py-3 md:w-4/6 w-5/6">
+    <div className="rounded-md bg-white text-[--primary-brand] py-3 md:w-4/6 w-5/6 shadow-md">
       <div className="w-full border-b p-2">
         <h3 className="text-2xl font-semibold">Account Overview</h3>
       </div>

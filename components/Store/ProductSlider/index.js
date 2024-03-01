@@ -2,8 +2,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import { LiaEthereum } from "react-icons/lia";
 import Link from "next/link";
 import Image from "next/image";
+import { useCartContext } from "../../../context/CartContext";
 
 export default function ProductSlider() {
+  const { addToCart } = useCartContext();
+
   function imgURl(url) {
     return `/img/products/2023/${url}`;
   }
@@ -13,36 +16,46 @@ export default function ProductSlider() {
       imgUrl: imgURl("green.jpg"),
       heading: "Winker",
       description: "J!J! Klan",
-      price: "0.08 ETH",
       url: "https://www.binance.com/en/nft/item/67501288",
+      id: "abc123xyz",
+      price: 55.5,
+      quantityAvailable: 10,
     },
     {
       imgUrl: imgURl("grey.jpg"),
       heading: "Citizen",
       description: "J!J! Klan",
-      price: "0.08 ETH",
       url: "https://www.binance.com/en/nft/item/71068380",
+      id: "def456uvw",
+      price: 55.5,
+      quantityAvailable: 8,
     },
     {
       imgUrl: imgURl("lemon.jpg"),
       heading: "Female Citizen",
       description: "Kool Klan",
-      price: "0.01 ETH",
       url: "https://www.binance.com/en/nft/item/66363867",
+      id: "ghi789rst",
+      price: 55.5,
+      quantityAvailable: 11,
     },
     {
       imgUrl: imgURl("light-green.jpg"),
       heading: "Female Citizen",
       description: "Kool Klan",
-      price: "0.01 ETH",
       url: "https://www.binance.com/en/nft/item/66363867",
+      id: "jkl012mno",
+      price: 55.5,
+      quantityAvailable: 5,
     },
     {
       imgUrl: imgURl("pink.jpg"),
       heading: "Citizen",
       description: "J!J! Klan",
-      price: "0.08 ETH",
       url: "https://www.binance.com/en/nft/item/71068380",
+      id: "pqr345stu",
+      price: 55.5,
+      quantityAvailable: 3,
     },
   ];
 
@@ -51,37 +64,39 @@ export default function ProductSlider() {
       <h3 className="font-Zen-Dots text-white uppercase text-center text-3xl my-2">
         iSocks Collection
       </h3>
-      <div className="flex overflow-x-auto gap-3 justify-start items-center px-2 w-full text-white">
+      <div className="flex overflow-x-auto gap-3 justify-start items-center p-2 max-w-full text-white">
         {products.map((product, index) => {
           return (
-            <Link key={index} href={product.url}>
-              <div className="text-center flex flex-col justify-between items-center border rounded-md hover:cursor-pointer w-fit">
-                <Image
-                  src={product.imgUrl}
-                  className="rounded-t-md object-contain w-full"
-                  alt={product.heading}
-                  loader={({ src }) => src}
-                  width={420}
-                  height={420}
-                />
-                <div className="flex flex-row items-center w-full justify-between p-2">
-                  <div className="w-full flex flex-col items-start gap-y-3">
-                    <h4 className="text-xl font-semibold text-left">
-                      {product.heading}
-                    </h4>
-                    <p className="text-xl">{product.description}</p>
-                  </div>
-                  <div className="w-full flex flex-col items-end gap-y-3">
-                    <p className="inline-flex gap-x-2 items-center font-bold">
-                      {product.price} <LiaEthereum />
-                    </p>
-                    <p className="inline-flex gap-x-2 items-center">
-                      Buy Now <FaShoppingCart />
-                    </p>
-                  </div>
+            <div
+              className="text-center flex flex-col justify-between items-center border rounded-md hover:cursor-pointer min-w-[340px]"
+              key={index}
+            >
+              <Image
+                src={product.imgUrl}
+                className="rounded-t-md object-contain w-full"
+                alt={product.heading}
+                loader={({ src }) => src}
+                width={420}
+                height={420}
+              />
+              <div className="flex flex-row items-center w-full justify-between p-2">
+                <div className="w-full flex flex-col items-start gap-y-3">
+                  <h4 className="text-xl font-semibold text-left">
+                    {product.heading}
+                  </h4>
+                  <p className="text-xl">{product.description}</p>
+                </div>
+                <div className="w-full flex flex-col items-end gap-y-3">
+                  <p className="inline-flex gap-x-2 items-center font-bold">
+                    {product.price} <LiaEthereum />
+                  </p>
+                  <FaShoppingCart
+                    size={25}
+                    onClick={() => addToCart(product)}
+                  />
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
