@@ -55,7 +55,7 @@ const PurchaseOrder = ({ id }) => {
         <h3 className="text-2xl font-semibold">Purchase Record</h3>
       </div>
       {!loading ? <></> : <>Loading...</>}
-      {error.response.status === 404 && (
+      {error?.response?.status === 404 && (
         <div className="w-full h-[100px] flex items-center justify-center">
           <p className="text-xl font-semibold">
             Purchase Order Could not be located...
