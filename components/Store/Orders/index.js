@@ -166,7 +166,7 @@ export default function UserOrders() {
         })}
       </div> */}
       <div className="flex justify-center items-center w-full h-[550px] border">
-        {orders.length === 0 && <p>You haven't made an order yet...</p>}
+        {orders?.length === 0 && <p>You haven't made an order yet...</p>}
       </div>
       <div className="my-3 px-2 flex flex-col gap-y-3 overflow-y-auto h-screen">
         {orders?.map((order, index) => {
