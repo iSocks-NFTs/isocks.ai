@@ -1,3 +1,5 @@
+import { TiDelete } from "react-icons/ti";
+
 export function EditProductForm({
   form,
   handleSubmit,

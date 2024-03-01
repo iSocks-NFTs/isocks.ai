@@ -3,6 +3,7 @@ import { LiaEthereum } from "react-icons/lia";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartContext } from "../../../context/CartContext";
+import { useRouter } from "next/router";
 
 export default function ProductSlider() {
   const { addToCart } = useCartContext();
@@ -10,6 +11,8 @@ export default function ProductSlider() {
   function imgURl(url) {
     return `/img/products/2023/${url}`;
   }
+
+  const { push } = useRouter();
 
   const products = [
     {
@@ -101,12 +104,12 @@ export default function ProductSlider() {
         })}
       </div>
       <div className="w-full text-center mt-5">
-        <a
+        <button
           className="uppercase font-Zen-Dots rounded-sm border border-solid border-white border-opacity-40 bg-gradient-to-b from-opacity-4 via-opacity-1 via-opacity-0 to-transparent shadow-lg backdrop-blur-20 px-5 py-3 hover:bg-white hover:text-[--primary-brand] w-full text-center text-white"
-          href="/store/product"
+          onClick={() => push("/store/product")}
         >
           View All
-        </a>
+        </button>
       </div>
     </section>
   );

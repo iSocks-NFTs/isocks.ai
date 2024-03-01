@@ -44,8 +44,10 @@ export default function Delivery() {
         </p>
         <p>
           Phone Number :{" "}
-          {address?.phoneNumber?.map((number) => (
-            <span className="font-semibold">{number}</span>
+          {address?.phoneNumber?.map((number, index) => (
+            <span className="font-semibold" key={index}>
+              {number}
+            </span>
           ))}
         </p>
       </div>

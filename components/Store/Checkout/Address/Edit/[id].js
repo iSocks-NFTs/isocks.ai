@@ -2,6 +2,7 @@ import { useState } from "react";
 import Toast from "awesome-toast-component";
 import { useCartContext } from "../../../../../context/CartContext";
 import { useGetAddress } from "../../../../../hooks/useData";
+import { TiDelete } from "react-icons/ti";
 import { useRouter } from "next/router";
 
 export default function EditAddress() {
@@ -11,9 +12,7 @@ export default function EditAddress() {
   const { query } = useRouter();
   const { id } = query;
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="space-y-2 sm:w-3/6 w-full h-fit border-2 p-2 shadow-md rounded-md">
