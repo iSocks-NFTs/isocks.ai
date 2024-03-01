@@ -9,7 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^6.15.1",
+    "@sanity/image-url": "^1.0.2",
+    "@uauth/js": "^2.8.0",
+    "@uauth/web3-react": "^2.8.1",
     "@web3-react/core": "^8.2.3",
+    "@web3-react/walletconnect-connector": "^6.2.13",
     "@web3modal/wagmi": "^4.0.0",
     "autoprefixer": "^10.4.16",
     "awesome-toast-component": "^2.0.6",
