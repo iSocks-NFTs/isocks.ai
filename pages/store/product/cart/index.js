@@ -13,11 +13,11 @@ import { useCartContext } from "../../../../context/CartContext";
 export default function Checkout() {
   const { checkoutPage } = useCartContext();
   const componentsList = [
-    <ProductList />,
-    <UserAddress />,
-    <Delivery />,
-    <AddNewAddress />,
-    <EditAddress />,
+    <ProductList key={0} />,
+    <UserAddress key={1} />,
+    <Delivery key={2} />,
+    <AddNewAddress key={3} />,
+    <EditAddress key={4} />,
   ];
 
   return (
