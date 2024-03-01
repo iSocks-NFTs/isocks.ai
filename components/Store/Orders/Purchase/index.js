@@ -20,7 +20,7 @@ const PurchaseOrder = ({ id }) => {
           },
         });
 
-        if(response.status === 200){
+        if(response && response.status === 200){
           setData(response.data);
         }
       } catch (error) {
